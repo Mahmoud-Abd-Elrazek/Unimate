@@ -1,27 +1,43 @@
-import React from 'react';
 import { FaFacebook } from "react-icons/fa";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { FaWhatsapp } from "react-icons/fa";
 import './footer.css';
+import { AiOutlineCopyright } from "react-icons/ai";
+import { FaUserGraduate } from "react-icons/fa";
 
 export default function Footer() {
     return (
-        <div className='h-auto py-10 w-full bg-slate-200 grid place-items-center'>
+        <div className='h-auto py-10 w-full bg-[#EFEFEF] grid place-items-center gap-6 md:gap-10'>
             {/* First Row */}
-            <div className='flex flex-col md:flex-row justify-between items-center py-5 px-4 md:px-20 w-full max-w-6xl'>
-                <h6 className='hover_pointer border-b-2 border-gray-500 mb-4 md:mb-0'>انضم كا صاحب عقار او وسيط سكن</h6>
-                <h6 className='hover_pointer hover:border-b-2 border-gray-500 mb-4 md:mb-0'>سياسه الخصوصيه</h6>
-                <h6 className='hover_pointer hover:border-b-2 border-gray-500 mb-4 md:mb-0'>الشروط والاحكام</h6>
-                <h6 className='hover_pointer hover:border-b-2 border-gray-500'>الرئيسيه</h6>
+            <div className='flex flex-wrap justify-center items-center gap-6 md:gap-14 px-4 md:px-20 w-full max-w-6xl text-[#212529] text-[16px] sm:text-[17px] text-center md:text-start'>
+                <a href="#" className='cursor-pointer border-b-2 border-transparent hover:border-gray-500'>
+                    الرئيسية
+                </a>
+                <a href="#" className='cursor-pointer border-b-2 border-transparent hover:border-gray-500'>
+                    سياسة الخصوصية
+                </a>
+                <a href="#" className='cursor-pointer border-b-2 border-transparent hover:border-gray-500'>
+                    الشروط والأحكام
+                </a>
+                <a href="#" className='cursor-pointer font-bold border-b-2 border-transparent hover:border-gray-500'>
+                    انضم كاصاحب مسكن
+                </a>
             </div>
-            {/* Icons */}
-            <div className='flex justify-center space-x-4 mb-4'>
-                <div><FaFacebook className='hover_pointer w-7 h-7 text-gray-400' /></div>
-                <div><FaSquareInstagram className='hover_pointer w-7 h-7 text-gray-400' /></div>
-                <div><FaWhatsapp className='hover_pointer w-7 h-7 text-gray-400' /></div>
+
+            {/* Social Icons */}
+            <div className='flex justify-center gap-6 text-[#212529]'>
+                <FaFacebook className='cursor-pointer w-5 h-5 hover:text-[#0a0707]' />
+                <FaSquareInstagram className='cursor-pointer w-5 h-5 hover:text-[#0a0707]' />
+                <FaWhatsapp className='cursor-pointer w-5 h-5 hover:text-[#0a0707]' />
             </div>
-            <div className='text-center'>
-                <span className='pr-1'>uni_mate @2025</span>جميع الحقوق محفوظه لموقع
+
+            {/* Copyrights */}
+            <div className='flex flex-wrap justify-center items-center text-center text-[#212529] font-[Nunito]'>
+                <AiOutlineCopyright className='w-5 h-5 mr-2' />
+                <span className='pr-1 font-[Nunito] text-[18px] sm:text-[19px]'>uni</span>
+                <FaUserGraduate className='w-4 h- text-red-500' />
+                <span className="font-[Nunito] text-[18px] sm:text-[19px]">mate</span>
+                <span className='pl-1 ml-1'>جميع الحقوق محفوظة لموقع</span>
             </div>
         </div>
     );
