@@ -36,9 +36,9 @@ const ApartmentCard = () => {
           ))}
         </Swiper>
 
-        {/* Favorite Icon on the Left */}
-        <div className="absolute top-3 left-3 bg-white p-2 rounded-full shadow-md cursor-pointer z-10">
-          <FaHeart className="text-gray-400 hover:text-red-500 transition duration-300" />
+        {/* Favorite Icon on the Left*/}
+        <div title="Add to Favourites" className="absolute top-3 left-3 bg-white p-2 rounded-full shadow-md cursor-pointer z-10">
+        <FaHeart className="text-[#00000080] hover:text-red-500 hover:scale-110 transition duration-300" />
         </div>
       </div>
 
