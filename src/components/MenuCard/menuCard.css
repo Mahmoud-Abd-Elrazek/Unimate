@@ -1,0 +1,17 @@
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Adjust spacing between text and icon */
+    text-decoration: none; /* Optional: Removes underline */
+    color: black; /* Adjust text color */
+}
+body
+{
+    /* background-color: black; */
+    height: 100vh;
+}
+.card
+{
+    width: 20rem;
+    height: 20rem;
+}

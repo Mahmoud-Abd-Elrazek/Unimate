@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+    font-family: "Cairo", sans-serif;
+    
+}
+.IconSize{
+    font-size: 1.5rem;
+    @apply w-[25px];
+    @apply h-[25px];
+  
+   
+
+}
+.logo
+{
+    @apply w-[150px];
+    @apply h-[3rem];
+}
+.MainColorText
+{
+    color: #50a853;
+}
+.MainColorBG
+{
+    background-color: #50a853;
+}
+.InputStyle{
+    @apply w-full;
+    @apply h-[3rem];
+    @apply border-2;
+    @apply border-gray-200;
+    @apply p-2;
+    @apply rounded-md;
+}
+.ErrorMessage
+{
+    @apply text-red-600;
+}
