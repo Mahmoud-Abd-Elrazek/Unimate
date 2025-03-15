@@ -40,16 +40,18 @@ export default function NavBar() {
                     </div>
 
                     {/* left nav icon */}
-                    <div className="flex justify-between items-center gap-4">
+                    <div className="flex justify-between items-center gap-2">
+                        
                         {/* dark and light icon */}
-                        <div>
-                            <MdOutlineLightMode className='w-7 h-7 hover:cursor-pointer' />
+                        <div className='flex items-center justify-center w-[44px] h-[44px] p-[9px] rounded-full  text-[#1E1E1E] hover:cursor-pointer hover:bg-[#F1F3F4] transition-colors duration-150 ease-in-out'>
+                            <MdOutlineLightMode className='w-6 h-6 hover:cursor-pointer' />
                         </div>
 
                         {/* Language Icon */}
-                        <div className='flex items-center justify-center w-[44px] h-[44px] p-[9px] rounded-full bg-[#F1F3F4] text-[#1E1E1E] hover:cursor-pointer'>
+                        <div className='flex items-center justify-center w-[44px] h-[44px] p-[9px] rounded-full  text-[#1E1E1E] hover:cursor-pointer hover:bg-[#F1F3F4] transition-colors duration-150 ease-in-out'>
                             <IoLanguageOutline className='w-6 h-6' />
                         </div>
+
                     </div>
                 </div>
 
