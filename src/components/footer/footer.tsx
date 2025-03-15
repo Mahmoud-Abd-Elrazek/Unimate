@@ -3,7 +3,7 @@ import { FaSquareInstagram } from "react-icons/fa6";
 import { FaWhatsapp } from "react-icons/fa";
 import './footer.css';
 import { AiOutlineCopyright } from "react-icons/ai";
-import { FaUserGraduate } from "react-icons/fa";
+import { PiStudentFill } from "react-icons/pi";
 
 export default function Footer() {
     return (
@@ -35,7 +35,7 @@ export default function Footer() {
             <div className='flex flex-wrap justify-center items-center text-center text-[#212529] font-[Nunito]'>
                 <AiOutlineCopyright className='w-5 h-5 mr-2' />
                 <span className='pr-1 font-[Nunito] text-[18px] sm:text-[19px]'>uni</span>
-                <FaUserGraduate className='w-4 h- text-red-500' />
+                <PiStudentFill className='w-4 h- text-red-500' />
                 <span className="font-[Nunito] text-[18px] sm:text-[19px]">mate</span>
                 <span className='pl-1 ml-1'>جميع الحقوق محفوظة لموقع</span>
             </div>
