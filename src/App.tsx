@@ -8,7 +8,6 @@ import NotFound from './pages/notfound/notFound'
 import NavBar from './components/navbar/navbar'
 import Footer from './components/footer/footer'
 import SigninCard from './components/signincard/signinCard'
-import MenuCard from './components/MenuCard/menuCard'
 import Register from './components/RegisterCard/register'
 
 // App component  to wrap all routes and components in a Router and Routes
@@ -31,7 +30,6 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/rooms" element={<Rooms />} />
           <Route path="/SignIn" element={<SigninCard />} />
-          <Route path='/menucard' element={<MenuCard />} />
           <Route path='/register' element={<Register />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
