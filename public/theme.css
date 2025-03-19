@@ -1,0 +1,20 @@
+/* theme.css */
+:root {
+   /* text */
+   --primary-colo-theme: #DC3545;
+   --primary-text-color: #222222;
+   --secondary-text-color: #6C757D;
+   --dark-color: #1F1F1F;
+   --light-white-color: #F8F9FA;
+   --light-bj-hover-color: #F1F3F4;
+   --bg-opacity: rgba(255, 255, 255, 0.5);
+   
+   /* Stork and hover effects */
+   --main-stroke: #CED4DA;
+   --light-stroke-color: #F1F3F4;
+   --dark-stroke-color: #222222;
+   --button-dark-hover: #222222;
+
+   /* Shadow */
+   --light-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+}

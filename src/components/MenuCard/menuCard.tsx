@@ -22,7 +22,7 @@ export default function MenuCard({ setIsOpen }: MenuCardProps) {
                 </button>
 
                 <div className="flex flex-col items-end space-y-4 pt-8">
-                    <Link to="/SignIn" className='menu-link' >تسجيل الدخول <GoSignIn className='IconSize inline my-3 ml-2' /></Link>
+                    <Link to="/SignIn" className='menu-link' onClick={()=>setIsOpen(false)} >تسجيل الدخول <GoSignIn className='IconSize inline my-3 ml-2' /></Link>
                     <Link to="/register" className='menu-link'>انشاء حساب جديد <IoPersonAddOutline className='IconSize inline my-3 ml-2' /></Link>
                     <div className="flex items-center text-xl">
                     <Link to="/SignOut" className='menu-link '>
