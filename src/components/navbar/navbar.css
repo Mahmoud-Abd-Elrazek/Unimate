@@ -1,11 +1,99 @@
-*{
+@import url("../../../public/theme.css");
+@import url('https://github.githubassets.com/assets/fonts/mona-sans.css');
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
+    font-family: 'Cairo', sans-serif;
 }
-body
-{
-    /* background-color: orange ; */
-    color: whitesmoke;
+
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    padding: 0 40px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--light-stroke-color);
+    background-color: rgba(255, 255, 255, 1);
+    backdrop-filter: blur(10px); /* bluer effect */
+    z-index: 50;
+}
+
+
+/* =========================== LOGO START ===========================*/
+.logo-color {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--primary-text-color);
+    color: var(--primary-text-color);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logo-color span {
+    padding-right: 4px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 30px;
+    color: #36288a;
+    color: #060318;
+}
+
+.logo-color svg {
+    width: 35px;
+    height: 35px;
+    color: var(--primary-colo-theme);
+}
+
+/* =========================== LOGO END ===========================*/
+
+/* =========================== USER ICON START ===========================*/
+.user-icon {
+    border: 1px solid var(--main-stroke);
+    border-radius: 20000px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100px;
+    padding: 8px 12px;
+    cursor: pointer;
+
+    transition: all 0.1s ease;
+    color: var(--primary-text-color);
+}
+
+.user-icon:hover {
+    box-shadow: var(--light-shadow);
+}
+.menu-bar {
+    width: 28px;
+    height: 28px;
+}
+
+.user-icon-container {
+    width: 30px;
+    height: 30px;
+}
+/* =========================== user icon ===========================*/
+
+
+@media (max-width: 1024px) { /* الشاشات الكبيرة مثل التابلت */
+    
+}
+
+@media (max-width: 768px) { /* الشاشات المتوسطة مثل الأجهزة اللوحية */
+
+}
+
+@media (max-width: 480px) { /* الشاشات الصغيرة مثل الهواتف */
+
 }
