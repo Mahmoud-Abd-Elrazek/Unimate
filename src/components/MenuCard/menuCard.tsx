@@ -9,6 +9,7 @@ interface MenuCardProps {
 }
 
 export default function MenuCard({ setIsOpen }: MenuCardProps) {
+   
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md">
             <div className="bg-white w-[30rem] h-[25rem] rounded-lg p-6 relative shadow-lg">

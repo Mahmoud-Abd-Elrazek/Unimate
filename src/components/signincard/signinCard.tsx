@@ -1,13 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+// import { useState } from "react";
+// import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import z from "zod"
 
 
+
 export default function SignIn() {
     const navigate = useNavigate()
-
-
+   
     // handel the form and vaildate it
     const SingInSchema = z.object({
         email: z.string().email({ message: "ادخل بريد الكتروني صحيح" }),
@@ -31,7 +33,7 @@ export default function SignIn() {
                     <div className="flex justify-between items-center">
                         <button
                             className=" text-3xl  text-gray-500 hover:text-gray-700"
-
+                            // onClick={()=>setIsOpen(true)}
                         >
                             ✖
                         </button>

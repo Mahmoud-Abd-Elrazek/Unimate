@@ -38,3 +38,7 @@
 {
     @apply text-red-600;
 }
+.BODY{
+    @apply mt-[5rem];
+    @apply py-[5rem];
+}

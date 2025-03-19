@@ -1,12 +1,13 @@
 import { MdOutlineLightMode } from "react-icons/md";
 import { IoLanguageOutline } from "react-icons/io5";
 import { MdMenu } from "react-icons/md";
-
+import { Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { PiStudentFill } from "react-icons/pi";
 import Search_bar from '../search_bar/search_bar';
 import { useState } from "react";
 import MenuCard from "../MenuCard/menuCard";
+// import SignoutCard from "../SignOutCard/signoutCard";
 export default function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -15,11 +16,11 @@ export default function NavBar() {
 
 
             {/* Logo */}
-            <a className='flex flex-wrap justify-center items-center text-center text-[#212529] font-[Nunito] cursor-pointer href="#"'>
+            <Link to='/' className='flex flex-wrap justify-center items-center text-center text-[#212529] font-[Nunito] cursor-pointer'>
                 <span className='pr-1 font-[Nunito] text-[24px] sm:text-[33px]'>Uni</span>
                 <PiStudentFill className='w-9 h-9 text-red-500' />
                 <span className="font-[Nunito] text-[24px] sm:text-[33px]">mate</span>
-            </a>
+            </Link>
 
             {/* Search bar */}
             <div className='hidden lg:block'>
@@ -67,7 +68,9 @@ export default function NavBar() {
             </div>
 
             {/* menu card */}
-            {isMenuOpen && <MenuCard setIsOpen={setIsMenuOpen} />}
+            {(isMenuOpen && <MenuCard setIsOpen={setIsMenuOpen} />)
+             }
+           
         </div>
     )
 }

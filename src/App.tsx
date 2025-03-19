@@ -10,29 +10,23 @@ import Footer from './components/footer/footer'
 import SigninCard from './components/signincard/signinCard'
 import MenuCard from './components/MenuCard/menuCard'
 import Register from './components/RegisterCard/register'
+import SignOutCard from './components/SignOutCard/signoutCard'
 
 // App component  to wrap all routes and components in a Router and Routes
-import ApartmentCard from './components/ApartmentCard/ApartmentCard'
 export default function App() {
   return (
     <div>
       <Router>
         <NavBar />
 
-        <div className="flex flex-wrap gap-4 p-4 mt-[130px] justify-center sm:justify-center md:justify-end">
-          <ApartmentCard />
-          <ApartmentCard />
-          <ApartmentCard />
-          <ApartmentCard />
-          <ApartmentCard />
-          <ApartmentCard />
-        </div>
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/rooms" element={<Rooms />} />
           <Route path="/SignIn" element={<SigninCard />} />
           <Route path='/menucard' element={<MenuCard />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/signout' element={<SignOutCard />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
         <Footer />
