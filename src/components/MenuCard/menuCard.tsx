@@ -23,13 +23,13 @@ export default function MenuCard({ setIsOpen }: MenuCardProps) {
 
                 <div className="flex flex-col items-end space-y-4 pt-8">
                     <Link to="/SignIn" className='menu-link' onClick={()=>setIsOpen(false)} >تسجيل الدخول <GoSignIn className='IconSize inline my-3 ml-2' /></Link>
-                    <Link to="/register" className='menu-link'>انشاء حساب جديد <IoPersonAddOutline className='IconSize inline my-3 ml-2' /></Link>
-                    <div className="flex items-center text-xl">
-                    <Link to="/SignOut" className='menu-link '>
+                    <Link to="/register" className='menu-link'onClick={()=>setIsOpen(false)} >انشاء حساب جديد <IoPersonAddOutline className='IconSize inline my-3 ml-2' /></Link>
+                    <div className="flex items-center text-xl"onClick={()=>setIsOpen(false)}>
+                    <Link to="/SignOut" className='menu-link'onClick={()=>setIsOpen(false)}>
                         <img src={Logo} alt="img" className="inline w-[100px] h-[3rem] pb-1.5 mr-1" /> اعرض مسكنك على <IoHomeOutline className='IconSize inline my-3 ml-2' />
                     </Link>
                     </div>
-                    <Link to="/help" className='menu-link'>مركز المساعده <IoIosHelpCircleOutline className='IconSize inline my-3 ml-2'/></Link>
+                    <Link to="/help" className='menu-link' onClick={()=>setIsOpen(false)}>مركز المساعده <IoIosHelpCircleOutline className='IconSize inline my-3 ml-2'/></Link>
                 </div>
             </div>
         </div>

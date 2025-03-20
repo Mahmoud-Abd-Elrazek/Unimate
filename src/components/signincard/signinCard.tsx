@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import {  useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import z from "zod"
@@ -7,7 +8,8 @@ import z from "zod"
 
 export default function SignIn() {
     const navigate = useNavigate()
-   
+    const [isclosed,setisclosed]=useState(false)
+
     // handel the form and vaildate it
     const SingInSchema = z.object({
         email: z.string().email({ message: "ادخل بريد الكتروني صحيح" }),
@@ -22,16 +24,19 @@ export default function SignIn() {
     const OnSubmit: SubmitHandler<SignT> = (data) => {
         console.log(data)
         navigate('/', { replace: true })
+        setisclosed(!isclosed)
     }
+    
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-5 ">
+        <>
+        {<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 ">
             <div className="bg-white w-[30rem] min-h-[30rem] rounded-lg p-6 relative shadow-lg">
                 <div className="">
                     {/* header */}
                     <div className="flex justify-between items-center">
                         <button
                             className=" text-3xl  text-gray-500 hover:text-gray-700"
-                            // onClick={()=>setIsOpen(true)}
+                            onClick={() => navigate(-1)}
                         >
                             ✖
                         </button>
@@ -61,6 +66,7 @@ export default function SignIn() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>}
+        </>
     );
 }
