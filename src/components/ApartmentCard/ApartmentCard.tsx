@@ -1,12 +1,14 @@
-import { FaHeart } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaHeart } from "react-icons/fa";
 import { MdOutlineStar, MdOutlineStarBorder } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
+import { useRef } from "react";
 const ApartmentCard = () => {
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
   // Apartment images
   const images = [
     "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
@@ -21,8 +23,22 @@ const ApartmentCard = () => {
       <div className="relative">
         <Swiper
           modules={[Navigation, Pagination]}
-          navigation
           pagination={{ clickable: true }}
+          navigation={{
+            prevEl: prevRef.current,
+            nextEl: nextRef.current,
+          }}
+          onSwiper={(swiper) => {
+            // Ensure swiper is initialized before setting navigation elements
+            setTimeout(() => {
+              if (swiper.params.navigation && typeof swiper.params.navigation !== "boolean") {
+                swiper.params.navigation.prevEl = prevRef.current;
+                swiper.params.navigation.nextEl = nextRef.current;
+                swiper.navigation.init();
+                swiper.navigation.update();
+              }
+            });
+          }}
           className="w-full h-[210px]"  // Change height to 300px
         >
           {images.map((src, index) => (
@@ -36,9 +52,23 @@ const ApartmentCard = () => {
           ))}
         </Swiper>
 
+        {/* Custom Navigation Buttons */}
+        <button
+          ref={prevRef}
+          className="absolute left-2 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-lg z-10"
+        >
+          <FaArrowLeft className="text-gray-700 text-lg" />
+        </button>
+        <button
+          ref={nextRef}
+          className="absolute right-2 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-lg z-10"
+        >
+          <FaArrowRight className="text-gray-700 text-lg" />
+        </button>
+
         {/* Favorite Icon on the Left*/}
         <div title="Add to Favourites" className="absolute top-3 left-3 bg-white p-2 rounded-full shadow-md cursor-pointer z-10">
-        <FaHeart className="text-[#00000080] hover:text-red-500 hover:scale-110 transition duration-300" />
+          <FaHeart className="text-[#00000080] hover:text-red-500 hover:scale-110 transition duration-300" />
         </div>
       </div>
 
@@ -59,7 +89,7 @@ const ApartmentCard = () => {
           className="-[50px] h-[50px] rounded-full ml-3"
         />
         <div className="text-right">
-          <p className="text-base font-semibold text-[#212529]">محمود محمد عرفة</p>
+          <p className="text-base font-semibold text-[#212529]">عمرو محمد عبده</p>
           <div className="text-gray-500 text-sm">
             <p className="text-[#6C757D] font-semibold" >صاحب عقار متميز</p>
             <div className="text-gray-500 text-sm flex items-center justify-end gap-0">
