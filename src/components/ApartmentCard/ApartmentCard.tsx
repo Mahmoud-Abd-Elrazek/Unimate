@@ -80,6 +80,19 @@ const ApartmentCard = () => {
             <IoIosArrowForward className="text-[#000]" style={{ width: "100%", height: "20px" }} />
           </button>
         )}
+        {/* Custom styles for pagination dots */}
+        <style>
+          {`.swiper-pagination-bullet {
+              background-color: white !important; /* White background */
+              opacity: .5!important; /* Ensure visibility */
+              width: 8px; /* Adjust size */
+              height: 8px;
+              margin: 0 3px !important; /* Adds space between dots */
+            }
+            .swiper-pagination-bullet-active {
+              opacity: 1 !important; /* Ensure visibility */
+            }`}
+        </style>
 
         {/* Favorite Icon on the Left */}
         <div title="Add to Favourites" className="absolute top-3 left-3 bg-white p-2 rounded-full shadow-md cursor-pointer z-10">
