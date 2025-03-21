@@ -2,11 +2,11 @@
 
 /* theme.css */
 :root {
+   
    /* search bar */
    --border-focus: var(--dark-stroke-color);
    --height: 50px;
-   --border-radius: 999px;
-   /* Rounded full */
+   --border-radius: 999px; /* Rounded full */
 
    --transition-duration: 300ms;
    --transition-timing: ease-in-out;
@@ -20,7 +20,6 @@
    --placeholder-size: 14px;
 
    /* search button */
-   --icon-color: var(--primary-text-color);
    --icon-size: 20px;
    --search-button-container-size: 36px;
    --search-button-transition-duration: 150ms;
@@ -33,7 +32,7 @@
    justify-content: space-between;
    gap: 23px;
 
-   border: 1px solid var(--main-stroke);
+   border: 1px solid transparent;
    box-shadow: var(--light-shadow);
 
    height: var(--height);
@@ -70,22 +69,60 @@ input {
 .search-button {
    width: var(--search-button-container-size);
    height: var(--search-button-container-size);
-   border: 1px solid var(--main-stroke);
-   border-radius: 9999px;
-   /* rounded-full */
+   border-radius: 9999px; /* rounded-full */
    display: flex;
    justify-content: center;
    align-items: center;
-   transition: background-color var(--search-button-transition-duration) var(--search-button-transition-timing);
+   background: var(--primary-colo-theme);
+   cursor: pointer;
 }
 
 .search-button:hover {
-   background-color: var(--light-bj-hover-color);
+   opacity: 0.9;
 }
 
 .search-icon {
    width: var(--icon-size);
    height: var(--icon-size);
-   cursor: pointer;
-   color: var(--icon-color);
+   color: var(--light-white-color);
+}
+
+@media (max-width: 1024px) {
+
+}
+
+@media (max-width: 820px) { 
+   .input-container {
+      width: 250px;
+   }
+   .input-container.focused {
+      width: 270px;
+   }
+}
+
+@media (max-width: 768px) { 
+   .input-container {
+      position: absolute;
+      bottom: 10px;
+      left: calc(50% - 250px / 2);
+   }
+}
+
+@media (max-width: 480px) {
+   .input-container { 
+      height: 40px;
+   }
+   .search-button {
+      width: 30px;
+      height: 30px;
+   }
+   .search-icon { 
+      width: 18px;
+      height: 18px;
+   }
+
+   .input-field::placeholder {
+      font-size: 11px;
+   }
+
 }
