@@ -16,10 +16,10 @@ export default function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <div className='px-1 md:px-10 m-0 h-[80px] w-full flex justify-between items-center'>
+        <div className='px-1 md:px-10 m-0 h-[80px] w-full flex justify-between items-center '>
             {/* Logo */}
 
-            <Link to='/' className='flex flex-wrap justify-center items-center text-center text-[#212529] font-[Nunito] cursor-pointer'>
+            <Link to='/' className='  flex flex-wrap justify-center items-center text-center text-[#212529] font-[Nunito] cursor-pointer'>
                 <span className='pr-1 font-[Nunito] text-[24px] sm:text-[33px]'>Uni</span>
                 <PiStudentFill className='w-9 h-9 text-red-500' />
                 <span className="font-[Nunito] text-[24px] sm:text-[33px]">mate</span>

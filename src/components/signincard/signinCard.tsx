@@ -57,7 +57,7 @@ export default function SignIn() {
                                 <Link to='/register' className="text-blue-500 underline"> نسيت كلمه المرور؟</Link>
                                 <p className="text-xl inline">تذكرنى <span><input type="checkbox" className="h-4 w-4 inline" /></span></p>
                             </div>
-                            <button type="submit" disabled={isSubmitting} className="w-full  MainColorBG text-white rounded-3xl py-3 px-6 hover:bg-green-700">تسجيل الدخول</button>
+                            <button type="submit" disabled={isSubmitting} className="w-full  MainColorBG text-white rounded-3xl py-3 px-6 ">تسجيل الدخول</button>
                         </form>
                         {/* don't have an acount */}
                         <div className="mt-4 text-center">

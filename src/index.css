@@ -20,11 +20,16 @@
 }
 .MainColorText
 {
-    color: #50a853;
+    color: #DC3545;
 }
 .MainColorBG
 {
-    background-color: #50a853;
+    background-color: #DC3545;
+    transition: .3s ease-in-out;
+}
+.MainColorBG:hover
+{
+    background-color: #ff0019;
 }
 .InputStyle{
     @apply w-full;
@@ -42,3 +47,18 @@
     /* @apply mt-[5rem]; */
     @apply py-[5rem];
 }
+.CenterCol
+{
+    @apply flex;
+    @apply flex-col;
+    @apply justify-center;
+    @apply items-center;
+    @apply w-full;
+}
+/* .CardHover{
+    @apply transition-all;
+    @apply duration-200;
+}
+.hover-effect:hover {
+    background-color: #4B5563; 
+} */

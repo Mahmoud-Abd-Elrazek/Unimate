@@ -71,7 +71,7 @@ export default function Register() {
                 <p className="text-xl inline">تذكرنى <span><input type="checkbox" className="h-4 w-4 inline" /></span></p>
               </div>
               {/* Submit Button */}
-              <button disabled={isSubmitting} type="submit" className="w-full my-1 MainColorBG text-white rounded-3xl py-3 px-6 hover:bg-green-700">
+              <button disabled={isSubmitting} type="submit" className="w-full my-1 MainColorBG text-white rounded-3xl py-3 px-6 ">
                 تسجيل الدخول
               </button>
             </form>
