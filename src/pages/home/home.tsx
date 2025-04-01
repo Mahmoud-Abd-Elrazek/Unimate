@@ -14,6 +14,7 @@ export default function Home() {
         <Search_bar />
       </div>
 
+
       {/* first div */}
       <section className='CenterCol gap-10 mt-10 '>
         <div className="px-10 text-center">
@@ -21,6 +22,7 @@ export default function Home() {
             وفر وقتك ومجهودك.. سكنك الجامعي أصبح على بُعد نقرة واحدة
           </h1>
         </div>
+    
         <div className="px-4 text-center">
           <h2 className="text-xl sm:text-lg md:text-xl lg:text-2xl font-semibold text-gray-500">استكشف مئات الشقق المتاحة و اختر ما يناسبك بكل سهولة
           </h2>

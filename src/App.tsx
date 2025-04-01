@@ -11,7 +11,11 @@ import SigninCard from './components/signincard/signinCard'
 import Register from './components/RegisterCard/register'
 import SignOutCard from './components/SignOutCard/signoutCard'
 import Help from './pages/Help/help'
+
 import RoomDetails from './pages/RoomDetails/roomDetails'
+
+
+import ApartmentCard from './components/ApartmentCard/ApartmentCard'
 
 // App component  to wrap all routes and components in a Router and Routes
 export default function App() {
@@ -30,6 +34,7 @@ export default function App() {
           <Route path='/roomdetails' element={<RoomDetails />} />
           <Route path='/help' element={<Help />} />
           <Route path='*' element={<NotFound />} />
+          <Route path='/ApartmentCard' element={<ApartmentCard />} />
         </Routes>
         <Footer />
       </Router>
