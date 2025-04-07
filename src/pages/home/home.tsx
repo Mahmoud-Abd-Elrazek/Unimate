@@ -5,16 +5,14 @@ import Filter_bar from '../../components/Filter_Bar/filter_bar'
 import Search_bar from '../../components/search_bar/search_bar'
 import { FaRegStar } from "react-icons/fa";
 import ApartmentCard from '../../components/ApartmentCard/ApartmentCard';
-import { Col, Row } from 'react-bootstrap';
+// import { Col, Row } from 'react-bootstrap';
 export default function Home() {
   // const cards=
   return (
-    <div className='min-h-lvh  BODY '>
+    <div className='min-h-lvh BODY'>
       <div className='lg:hidden flex justify-center items-center'>
         <Search_bar />
       </div>
-
-
       {/* first div */}
       <section className='CenterCol gap-10 mt-10 '>
         <div className="px-10 text-center">
@@ -43,21 +41,8 @@ export default function Home() {
         <h1 className='flex justify-end text-2xl items-center my-5'>الاعلى تقييما<FaRegStar />
         </h1>
         {/* rooms */}
-        <div className="flex justify-center items-center w-full min-h-screen">
-          <Row className="  ">
-            {[...Array(10)].map((_, i) => (
-              <Col xs={12} sm={6} md={6} lg={4} key={i} className="my-10  flex items-center justify-center">
-                <ApartmentCard />
-              </Col>
-            ))}
-          </Row>
-        </div>
+        <ApartmentGrid count={6} /> {/* Pass the number of cards to display */}
 
-
-        {/* button show more */}
-        <div className='flex items-center justify-center mt-10'>
-          <button className='text-center MainColorBG rounded-full w-[10rem] h-[3rem] text-white'>عرض المزيد </button>
-        </div>
       </div>
       {/* اضيف حديثا */}
       <div className='p-3'>
@@ -65,21 +50,31 @@ export default function Home() {
         </h1>
         {/* rooms */}
         <div className="flex justify-center items-center w-full min-h-screen">
-          <Row className="  ">
-            {[...Array(10)].map((_, i) => (
-              <Col xs={12} sm={6} md={6} lg={4} key={i} className="my-10  flex items-center justify-center">
-                <ApartmentCard />
-              </Col>
-            ))}
-          </Row>
+          <ApartmentGrid count={5} /> {/* Pass the number of cards to display */}
         </div>
-
-
         {/* button show more */}
         <div className='flex items-center justify-center mt-10'>
-          <button className='text-center MainColorBG rounded-full w-[10rem] h-[3rem] text-white'>عرض المزيد </button>
+          <button className='text-center MainColorBG rounded-full w-[300px] h-[3rem] text-white'>عرض المزيد </button>
         </div>
       </div>
     </div>
   )
 }
+
+// ========================================================================
+interface ApartmentGridProps {
+  count: number; // Number of cards to display
+}
+
+const ApartmentGrid: React.FC<ApartmentGridProps> = ({ count }) => {
+  return (
+    <div className="flex flex-wrap justify-end items-center w-full min-h-screen gap-x-[5px] gap-y-[25px]">
+      {[...Array(count)].map((_, i) => (
+        <div key={i} className="flex-none">
+          <ApartmentCard />
+        </div>
+      ))}
+    </div>
+  );
+};
+// ========================================================================

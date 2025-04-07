@@ -39,13 +39,12 @@ const ApartmentCard = () => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden w-[320px] relative group">
+    <div className="bg-white rounded-xl overflow-hidden w-[320px] relative group border border-[rgba(255,255,255,0.5)]">
       {/* Hover Button */}
       <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <Link
           to="/room-details"
-          className="text-white font-bold py-2 px-4 bg-blue-600 hover:bg-blue-700 rounded-lg"
-        >
+          className="text-white font-bold py-2 px-4 bg-blue-600 hover:bg-blue-700 rounded-lg">
           View Room Details
         </Link>
       </div>
@@ -57,14 +56,12 @@ const ApartmentCard = () => {
           modules={[Navigation, Pagination]}
           pagination={{ clickable: true }}
 
-          className="w-full h-[210px]"
+          className="w-full h-[300px]"
 
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
           }}
           onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
-      
-
         >
           {images.map((src, index) => (
             <SwiperSlide key={index}>
@@ -72,21 +69,18 @@ const ApartmentCard = () => {
                 src={src}
                 alt={`Slide ${index + 1}`}
 
-                className="w-full h-[210px] object-cover"
-
-          
-
+                className="w-full h-[300px] object-cover"
               />
             </SwiperSlide>
           ))}
         </Swiper>
 
-
         {/* Favorite Icon */}
         <div
           title="Add to Favourites"
-          className="absolute top-3 left-3 bg-white p-2 rounded-full shadow-md cursor-pointer z-10"
-></div>
+          className="absolute top-3 left-3 p-2 rounded-full shadow-md cursor-pointer z-10">
+          <FaHeart className="text-[#00000080]  hover:text-red-500 hover:scale-110 transition duration-300" />
+        </div>
         {/* Custom Navigation Buttons */}
         {currentIndex > 0 && (
           <button
@@ -129,7 +123,7 @@ const ApartmentCard = () => {
       </div>
 
       {/* Details Section */}
-      <div className="p-4 text-right">
+      <div className="px-[10px] py-[12px] text-right">
         <h3 className="text-[17px] font-semibold text-[#212529]">
           الشؤون · أولاد · 3 غرف · 6 ضيف · الدور الثالث
         </h3>
@@ -138,9 +132,9 @@ const ApartmentCard = () => {
       </div>
 
       {/* Owner Section */}
-      <div className="cursor-pointer hover:bg-[#F1F3F4] border-t px-4 py-3 flex flex-row-reverse items-center">
+      <div className="cursor-pointer hover:bg-[#F1F3F4] border-t px-[10px] py-[8px] flex flex-row-reverse items-center">
         <img
-          src="https://scontent.fcai20-2.fna.fbcdn.net/v/t39.30808-1/455031373_1934517026975496_2310134617658645041_n.jpg?stp=cp6_dst-jpg_s200x200_tt6&_nc_cat=105&ccb=1-7&_nc_sid=1d2534&_nc_ohc=Yi0xgVUN9KcQ7kNvgE8BX6x&_nc_oc=AdjxDwGv0WMWMla9tsq7UIDVmTlOATLneMT8MCVoYuySCUk5RRxepTsVQ9xgRLAHHdg&_nc_zt=24&_nc_ht=scontent.fcai20-2.fna&_nc_gid=tkJXZfGJiMJmS-GISUpCnA&oh=00_AYGlMRoN-aKQfHGJXBPvVurcIzfI1eZ6qizHGYdDOTo61w&oe=67DBB602"
+          src="https://scontent.fcai20-2.fna.fbcdn.net/v/t39.30808-6/455031373_1934517026975496_2310134617658645041_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=XHIJmIFiVOoQ7kNvwH2Klze&_nc_oc=AdkO1_5dMia-84KsGWlN8SRwxCejRGdjlB5rf33cQ1V-klvKUEF3itI08eqoWW9FlsU&_nc_zt=23&_nc_ht=scontent.fcai20-2.fna&_nc_gid=Xine1_ca6090EOHz1zz_uw&oh=00_AfEgACBG3I_2DvEgy9oiDJephwqlFKbPlQnNbZigrbq8ew&oe=67F9E444"
           alt="Owner"
           className="w-[50px] h-[50px] rounded-full ml-3"
         />
