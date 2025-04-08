@@ -41,7 +41,10 @@ export default function Home() {
         <h1 className='flex justify-end text-2xl items-center my-5'>الاعلى تقييما<FaRegStar />
         </h1>
         {/* rooms */}
+        <div>
+
         <ApartmentGrid count={6} /> {/* Pass the number of cards to display */}
+        </div>
 
       </div>
       {/* اضيف حديثا */}
@@ -68,7 +71,7 @@ interface ApartmentGridProps {
 
 const ApartmentGrid: React.FC<ApartmentGridProps> = ({ count }) => {
   return (
-    <div className="flex flex-wrap justify-end items-center w-full min-h-screen gap-x-[5px] gap-y-[25px]">
+    <div className="flex flex-wrap justify-center items-center w-full min-h-screen gap-x-[25px] gap-y-[25px]">
       {[...Array(count)].map((_, i) => (
         <div key={i} className="flex-none">
           <ApartmentCard />
