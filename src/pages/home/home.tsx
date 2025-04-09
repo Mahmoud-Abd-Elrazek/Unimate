@@ -5,31 +5,20 @@ import Filter_bar from '../../components/Filter_Bar/filter_bar'
 import Search_bar from '../../components/search_bar/search_bar'
 import { FaRegStar } from "react-icons/fa";
 import ApartmentCard from '../../components/ApartmentCard/ApartmentCard';
+import HeroSection from '../../components/HeroSection/HeroSection';
 // import { Col, Row } from 'react-bootstrap';
 export default function Home() {
   // const cards=
   return (
-    <div className='min-h-lvh BODY'>
+    <div className='min-h-lvh BODY pt-2'>
       <div className='lg:hidden flex justify-center items-center'>
         <Search_bar />
       </div>
-      {/* first div */}
-      <section className='CenterCol gap-10 mt-10 '>
-        <div className="px-10 text-center">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold">
-            وفر وقتك ومجهودك.. سكنك الجامعي أصبح على بُعد نقرة واحدة
-          </h1>
-        </div>
-    
-        <div className="px-4 text-center">
-          <h2 className="text-xl sm:text-lg md:text-xl lg:text-2xl font-semibold text-gray-500">استكشف مئات الشقق المتاحة و اختر ما يناسبك بكل سهولة
-          </h2>
-        </div>
-       
-        <button className='text-center MainColorBG rounded-full w-[10rem] h-[3rem] text-white'>تصفح الان</button>
-      </section>
+      {/* hero section */}
+      <HeroSection />
+
       {/* filter_bar section */}
-      <section className='mt-[5rem] CenterCol gap-10'>
+      <section id='filter-bar-section' className='mt-[5rem] CenterCol gap-10'>
 
         <h1 className='text-xl font-medium MainColorText'>استخدم الفلتره الذكيه لتحديد ما يناسبك</h1>
         <div className='CenterCol px-20  h-[10rem]'>

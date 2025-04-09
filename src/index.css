@@ -55,6 +55,24 @@
     @apply items-center;
     @apply w-full;
 }
+@keyframes slideShow {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    30% { opacity: 1; }
+    40% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+  
+  .hero-slide {
+    @apply absolute inset-0 bg-cover bg-center transition-opacity duration-1000;
+    animation: slideShow 24s infinite;
+  }
+  
+  .hero-slide:nth-child(1) { animation-delay: 0s; }
+  .hero-slide:nth-child(2) { animation-delay: 6s; }
+  .hero-slide:nth-child(3) { animation-delay: 12s; }
+  .hero-slide:nth-child(4) { animation-delay: 18s; }
+  
 /* .CardHover{
     @apply transition-all;
     @apply duration-200;
