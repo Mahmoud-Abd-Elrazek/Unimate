@@ -2,7 +2,7 @@
 
 export default function Help() {
   return (
-    <div className="bg-fuchsia-600 h-lvh text-white">
+    <div className=" h-lvh ">
       this is the help page
     </div>
   )

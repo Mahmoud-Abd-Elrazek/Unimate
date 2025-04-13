@@ -1,0 +1,18 @@
+/* profile.css */
+.profile-container {
+    width: 100%;
+  }
+  
+  @media (min-width: 1024px) {
+    .profile-container {
+      flex-direction: row;
+    }
+  }
+  
+  .avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: #ccc;
+  }
+  

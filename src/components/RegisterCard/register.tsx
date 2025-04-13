@@ -29,7 +29,7 @@ export default function Register() {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 ">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white w-[32rem] max-h-[35rem] overflow-y-auto rounded-lg p-3 relative shadow-lg ">
         <div className="mt-2">
           {/* header */}

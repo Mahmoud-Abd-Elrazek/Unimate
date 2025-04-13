@@ -9,7 +9,7 @@
     font-size: 1.5rem;
     @apply w-[25px];
     @apply h-[25px];
-  
+    @apply ml-2;
    
 
 }
