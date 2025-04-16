@@ -9,7 +9,7 @@ import { GoHistory } from "react-icons/go";
 
 export default function SideBar() {
     return (
-        <div style={{ width: "250px", backgroundColor: "#f4f4f4", padding: "10px" }}>
+        <div  className="min-h-lvh" style={{ width: "250px", backgroundColor: "#f4f4f4", padding: "10px"}}>
             {/* <h3>Sideba r</h3> */}
             <ul className="grid gap-3 mt-4">
                 <li className="">
@@ -21,7 +21,7 @@ export default function SideBar() {
                     </Link>
                 </li>
                 <li className="">
-                    <Link to='/auther/settings' className="flex justify-end">
+                    <Link to='/auther/editprofile' className="flex justify-end">
                             الاعدادات والخصوصيه
                         <span className="">
                             <MdOutlinePrivacyTip className="IconSize" />

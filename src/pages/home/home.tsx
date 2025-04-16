@@ -25,6 +25,8 @@ export default function Home() {
           <Filter_bar />
         </div>
       </section>
+      <div id="RoomSection">
+
       {/* الاعلى تقييما */}
       <div className='p-3'>
         <h1 className='flex justify-end text-2xl items-center my-5'>الاعلى تقييما<FaRegStar />
@@ -49,6 +51,8 @@ export default function Home() {
           <button className='text-center MainColorBG rounded-full w-[300px] h-[3rem] text-white'>عرض المزيد </button>
         </div>
       </div>
+      </div>
+
     </div>
   )
 }

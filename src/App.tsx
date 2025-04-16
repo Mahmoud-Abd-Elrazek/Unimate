@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route,Navigate } from 'react-router-do
 import Home from "./pages/home/home"
 import Rooms from './pages/rooms/rooms'
 import NotFound from './pages/notfound/notFound'
-import Settings from './pages/settings/settings'
 import Favorites from './pages/Favorites/favorites'
 // components
 import NavBar from './components/navbar/navbar'
@@ -20,6 +19,7 @@ import RoomDetails from './pages/RoomDetails/roomDetails'
 import ApartmentCard from './components/ApartmentCard/ApartmentCard'
 import Profile from './pages/Profile/profile'
 import AuthorLayout from './pages/AuthorLayout/authorLayout'
+import EditProfilepage from './pages/EditProfilePage/editProfilepage'
 
 // App component  to wrap all routes and components in a Router and Routes
 export default function App() {
@@ -39,9 +39,9 @@ export default function App() {
           // this route make the profile page is the default page that show when go to url /auther
           <Route index element={<Navigate to="profile" replace/>}/>
             <Route path="profile"  element={<Profile />} />
-            <Route path="settings" element={<Settings />} />
             <Route path="favorites" element={<Favorites />} />
             <Route path='help' element={<Help />} />
+            <Route path='editprofile' element={<EditProfilepage/>}/>
           </Route>
           <Route path='/roomdetails' element={<RoomDetails />} />
           <Route path='/help' element={<Help />} />

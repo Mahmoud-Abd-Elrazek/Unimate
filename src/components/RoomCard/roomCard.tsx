@@ -3,7 +3,7 @@ import { IoMdPeople } from "react-icons/io";
 
 import Room_Photo from '../../assets/room_photo.jpg';
 import { Link } from 'react-router-dom';
-import Roomate from "../roommate/roomate";
+import Roomate from "../RoomMateComponent/roomate";
 export default function RoomCard() {
     return (
         <div className="rounded">

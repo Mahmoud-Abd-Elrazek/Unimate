@@ -13,6 +13,7 @@ import Room_Photo from "../../assets/room_photo.jpg";
 import { FaStar } from "react-icons/fa";
 import { BsDisplay } from "react-icons/bs"; // Monitor/Display icon (from Bootstrap Icons)
 import { FaPaperPlane } from "react-icons/fa";
+import { MdMeetingRoom } from "react-icons/md";
 
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons';
@@ -102,44 +103,60 @@ export default function RoomDetails() {
       {/* ما يقدمه السكن */}
       <div className="flex justify-between p-5">
         <div className="left">
-          <div
-            dir="rtl"
-            className="bg-white shadow-md rounded-xl p-4 w-80 text-center space-y-3 border"
-          >
-            {/* Title */}
-            <div className="bg-red-600 text-white py-1 rounded font-bold">
-              سكن أولاد
-            </div>
+        <div className="rounded-xl border p-4 w-[320px] shadow-md bg-white space-y-3">
+  <div className="flex justify-between items-center">
+    <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+      متاحة للسكان
+    </span>
+    <span className="text-indigo-800 font-bold text-lg">6,600 ج.م / mo</span>
+  </div>
 
-            {/* Main Text */}
-            <p className="text-black text-lg font-semibold">
-              ابدأ عمليه الحجز للمسكن بالكامل من هنا
-            </p>
+  <div className="text-right text-sm text-gray-700">
+    <p>الشؤون - شارع أبو علاء</p>
+    <p>اولاد</p>
+    <p>الدور الثالث</p>
+  </div>
 
-            {/* Price Section */}
-            <p className="text-gray-700">
-              <span className="text-green-600 text-xl font-bold">
-                6,600 ج.م
-              </span>{" "}
-              في الشهر
-            </p>
+  <div className="grid grid-cols-3 text-center bg-gray-50 py-2 rounded-md text-sm">
+    <div>
+      <p className="font-bold text-lg">2</p>
+      <p> <MdMeetingRoom />      حمام</p>
+    </div>
+    <div>
+      <p className="font-bold text-lg">4</p>
+      <p>غرف</p>
+    </div>
+    <div>
+      <p className="font-bold text-lg">12</p>
+      <p>طالب</p>
+    </div>
+  </div>
 
-            {/* Capacity Info */}
-            <p className="text-gray-600">
-              يتسع هذا المسكن لـ <span className="font-bold">12 ضيوف</span> كحد
-              أقصى.
-            </p>
+  <div className="border-t pt-2 text-right">
+    <p className="text-sm text-gray-500 mb-2">مالك العقار</p>
+    <div className="flex items-center justify-between">
+      <div className="text-sm">
+        <p className="font-semibold">محمود محمد عرفه</p>
+        <p className="text-xs text-gray-500">mahmoudarafa@gmail.com</p>
+      </div>
+      <div className="flex items-center gap-1">
+        <img
+          src="https://via.placeholder.com/40"
+          alt="مالك"
+          className="w-10 h-10 rounded-full object-cover"
+        />
+        <span className="text-yellow-500 text-sm flex items-center gap-1">
+          <FaStar size={14} /> 3.5
+        </span>
+      </div>
+    </div>
+  </div>
 
-            {/* Book Now Button */}
-            <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full font-semibold">
-              احجز الان
-            </button>
-
-            {/* Footer Note */}
-            <p className="text-xs text-gray-500">
-              احجز للتواصل مع المالك بطريقه مباشره
-            </p>
-          </div>
+  <button className="w-full bg-indigo-700 hover:bg-indigo-800 text-white font-semibold py-2 rounded-lg flex justify-center items-center gap-2">
+    <FaPaperPlane />
+    حجز المسكن بالكامل
+  </button>
+</div>
         </div>
         <div className="right container mx-auto my-10 px-5">
           <h2 className="text-xl md:text-2xl text-right font-semibold mb-5">
@@ -185,11 +202,11 @@ export default function RoomDetails() {
       </div>
       <hr className="border-t border-gray-300 w-5/6 mx-auto my-8" />
       {/* a place for sleeping */}
-      <div className="container mx-auto px-5 py-6">
+      <div className="container mx-auto px-5 py-6 ">
         <h1 className="text-xl md:text-2xl text-right p-2 font-bold mb-4">
           مكان النوم
         </h1>
-        <div className="flex gap-4 overflow-x-auto pb-2" dir="rtl">
+        <div className="flex gap-4 overflow-x-auto pb-2 scroll-hide" dir="rtl">
           {[...Array(10)].map((_, i) => (
             <div key={i} className="min-w-[250px] flex-shrink-0">
               <RoomCard />
