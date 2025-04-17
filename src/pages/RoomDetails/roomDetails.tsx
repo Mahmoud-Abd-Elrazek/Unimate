@@ -120,7 +120,8 @@ export default function RoomDetails() {
   <div className="grid grid-cols-3 text-center bg-gray-50 py-2 rounded-md text-sm">
     <div>
       <p className="font-bold text-lg">2</p>
-      <p> <MdMeetingRoom />      حمام</p>
+      <p className="flex ">      حمام</p>
+      //<MdMeetingRoom  className="IconSize"/> 
     </div>
     <div>
       <p className="font-bold text-lg">4</p>

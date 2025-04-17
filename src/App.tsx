@@ -20,6 +20,8 @@ import ApartmentCard from './components/ApartmentCard/ApartmentCard'
 import Profile from './pages/Profile/profile'
 import AuthorLayout from './pages/AuthorLayout/authorLayout'
 import EditProfilepage from './pages/EditProfilePage/editProfilepage'
+import My_reservations from './pages/My_reservations/My_reservations'
+import Personal_Reviews from './pages/Personal_Reviews/Personal_Reviews'
 
 // App component  to wrap all routes and components in a Router and Routes
 export default function App() {
@@ -42,6 +44,8 @@ export default function App() {
             <Route path="favorites" element={<Favorites />} />
             <Route path='help' element={<Help />} />
             <Route path='editprofile' element={<EditProfilepage/>}/>
+            <Route  path='myreservations' element={<My_reservations/>}/>
+            <Route path='personalreviews' element={<Personal_Reviews/>}/>
           </Route>
           <Route path='/roomdetails' element={<RoomDetails />} />
           <Route path='/help' element={<Help />} />

@@ -8,8 +8,8 @@ const AuthorLayout = () => {
   const hideSidebarRoutes = ['/auther/editprofile','/auther/help'];
 
   const shouldHideSidebar = hideSidebarRoutes.includes(location.pathname);
-    console.log(shouldHideSidebar)
-    console.log(location.pathname)
+    // console.log(shouldHideSidebar) 
+    // console.log(location.pathname)
   return (
     <div className="author-page flex justify-end">
       <main className="content w-full h-lvh">

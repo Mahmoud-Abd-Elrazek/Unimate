@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
 // import React from 'react'
 // import "./home.css"
 // import ApartmentCard from "../../components/ApartmentCard/ApartmentCard"
 import Filter_bar from '../../components/Filter_Bar/filter_bar'
-import Search_bar from '../../components/search_bar/search_bar'
+import Search_bar from '../../components/search_bar_rooms/search_bar_rooms'
 import { FaRegStar } from "react-icons/fa";
 import ApartmentCard from '../../components/ApartmentCard/ApartmentCard';
 import HeroSection from '../../components/HeroSection/HeroSection';
@@ -12,7 +13,7 @@ export default function Home() {
   return (
     <div className='min-h-lvh BODY pt-2'>
       <div className='lg:hidden flex justify-center items-center'>
-        <Search_bar />
+        <Search_bar placeholderval='ابحث عن سكن مناسب لك'/>
       </div>
       {/* hero section */}
       <HeroSection />
@@ -34,7 +35,9 @@ export default function Home() {
         {/* rooms */}
         <div>
 
-        <ApartmentGrid count={6} /> {/* Pass the number of cards to display */}
+        <Link to='/roomdetails'>
+          <ApartmentGrid count={5} /> {/* Pass the number of cards to display */}
+          </Link>
         </div>
 
       </div>
@@ -44,7 +47,9 @@ export default function Home() {
         </h1>
         {/* rooms */}
         <div className="flex justify-center items-center w-full min-h-screen">
+          <Link to='/roomdetails'>
           <ApartmentGrid count={5} /> {/* Pass the number of cards to display */}
+          </Link>
         </div>
         {/* button show more */}
         <div className='flex items-center justify-center mt-10'>

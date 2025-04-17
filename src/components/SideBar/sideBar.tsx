@@ -38,7 +38,7 @@ export default function SideBar() {
                 </li>
               
                 <li className="">
-                    <Link to='/' className="flex justify-end">
+                    <Link to='/auther/myreservations' className="flex justify-end">
                         سجل الحجوزات
                         <span className="">
                             <GoHistory className="IconSize" />
@@ -46,7 +46,7 @@ export default function SideBar() {
                     </Link>
                 </li>
                 <li className="">
-                    <Link to='/' className="flex justify-end">
+                    <Link to='/auther/personalreviews' className="flex justify-end">
                     المراجعات والتقييمات
                         <span className="">
                             <BiCommentDetail className="IconSize" />
