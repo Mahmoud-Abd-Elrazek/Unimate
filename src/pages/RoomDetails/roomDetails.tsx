@@ -10,16 +10,23 @@ import Air_codition from "../../assets/iconoir_air-conditioner.png";
 import Fireplace from "../../assets/fluent_fireplace-20-regular.png";
 import RoomCard from "../../components/RoomCard/roomCard";
 import Room_Photo from "../../assets/room_photo.jpg";
-import { FaStar } from "react-icons/fa";
+import { FaBath, FaStar } from "react-icons/fa";
 import { BsDisplay } from "react-icons/bs"; // Monitor/Display icon (from Bootstrap Icons)
 import { FaPaperPlane } from "react-icons/fa";
 import { MdMeetingRoom } from "react-icons/md";
+import { PiStudentBold } from "react-icons/pi";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { Link } from "react-router";
 
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 export default function RoomDetails() {
   return (
     <div className="min-h-screen pt-5">
+          <Link to='/' className="flex items-center gap-1 cursor-pointer my-3 ml-3">
+            <IoMdArrowRoundBack className="IconSize" />
+            <h2 className=" text-sm md:text-base">رجوع</h2>
+          </Link>
       {/* the first section */}
       <div className="flex justify-between items-center px-5">
         <div className="flex gap-4">
@@ -103,61 +110,64 @@ export default function RoomDetails() {
       {/* ما يقدمه السكن */}
       <div className="flex justify-between p-5">
         <div className="left">
-        <div className="rounded-xl border p-4 w-[320px] shadow-md bg-white space-y-3">
-  <div className="flex justify-between items-center">
-    <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">
-      متاحة للسكان
-    </span>
-    <span className="text-indigo-800 font-bold text-lg">6,600 ج.م / mo</span>
-  </div>
+          <div className="rounded-xl border p-4 w-[320px] shadow-md bg-white space-y-3">
+            <div className="flex justify-between items-center">
+              <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+                متاحة للسكان
+              </span>
+              <span className="text-indigo-800 font-bold text-lg">6,600 ج.م / mo</span>
+            </div>
 
-  <div className="text-right text-sm text-gray-700">
-    <p>الشؤون - شارع أبو علاء</p>
-    <p>اولاد</p>
-    <p>الدور الثالث</p>
-  </div>
+            <div className="text-right text-sm text-gray-700">
+              <p>الشؤون - شارع أبو علاء</p>
+              <p>اولاد</p>
+              <p>الدور الثالث</p>
+            </div>
 
-  <div className="grid grid-cols-3 text-center bg-gray-50 py-2 rounded-md text-sm">
-    <div>
-      <p className="font-bold text-lg">2</p>
-      <p className="flex ">      حمام</p>
-      //<MdMeetingRoom  className="IconSize"/> 
-    </div>
-    <div>
-      <p className="font-bold text-lg">4</p>
-      <p>غرف</p>
-    </div>
-    <div>
-      <p className="font-bold text-lg">12</p>
-      <p>طالب</p>
-    </div>
-  </div>
+            <div className="grid grid-cols-3 text-center bg-gray-50 py-2 rounded-md text-sm">
+              <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 ml-1 p-1">
+                <FaBath className="text-blue-900 IconSize" />
+                <p className="font-bold text-lg">2</p>
+                <p className="flex ">      حمام</p>
+              </div>
+              <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 ml-1 p-1">
+              <MdMeetingRoom className="text-blue-900 IconSize" />
+              
+                <p className="font-bold text-lg">4</p>
+                <p>غرف</p>
+              </div>
+              <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 ml-1 p-1">
+              <PiStudentBold className="text-blue-900 IconSize" />
+                <p className="font-bold text-lg">12</p>
+                <p>طالب</p>
+              </div>
+            </div>
 
-  <div className="border-t pt-2 text-right">
-    <p className="text-sm text-gray-500 mb-2">مالك العقار</p>
-    <div className="flex items-center justify-between">
-      <div className="text-sm">
-        <p className="font-semibold">محمود محمد عرفه</p>
-        <p className="text-xs text-gray-500">mahmoudarafa@gmail.com</p>
-      </div>
-      <div className="flex items-center gap-1">
-        <img
-          src="https://via.placeholder.com/40"
-          alt="مالك"
-          className="w-10 h-10 rounded-full object-cover"
-        />
-        <span className="text-yellow-500 text-sm flex items-center gap-1">
-          <FaStar size={14} /> 3.5
-        </span>
-      </div>
-    </div>
-  </div>
+            <div className="border-t pt-2 text-right">
+              <p className="text-sm text-gray-500 mb-2">مالك العقار</p>
+              <div className="flex items-center justify-between">
+                <div className="text-sm">
+                  <p className="font-semibold">محمود محمد عرفه</p>
+                  <p className="text-xs text-gray-500">mahmoudarafa@gmail.com</p>
+                </div>
+                <div className="flex items-center gap-1">
+                  <img
+                    src="https://via.placeholder.com/40"
+                    alt="مالك"
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
+                  <span className="text-yellow-500 text-sm flex items-center gap-1">
+                    <FaStar size={14} /> 3.5
+                  </span>
+                </div>
+              </div>
+            </div>
 
-  <button className="w-full bg-indigo-700 hover:bg-indigo-800 text-white font-semibold py-2 rounded-lg flex justify-center items-center gap-2">
-    <FaPaperPlane />
-    حجز المسكن بالكامل
-  </button>
-</div>
+            <button className="w-full bg-indigo-700 hover:bg-indigo-800 text-white font-semibold py-2 rounded-lg flex justify-center items-center gap-2">
+              <FaPaperPlane />
+              حجز المسكن بالكامل
+            </button>
+          </div>
         </div>
         <div className="right container mx-auto my-10 px-5">
           <h2 className="text-xl md:text-2xl text-right font-semibold mb-5">

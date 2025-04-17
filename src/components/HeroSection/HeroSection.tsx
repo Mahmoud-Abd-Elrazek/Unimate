@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 
 function HeroSection() {
   return (
@@ -47,7 +46,7 @@ function HeroSection() {
             <div className=" p-4 rounded-lg max-w-3xl flex flex-col md:flex-row gap-4">
               {/* button show more */}
               <div className='flex items-center justify-center mt-10'>
-                <a href="#RoomSection" className='text-center MainColorBG rounded-full w-[300px] h-[3rem] text-white'> 
+                <a href="#RoomSection" className='text-center flex justify-center items-center flex-col MainColorBG rounded-full w-[300px] h-[3rem] text-white'> 
                   تصفح الان
                 </a>
               </div>
