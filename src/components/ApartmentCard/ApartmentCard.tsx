@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { MdOutlineStar, MdOutlineStarBorder } from "react-icons/md";
+import { MdOutlineStar } from "react-icons/md";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { FaHeart } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,7 +9,7 @@ import { MdOutlineAccessTime } from "react-icons/md";
 import { BiBath } from "react-icons/bi";
 import { MdOutlineMeetingRoom } from "react-icons/md";
 import { LuBed } from "react-icons/lu";
-
+import { Link } from "react-router-dom";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -122,8 +122,8 @@ const ApartmentCard = () => {
           <FaHeart className="text-[#00000080] hover:text-red-500 hover:scale-110 transition duration-300" />
         </div>
       </div>
-
       {/* Details Section */}
+          <Link to='/roomdetails'>
       <div className="p-3 text-right">
         <div className="flex items-center justify-between mb-2">
           <span
@@ -199,6 +199,7 @@ const ApartmentCard = () => {
           </div>
         </div>
       </div>
+      </Link>
 
     </div>
   );

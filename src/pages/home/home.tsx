@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 // import React from 'react'
 // import "./home.css"
 // import ApartmentCard from "../../components/ApartmentCard/ApartmentCard"
@@ -35,9 +34,9 @@ export default function Home() {
         {/* rooms */}
         <div>
 
-        <Link to='/roomdetails'>
+       
           <ApartmentGrid count={5} /> {/* Pass the number of cards to display */}
-          </Link>
+         
         </div>
 
       </div>
@@ -47,9 +46,8 @@ export default function Home() {
         </h1>
         {/* rooms */}
         <div className="flex justify-center items-center w-full min-h-screen">
-          <Link to='/roomdetails'>
+         
           <ApartmentGrid count={5} /> {/* Pass the number of cards to display */}
-          </Link>
         </div>
         {/* button show more */}
         <div className='flex items-center justify-center mt-10'>
