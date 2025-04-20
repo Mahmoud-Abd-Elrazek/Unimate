@@ -11,7 +11,7 @@ const AuthorLayout = () => {
     // console.log(shouldHideSidebar) 
     // console.log(location.pathname)
   return (
-    <div className="author-page flex justify-end">
+    <div className="author-page flex justify-end Page">
       <main className="content w-full h-lvh">
         <Outlet />
       </main>

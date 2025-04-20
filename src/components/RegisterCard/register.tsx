@@ -29,7 +29,7 @@ export default function Register() {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 Page">
       <div className="bg-white w-[32rem] max-h-[35rem] overflow-y-auto rounded-lg p-3 relative shadow-lg ">
         <div className="mt-2">
           {/* header */}
@@ -44,25 +44,25 @@ export default function Register() {
               <div className="flex justify-between">
                 <div className="flex flex-col text-right">
                   <label htmlFor="lastname" className="text-xl">الاسم الاخير</label><br />
-                  <input type="text" id="lastname" required className="InputStyle" {...register("lastname")} />
+                  <input  dir="rtl"type="text" id="lastname" required className="InputStyle" {...register("lastname")} />
                   {errors.lastname && <span className="ErrorMessage">{errors.lastname.message}</span>}
                 </div>
                 <div className="flex flex-col text-right">
                   <label htmlFor="firstname" className="text-xl">الاسم الاول</label><br />
-                  <input type="text" id="firstname" required className="InputStyle" {...register("firstname")} />
+                  <input dir="rtl" type="text" id="firstname" required className="InputStyle" {...register("firstname")} />
                   {errors.firstname && <span className="ErrorMessage">{errors.firstname.message}</span>}
                 </div>
               </div>
               {/* Email */}
               <div className="flex flex-col text-right mt-3">
                 <label htmlFor="email" className="text-xl">البريد الالكترونى</label><br />
-                <input type="email" id="email" required className="InputStyle" {...register("email")} />
+                <input dir="rtl" type="email" id="email" required className="InputStyle" {...register("email")} />
                 {errors.email && <span className="ErrorMessage">{errors.email.message}</span>}
               </div>
               {/* Password */}
               <div className="flex flex-col text-right mt-3">
                 <label htmlFor="password" className="text-xl">كلمه المرور</label><br />
-                <input type="password" id="password" required className="InputStyle" {...register("password")} />
+                <input dir="rtl" type="password" id="password" required className="InputStyle" {...register("password")} />
                 {errors.password && <span className="ErrorMessage">{errors.password.message}</span>}
               </div>
               {/* Remember Me & Forgot Password */}

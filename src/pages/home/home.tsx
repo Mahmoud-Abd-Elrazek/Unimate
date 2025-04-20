@@ -10,7 +10,7 @@ import HeroSection from '../../components/HeroSection/HeroSection';
 export default function Home() {
   // const cards=
   return (
-    <div className='min-h-lvh BODY pt-2'>
+    <div className='min-h-lvh   Page'>
       <div className='lg:hidden flex justify-center items-center'>
         <Search_bar placeholderval='ابحث عن سكن مناسب لك'/>
       </div>

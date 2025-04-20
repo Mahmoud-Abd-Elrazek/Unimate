@@ -2,7 +2,7 @@ import './profile.css'
 
 export default function Profile() {
     return (
-        <div className="text-right min-h-screen flex justify-end">
+        <div className="text-right min-h-screen flex justify-end Page">
             <div className="p-6 sm:p-10 w-full">
                 <div className="profile-container flex flex-col-reverse lg:flex-row justify-between items-start gap-8">
                     
