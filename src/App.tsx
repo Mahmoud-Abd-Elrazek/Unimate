@@ -22,6 +22,7 @@ import AuthorLayout from './pages/AuthorLayout/authorLayout'
 import EditProfilepage from './pages/EditProfilePage/editProfilepage'
 import My_reservations from './pages/My_reservations/My_reservations'
 import Personal_Reviews from './pages/Personal_Reviews/Personal_Reviews'
+import My_properties from './pages/My_properties/my_properties'
 
 // App component  to wrap all routes and components in a Router and Routes
 export default function App() {
@@ -46,6 +47,7 @@ export default function App() {
             <Route path='editprofile' element={<EditProfilepage/>}/>
             <Route  path='myreservations' element={<My_reservations/>}/>
             <Route path='personalreviews' element={<Personal_Reviews/>}/>
+            <Route path='myproperties' element={<My_properties/>}/> //this route for the owner 
           </Route>
           <Route path='/roomdetails' element={<RoomDetails />} />
           <Route path='/help' element={<Help />} />
