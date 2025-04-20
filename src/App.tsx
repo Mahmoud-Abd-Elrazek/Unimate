@@ -22,8 +22,11 @@ import AuthorLayout from './pages/AuthorLayout/authorLayout'
 import EditProfilepage from './pages/EditProfilePage/editProfilepage'
 import My_reservations from './pages/My_reservations/My_reservations'
 import Personal_Reviews from './pages/Personal_Reviews/Personal_Reviews'
-import My_properties from './pages/My_properties/my_properties'
 import Gallery from './pages/image_details/image_details'
+import UnauthorizedPage from './pages/UnauthorizedPage/UnauthorizedPage'
+import Reservation_requests_Owner from './pages/Reservation_requests_Owner/reservation_requests_Owner'
+import My_Money_transactions from './pages/My_Money_transactions/my_Money_transactions'
+import My_real_estate from './pages/my_real_estate/my_real_estate'
 
 // App component  to wrap all routes and components in a Router and Routes
 export default function App() {
@@ -36,10 +39,16 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route   path="/rooms" element={<Rooms />} />
+          //auth
           <Route path="/SignIn" element={<SigninCard />} />
           <Route path='/register' element={<Register />} />
           <Route path='/signout' element={<SignOutCard />} />
+          <Route path='/unauthorized' element={<UnauthorizedPage/>} />
+          // room detials
           <Route path='/img_details' element={<Gallery/>}/>
+          <Route path='/ApartmentCard' element={<ApartmentCard />} />
+
+          //this route for the user page profile and the owner page profile
           <Route path='/auther/*' element={<AuthorLayout />} >
           // this route make the profile page is the default page that show when go to url /auther
           <Route index element={<Navigate to="profile" replace/>}/>
@@ -47,14 +56,16 @@ export default function App() {
             <Route path="favorites" element={<Favorites />} />
             <Route path='help' element={<Help />} />
             <Route path='editprofile' element={<EditProfilepage/>}/>
-            <Route  path='myreservations' element={<My_reservations/>}/>
+            <Route  path='myreservations' element={<My_reservations/>}/>//
             <Route path='personalreviews' element={<Personal_Reviews/>}/>
-            <Route path='myproperties' element={<My_properties/>}/> //this route for the owner 
+            <Route path='my_real_estate' element={<My_real_estate/>}/> //this route for the owner
+            <Route path='reservation_requests_Owner' element={<Reservation_requests_Owner/>}/> //this route for the owner
+            <Route path='my_money_transactions' element={<My_Money_transactions/>}/> //this route for the owner
           </Route>
+
           <Route path='/roomdetails' element={<RoomDetails />} />
           <Route path='/help' element={<Help />} />
           <Route path='*' element={<NotFound />} />
-          <Route path='/ApartmentCard' element={<ApartmentCard />} />
         </Routes>
         <Footer />
       </Router>
