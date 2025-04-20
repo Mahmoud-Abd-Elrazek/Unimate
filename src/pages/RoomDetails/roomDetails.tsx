@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 export default function RoomDetails() {
   return (
-    <div className="min-h-screen pt-5">
+    <div className="min-h-screen Page">
           <Link to='/' className="flex items-center gap-1 cursor-pointer my-3 ml-3">
             <IoMdArrowRoundBack className="IconSize" />
             <h2 className=" text-sm md:text-base">رجوع</h2>

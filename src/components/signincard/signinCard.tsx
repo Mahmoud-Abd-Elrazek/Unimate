@@ -29,7 +29,7 @@ export default function SignIn() {
     
     return (
         <>
-        {<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 ">
+        {<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 Page">
             <div className="bg-white w-[30rem] min-h-[30rem] rounded-lg p-6 relative shadow-lg">
                 <div className="">
                     {/* header */}
@@ -47,11 +47,11 @@ export default function SignIn() {
                         <form onSubmit={handleSubmit(OnSubmit)}>
                             <div className="flex flex-col text-right">
                                 <label htmlFor="email" className="text-xl">البريد الالكترونى</label><br />
-                                <input type="email" id="email" required className="InputStyle" {...register("email")} />{errors.email && <span className="ErrorMessage">البريد الالكترونى غير صحيح</span>}
+                                <input dir="rtl" type="email" id="email" required className="InputStyle" {...register("email")} />{errors.email && <span className="ErrorMessage">البريد الالكترونى غير صحيح</span>}
                             </div>
                             <div className="flex flex-col text-right mt-3">
                                 <label htmlFor="password" className="text-xl">كلمه المرور</label><br />
-                                <input type="password" id="password" required className="InputStyle" {...register("password")} />{errors.password && <span className="ErrorMessage">{errors.password.message}</span>}
+                                <input dir="rtl" type="password" id="password" required className="InputStyle" {...register("password")} />{errors.password && <span className="ErrorMessage">{errors.password.message}</span>}
                             </div>
                             <div className="flex mx-2 justify-between my-5">
                                 <Link to='/register' className="text-blue-500 underline"> نسيت كلمه المرور؟</Link>

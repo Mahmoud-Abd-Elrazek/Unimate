@@ -80,3 +80,7 @@
 .hover-effect:hover {
     background-color: #4B5563; 
 } */
+ .Page
+ {
+    @apply mt-20;
+ }
