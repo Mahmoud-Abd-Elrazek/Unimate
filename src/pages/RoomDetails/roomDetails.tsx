@@ -16,7 +16,7 @@ import { FaPaperPlane } from "react-icons/fa";
 import { MdMeetingRoom } from "react-icons/md";
 import { PiStudentBold } from "react-icons/pi";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons';
@@ -75,7 +75,7 @@ export default function RoomDetails() {
                 className="w-full h-[128px] object-cover rounded-md"
               />
               {/* زر اظهار كل الصور */}
-              <button className="absolute bottom-3 left-3 bg-green-600/90 hover:bg-green-700 text-white text-sm px-4 py-2 rounded-full flex items-center gap-2 shadow-md transition">
+              <Link to='/img_details' className="absolute bottom-3 left-3 bg-green-600/90 hover:bg-green-700 text-white text-sm px-4 py-2 rounded-full flex items-center gap-2 shadow-md transition">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4"
@@ -85,7 +85,7 @@ export default function RoomDetails() {
                   <path d="M3 3h2v2H3V3zm3 0h2v2H6V3zm3 0h2v2H9V3zm3 0h2v2h-2V3zm3 0h2v2h-2V3zM3 6h2v2H3V6zm3 0h2v2H6V6zm3 0h2v2H9V6zm3 0h2v2h-2V6zm3 0h2v2h-2V6zM3 9h2v2H3V9zm3 0h2v2H6V9zm3 0h2v2H9V9zm3 0h2v2h-2V9zm3 0h2v2h-2V9z" />
                 </svg>
                 اظهار كل الصور
-              </button>
+              </Link>
             </div>
           </div>
         </div>
