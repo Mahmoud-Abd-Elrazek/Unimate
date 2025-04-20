@@ -25,7 +25,7 @@ const RatingComponent: React.FC<RatingProps> = ({ rating, timeAgo }) => {
       </div>
       </div>
       <div>
-      <button className='btn MainColorBG text-white'>تصنيف</button>
+      <div className='w-20 h-10 rounded-xl MainColorBG text-white text-center flex justify-center items-center'>مضيف</div>
       <div style={styles.timeAgo}>{`منذ ${timeAgo}`}</div>
       </div>
     </div>
