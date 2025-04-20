@@ -47,20 +47,22 @@ const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
-    <div className="relative p-4 md:p-6 max-w-screen-lg mx-auto space-y-10">
+    <div className="relative p-4 md:p-6 max-w-screen-lg mx-auto space-y-10 mt-[80px]">
       {/* Simple image overlay */}
       {selectedImage && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4"
-          onClick={() => setSelectedImage(null)}
-        >
-          <img
-            src={selectedImage}
-            alt="عرض الصورة"
-            className="max-w-full max-h-full"
-          />
-        </div>
-      )}
+  <div
+    className="fixed inset-0 bg-white/ dark:bg-gray-20/60 backdrop-blur-[2px] flex items-center justify-center z-50 p-4"
+    onClick={() => setSelectedImage(null)}
+  >
+    <div className="bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg">
+      <img
+        src={selectedImage}
+        alt="عرض الصورة"
+        className="max-w-[90vw] max-h-[90vh] rounded"
+      />
+    </div>
+  </div>
+)}
 
       {sections.map((section, index) => (
         <div key={index}>
