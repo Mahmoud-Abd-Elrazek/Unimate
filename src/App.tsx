@@ -23,6 +23,7 @@ import EditProfilepage from './pages/EditProfilePage/editProfilepage'
 import My_reservations from './pages/My_reservations/My_reservations'
 import Personal_Reviews from './pages/Personal_Reviews/Personal_Reviews'
 import My_properties from './pages/My_properties/my_properties'
+import Gallery from './pages/image_details/image_details'
 
 // App component  to wrap all routes and components in a Router and Routes
 export default function App() {
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="/SignIn" element={<SigninCard />} />
           <Route path='/register' element={<Register />} />
           <Route path='/signout' element={<SignOutCard />} />
+          <Route path='/img_details' element={<Gallery/>}/>
           <Route path='/auther/*' element={<AuthorLayout />} >
           // this route make the profile page is the default page that show when go to url /auther
           <Route index element={<Navigate to="profile" replace/>}/>
