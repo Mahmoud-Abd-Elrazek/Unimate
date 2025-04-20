@@ -1,5 +1,5 @@
 // صفحه عقاراتى
-export default function My_properties() {
+export default function My_real_estate() {
   return (
     <div>
       صفحه عقاراتى
