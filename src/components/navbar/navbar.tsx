@@ -15,7 +15,7 @@ export default function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <div className='px-4 md:px-10 m-0 h-[80px] w-full flex justify-between items-center fixed top-0 bg-white z-50 shadow-md' >
+        <div className='px-4 md:px-10 m-0 h-[80px] w-full flex justify-between items-center ' >
             {/* Logo */}
             <Link to='/' className='flex flex-wrap justify-center items-center text-center text-[#212529] cursor-pointer'>
 
@@ -32,8 +32,9 @@ export default function NavBar() {
             </div>
 
             {/* nav-bar right side */}
-            <div className='flex justify-between items-center gap-[30px]'>
+            <div className='flex justify-between items-center gap-[40px]'>
                 {/* lang & theme icons */}
+                <Link to='/createpost' className="btn MainColorBG text-white ">اضافه مسكن جديد</Link>
                 <div className="flex justify-between items-center gap-[25px]">
                     <ThemeToggle />
                 </div>
