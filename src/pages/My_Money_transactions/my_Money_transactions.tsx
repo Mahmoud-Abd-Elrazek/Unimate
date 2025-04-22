@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+// import { FaSearch } from "react-icons/fa";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -89,14 +90,19 @@ const FinancialTransactions = () => {
 
         {/* جدول المعاملات */}
         <div className="bg-white rounded shadow p-4 mb-8">
-          <input
-            type="text"
-            placeholder="ابحث في سجل المعاملات..."
-            className="w-full p-2 mb-4 border border-gray-300 rounded-full text-right "
-            
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+          <div className="relative w-full">
+            <input
+              type="text"
+              placeholder="...ابحث في سجل المعاملات"
+              className="w-full p-2 mr-10 mb-4 border border-gray-300 rounded-full text-right focus:border-black focus:ring-1 focus:ring-black"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            {/* Search Icon */}
+            {/* <span className="absolute right-3 top-3 text-gray-500">
+              <FaSearch className="text-gray-400" />
+            </span> */}
+          </div>
           <div className="overflow-x-auto">
             <table className="w-full text-right border-t text-sm">
               <thead className="bg-gray-100">
