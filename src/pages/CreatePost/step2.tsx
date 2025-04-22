@@ -1,13 +1,14 @@
 import { Box, MenuItem, Select } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { MdHelpOutline } from 'react-icons/md';
+import { Link, useNavigate } from 'react-router-dom';
 
 const StepTwo: React.FC = () => {
   const navigate = useNavigate();
   const location = ['دردشة', 'الشؤون', 'التأمين', 'التجنيد', 'المساكن']
   return (
-    <div style={{ padding: '2px 5rem' }} dir='rtl' className="">
+    <div style={{ padding: '2px 2rem' }} dir='rtl' className="">
       {/* the parent div of three divs */}
-      <h1 className='text-2xl font-bold text-center'>المعلومات الاساسيه</h1>
+      {/* <h1 className='text-2xl font-bold text-center'>المعلومات الاساسيه</h1> */}
       <div className='flex justify-between items-start mt-5'>
         {/* First div */}
         <div className='flex flex-col gap-36  justify-around min-h-full items-start '>
@@ -134,13 +135,25 @@ const StepTwo: React.FC = () => {
         </div>
       </div>
       {/* buttons */}
+      <hr className="border-t border-gray-400 w-5/6 mx-auto my-8" />
+
       <div className=' flex justify-between items-center mt-5'>
+        <div>
+        <Link to='/auther/help' className="flex justify-end">
+          <span className="">
+            <MdHelpOutline className="IconSize" />
+          </span>
+          المساعده
+        </Link>
+        </div>
+        <div className='flex justify-between items-center w-[15rem] '>
         <button onClick={() => navigate('/createpost/step1')} className='bg-black text-white w-20 h-10 rounded-md'>
           رجوع
         </button>
         <button onClick={() => navigate('/createpost/step3')} className='MainColorBG text-white w-20 h-10 rounded-md'>
           التالى
         </button>
+        </div>
       </div>
     </div>
   );
