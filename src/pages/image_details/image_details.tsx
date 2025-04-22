@@ -52,24 +52,31 @@ const Gallery = () => {
     <div className="relative p-4 md:p-6 max-w-screen-lg mx-auto space-y-10 mt-[80px]">
       {/* صورة مكبرة مع زر رجوع */}
       {selectedImage && (
-        <div className="fixed inset-0 bg-white/80 dark:bg-gray-900/60 backdrop-blur-[2px] flex items-center justify-center z-50 p-4">
-          <div className="relative bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg">
-            {/* زر الرجوع */}
-            <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute top-2 left-2 text-gray-700 dark:text-white bg-gray-100 dark:bg-gray-100 px-3 py-1 rounded-full shadow hover:bg-gray-200 dark:hover:bg-gray-600 transition"
-            >
-              <IoChevronBack className='text-black'/>
-            </button>
+  <div
+    className="fixed inset-0 bg-white/80 dark:bg-gray-900/60 backdrop-blur-[2px] flex items-center justify-center z-50 p-4"
+    onClick={() => setSelectedImage(null)} // غلق عند الضغط بالخارج
+  >
+    <div
+      className="relative bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg"
+      onClick={(e) => e.stopPropagation()} // منع الغلق لو ضغطت على الصورة نفسها
+    >
+      {/* زر الرجوع */}
+      <button
+        onClick={() => setSelectedImage(null)}
+        className="absolute top-2 left-2 text-gray-700 dark:text-white bg-gray-100 dark:bg-gray-100 px-3 py-1 rounded-[2px] shadow hover:bg-gray-200 dark:hover:bg-gray-200 transition"
+      >
+        <IoChevronBack className='text-black'/>
+      </button>
 
-            <img
-              src={selectedImage}
-              alt="عرض الصورة"
-              className="max-w-[90vw] max-h-[70vh] rounded"
-            />
-          </div>
-        </div>
-      )}
+      <img
+        src={selectedImage}
+        alt="عرض الصورة"
+        className="max-w-[90vw] max-h-[70vh] rounded"
+      />
+    </div>
+  </div>
+)}
+
 
       {sections.map((section, index) => (
         <div key={index}>
@@ -83,9 +90,9 @@ const Gallery = () => {
                   key={idx}
                   src={src}
                   alt={`img-${idx}`}
-                  className={`w-full object-cover rounded cursor-pointer ${
-                    isFirst ? 'col-span-full h-64 sm:h-80 ' : 'h-60'
-                  }`}
+                  className={`w-full object-cover rounded cursor-pointer transform transition duration-300 hover:scale-105 ${
+                    isFirst ? 'col-span-full h-64 sm:h-80' : 'h-60'
+                  }`}                  
                   onClick={() => setSelectedImage(src)}
                 />
               );
