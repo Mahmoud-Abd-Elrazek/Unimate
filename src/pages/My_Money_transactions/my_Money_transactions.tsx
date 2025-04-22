@@ -20,15 +20,55 @@ const data = {
       label: "الأرباح",
       data: [6500, 5900, 8000, 8100, 5600, 5500],
       backgroundColor: "rgb(239, 68, 68)",
+      borderRadius: {
+        topLeft: 10,
+        topRight: 10,
+        bottomLeft: 0,
+        bottomRight: 0,
+      },
+      barThickness: 30,
+      borderSkipped: false, // يمنع قص الزوايا الدائرية
     },
   ],
 };
 
+
 const options = {
   responsive: true,
   plugins: {
-    legend: { display: false },
-    title: { display: false },
+    legend: {
+      display: false,
+    },
+    tooltip: {
+      backgroundColor: "rgba(0, 0, 0, 0.7)",
+      titleFont: { size: 14 },
+      bodyFont: { size: 12 },
+      padding: 10,
+    },
+  },
+  scales: {
+    x: {
+      ticks: {
+        font: {
+          size: 14,
+        },
+      },
+      grid: {
+        display: false,
+      },
+    },
+    y: {
+      beginAtZero: true,
+      grid: {
+        drawBorder: false,
+        color: "#eee",
+      },
+      ticks: {
+        font: {
+          size: 14,
+        },
+      },
+    },
   },
 };
 
@@ -52,7 +92,8 @@ const FinancialTransactions = () => {
           <input
             type="text"
             placeholder="ابحث في سجل المعاملات..."
-            className="w-full p-2 mb-4 border rounded text-right"
+            className="w-full p-2 mb-4 border border-gray-300 rounded-full text-right "
+            
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -97,7 +138,7 @@ const FinancialTransactions = () => {
         </div>
 
         {/* الرسم البياني والعقارات */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-3">
           <div className="bg-white rounded shadow p-4">
             <h2 className="text-lg font-semibold mb-4">إحصائيات الربح والتأجير</h2>
             <Bar data={data} options={options} />
@@ -105,6 +146,18 @@ const FinancialTransactions = () => {
           <div className="bg-white rounded shadow p-4">
             <h2 className="text-lg font-semibold mb-4">أكثر العقارات حجزًا</h2>
             <div className="space-y-4">
+              <div className="flex gap-4">
+                <img
+                  src="https://doudapartmenthomes.com/wp-content/uploads/2023/12/sidekix-media-LFlbLb8vJls-unsplash-scaled.jpg"
+                  className="w-32 h-24 object-cover rounded"
+                  alt="عقار"
+                />
+                <div>
+                  <p className="font-semibold">عقار 1</p>
+                  <p className="text-sm text-gray-500">غرفة خاصة - مكيف - إنترنت</p>
+                  <p className="text-yellow-500">★★★★★</p>
+                </div>
+              </div>
               <div className="flex gap-4">
                 <img
                   src="https://doudapartmenthomes.com/wp-content/uploads/2023/12/sidekix-media-LFlbLb8vJls-unsplash-scaled.jpg"
@@ -126,3 +179,4 @@ const FinancialTransactions = () => {
 };
 
 export default FinancialTransactions;
+
