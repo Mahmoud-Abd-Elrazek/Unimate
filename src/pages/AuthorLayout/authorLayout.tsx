@@ -11,14 +11,14 @@ const AuthorLayout = () => {
     // console.log(shouldHideSidebar) 
     // console.log(location.pathname)
   return (
-    <div className="author-page flex justify-end Page">
-      <main className="content w-full h-lvh">
+    <div className=" flex justify-end Page min-h-screen">
+      <main className="content w-full h-full">
         <Outlet />
       </main>
 
       {/* Show sidebar only if not in hidden list */}
       {!shouldHideSidebar && (
-        <aside className="sidebar">
+        <aside className=" min-h-full bg-[#f4f4f4] w-[250px]">
           <SideBar />
         </aside>
       )}
