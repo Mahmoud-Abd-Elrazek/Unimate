@@ -154,8 +154,8 @@ const RegisterPage = () => {
                 control={form.control}
                 name="confirmPassword"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Confirm Password</FormLabel>
+                  <FormItem className="text-right">
+                    <FormLabel>تأكيد كلمة المرور</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Input
