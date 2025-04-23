@@ -8,8 +8,8 @@ import Favorites from './pages/Favorites/favorites'
 // components
 import NavBar from './components/navbar/navbar'
 import Footer from './components/footer/footer'
-import SigninCard from './components/signincard/signinCard'
-import Register from './components/RegisterCard/register'
+// import SigninCard from './components/signincard/signinCard'
+// import Register from './components/RegisterCard/register'
 import SignOutCard from './components/SignOutCard/signoutCard'
 import Help from './pages/Help/help'
 
@@ -31,6 +31,9 @@ import Step1 from './pages/CreatePost/step1'
 import Step2 from './pages/CreatePost/step2'
 import Step3 from './pages/CreatePost/step3'
 import Step4 from './pages/CreatePost/step4'
+
+import LoginPage from './pages/LoginPage/LoginPage'
+import RegisterPage from './pages/RegisterPage/RegisterPage'
 // App component  to wrap all routes and components in a Router and Routes
 export default function App() {
   return (
@@ -43,8 +46,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/rooms" element={<Rooms />} />
           //auth
-          <Route path="/SignIn" element={<SigninCard />} />
-          <Route path='/register' element={<Register />} />
+          <Route path="/SignIn" element={<LoginPage />} />
+          <Route path='/register' element={<RegisterPage />} />
           <Route path='/signout' element={<SignOutCard />} />
           <Route path='/unauthorized' element={<UnauthorizedPage />} />
           // room detials
