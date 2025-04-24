@@ -34,6 +34,7 @@ import Step4 from './pages/CreatePost/step4'
 
 import LoginPage from './pages/LoginPage/LoginPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
+import Housing_Services from './pages/Housing_Services/housing_services'
 // App component  to wrap all routes and components in a Router and Routes
 export default function App() {
   return (
@@ -52,6 +53,7 @@ export default function App() {
           <Route path='/unauthorized' element={<UnauthorizedPage />} />
           // room detials
           <Route path='/img_details' element={<Gallery />} />
+          <Route path='/housing_services' element={<Housing_Services />} />
           <Route path='/ApartmentCard' element={<ApartmentCard />} />
 
           //this route for the user page profile and the owner page profile

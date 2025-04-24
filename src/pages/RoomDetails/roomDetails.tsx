@@ -207,9 +207,9 @@ export default function RoomDetails() {
             {/* Add the remaining features here */}
           </div>
           <div className="text-center mt-8">
-            <button className="border border-black rounded-lg px-4 py-2 text-sm md:text-base">
+            <Link to='/housing_services' className="border border-black rounded-lg px-4 py-2 text-sm md:text-base">
               عرض كل المميزات ال 10
-            </button>
+            </Link>
           </div>
         </div>
       </div>
