@@ -1,5 +1,4 @@
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
@@ -38,11 +37,9 @@ import Housing_Services from './pages/Housing_Services/housing_services';
 import NavBar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
 
-function AppLayout() {
+export default function App() {
   const location = useLocation();
   const hideFooterNavbarRoutes = [
-    '/auther/editprofile',
-    '/auther/help',
     '/SignIn',
     '/register',
     '/signout',
@@ -105,10 +102,3 @@ function AppLayout() {
   );
 }
 
-export default function App() {
-  return (
-    <Router>
-      <AppLayout />
-    </Router>
-  );
-}
