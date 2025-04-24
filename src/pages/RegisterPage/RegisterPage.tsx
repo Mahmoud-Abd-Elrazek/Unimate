@@ -1,229 +1,168 @@
+import { Link, useNavigate } from "react-router-dom";
+import z from "zod";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Button } from "../../components/ui/button";
-import { Input } from "../../components/ui/input";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../../components/ui/form";
-import { useForm } from "react-hook-form";
-import { Eye, EyeOff, UserPlus } from "lucide-react";
+import { FiEye, FiEyeOff, FiUserPlus } from "react-icons/fi";
 
-// import animation file
-import "../../../public/animations.css";
-
-interface RegisterFormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  idPhoto: FileList;
-  nationalId: string;
-}
-
-const RegisterPage = () => {
+export default function RegisterPage() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const form = useForm<RegisterFormData>({
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      nationalId: ""
-    }
+  const RegisterSchema = z.object({
+    firstname: z.string().min(1, { message: "ادخل الاسم الاول" }),
+    lastname: z.string().min(1, { message: "ادخل الاسم الاخير" }),
+    email: z.string().email({ message: "ادخل بريد الكتروني صحيح" }),
+    nationalID: z
+      .string()
+      .length(14, { message: "ادخل الرقم القومي المكون من 14 رقماً" }),
+    password: z.string().min(8, { message: "يجب أن تكون كلمة المرور أطول من 8 أحرف" }),
+    confirmPassword: z.string().min(8, "أعد كتابة كلمة المرور"),
+  }).refine((data) => data.password === data.confirmPassword, {
+    message: "كلمتا المرور غير متطابقتين",
+    path: ["confirmPassword"],
   });
 
-  const onSubmit = (data: RegisterFormData) => {
-    console.log("Registration data:", data);
-    // Here you would typically handle registration
+  type RegisterT = z.infer<typeof RegisterSchema>;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<RegisterT>({
+    mode: "onChange",
+    resolver: zodResolver(RegisterSchema),
+  });
+
+  const OnSubmit: SubmitHandler<RegisterT> = (data) => {
+    console.log(data);
+    navigate("/");
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4 slide-in">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-right">
-          <CardTitle>انشاء حساب طالب جديد</CardTitle>
-          <CardDescription>عمليه الانشاء تبدا من هنا</CardDescription>
-        </CardHeader>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+      <div className="bg-white w-full max-w-md rounded-xl p-8 shadow-md text-right">
+        <h2 className="text-2xl font-semibold mb-1">انشاء حساب طالب جديد</h2>
+        <p className="text-gray-500 mb-6">عملية الانشاء تبدأ من هنا</p>
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="firstName"
-                  render={({ field }) => (
-                    <FormItem className="text-right">
-                      <FormLabel>الاسم الاول</FormLabel>
-                      <FormControl>
-                        <Input placeholder="ادخل الاسم الاول" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="lastName"
-                  render={({ field }) => (
-                    <FormItem className="text-right">
-                      <FormLabel>الاسم الاخير</FormLabel>
-                      <FormControl>
-                        <Input placeholder="ادخل الاسم الاخير" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem className="text-right">
-                    <FormLabel>البريد الاكتروني</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="ادخل بريد الكتروني مفعل"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+        <form onSubmit={handleSubmit(OnSubmit)} className="space-y-4">
+          {/* Names */}
+          <div className="flex gap-4" dir="rtl">
+            <div className="flex-1">
+              <label className="block mb-1">الاسم الاول</label>
+              <input
+                type="text"
+                dir="rtl"
+                className="InputStyle w-full"
+                placeholder="ادخل الاسم الاول"
+                {...register("firstname")}
               />
-
-              <FormField
-                control={form.control}
-                name="nationalId"
-                render={({ field }) => (
-                  <FormItem className="text-right">
-                    <FormLabel>الرقم القومي</FormLabel>
-                    <FormControl>
-                      <Input placeholder="ادخل الرقم القومي المكون من 14 رقمًا"
-                        {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+              {errors.firstname && <p className="ErrorMessage">{errors.firstname.message}</p>}
+            </div>
+            <div className="flex-1">
+              <label className="block mb-1">الاسم الاخير</label>
+              <input
+                type="text"
+                dir="rtl"
+                className="InputStyle w-full"
+                placeholder="ادخل الاسم الاخير"
+                {...register("lastname")}
               />
+              {errors.lastname && <p className="ErrorMessage">{errors.lastname.message}</p>}
+            </div>
+          </div>
 
-              <FormField
-                control={form.control}
-                name="idPhoto"
-                render={({ field }) => (
-                  <FormItem className="text-right">
-                    <FormLabel>صورة البطاقه الشخصيه</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="file"
-                        accept="image/*"
-                        name={field.name}
-                        ref={field.ref}
-                        onChange={(e) => {
-                          field.onChange(e.target.files);
-                        }}
-                        onBlur={field.onBlur}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+          {/* Email */}
+          <div>
+            <label className="block mb-1">البريد الالكتروني</label>
+            <input
+              type="email"
+              dir="rtl"
+              className="InputStyle w-full"
+              placeholder="ادخل بريد الكتروني فعال"
+              {...register("email")}
+            />
+            {errors.email && <p className="ErrorMessage">{errors.email.message}</p>}
+          </div>
 
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem className="text-right">
-                    <FormLabel>كلمة المرور</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <Input
-                          type={showPassword ? "text" : "password"}
-                          placeholder="ادخل كلمه المرور الخاصه بك"
-                          {...field}
-                        />
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="icon"
-                          className="absolute left-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                          onClick={() => setShowPassword(!showPassword)}
-                        >
-                          {showPassword ? (
-                            <Eye className="h-4 w-4 text-muted-foreground" />
-                          ) : (
-                            <EyeOff className="h-4 w-4 text-muted-foreground" />
-                          )}
-                        </Button>
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+          {/* National ID */}
+          <div>
+            <label className="block mb-1">الرقم القومي</label>
+            <input
+              type="text"
+              dir="rtl"
+              className="InputStyle w-full"
+              placeholder="ادخل الرقم القومي المكون من 14 رقماً"
+              {...register("nationalID")}
+            />
+            {errors.nationalID && <p className="ErrorMessage">{errors.nationalID.message}</p>}
+          </div>
 
-              <FormField
-                control={form.control}
-                name="confirmPassword"
-                render={({ field }) => (
-                  <FormItem className="text-right">
-                    <FormLabel>تأكيد كلمة المرور</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <Input
-                          type={showConfirmPassword ? "text" : "password"}
-                          placeholder="تأكيد كلمه المرور"
-                          {...field}
-                        />
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="icon"
-                          className="absolute left-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                          onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                        >
-                          {showConfirmPassword ? (
-                            <Eye className="h-4 w-4 text-muted-foreground" />
-                          ) : (
-                            <EyeOff className="h-4 w-4 text-muted-foreground" />
-                          )}
-                        </Button>
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </CardContent>
+          {/* File Upload */}
+          <div>
+            <label className="block mb-1">صورة البطاقة الشخصية</label>
+            <input type="file" className="block w-full" />
+          </div>
 
-            <CardFooter className="flex flex-col gap-4">
-              <Button type="submit" className="w-full">
-                انشاء حساب
-                <UserPlus className="mr-2 h-4 w-4" />
-              </Button>
-              <div className="text-sm text-muted-foreground text-center">
-                لديك حساب بالفعل ؟{" "}
-                <Link
-                  to="/SignIn"
-                  className="text-primary hover:underline"
-                >
-                  تسجيل الدخول
-                </Link>
-              </div>
-            </CardFooter>
-          </form>
-        </Form>
-      </Card>
+          {/* Password */}
+          <div className="relative">
+            <label className="block mb-1">كلمة المرور</label>
+            <input
+              type={showPassword ? "text" : "password"}
+              dir="rtl"
+              className="InputStyle w-full pr-10"
+              placeholder="ادخل كلمة المرور الخاصة بك"
+              {...register("password")}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute left-3 top-9 text-gray-500"
+            >
+              {showPassword ? <FiEyeOff /> : <FiEye />}
+            </button>
+            {errors.password && <p className="ErrorMessage">{errors.password.message}</p>}
+          </div>
+
+          {/* Confirm Password */}
+          <div className="relative">
+            <label className="block mb-1">تأكيد كلمة المرور</label>
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              dir="rtl"
+              className="InputStyle w-full pr-10"
+              placeholder="تأكيد كلمة المرور"
+              {...register("confirmPassword")}
+            />
+            <button
+              type="button"
+              onClick={() => setShowConfirmPassword((prev) => !prev)}
+              className="absolute left-3 top-9 text-gray-500"
+            >
+              {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
+            </button>
+            {errors.confirmPassword && <p className="ErrorMessage">{errors.confirmPassword.message}</p>}
+          </div>
+
+          {/* Submit Button */}
+          <button
+            disabled={isSubmitting}
+            type="submit"
+            className="w-full MainColorBG text-white flex items-center justify-center gap-2 rounded-md py-3"
+          >
+            <FiUserPlus className="text-xl" />
+            انشاء حساب
+          </button>
+        </form>
+
+        <p className="mt-4 text-center text-sm">
+          لديك حساب بالفعل؟{" "}
+          <Link to="/SignIn" className="text-blue-500 font-medium underline">
+            تسجيل الدخول
+          </Link>
+        </p>
+      </div>
     </div>
   );
-};
-
-export default RegisterPage;
+}
