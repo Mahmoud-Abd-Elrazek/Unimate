@@ -1,12 +1,13 @@
 import { IoMdMenu } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
-import { PiStudentFill } from "react-icons/pi";
 import Search_bar from '../search_bar_rooms/search_bar_rooms';
 // import "./navbar.css"
 import { useState } from "react";
 import MenuCard from "../MenuCard/menuCard";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
+import "../Logo/Logo"
+import Logo from "../Logo/Logo";
 
 
 
@@ -18,10 +19,7 @@ export default function NavBar() {
         <div className='px-4 md:px-10 m-0 h-[80px] w-full flex justify-between items-center ' >
             {/* Logo */}
             <Link to='/' className='flex flex-wrap justify-center items-center text-center text-[#212529] cursor-pointer'>
-
-                <span className='pr-1 font-playwrite text-[24px] sm:text-[28px]'>Uni</span>
-                <PiStudentFill className='w-9 h-9 text-red-500' />
-                <span className="font-playwrite text-[24px] sm:text-[28px]">mate</span>
+                <Logo />
             </Link>
 
             {/* Search bar */}
@@ -43,7 +41,7 @@ export default function NavBar() {
                 <div className='border-[1px] border-[#CED4DA] rounded-3xl flex items-center w-[95px] h-[49px] justify-between p-[10px] hover:shadow hover:cursor-pointer
 ' onClick={() => setIsMenuOpen(!isMenuOpen)}>
                     <IoMdMenu className="w-[23px] h-[23px] mr-1 text-[#1E1E1E]" />
-                    <FaUserCircle className='w-[29px] h-[29px] mr-1 text-[#1E1E1E]'/>
+                    <FaUserCircle className='w-[29px] h-[29px] mr-1 text-[#1E1E1E]' />
                 </div>
 
             </div>
