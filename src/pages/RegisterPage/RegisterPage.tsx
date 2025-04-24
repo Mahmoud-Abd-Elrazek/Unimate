@@ -17,6 +17,7 @@ interface RegisterFormData {
   password: string;
   confirmPassword: string;
   idPhoto: FileList;
+  nationalId: string;
 }
 
 const RegisterPage = () => {
@@ -29,7 +30,8 @@ const RegisterPage = () => {
       lastName: "",
       email: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
+      nationalId: ""
     }
   });
 
@@ -91,6 +93,21 @@ const RegisterPage = () => {
                         placeholder="ادخل بريد الكتروني مفعل"
                         {...field}
                       />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="nationalId"
+                render={({ field }) => (
+                  <FormItem className="text-right">
+                    <FormLabel>الرقم القومي</FormLabel>
+                    <FormControl>
+                      <Input placeholder="ادخل الرقم القومي المكون من 14 رقمًا"
+                        {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

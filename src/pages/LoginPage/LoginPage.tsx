@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
-import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
-import { Label } from "../../components/ui/label";
+// import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
+// import { Label } from "../../components/ui/label";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../../components/ui/form";
 import { useForm } from "react-hook-form";
 import { Eye, EyeOff, LogIn } from "lucide-react";
@@ -47,7 +47,7 @@ const LoginPage = () => {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <CardContent className="space-y-4">
-              <FormField
+              {/* <FormField
                 control={form.control}
                 name="userType"
                 render={({ field }) => (
@@ -72,7 +72,7 @@ const LoginPage = () => {
                     <FormMessage />
                   </FormItem>
                 )}
-              />
+              /> */}
 
               <FormField
                 control={form.control}
