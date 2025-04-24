@@ -78,7 +78,7 @@ export default function App() {
             <Route path='step3' element={<Step3 />} />
             <Route path='step4' element={<Step4 />} />
           </Route>
-          
+
           <Route path='/help' element={<Help />} />
           <Route path='*' element={<NotFound />} />
         </Routes>

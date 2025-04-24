@@ -7,12 +7,16 @@ import { FaRegStar } from "react-icons/fa";
 import ApartmentCard from '../../components/ApartmentCard/ApartmentCard';
 import HeroSection from '../../components/HeroSection/HeroSection';
 // import { Col, Row } from 'react-bootstrap';
+
+// import animation file
+import "../../../public/animations.css";
+
 export default function Home() {
   // const cards=
   return (
-    <div className='min-h-lvh   Page'>
+    <div className='min-h-lvh Page fade-in'>
       <div className='lg:hidden flex justify-center items-center'>
-        <Search_bar placeholderval='ابحث عن سكن مناسب لك'/>
+        <Search_bar placeholderval='ابحث عن سكن مناسب لك' />
       </div>
       {/* hero section */}
       <HeroSection />
@@ -27,33 +31,33 @@ export default function Home() {
       </section>
       <div id="RoomSection">
 
-      {/* الاعلى تقييما */}
-      <div className='p-3'>
-        <h1 className='flex justify-end text-2xl items-center my-5'>الاعلى تقييما<FaRegStar />
-        </h1>
-        {/* rooms */}
-        <div>
+        {/* الاعلى تقييما */}
+        <div className='p-3'>
+          <h1 className='flex justify-end text-2xl items-center my-5'>الاعلى تقييما<FaRegStar />
+          </h1>
+          {/* rooms */}
+          <div>
 
-       
-          <ApartmentGrid count={5} /> {/* Pass the number of cards to display */}
-         
-        </div>
 
-      </div>
-      {/* اضيف حديثا */}
-      <div className='p-3'>
-        <h1 className='flex justify-end text-2xl items-center my-5'>اضيف حديثا<FaRegStar />
-        </h1>
-        {/* rooms */}
-        <div className="flex justify-center items-center w-full min-h-screen">
-         
-          <ApartmentGrid count={5} /> {/* Pass the number of cards to display */}
+            <ApartmentGrid count={5} /> {/* Pass the number of cards to display */}
+
+          </div>
+
         </div>
-        {/* button show more */}
-        <div className='flex items-center justify-center mt-10'>
-          <button className='text-center MainColorBG rounded-full w-[300px] h-[3rem] text-white'>عرض المزيد </button>
+        {/* اضيف حديثا */}
+        <div className='p-3'>
+          <h1 className='flex justify-end text-2xl items-center my-5'>اضيف حديثا<FaRegStar />
+          </h1>
+          {/* rooms */}
+          <div className="flex justify-center items-center w-full min-h-screen">
+
+            <ApartmentGrid count={5} /> {/* Pass the number of cards to display */}
+          </div>
+          {/* button show more */}
+          <div className='flex items-center justify-center mt-10'>
+            <button className='text-center MainColorBG rounded-full w-[300px] h-[3rem] text-white'>عرض المزيد </button>
+          </div>
         </div>
-      </div>
       </div>
 
     </div>

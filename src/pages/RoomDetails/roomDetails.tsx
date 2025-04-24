@@ -18,11 +18,13 @@ import { PiStudentBold } from "react-icons/pi";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 
+// import animation file
+import "../../../public/animations.css";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 export default function RoomDetails() {
   return (
-    <div className="min-h-screen Page">
+    <div className="min-h-screen Page slide-in">
           <Link to='/' className="flex items-center gap-1 cursor-pointer my-3 ml-3">
             <IoMdArrowRoundBack className="IconSize" />
             <h2 className=" text-sm md:text-base">رجوع</h2>

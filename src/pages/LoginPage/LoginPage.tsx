@@ -9,6 +9,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useForm } from "react-hook-form";
 import { Eye, EyeOff, LogIn } from "lucide-react";
 
+// import animation file
+import "../../../public/animations.css";
+
 type UserType = "student" | "owner";
 
 interface LoginFormData {
@@ -34,7 +37,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4">
+    <div className="min-h-screen flex items-center justify-center bg-background px-4 py-4 slide-in">
       <Card className="w-full max-w-md">
         <CardHeader className="text-right">
           <CardTitle> تسجيل الدخول</CardTitle>

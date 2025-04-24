@@ -7,6 +7,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useForm } from "react-hook-form";
 import { Eye, EyeOff, UserPlus } from "lucide-react";
 
+// import animation file
+import "../../../public/animations.css";
+
 interface RegisterFormData {
   firstName: string;
   lastName: string;
@@ -19,7 +22,7 @@ interface RegisterFormData {
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  
+
   const form = useForm<RegisterFormData>({
     defaultValues: {
       firstName: "",
@@ -36,13 +39,13 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4 pt-[100px] pb-8">
+    <div className="min-h-screen flex items-center justify-center bg-background p-4 slide-in">
       <Card className="w-full max-w-md">
         <CardHeader className="text-right">
           <CardTitle>انشاء حساب طالب جديد</CardTitle>
           <CardDescription>عمليه الانشاء تبدا من هنا</CardDescription>
         </CardHeader>
-        
+
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <CardContent className="space-y-4">
@@ -83,10 +86,10 @@ const RegisterPage = () => {
                   <FormItem className="text-right">
                     <FormLabel>البريد الاكتروني</FormLabel>
                     <FormControl>
-                      <Input 
-                        type="email" 
-                        placeholder="ادخل بريد الكتروني مفعل" 
-                        {...field} 
+                      <Input
+                        type="email"
+                        placeholder="ادخل بريد الكتروني مفعل"
+                        {...field}
                       />
                     </FormControl>
                     <FormMessage />
@@ -138,9 +141,9 @@ const RegisterPage = () => {
                           onClick={() => setShowPassword(!showPassword)}
                         >
                           {showPassword ? (
-                             <Eye className="h-4 w-4 text-muted-foreground" />
-                           ) : (
-                             <EyeOff className="h-4 w-4 text-muted-foreground" />
+                            <Eye className="h-4 w-4 text-muted-foreground" />
+                          ) : (
+                            <EyeOff className="h-4 w-4 text-muted-foreground" />
                           )}
                         </Button>
                       </div>
@@ -171,9 +174,9 @@ const RegisterPage = () => {
                           onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                         >
                           {showConfirmPassword ? (
-                             <Eye className="h-4 w-4 text-muted-foreground" />
-                           ) : (
-                             <EyeOff className="h-4 w-4 text-muted-foreground" />
+                            <Eye className="h-4 w-4 text-muted-foreground" />
+                          ) : (
+                            <EyeOff className="h-4 w-4 text-muted-foreground" />
                           )}
                         </Button>
                       </div>
@@ -191,8 +194,8 @@ const RegisterPage = () => {
               </Button>
               <div className="text-sm text-muted-foreground text-center">
                 لديك حساب بالفعل ؟{" "}
-                <Link 
-                  to="/SignIn" 
+                <Link
+                  to="/SignIn"
                   className="text-primary hover:underline"
                 >
                   تسجيل الدخول
