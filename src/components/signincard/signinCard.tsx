@@ -61,7 +61,7 @@ export default function SignIn() {
                         </form>
                         {/* don't have an acount */}
                         <div className="mt-4 text-center">
-                            <h3>ليس لديك حساب؟ <span><Link to='/register' className="underline text-blue-500">قم بالضغط هنا</Link></span></h3>
+                            <h3>ليس لديك حساب؟ <span><Link to='/register' className="underline MainColorText">قم بالضغط هنا</Link></span></h3>
                         </div>
                     </div>
                 </div>
