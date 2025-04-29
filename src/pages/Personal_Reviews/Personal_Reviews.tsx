@@ -14,17 +14,17 @@ export default function Personal_Reviews() {
             </thead>
             <tbody className="flex flex-col gap-4 mt-1 max-h-[400px] overflow-y-auto scrollbar-hide pl-[30px] pr-[30px]">
               <RatingComponent rating={5} timeAgo="يومين" />
-              <hr className="w-full border-t border-gray-300" />
+              <hr className="w-full border-t border-gray-300"/>
               <RatingComponent rating={4} timeAgo="3 أيام" />
-              <hr className="w-full border-t border-gray-300" />
+              <hr className="w-full border-t border-gray-300"/>
               <RatingComponent rating={3} timeAgo="5 أيام" />
-              <hr className="w-full border-t border-gray-300" />
+              <hr className="w-full border-t border-gray-300"/>
               <RatingComponent rating={2} timeAgo="7 أيام" />
-              <hr className="w-full border-t border-gray-300" />
+              <hr className="w-full border-t border-gray-300"/>
               <RatingComponent rating={2} timeAgo="7 أيام" />
-              <hr className="w-full border-t border-gray-300" />
+              <hr className="w-full border-t border-gray-300"/>
               <RatingComponent rating={2} timeAgo="7 أيام" />
-              <hr className="w-full border-t border-gray-300" />
+              <hr className="w-full border-t border-gray-300"/>
               <RatingComponent rating={2} timeAgo="7 أيام" />
             </tbody>
           </table>
