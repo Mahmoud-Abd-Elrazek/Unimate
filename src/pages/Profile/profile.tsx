@@ -36,7 +36,7 @@ const UserProfile = () => {
         </div>
 
         {/* صورة البروفايل */}
-        <div className="flex justify-center items-start ml-10" >
+        <div className="flex justify-center items-start ml-10 pt-[40px]" >
         <FaUserCircle className="w-48 h-48 text-gray-400" />
         </div>
       </div>

@@ -1,15 +1,21 @@
-// import React from "react";
-import "./ThemeToggle.css"; // Import styles if needed
+import { useTheme } from "../../contexts/ThemeContext"; // استيراد السياق
+import "./ThemeToggle.css"; // استايلات الزر
 
 const ThemeToggle = () => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <label className="theme-toggle" title="Toggle theme">
-      <input type="checkbox" />
+      <input
+        type="checkbox"
+        onChange={toggleTheme}
+        checked={theme === "dark"}
+      />
       <span className="theme-toggle-sr">Toggle theme</span>
       <svg
         aria-hidden="true"
-        width=" 1.875rem"
-        height=" 1.875rem"
+        width="1.875rem"
+        height="1.875rem"
         fill="#1f2937"
         className="theme-toggle__around"
         viewBox="0 0 32 32"

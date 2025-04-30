@@ -77,7 +77,7 @@ export default function RoomDetails() {
                 className="w-full h-[128px] object-cover rounded-md"
               />
               {/* زر اظهار كل الصور */}
-              <Link to='/img_details' className="absolute bottom-3 left-3 bg-green-600/90 hover:bg-green-700 text-white text-sm px-4 py-2 rounded-full flex items-center gap-2 shadow-md transition">
+              <Link to='/img_details' className="absolute bottom-3 left-3 bg-red-600/90 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-full flex items-center gap-2 shadow-md transition">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4"

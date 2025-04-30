@@ -42,7 +42,7 @@ const Logo = ({
          {showText && (
             <span
                className={cn(
-                  "font-playwrite text-[24px] sm:text-[28px]",
+                  "font-playwrite text-[24px] sm:text-[28px] dark:text-white",
                   textSizeClasses[textSize]
                )}
             >
@@ -56,7 +56,7 @@ const Logo = ({
          {showText && (
             <span
                className={cn(
-                  "font-playwrite text-[24px] sm:text-[28px]",
+                  "font-playwrite text-[24px] sm:text-[28px] dark:text-white",
                   textSizeClasses[textSize]
                )}
             >
