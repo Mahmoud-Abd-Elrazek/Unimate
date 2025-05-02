@@ -61,21 +61,24 @@ const StepOne: React.FC = () => {
 
       </div>
       {/* the third div  */}
-      <h1 className=' text-gray-500 text-right mt-10' >
+      <h1 className=' text-gray-500 text-right mt-10 dark:text-[white]' >
 
       يمكنك اضافة صور الغرف في قسم الغرف في الخطوات التالية
       </h1>
-      <hr className="border-t border-gray-400 w-5/6 mx-auto my-8" />
-      <div className='mt-10 flex justify-between items-center' >
-        <Link to='/auther/help' className="flex justify-end">
-          <span className="">
-            <MdHelpOutline className="IconSize" />
-          </span>
-          المساعده
-        </Link>
-        <button  onClick={() => navigate('/createpost/step2')} className='MainColorBG text-white w-20 h-10 rounded-md'>
-          التالى
+      {/* أزرار التنقل */}
+      <div className="flex justify-end items-center mt-8 border-t pt-4">
+        <button
+          onClick={() => navigate("/createpost/step2")}
+          className="px-6 py-2 rounded-full bg-[#4F4F4F] text-white dark:bg-[#757575] dark:text-white"
+        >
+          التالي
         </button>
+        {/* <button
+          onClick={() => navigate("/createpost/step2")}
+          className="px-6 py-2 rounded-full bg-gray-100 text-gray-700"
+        >
+          رجوع
+        </button> */}
       </div>
     </div>
   );

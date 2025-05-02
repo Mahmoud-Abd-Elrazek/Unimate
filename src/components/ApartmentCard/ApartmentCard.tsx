@@ -52,7 +52,7 @@ const ApartmentCard = () => {
   };
 
   return (
-    <div className="bg-white border border-[#e0e0e0] rounded-xl overflow-hidden w-[420px] group relative transition-transform duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md">
+    <div className=" border border-[#e0e0e0] rounded-xl overflow-hidden w-[420px] group relative transition-transform duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md dark:bg-black">
       {/* Image Slider Section */}
       <div className="relative">
         <Swiper
@@ -127,22 +127,22 @@ const ApartmentCard = () => {
       <div className="p-3 text-right">
         <div className="flex items-center justify-between mb-2">
           <span
-            className="block text-[14px] font-bold text-[#2002C6] text-right leading-[20px]">
+            className="block text-[14px] font-bold text-[#DC3545] text-right leading-[20px]">
             6,600/mo
           </span>
-          <h3 className="text-[16px] font-semibold text-[#212529]">
+          <h3 className="text-[16px] font-semibold text-[#212529] dark:text-[white] ">
             الشؤون · أولاد · 3 غرف · 6 ضيف · الدور الثالث
           </h3>
         </div>
 
         {/* location */}
-        <div className="flex items-center justify-end mb-2">
-          <span className="text-[14px] text-[#515151] mr-2"> الشؤون / شارع ابو علاء </span>
+        <div className="flex items-center justify-end mb-2 ">
+          <span className="text-[14px] text-[#515151] mr-2 dark:text-[white]"> الشؤون / شارع ابو علاء </span>
           <IoLocationOutline className="text-[#515151]" />
         </div>
 
         {/* descritpion */}
-        <p className="text-[14px] text-[#515151]">
+        <p className="text-[14px] text-[#515151] dark:text-[white]">
           سكن مناسب للطلبه و العائلات · قريب من المواصلات العامة · قريب من المحلات التجارية · قريب من المطاعم · قريب من الجامعه
         </p>
 
@@ -150,33 +150,33 @@ const ApartmentCard = () => {
         <div className="flex items-center justify-end mb-2 mt-2 gap-x-2 pb-2 border-b border-[#e0e0e0]">
           {/* bed */}
           <div className="flex items-center justify-end mb-2 mt-2">
-            <span className="text-[14px] text-[#111111] mr-2"> 12 سرير </span>
+            <span className="text-[14px] text-[#111111] mr-2 dark:text-[white]"> 12 سرير </span>
             <LuBed className="text-[#111111]" />
           </div>
           {/* room */}
           <div className="flex items-center justify-end mb-2 mt-2">
-            <span className="text-[14px] text-[#111111] mr-2">4 غرفه</span>
+            <span className="text-[14px] text-[#111111] mr-2 dark:text-[white]">4 غرفه</span>
             <MdOutlineMeetingRoom className="text-[#111111]" />
           </div>
           {/* bath */}
           <div className="flex items-center justify-end mb-2 mt-2">
-            <span className="text-[14px] text-[#111111] mr-2">1 حمام</span>
+            <span className="text-[14px] text-[#111111] mr-2 dark:text-[white]">1 حمام</span>
             <BiBath className="text-[#111111]" />
           </div>
         </div>
 
         {/* Some Services */}
-        <div className="flex items-center justify-end gap-x-2">
-          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full">
+        <div className="flex items-center justify-end gap-x-2 ">
+          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[white] dark:bg-[black]">
             +10 اخري
           </span>
-          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full">
+          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[white] dark:bg-[black]">
             WiFi
           </span>
-          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full">
+          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[white] dark:bg-[black]">
             غاز طبيعي
           </span>
-          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full">
+          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[white] dark:bg-[black]">
             مكيف
           </span>
         </div>
@@ -184,16 +184,16 @@ const ApartmentCard = () => {
         <div className="flex items-center justify-between">
           {/* deuration */}
           <div className="flex items-center justify-end mb-2 mt-2">
-            <span className="text-[13px] text-[#515151] mr-2">قبل يوم </span>
+            <span className="text-[13px] text-[#515151] mr-2 dark:text-[white]">قبل يوم </span>
             <MdOutlineAccessTime className="text-[#515151]" />
           </div>
 
           {/* number of comments & rating */}
           <div className="flex items-center justify-end mb-2 mt-2">
-            <span className="text-[14px] text-[#515151] mr-2"> +10 تعليقات </span>
+            <span className="text-[14px] text-[#515151] mr-2 dark:text-[white]"> +10 تعليقات </span>
 
             <div className="flex items-center justify-end mb-2 mt-2">
-              <span className="text-[13px] text-[#515151] mr-2">4.5 </span>
+              <span className="text-[13px] text-[#515151] mr-2 dark:text-[white]">4.5 </span>
               <MdOutlineStar className="text-[#515151]" />
             </div>
           </div>

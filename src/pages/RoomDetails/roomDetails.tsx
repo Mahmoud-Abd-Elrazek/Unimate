@@ -48,7 +48,7 @@ export default function RoomDetails() {
       {/* Imgs Section */}
       <div className="mt-4 bg-white rounded-xl shadow-md overflow-hidden">
         {/* الصور */}
-        <div className="flex flex-row-reverse gap-2 p-3">
+        <div className="flex flex-row-reverse gap-2 p-3 dark:bg-black">
           {/* الصورة الكبيرة */}
           <div className="flex-1">
             <img
@@ -93,18 +93,18 @@ export default function RoomDetails() {
         </div>
 
         {/* الوصف */}
-        <div className="px-5 py-4 text-right">
-          <p className="text-[#212529] leading-6 font-medium">
+        <div className="px-5 py-4 text-right dark:bg-black">
+          <p className="text-[#212529] leading-6 font-medium dark:text-[white]">
             شقه قريبه من الجامعة، هادئة وبجوار أهالي. تبعد 5 دقائق عن الجامعة
             سيراً على الأقدام. المسكن شامل المياه والغاز فقط لا غير. يُفضّل
             الإقامة لفترة لا تقل عن 6 أشهر.
           </p>
-          <p className="text-sm text-[#6C757D] mt-2">
+          <p className="text-sm text-[#6C757D] mt-2 dark:text-[#D9D9D9]">
             12 ضيف · 3 غرف · أولاد · الشؤون · الدور الثالث
           </p>
-          <p className="text-sm mt-1 font-semibold">
+          <p className="text-sm mt-1 font-semibold dark:text-[white]">
             وصف الموقع:{" "}
-            <span className="text-[#6C757D]">قنا - الشؤون - شارع أبو علاء</span>
+            <span className="text-[#6C757D] dark:text-[#D9D9D9]">قنا - الشؤون - شارع أبو علاء</span>
           </p>
         </div>
       </div>
@@ -112,45 +112,45 @@ export default function RoomDetails() {
       {/* ما يقدمه السكن */}
       <div className="flex justify-between p-5">
         <div className="left">
-          <div className="rounded-xl border p-4 w-[320px] shadow-md bg-white space-y-3">
+          <div className="rounded-xl border p-4 w-[320px] shadow-md  space-y-3">
             <div className="flex justify-between items-center">
               <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">
                 متاحة للسكان
               </span>
-              <span className="text-indigo-800 font-bold text-lg">6,600 ج.م / mo</span>
+              <span className="text-[#D32F2F] font-bold text-lg">6,600 ج.م / mo</span>
             </div>
 
-            <div className="text-right text-sm text-gray-700">
+            <div className="text-right text-sm text-gray-700 dark:text-[#D9D9D9]">
               <p>الشؤون - شارع أبو علاء</p>
               <p>اولاد</p>
               <p>الدور الثالث</p>
             </div>
 
-            <div className="grid grid-cols-3 text-center bg-gray-50 py-2 rounded-md text-sm">
+            <div className="grid grid-cols-3 text-center  py-2 rounded-md text-sm">
               <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 ml-1 p-1">
-                <FaBath className="text-blue-900 IconSize" />
+                <FaBath className="text-[#D32F2F] IconSize" />
                 <p className="font-bold text-lg">2</p>
                 <p className="flex ">      حمام</p>
               </div>
               <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 ml-1 p-1">
-              <MdMeetingRoom className="text-blue-900 IconSize" />
+              <MdMeetingRoom className="text-blue-900 IconSize text-[#D32F2F]" />
               
                 <p className="font-bold text-lg">4</p>
                 <p>غرف</p>
               </div>
               <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 ml-1 p-1">
-              <PiStudentBold className="text-blue-900 IconSize" />
+              <PiStudentBold className="text-blue-900 IconSize text-[#D32F2F]" />
                 <p className="font-bold text-lg">12</p>
                 <p>طالب</p>
               </div>
             </div>
 
             <div className="border-t pt-2 text-right">
-              <p className="text-sm text-gray-500 mb-2">مالك العقار</p>
+              <p className="text-sm text-gray-500 mb-2 dark:text-[#D9D9D9]">مالك العقار</p>
               <div className="flex items-center justify-between">
                 <div className="text-sm">
                   <p className="font-semibold">محمود محمد عرفه</p>
-                  <p className="text-xs text-gray-500">mahmoudarafa@gmail.com</p>
+                  <p className="text-xs text-gray-500 dark:text-[#D9D9D9]">mahmoudarafa@gmail.com</p>
                 </div>
                 <div className="flex items-center gap-1">
                   <img
@@ -165,14 +165,14 @@ export default function RoomDetails() {
               </div>
             </div>
 
-            <button className="w-full bg-indigo-700 hover:bg-indigo-800 text-white font-semibold py-2 rounded-lg flex justify-center items-center gap-2">
+            <button className="w-full bg-[#D32F2F] hover:bg-red-800 text-white font-semibold py-2 rounded-lg flex justify-center items-center gap-2">
               <FaPaperPlane />
               حجز المسكن بالكامل
             </button>
           </div>
         </div>
         <div className="right container mx-auto my-10 px-5">
-          <h2 className="text-xl md:text-2xl text-right font-semibold mb-5">
+          <h2 className="text-xl md:text-2xl text-right font-semibold mb-5 ">
             ما يقدمه السكن
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -215,7 +215,7 @@ export default function RoomDetails() {
       </div>
       <hr className="border-t border-gray-300 w-5/6 mx-auto my-8" />
       {/* a place for sleeping */}
-      <div className="container mx-auto px-5 py-6 ">
+      <div className="container mx-auto px-5 py-6">
         <h1 className="text-xl md:text-2xl text-right p-2 font-bold mb-4">
           مكان النوم
         </h1>
@@ -228,7 +228,7 @@ export default function RoomDetails() {
         </div>
       </div>
       {/* the owner of house */}
-      <div className="bg-gray-200 px-5 py-4 flex items-center gap-4" dir="rtl">
+      <div className="bg-gray-200 px-5 py-4 flex items-center gap-4 dark:bg-[#1E1E1E]" dir="rtl">
         <div>
           <img
             src={Room_Photo}
@@ -238,7 +238,7 @@ export default function RoomDetails() {
         </div>
         <div>
           <h1 className="text-lg md:text-xl font-semibold">محمود محمد عرفه</h1>
-          <p className="text-sm md:text-base text-gray-700">صاحب العقار</p>
+          <p className="text-sm md:text-base text-gray-700 dark:text-[#D9D9D9]">صاحب العقار</p>
           <div className="flex items-center gap-1 mt-1">
             <FaStar className="text-yellow-400" size={14} />
             <FaStar className="text-yellow-400" size={14} />
@@ -254,13 +254,13 @@ export default function RoomDetails() {
         </h2>
 
         {/* No comments yet */}
-        <div className="bg-gray-100 text-right p-3 rounded-md text-gray-600 mb-6">
+        <div className="bg-gray-100 text-right p-3 rounded-md text-gray-600 mb-6 dark:bg-[#1E1E1E]">
           لا توجد تعليقات حتي الان، كن اول المتفاعلين علي هذا العقار
         </div>
 
         {/* Comment Box */}
         <div className="flex flex-col items-end gap-2 w-full md:w-3/4 lg:w-1/2 ml-auto">
-          <div className="w-full border rounded-md bg-gray-100 p-2">
+          <div className="w-full border rounded-md bg-gray-100 p-2 dark:bg-[#1E1E1E]">
             <input
               type="text"
               placeholder="اكتب تعليقك هنا"
@@ -270,7 +270,7 @@ export default function RoomDetails() {
           <div dir="rtl" className="w-full flex items-center justify-center">
             <div className=" flex items-center  p-2">
               {/* Send Icon */}
-              <button className="text-blue-600 text-xl transform -scale-x-100">
+              <button className="text-red-600 text-xl transform -scale-x-100">
                 <FaPaperPlane />
               </button>
 

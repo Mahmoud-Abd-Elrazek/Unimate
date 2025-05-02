@@ -26,7 +26,7 @@ const RatingComponent: React.FC<RatingProps> = ({ rating, timeAgo }) => {
       </div>
       <div>
       <div className='w-20 h-10 rounded-xl MainColorBG text-white text-center flex justify-center items-center w-[110px]'>مضيف</div>
-      <div style={styles.timeAgo}>{`منذ ${timeAgo}`}</div>
+      <div style={styles.timeAgo as React.CSSProperties}>{`منذ ${timeAgo}`}</div>
       </div>
     </div>
   );
@@ -52,6 +52,7 @@ const styles = {
   },
   timeAgo: {
     color: 'gray',
+    textAlign: 'center',
   },
 };
 

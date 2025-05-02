@@ -89,7 +89,7 @@ const FinancialTransactions = () => {
         <h1 className="text-2xl font-bold text-center mb-6">معاملاتي المالية</h1>
 
         {/* جدول المعاملات */}
-        <div className="bg-white rounded shadow p-4 mb-8">
+        <div className="rounded shadow p-4 mb-8">
           <div className="relative w-full">
             <input
               type="text"
@@ -105,7 +105,7 @@ const FinancialTransactions = () => {
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-right border-t text-sm">
-              <thead className="bg-gray-100">
+              <thead className="bg-gray-100 dark:bg-[#1D1D1D]">
                 <tr>
                   <th className="p-2">اسم الطلب</th>
                   <th className="p-2">العقار</th>
@@ -129,29 +129,28 @@ const FinancialTransactions = () => {
 
         {/* الكروت التحليلية */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-center">
-          <div className="bg-white rounded shadow p-4">
+          <div className=" rounded shadow p-4">
             <p className="text-sm text-gray-600">إجمالي الأرباح خلال الثلاثة أشهر الماضية</p>
             <p className="text-red-600 font-bold text-xl">10,350</p>
           </div>
-          <div className="bg-white rounded shadow p-4">
+          <div className="rounded shadow p-4">
             <p className="text-sm text-gray-600">عدد الحجوزات الأخيرة</p>
             <p className="text-red-600 font-bold text-xl">27</p>
           </div>
-          <div className="bg-white rounded shadow p-4">
+          <div className="rounded shadow p-4">
             <p className="text-sm text-gray-600">نسبة التغيير في الأرباح</p>
             <p className="text-red-600 font-bold text-xl">11.11%</p>
           </div>
         </div>
-
         {/* الرسم البياني والعقارات */}
         <div className="grid md:grid-cols-2 gap-3">
-          <div className="bg-white rounded shadow p-4">
+          <div className=" rounded shadow p-4">
             <h2 className="text-lg font-semibold mb-4">إحصائيات الربح والتأجير</h2>
             <Bar data={data} options={options} />
           </div>
-          <div className="bg-white rounded shadow p-4">
+          <div className=" rounded shadow p-4">
             <h2 className="text-lg font-semibold mb-4">أكثر العقارات حجزًا</h2>
-            <div className="space-y-4">
+            <div className="space-y-4 max-h-72 overflow-y-auto pr-2">
               <div className="flex gap-4">
                 <img
                   src="https://doudapartmenthomes.com/wp-content/uploads/2023/12/sidekix-media-LFlbLb8vJls-unsplash-scaled.jpg"
@@ -164,6 +163,7 @@ const FinancialTransactions = () => {
                   <p className="text-yellow-500">★★★★★</p>
                 </div>
               </div>
+              
               <div className="flex gap-4">
                 <img
                   src="https://doudapartmenthomes.com/wp-content/uploads/2023/12/sidekix-media-LFlbLb8vJls-unsplash-scaled.jpg"
