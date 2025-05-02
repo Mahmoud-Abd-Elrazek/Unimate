@@ -56,8 +56,15 @@ export default function RegisterPage() {
   };
 
   return (
+<<<<<<< Updated upstream
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       <div className="bg-white w-full max-w-md rounded-xl p-8 shadow-md text-right">
+=======
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <div className=" w-full max-w-md rounded-xl p-8 shadow-md text-right">
+        <h2 className="text-2xl font-semibold mb-1">انشاء حساب طالب جديد</h2>
+        <p className="text-gray-500 mb-6">عملية الانشاء تبدأ من هنا</p>
+>>>>>>> Stashed changes
 
         {/* إذا لم يتم اختيار الدور بعد */}
         {!selectedRole && (

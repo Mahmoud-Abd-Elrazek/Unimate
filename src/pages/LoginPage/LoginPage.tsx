@@ -37,8 +37,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <div className="bg-white w-full max-w-md rounded-xl p-8 shadow-md text-right">
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="w-full max-w-md rounded-xl p-8 shadow-md text-right">
         <h2 className="text-2xl font-semibold mb-2">تسجيل الدخول</h2>
 
         {/* Account Type */}
