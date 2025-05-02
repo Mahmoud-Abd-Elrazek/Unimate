@@ -4,11 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { useState } from "react";
 import { FiEye, FiEyeOff, FiLogIn } from "react-icons/fi";
+import useAuthStore from "../../Store/useAuthStore";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [accountType, setAccountType] = useState("طالب");
+
+  const login = useAuthStore((state) => state.login)
 
   const SignInSchema = z.object({
     email: z.string().min(1, "مطلوب").email("ادخل بريد الكتروني صحيح"),
@@ -28,6 +31,8 @@ const LoginPage = () => {
 
   const OnSubmit: SubmitHandler<SignT> = (data) => {
     console.log({ ...data, accountType });
+    console.log(data.email, data.password)
+    login(data.email, data.password);
     navigate("/", { replace: true });
   };
 
@@ -35,7 +40,6 @@ const LoginPage = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       <div className="bg-white w-full max-w-md rounded-xl p-8 shadow-md text-right">
         <h2 className="text-2xl font-semibold mb-2">تسجيل الدخول</h2>
-        <p className="text-gray-500 mb-6">سجل دخولك من هنا</p>
 
         {/* Account Type */}
         <div className="flex justify-end gap-6 mb-4 text-right">
@@ -65,15 +69,16 @@ const LoginPage = () => {
           {/* Email */}
           <div className="text-right">
             <label htmlFor="email" className="block mb-1 font-medium">
-              اسم المستخدم
+              البريد الالكترونى
             </label>
             <input
-            dir="rtl"
+              dir="rtl"
               type="email"
               id="email"
               className="InputStyle w-full"
-              placeholder="اسم المستخدم"
+              placeholder="البريد الالكترونى"
               {...register("email")}
+
             />
             {errors.email && <p className="ErrorMessage">{errors.email.message}</p>}
           </div>
@@ -84,12 +89,13 @@ const LoginPage = () => {
               كلمة المرور
             </label>
             <input
-            dir="rtl"
+              dir="rtl"
               type={showPassword ? "text" : "password"}
               id="password"
               className="InputStyle w-full pr-10"
               placeholder="كلمة المرور"
               {...register("password")}
+
             />
             <button
               type="button"
@@ -107,7 +113,7 @@ const LoginPage = () => {
               <input type="checkbox" className="h-4 w-4" />
               تذكرني
             </p>
-            <Link to="/forgot-password" className="text-blue-500 underline">
+            <Link to="/forgetpassword" className="text-blue-500 underline">
               نسيت كلمة المرور؟
             </Link>
           </div>

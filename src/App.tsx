@@ -36,6 +36,8 @@ import Housing_Services from './pages/Housing_Services/housing_services';
 // Components
 import NavBar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
+import ForgetPassword from './pages/ForgetPassword/forgetPassword';
+import ResetPass from './pages/ResetPass/resetPass';
 
 export default function App() {
   const location = useLocation();
@@ -43,7 +45,9 @@ export default function App() {
     '/SignIn',
     '/register',
     '/signout',
-    '/unauthorized'
+    '/unauthorized',
+    '/resetpassword',
+    '/forgetpassword'
   ];
 
   const shouldHideFooterNavbar = hideFooterNavbarRoutes.includes(location.pathname);
@@ -60,6 +64,8 @@ export default function App() {
         <Route path="/SignIn" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/signout" element={<SignOutCard />} />
+        <Route path='/forgetpassword'element={<ForgetPassword/>} />
+        <Route path='/resetpassword' element={<ResetPass/>}  />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
         {/* Room details */}
