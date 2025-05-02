@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { FiEye, FiEyeOff, FiUserPlus } from "react-icons/fi";
-// import useAuthStore from "../../Store/useAuthStore";
+import useAuthStore from "../../Store/useAuthStore";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ export default function RegisterPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [selectedRole, setSelectedRole] = useState<"طالب" | "صاحب سكن" | null>(null);
 
-  // const Register =useAuthStore((state) => state.register)
+  const Register =useAuthStore((state) => state.register)
 
   const RegisterSchema = z.object({
     firstname: z.string().min(1, { message: "ادخل الاسم الاول" }),
@@ -42,7 +42,16 @@ export default function RegisterPage() {
 
   const OnSubmit: SubmitHandler<RegisterT> = (data) => {
     console.log("بيانات:", { ...data, role: selectedRole });
-    // Register({ ...data, role: selectedRole })
+    Register({
+          fname: data.firstname,
+          lname: data.lastname,
+          userName: data.username,
+          email: data.email,
+          password: data.password,
+          confrimPassword: data.confirmPassword,
+          nationalId: data.nationalID,
+         
+        });
     navigate("/");
   };
 

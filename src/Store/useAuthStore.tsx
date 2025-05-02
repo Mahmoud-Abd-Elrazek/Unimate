@@ -6,12 +6,12 @@ interface User
 {
   fname:string,
   lname:string,
-  username:string,
-  password:number,
-  confrimPassword:number,
+  userName:string,
+  password:string,
   email:string,
-  nationalID:string,
-  role: "طالب" | "صاحب سكن"; 
+  confrimPassword:string,
+  nationalId:string,
+  // role: "طالب" | "صاحب سكن"; 
 }
 interface AuthState {
   isAuthenticated: boolean;
@@ -26,11 +26,25 @@ const useAuthStore = create<AuthState>((set) => ({
   isAuthenticated: false,
   user: null,
   token: null,
-
+  register: async (data: User ) => {
+    try {
+      if (data.password !== data.confrimPassword) {
+        throw new Error("Passwords do not match");
+      }
+      const res = await axios.post(
+        'http://darkteam.runasp.net/RegisterStudentEndPoint/RegisterStudent',
+        { ...data }
+      );
+      set({ isAuthenticated: true, token: res.data.token, user: res.data.user });
+      localStorage.setItem('token', res.data.token);
+    } catch (error) {
+      console.error('Registration failed:', error);
+    }
+  },
   login: async (email, password) => {
     try {
       const res = await axios.post(
-        'http://{{baseUrl}}/LogInUserEndpoint/LogInUser',
+        'http://darkteam.runasp.net/LogInUserEndpoint/LogInUser',
         { email, password }
       );
       set({ isAuthenticated: true, token: res.data.token, user: res.data.user });
@@ -40,18 +54,7 @@ const useAuthStore = create<AuthState>((set) => ({
     }
   },
 
-  register: async (data) => {
-    try {
-      const res = await axios.post(
-        'http://localhost:5173/RegisterUserEndpoint/RegisterUser',
-        data
-      );
-      set({ isAuthenticated: true, token: res.data.token, user: res.data.user });
-      localStorage.setItem('token', res.data.token);
-    } catch (error) {
-      console.error('Registration failed:', error);
-    }
-  },
+  
 
   logout: () => {
     set({ isAuthenticated: false, user: null, token: null });
