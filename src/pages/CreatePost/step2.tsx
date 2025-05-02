@@ -72,7 +72,7 @@ const StepTwo: React.FC = () => {
             <h1 className='text-xl font-semibold ' >
               تحديد المنطقة
             </h1>
-            <Select fullWidth defaultValue="" sx={{ mb: 2, height: '2rem' }}>
+            <Select fullWidth defaultValue="" sx={{ mb: 2, height: '2rem' }} className='dark:bg-[#1E1E1E]'>
               {location.map((loc) => (
                 <MenuItem key={loc} value={loc}>{loc}</MenuItem>
               ))}
@@ -113,47 +113,41 @@ const StepTwo: React.FC = () => {
         <div className='flex flex-col gap-y-10 w-[20rem] '>
           {/* الوصف */}
           <div className="flex flex-col space-y-2">
-            <label htmlFor="description" className="text-xl font-medium text-gray-700">
+            <label htmlFor="description" className="text-xl font-medium text-gray-700 dark:text-[white]">
               وصف الموقع
             </label>
             <textarea
               id="description"
               placeholder="أدخل الوصف هنا..."
-              className=" p-2 w-full h-[10rem] border border-black rounded-lg text-lg focus:border-transparent "
+              className=" p-2 w-full h-[10rem] border border-black rounded-lg text-lg focus:border-transparent dark:bg-[#1E1E1E]"
             ></textarea>
           </div>
           <div className="flex flex-col space-y-2">
-            <label htmlFor="description" className="text-xl font-medium text-gray-700">
+            <label htmlFor="description" className="text-xl font-medium text-gray-700 dark:text-[white]">
               وصف للمسكن
             </label>
             <textarea
               id="description"
               placeholder="أدخل الوصف هنا..."
-              className="p-2 w-full h-[10rem] border border-black rounded-lg text-lg focus:border-transparent "
+              className="p-2 w-full h-[10rem] border border-black rounded-lg text-lg focus:border-transparent dark:bg-[#1E1E1E]"
             ></textarea>
           </div>
         </div>
       </div>
-      {/* buttons */}
-      <hr className="border-t border-gray-400 w-5/6 mx-auto my-8" />
-
-      <div className=' flex justify-between items-center mt-5'>
-        <div>
-        <Link to='/auther/help' className="flex justify-end">
-          <span className="">
-            <MdHelpOutline className="IconSize" />
-          </span>
-          المساعده
-        </Link>
-        </div>
-        <div className='flex justify-between items-center w-[15rem] '>
-        <button onClick={() => navigate('/createpost/step1')} className='bg-black text-white w-20 h-10 rounded-md'>
+     {/* أزرار التنقل */}
+     <div className="flex justify-between items-center mt-8 border-t pt-4">
+        <button
+          onClick={() => navigate("/createpost/step1")}
+          className="px-6 py-2 rounded-full bg-gray-100 text-gray-700 "
+        >
           رجوع
         </button>
-        <button onClick={() => navigate('/createpost/step3')} className='MainColorBG text-white w-20 h-10 rounded-md'>
-          التالى
+        <button
+          onClick={() => navigate("/createpost/step3")}
+          className="px-6 py-2 rounded-full bg-[#4F4F4F] text-white dark:bg-[#757575] dark:text-white"
+        >
+          التالي
         </button>
-        </div>
       </div>
     </div>
   );

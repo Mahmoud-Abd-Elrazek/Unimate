@@ -18,7 +18,7 @@ const AuthorLayout = () => {
 
       {/* Show sidebar only if not in hidden list */}
       {!shouldHideSidebar && (
-        <aside className=" min-h-full bg-[#f4f4f4] w-[250px]">
+        <aside className=" min-h-full w-[250px]">
           <SideBar />
         </aside>
       )}

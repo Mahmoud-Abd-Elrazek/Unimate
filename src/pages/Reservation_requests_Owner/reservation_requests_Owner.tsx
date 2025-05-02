@@ -49,10 +49,10 @@ export default function MyProperties() {
 
   return (
     <div className="flex flex-col h-full p-4 gap-6">
-      <h1 className="text-center text-2xl font-bold text-gray-700">طلبات الحجز</h1>
+      <h1 className="text-center text-2xl font-bold text-gray-700 dark:text-[white]">طلبات الحجز</h1>
 
       <div className="flex justify-end">
-        <h2 className="text-lg font-semibold text-gray-600">طلبات قيد الانتظار</h2>
+        <h2 className="text-lg font-semibold text-gray-600 dark:text-[white]">طلبات قيد الانتظار</h2>
       </div>
 
       {/* الكروت داخل سكرول */}
@@ -60,10 +60,10 @@ export default function MyProperties() {
         {requests.map((req) => (
           <div
             key={req.id}
-            className="flex flex-col md:flex-row justify-between items-center gap-4 border rounded-xl p-4 shadow-sm bg-white"
+            className="flex flex-col md:flex-row justify-between items-center gap-4 border rounded-xl p-4 shadow-sm "
           >
             {/* الأكشنات */}
-            <div className="flex flex-col items-center gap-2 h-[90px]">
+            <div className="flex flex-col items-center gap-2 h-[90px] ">
               <Button className="bg-green-600 text-white hover:bg-green-700 w-[110px]" onClick={() => { }}>
                 قبول
               </Button>
@@ -76,10 +76,10 @@ export default function MyProperties() {
 
             {/* التفاصيل */}
             <div className="flex-1 text-right">
-              <h3 className="text-md md:text-lg font-semibold text-gray-800">{req.description}</h3>
-              <div className="flex justify-end items-center gap-2 mt-1">
-                <span className="text-sm text-gray-600">{req.requester}</span>
-                <FaUserCircle className="text-xl text-gray-600" />
+              <h3 className="text-md md:text-lg font-semibold text-gray-800 dark:text-[#D9D9D9]">{req.description}</h3>
+              <div className="flex justify-end items-center gap-2 mt-1 ">
+                <span className="text-sm text-gray-600 dark:text-[#D9D9D9]">{req.requester}</span>
+                <FaUserCircle className="text-xl text-gray-600 dark:text-[#D9D9D9]" />
               </div>
               <div className="flex justify-end mt-1">
                 {Array.from({ length: 5 }).map((_, index) => (

@@ -15,7 +15,7 @@ export default function SideBar() {
 
         {Role !== "Owner" ?
 
-            <div className=" w-full h-full" style={{  padding: "10px" }}>
+            <div className=" w-full h-full " style={{  padding: "10px" }}>
                 {/* <h3>Sideba r</h3> */}
                 <ul className="grid gap-3 mt-4 ">
                     <li className="">

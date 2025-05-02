@@ -15,14 +15,14 @@ export default function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <div className='px-4 md:px-10 m-0 h-[80px] w-full flex justify-between items-center dark:bg-black' >
+        <div className='px-4 md:px-10 m-0 h-[80px] w-full flex justify-between items-center' >
             {/* Logo */}
             <Link to='/' className='flex flex-wrap justify-center items-center text-center text-[#212529] cursor-pointer'>
                 <Logo />
             </Link>
 
             {/* Search bar */}
-            <div className='hidden lg:block'>
+            <div className='hidden lg:block '>
                 <div>
                     <Search_bar placeholderval="ابحث عن سكن مناسب لك" />
                 </div>
@@ -39,8 +39,8 @@ export default function NavBar() {
                 {/* user icon */}
                 <div className='border-[1px] border-[#CED4DA] rounded-3xl flex items-center w-[95px] h-[49px] justify-between p-[10px] hover:shadow hover:cursor-pointer
 ' onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                    <IoMdMenu className="w-[23px] h-[23px] mr-1 text-[#1E1E1E]" />
-                    <FaUserCircle className='w-[29px] h-[29px] mr-1 text-[#1E1E1E]' />
+                    <IoMdMenu className="w-[23px] h-[23px] mr-1 text-[#1E1E1E] dark:text-[white]" />
+                    <FaUserCircle className='w-[29px] h-[29px] mr-1 text-[#1E1E1E] dark:text-[white]' />
                 </div>
 
             </div>

@@ -14,7 +14,7 @@ const FilterBar: React.FC = () => {
   };
 
   return (
-    <div className="bg-white rounded-xl p-4 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-3">
+    <div className=" rounded-xl p-4 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-3">
       
       {/* Search Icon */}
       <div className="rounded-full w-[2.5rem] h-[2.5rem] bg-red-500 flex justify-center items-center">

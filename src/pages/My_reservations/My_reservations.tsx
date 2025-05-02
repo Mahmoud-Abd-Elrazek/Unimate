@@ -30,19 +30,19 @@ interface BookingStatus {
 export default function My_reservations() {
   return (
     <div className=" ">
-        <h1 className="text-4xl text-semibold text-gray-500 text-center my-5">حجوزاتى</h1>
+        <h1 className="text-4xl text-semibold text-center my-5 dark:text[white]">حجوزاتى</h1>
         {/* the search bar */}
-        <div>
+        <div className="dark:text[white]">
             <Search_bar_myreservations placeholderval="ابحث فى حجوزاتى"/>
         </div>
             {/* the table */}
         <div className="p-5">
 
         <div className="overflow-x-auto rounded-xl shadow-md ">
-      <table className="min-w-full text-right border-collapse">
+      <table className="min-w-full text-right border-collapse ">
         <thead className="text-center">
-          <tr className="bg-gray-300 text-gray-700">
-            <th className="py-3 px-4 ">الحالة</th>
+          <tr className="bg-gray-300 dark:text[white] dark:bg-[#1D1D1D]">
+            <th className="py-3 px-4">الحالة</th>
             <th className="py-3 px-4">تاريخ الحجز</th>
             <th className="py-3 px-4">مكان الإقامة</th>
           </tr>

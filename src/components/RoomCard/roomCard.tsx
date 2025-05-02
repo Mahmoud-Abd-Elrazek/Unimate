@@ -7,7 +7,7 @@ import Roomate from "../RoomMateComponent/roomate";
 export default function RoomCard() {
     return (
         <div className="rounded">
-            <div className="card" style={{ 'width': '18rem'}} >
+            <div className="card dark:bg-black dark:text-[white]" style={{ 'width': '18rem'}} >
                 <img className="card-img-top" src={Room_Photo} alt="Card image cap" />
                 <div className="  mt-5 px-2 text-right">
                     <h5 className="card-title">غرفه على الشارع فيها بلكونه</h5>
