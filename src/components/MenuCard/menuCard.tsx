@@ -33,7 +33,7 @@ export default function MenuCard({ setIsOpen }: MenuCardProps) {
     return (
         <div className="fixed inset-0 z-50">
             <div ref={cardRef}
-                className={`absolute top-[90px] w-[290px] right-[20px] bg-[white] dark:bg-black rounded-lg p-6 shadow-md transition-transform duration-300 ${isVisible ? 'animate-slide-in-left' : 'animate-slide-out-left'}`}>
+                className={`absolute top-[90px] w-[290px] right-[20px] bg-[white] dark:bg-[#1E1E1E] rounded-lg p-6 shadow-md transition-transform duration-300 ${isVisible ? 'animate-slide-in-left' : 'animate-slide-out-left'}`}>
                 <div className="flex flex-col items-end gap-[2px]">
 
                     <Link to="/SignIn"

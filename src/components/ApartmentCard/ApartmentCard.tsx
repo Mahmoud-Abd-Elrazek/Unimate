@@ -52,7 +52,7 @@ const ApartmentCard = () => {
   };
 
   return (
-    <div className=" border border-[#e0e0e0] rounded-xl overflow-hidden w-[420px] group relative transition-transform duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md dark:bg-black">
+    <div className=" border border-[#e0e0e0] rounded-xl overflow-hidden w-[420px] group relative transition-transform duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md dark:bg-[#171515]">
       {/* Image Slider Section */}
       <div className="relative">
         <Swiper
@@ -167,16 +167,16 @@ const ApartmentCard = () => {
 
         {/* Some Services */}
         <div className="flex items-center justify-end gap-x-2 ">
-          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[white] dark:bg-[black]">
+          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[white] dark:bg-[#515151]">
             +10 اخري
           </span>
-          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[white] dark:bg-[black]">
+          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[white] dark:bg-[#515151]">
             WiFi
           </span>
-          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[white] dark:bg-[black]">
+          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[white] dark:bg-[#515151]">
             غاز طبيعي
           </span>
-          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[white] dark:bg-[black]">
+          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[white] dark:bg-[#515151]">
             مكيف
           </span>
         </div>

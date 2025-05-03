@@ -11,13 +11,13 @@ const ThemeToggle = () => {
         onChange={toggleTheme}
         checked={theme === "dark"}
       />
-      <span className="theme-toggle-sr">Toggle theme</span>
+      <span className="theme-toggle-sr ">Toggle theme</span>
       <svg
         aria-hidden="true"
         width="1.875rem"
         height="1.875rem"
         fill="#1f2937"
-        className="theme-toggle__around"
+        className="theme-toggle__around "
         viewBox="0 0 32 32"
       >
         <clipPath id="theme-toggle__around__cutout">

@@ -44,9 +44,9 @@ export default function Step4() {
       {/* صف البحث والرفع والوصف */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
         {/* البحث */}
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2 ">
           <label className="text-sm font-medium text-gray-700 dark:text-[#BDBDBD]">ابحث عن الضيف بالرقم القومي من هنا</label>
-          <div className="w-full h-[48px] border border-gray-300 rounded-md flex items-center px-4">
+          <div className="w-full h-[48px] border border-gray-300 rounded-md flex items-center px-4 dark:bg-[#1E1E1E]">
             <FiSearch className="text-gray-500 ml-2 dark:text-[#BDBDBD]" size={20} />
             <input
               type="text"
@@ -58,8 +58,8 @@ export default function Step4() {
 
         {/* تحميل صورة */}
         <div className="flex flex-col items-center space-y-2">
-          <label className="text-sm font-medium text-gray-700 dark:text-[#BDBDBD]">تحميل صورة الغرفة</label>
-          <label className="w-[120px] h-[100px] border border-dashed border-gray-400 rounded-md flex flex-col items-center justify-center cursor-pointer">
+          <label className="text-sm font-medium text-gray-700 dark:text-[#BDBDBD] ">تحميل صورة الغرفة</label>
+          <label className="w-[120px] h-[100px] border border-dashed border-gray-400 rounded-md flex flex-col items-center justify-center cursor-pointer dark:bg-[#1E1E1E]">
             <FiUpload className="text-gray-500 mb-1 dark:text-[#BDBDBD]" size={22} />
             <span className="text-xs text-gray-600 text-center dark:text-[#BDBDBD]">رفع</span>
             <input type="file" className="hidden" />
@@ -67,7 +67,7 @@ export default function Step4() {
         </div>
 
         {/* وصف الغرفة */}
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2 ">
           <label className="text-sm font-medium text-gray-700 dark:text-[#BDBDBD] ">وصف للغرفة (اختياري)</label>
           <TextField
             fullWidth

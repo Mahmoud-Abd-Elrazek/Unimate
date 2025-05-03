@@ -48,7 +48,7 @@ export default function RoomDetails() {
       {/* Imgs Section */}
       <div className="mt-4 bg-white rounded-xl shadow-md overflow-hidden">
         {/* الصور */}
-        <div className="flex flex-row-reverse gap-2 p-3 dark:bg-black">
+        <div className="flex flex-row-reverse gap-2 p-3 dark:bg-[#171515]">
           {/* الصورة الكبيرة */}
           <div className="flex-1">
             <img
@@ -93,7 +93,7 @@ export default function RoomDetails() {
         </div>
 
         {/* الوصف */}
-        <div className="px-5 py-4 text-right dark:bg-black">
+        <div className="px-5 py-4 text-right dark:bg-[#171515]">
           <p className="text-[#212529] leading-6 font-medium dark:text-[white]">
             شقه قريبه من الجامعة، هادئة وبجوار أهالي. تبعد 5 دقائق عن الجامعة
             سيراً على الأقدام. المسكن شامل المياه والغاز فقط لا غير. يُفضّل
@@ -111,7 +111,7 @@ export default function RoomDetails() {
       <hr className="border-t border-gray-300 w-5/6 mx-auto my-8" />
       {/* ما يقدمه السكن */}
       <div className="flex justify-between p-5">
-        <div className="left">
+        <div className="left dark:bg-[#1D1D1D]">
           <div className="rounded-xl border p-4 w-[320px] shadow-md  space-y-3">
             <div className="flex justify-between items-center">
               <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">
@@ -133,13 +133,13 @@ export default function RoomDetails() {
                 <p className="flex ">      حمام</p>
               </div>
               <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 ml-1 p-1">
-              <MdMeetingRoom className="text-blue-900 IconSize text-[#D32F2F]" />
+              <MdMeetingRoom className="text-[#D32F2F] IconSize text-[#D32F2F]" />
               
                 <p className="font-bold text-lg">4</p>
                 <p>غرف</p>
               </div>
               <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 ml-1 p-1">
-              <PiStudentBold className="text-blue-900 IconSize text-[#D32F2F]" />
+              <PiStudentBold className="text-[#D32F2F] IconSize text-[#D32F2F]" />
                 <p className="font-bold text-lg">12</p>
                 <p>طالب</p>
               </div>
@@ -279,7 +279,7 @@ export default function RoomDetails() {
                 <span>قيم الحساب</span>
                 <div className="text-black flex">
                   {[...Array(5)].map((_, i) => (
-                    <FaStar key={i} className="text-black" size={14} />
+                    <FaStar key={i} className="text-yellow-300" size={14} />
                   ))}
                 </div>
               </div>

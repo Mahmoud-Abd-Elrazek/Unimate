@@ -41,7 +41,7 @@ const StepThree = () => {
               <li
                 key={index}
                 className={`p-2 rounded cursor-pointer ${
-                  item === "الطعام والمطبخ" ? "bg-gray-100 font-semibold dark:bg-[#757575]" : ""
+                  item === "الطعام والمطبخ" ? "bg-gray-100 font-semibold dark:bg-[#515151]" : ""
                 }`}
               >
                 {item}
@@ -79,7 +79,7 @@ const StepThree = () => {
         </button>
         <button
           onClick={() => navigate("/createpost/step4")}
-          className="px-6 py-2 rounded-full bg-[#4F4F4F] text-white dark:bg-[#757575] dark:text-white"
+          className="px-6 py-2 rounded-full bg-[#4F4F4F] text-white dark:bg-[#515151] dark:text-white"
         >
           التالي
         </button>

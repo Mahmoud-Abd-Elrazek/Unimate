@@ -19,7 +19,7 @@ const StepperNav: React.FC = () => {
         let circleColor = '';
         if (stepStatus === 'completed') circleColor = 'bg-green-500 border-green-500';
         else if (stepStatus === 'active') circleColor = 'bg-red-500 border-red-500';
-        else circleColor = 'border-black';
+        else circleColor = 'border-[#1D1D1D] dark:border-[white]';
 
         return (
           <div
