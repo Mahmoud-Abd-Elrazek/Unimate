@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import Side_bar_edit_profile from '../../Side_bar_edit_Profile/side_bar_edit_profile';
+import Side_bar_edit_profile from '../../components/Side_bar_edit_Profile/side_bar_edit_profile';
 
 const EditProfilePage = () => {
   const location = useLocation();
