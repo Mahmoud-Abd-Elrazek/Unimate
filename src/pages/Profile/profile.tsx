@@ -2,8 +2,12 @@ import './profile.css';
 import { FaPhone, FaEnvelope, FaRegFileAlt, FaUserCircle } from "react-icons/fa";
 
 const UserProfile = () => {
+  const role = "Student"; 
   return (
-    <div className=" min-h-screen flex items-center justify-center p-4 md:p-10">
+    <div>
+      { role !== "Student" ?
+
+        <div className=" min-h-screen flex items-center justify-center p-4 md:p-10">
       <div className="shadow-md rounded-2xl w-full max-w-6xl grid md:grid-cols-3 gap-6 p-6 md:p-40">
         
         {/* محتوى البيانات */}
@@ -40,6 +44,11 @@ const UserProfile = () => {
         <FaUserCircle className="w-48 h-48 text-gray-400 dark:text-[#BDBDBD]" />
         </div>
       </div>
+    </div>:
+    <div>
+      {/* here you will write the code of student */}
+    </div>
+  }
     </div>
   );
 };

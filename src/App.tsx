@@ -79,7 +79,10 @@ export default function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="favorites" element={<Favorites />} />
           <Route path="help" element={<Help />} />
-          <Route path="editprofile" element={<EditProfilepage />} />
+          <Route path="editprofile" element={<EditProfilepage />} >
+          
+          
+          </Route>
           <Route path="myreservations" element={<My_reservations />} />
           <Route path="personalreviews" element={<Personal_Reviews />} />
           <Route path="my_real_estate" element={<My_real_estate />} />
