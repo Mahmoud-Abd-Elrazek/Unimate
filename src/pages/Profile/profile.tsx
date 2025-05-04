@@ -50,7 +50,7 @@ const UserProfile = () => {
           <div className="shadow-md rounded-2xl w-full max-w-6xl grid md:grid-cols-3 gap-4 sm:gap-6 p-4 sm:p-6 md:p-10">
             
             {/* Student Information Content */}
-            <div className="md:col-span-2 text-right">
+            <div className="md:col-span-2 text-right ">
               <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">اسم المستخدم</h1>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
@@ -62,7 +62,7 @@ const UserProfile = () => {
                       <Phone className="text-base sm:text-lg" />
                     </li>
                     <li className="flex items-center justify-end gap-2">
-                      <span>البريد الإلكتروني: user@example.com</span>
+                      <span>user@example.com : البريد الإلكتروني </span>
                       <Mail className="text-base sm:text-lg" />
                     </li>
                   </ul>
