@@ -2,12 +2,7 @@
 import { IoShareOutline } from "react-icons/io5";
 import { FcLike } from "react-icons/fc";
 import { IoWifi } from "react-icons/io5";
-import HotWater from "../../assets/material-symbols-light_water-heater-outline.png";
-// import TV from '../../assets/heroicons_tv.png'
-import { TbToolsKitchen2 } from "react-icons/tb";
-import Washing from "../../assets/solar_washing-machine-outline.png";
-import Air_codition from "../../assets/iconoir_air-conditioner.png";
-import Fireplace from "../../assets/fluent_fireplace-20-regular.png";
+import { TbToolsKitchen2,TbAirConditioning } from "react-icons/tb";
 import RoomCard from "../../components/RoomCard/roomCard";
 import Room_Photo from "../../assets/room_photo.jpg";
 import { FaBath, FaStar } from "react-icons/fa";
@@ -16,6 +11,9 @@ import { FaPaperPlane } from "react-icons/fa";
 import { MdMeetingRoom } from "react-icons/md";
 import { PiStudentBold } from "react-icons/pi";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { LuWashingMachine } from "react-icons/lu";
+import { MdOutlineFireplace } from "react-icons/md";
+import { GiFireplace } from "react-icons/gi";
 import { Link } from "react-router-dom";
 
 // import animation file
@@ -176,12 +174,12 @@ export default function RoomDetails() {
             ما يقدمه السكن
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="flex items-center justify-center gap-2 text-right">
+            <div className="flex items-center justify-center gap-2 text-right w-[195px]">
               <IoWifi className="IconSize" />
               <h3 className="text-sm md:text-base">واى فاى</h3>
             </div>
             <div className="flex items-center justify-center gap-2 text-right">
-              <img src={HotWater} alt="img" className="IconSize" />
+            <MdOutlineFireplace className="IconSize" />
               <h3 className="text-sm md:text-base">ماء سخن</h3>
             </div>
             <div className="flex items-center justify-center gap-2 text-right">
@@ -192,16 +190,16 @@ export default function RoomDetails() {
               <TbToolsKitchen2 className="IconSize" />
               <h3 className="text-sm md:text-base">أدوات مطبخ</h3>
             </div>
-            <div className="flex items-center justify-center gap-2 text-right">
-              <img src={Washing} alt="img" className="IconSize" />
+            <div className="flex items-center justify-center gap-2 text-right w-[194px]">
+            <LuWashingMachine className="IconSize" />
               <h3 className="text-sm md:text-base">غساله</h3>
             </div>
-            <div className="flex items-center justify-center gap-2 text-right">
-              <img src={Fireplace} alt="img" className="IconSize" />
+            <div className="flex items-center justify-center gap-2 text-right w-[192px]">
+            <GiFireplace className="IconSize" />
               <h3 className="text-sm md:text-base">مدفأه</h3>
             </div>
-            <div className="flex items-center justify-center gap-2 text-right">
-              <img src={Air_codition} alt="img" className="IconSize" />
+            <div className="flex items-center justify-center gap-2 text-right w-[180px]">
+            <TbAirConditioning className="IconSize" />
               <h3 className="text-sm md:text-base">تكييف</h3>
             </div>
             {/* Add the remaining features here */}

@@ -138,7 +138,7 @@ const ApartmentCard = () => {
         {/* location */}
         <div className="flex items-center justify-end mb-2 ">
           <span className="text-[14px] text-[#515151] mr-2 dark:text-[white]"> الشؤون / شارع ابو علاء </span>
-          <IoLocationOutline className="text-[#515151]" />
+          <IoLocationOutline className="text-[#515151] dark:text-[white]" />
         </div>
 
         {/* descritpion */}

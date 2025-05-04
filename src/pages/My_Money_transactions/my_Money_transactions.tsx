@@ -130,15 +130,15 @@ const FinancialTransactions = () => {
         {/* الكروت التحليلية */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-center">
           <div className=" rounded shadow p-4">
-            <p className="text-sm text-gray-600">إجمالي الأرباح خلال الثلاثة أشهر الماضية</p>
+            <p className="text-sm text-gray-600 dark:text-[white]">إجمالي الأرباح خلال الثلاثة أشهر الماضية</p>
             <p className="text-red-600 font-bold text-xl">10,350</p>
           </div>
           <div className="rounded shadow p-4">
-            <p className="text-sm text-gray-600">عدد الحجوزات الأخيرة</p>
+            <p className="text-sm text-gray-600 dark:text-[white]">عدد الحجوزات الأخيرة</p>
             <p className="text-red-600 font-bold text-xl">27</p>
           </div>
           <div className="rounded shadow p-4">
-            <p className="text-sm text-gray-600">نسبة التغيير في الأرباح</p>
+            <p className="text-sm text-gray-600 dark:text-[white]">نسبة التغيير في الأرباح</p>
             <p className="text-red-600 font-bold text-xl">11.11%</p>
           </div>
         </div>
