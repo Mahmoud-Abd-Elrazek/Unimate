@@ -38,6 +38,10 @@ import NavBar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
 import ForgetPassword from './pages/ForgetPassword/forgetPassword';
 import ResetPass from './pages/ResetPass/resetPass';
+import Edit_academic_information from './pages/EditProfilePage/Edit_academic_information/edit_academic_information';
+import Edit_contact_information from './pages/EditProfilePage/Edit_contact_information/edit_contact_information';
+import Edit_login_information from './pages/EditProfilePage/Edit_login_information/edit_login_information';
+import Edit_profile_information from './pages/EditProfilePage/Edit_personal_information/edit_profile_information';
 
 export default function App() {
   const location = useLocation();
@@ -80,8 +84,10 @@ export default function App() {
           <Route path="favorites" element={<Favorites />} />
           <Route path="help" element={<Help />} />
           <Route path="editprofile" element={<EditProfilepage />} >
-          
-          
+          <Route path='editAcademicinfo' element={<Edit_academic_information/>} />
+          <Route path='editcontactinfo' element={<Edit_contact_information/>} />
+          <Route  path='editlogininfo' element={<Edit_login_information/>}/>
+          <Route path='editpersonalinfo' element={<Edit_profile_information/>}/>
           </Route>
           <Route path="myreservations" element={<My_reservations />} />
           <Route path="personalreviews" element={<Personal_Reviews />} />
