@@ -5,9 +5,11 @@ const AuthorLayout = () => {
   const location = useLocation();
 
   // Define routes where the sidebar should be hidden
-  const hideSidebarRoutes = ['/auther/editprofile','/auther/help'];
+  const hideSidebarRoutes =
+  location.pathname.startsWith('/auther/editprofile') || 
+  location.pathname === '/auther/help';
 
-  const shouldHideSidebar = hideSidebarRoutes.includes(location.pathname);
+
     // console.log(shouldHideSidebar) 
     // console.log(location.pathname)
   return (
@@ -17,7 +19,7 @@ const AuthorLayout = () => {
       </main>
 
       {/* Show sidebar only if not in hidden list */}
-      {!shouldHideSidebar && (
+      {!hideSidebarRoutes && (
         <aside className=" min-h-full w-[250px] bg-[#EFEFEF] dark:bg-[#121111]">
           <SideBar />
         </aside>
