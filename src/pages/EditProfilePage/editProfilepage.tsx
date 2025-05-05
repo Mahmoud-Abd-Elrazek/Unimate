@@ -10,7 +10,8 @@ const EditProfilePage = () => {
         <h1 className="text-center text-2xl font-bold mb-6 border-b border-gray-300 pb-3 dark:text-white dark:border-gray-600">
           إعدادات الحساب
         </h1>
-
+        
+        {/* المحتوى المتغير */}
         <div className="rounded-2xl p-6 shadow-md">
           <Outlet />
         </div>

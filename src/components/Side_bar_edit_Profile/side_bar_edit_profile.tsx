@@ -10,7 +10,7 @@ export default function Side_bar_edit_profile() {
   const links = [
     {
       to: "/auther/editprofile/editpersonalinfo",
-      label: "تعديل معلومات الملف الشخصي",
+      label: "تعديل معلومات الملف الشخصي ",
       icon: <FaUserEdit className="text-xl" />,
     },
     {
@@ -46,18 +46,18 @@ export default function Side_bar_edit_profile() {
           <li key={link.to}>
             <Link
               to={link.to}
-              className={`flex items-center justify-between p-4 rounded-lg transition-all duration-200 ${
-                location.pathname === link.to
+              className={`grid grid-cols-[1fr_auto] items-center p-4 rounded-lg transition-all duration-200 font-semibold ${location.pathname === link.to
                   ? "bg-gray-100 dark:bg-gray-800 border-r-4 border-red-500"
                   : "hover:bg-gray-50 dark:hover:bg-gray-800"
-              }`}
+                }`}
             >
-              <span className="text-sm font-medium">{link.label}</span>
-              <span>{link.icon}</span>
+              <span className="text-sm text-right">{link.label}</span>
+              <span className="text-xl">{link.icon}</span>
             </Link>
           </li>
         ))}
       </ul>
+
     </div>
   );
 }
