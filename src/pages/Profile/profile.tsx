@@ -1,12 +1,13 @@
 // import React from 'react';
 import { Phone, Mail, FileText, MapPin, GraduationCap } from 'lucide-react';
 import { FaUserCircle } from "react-icons/fa";
+import useAuthStore from '../../Store/useAuthStore';
 
 const UserProfile = () => {
-  const role = "Owner"; // This should be replaced with the actual role from your authentication context or state
+  const Role = useAuthStore((state) => state.role);
   return (
     <div>
-      { role === "Owner" ?
+      { Role === "Owner" ?
         <div className="min-h-screen flex items-center justify-center p-2 sm:p-4 md:p-10">
           <div className="shadow-md rounded-2xl w-full max-w-6xl grid md:grid-cols-3 gap-4 sm:gap-6 p-4 sm:p-6 md:p-40 h-[430px]">
             
@@ -15,7 +16,7 @@ const UserProfile = () => {
               <h1 className="text-xl sm:text-2xl font-bold">اسم المستخدم</h1>
 
               <div>
-                <h2 className="font-semibold text-[black] font-bold mb-2 dark:text-[white]">وسائل التواصل</h2>
+                <h2 className=" text-[black] font-bold mb-2 dark:text-[white]">وسائل التواصل</h2>
                 <ul className="space-y-2 text-gray-600 text-sm dark:text-[#BDBDBD]">
                   <li className="flex items-center justify-end gap-2 dark:text-[#BDBDBD]">
                     <span>رقم الهاتف :</span>
@@ -29,7 +30,7 @@ const UserProfile = () => {
               </div>
 
               <div>
-                <h2 className="font-semibold text-[black] mb-2 font-bold dark:text-[white]">الوصف</h2>
+                <h2 className=" text-[black] mb-2 font-bold dark:text-[white]">الوصف</h2>
                 <div className="flex gap-2 items-start text-gray-600 text-sm dark:text-[#BDBDBD]">
                   <p className="text-xs sm:text-sm">
                     هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة. لقد تم توليد هذا النص من مولد النصوص في أدوات منصة تقابل، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى لإضافة إلى زيادة عدد الحروف التي تولدها الأداة.
@@ -55,7 +56,7 @@ const UserProfile = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-3 sm:space-y-4">
-                  <h2 className="font-semibold text-[black] mb-2 dark:text-[white] font-bold text-sm sm:text-base">وسائل التواصل</h2>
+                  <h2 className=" text-[black] mb-2 dark:text-[white] font-bold text-sm sm:text-base">وسائل التواصل</h2>
                   <ul className="space-y-2 sm:space-y-3 text-gray-600 text-xs sm:text-sm dark:text-[#BDBDBD]">
                     <li className="flex items-center justify-end gap-2">
                       <span>رقم الهاتف: 01234567890</span>
@@ -69,7 +70,7 @@ const UserProfile = () => {
                 </div>
 
                 <div className="space-y-3 sm:space-y-4">
-                  <h2 className="font-semibold text-[black] mb-2 dark:text-[white] font-bold text-sm sm:text-base">البيانات الأساسية</h2>
+                  <h2 className=" text-[black] mb-2 dark:text-[white] font-bold text-sm sm:text-base">البيانات الأساسية</h2>
                   <ul className="space-y-2 sm:space-y-3 text-gray-600 text-xs sm:text-sm dark:text-[#BDBDBD]">
                     <li className="flex items-center justify-end gap-2">
                       <span>الرقم القومي: 12345678901234</span>
@@ -84,7 +85,7 @@ const UserProfile = () => {
               </div>
 
               <div className="mt-4 sm:mt-6">
-                <h2 className="font-semibold text-[black] font-bold mb-2 dark:text-[white] text-sm sm:text-base">الوصف</h2>
+                <h2 className=" text-[black] font-bold mb-2 dark:text-[white] text-sm sm:text-base">الوصف</h2>
                 <div className="flex gap-2 items-start text-gray-600 text-xs sm:text-sm dark:text-[#BDBDBD]">
                   <p>
                     هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة. لقد تم توليد هذا النص من مولد النصوص في أدوات منصة تقابل، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى لإضافة إلى زيادة عدد الحروف التي تولدها الأداة.

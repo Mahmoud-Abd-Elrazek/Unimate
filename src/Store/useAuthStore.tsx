@@ -17,12 +17,16 @@ interface AuthState {
   isAuthenticated: boolean;
   user: User | null;
   token: string | null;
-  login: (user: string, token: string) => Promise<void>;
+  role: string | null;
+  setRole:(role:string)=>void;
+  login: (email: string, password: string) => Promise<void>;
   register:(data:User&{password:string})=>Promise<void>;
   logout: () => void;
 }
 
 const useAuthStore = create<AuthState>((set) => ({
+  role: "Student" as string | null,
+  setRole: (role) => set({ role }),
   isAuthenticated: false,
   user: null,
   token: null,
