@@ -22,14 +22,14 @@ const RealEstateSlider: React.FC = () => {
 
       <div className="relative">
         {/* سهم السابق ← على اليمين */}
-<button className="custom-prev absolute top-1/2 right-2 z-10 -translate-y-1/2 bg-white shadow-md p-2 rounded-full">
+<button className="custom-prev absolute top-1/2 left-2 z-10 -translate-y-1/2 bg-white shadow-md p-2 rounded-full">
   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
   </svg>
 </button>
 
 {/* سهم التالي → على الشمال */}
-<button className="custom-next absolute top-1/2 left-2 z-10 -translate-y-1/2 bg-white shadow-md p-2 rounded-full">
+<button className="custom-next absolute top-1/2 right-2 z-10 -translate-y-1/2 bg-white shadow-md p-2 rounded-full">
   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
   </svg>
@@ -46,15 +46,17 @@ const RealEstateSlider: React.FC = () => {
           spaceBetween={20}
           breakpoints={{
             320: { slidesPerView: 1 },
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-            1280: { slidesPerView: 4 },
+            640: { slidesPerView: 1 },
+            1024: { slidesPerView: 2 },
+            1280: { slidesPerView: 3 },
           }}
-          dir="rtl"
+          className="h-full"
           >
           {properties.map((property) => (
             <SwiperSlide key={property.id}>
-              <ApartmentCard {...property} />
+              <div className="flex w-full h-full">
+                <ApartmentCard  />
+              </div>
             </SwiperSlide>
           ))}
           </Swiper>
@@ -64,3 +66,4 @@ const RealEstateSlider: React.FC = () => {
 };
 
 export default RealEstateSlider;
+
