@@ -23,34 +23,16 @@ export default function Edit_profile_information() {
             {/* First Column */}
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium  mb-1">الاسم الاخر</label>
-                <input
-                  type="text"
-                  defaultValue="عبدالرازق حمدالله"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium  mb-1">المحافظة</label>
-                <select className="w-full px-3 py-2 border border-gray-300  dark:bg-[#171515]  rounded-lg focus:outline-none focus:ring-2 focus:border-transparent appearance-none ">
-                  <option>قنا</option>
-                </select>
-              </div>
-            </div>
-
-            {/* Second Column */}
-            <div className="space-y-4">
-              <div>
                 <label className="block text-sm font-medium  mb-1">الاسم الاول</label>
                 <input
                   type="text"
-                  defaultValue="محمود"
+                  defaultValue=" محمود"
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium  mb-1">البلد</label>
-                <select className="w-full px-3 py-2 border border-gray-300  dark:bg-[#171515] rounded-lg focus:outline-none focus:ring-2 focus:border-transparent appearance-none ">
+                <select className="w-full px-3 py-2 border border-gray-300  dark:bg-[#171515]  rounded-lg focus:outline-none focus:ring-2 focus:border-transparent appearance-none ">
                   <option>مصر</option>
                 </select>
               </div>
@@ -61,6 +43,25 @@ export default function Edit_profile_information() {
                   placeholder="الوشاش / الدرب"
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
+              </div>
+            </div>
+
+
+            {/* Second Column */}
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium  mb-1">الاسم الاخير</label>
+                <input
+                  type="text"
+                  defaultValue="عبدالرازق حمدالله"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium  mb-1">المحافظه</label>
+                <select className="w-full px-3 py-2 border border-gray-300  dark:bg-[#171515] rounded-lg focus:outline-none focus:ring-2 focus:border-transparent appearance-none ">
+                  <option>قنا</option>
+                </select>
               </div>
             </div>
           </div>
