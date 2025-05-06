@@ -8,7 +8,7 @@ const UserProfile = () => {
   return (
     <div>
 
-      { Role === "Owner" ?
+      { Role !== "Owner" ?
 
     
 

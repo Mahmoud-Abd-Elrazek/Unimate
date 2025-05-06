@@ -17,7 +17,7 @@ const RealEstateSlider: React.FC = () => {
   ];
 
   return (
-    <section className="py-10 w-full max-w-7xl mx-auto px-4">
+    <section className="py-10 w-full max-w-7xl ">
       <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">عقاراتي</h2>
 
       <div className="relative">

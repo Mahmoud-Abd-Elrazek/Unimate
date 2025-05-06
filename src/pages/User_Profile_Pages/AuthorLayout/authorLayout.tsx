@@ -12,7 +12,7 @@ const AuthorLayout = () => {
     <div className="flex lg:flex-row-reverse  px-4 py-8 lg:py-6 min-h-[80vh]">
       {/* Show sidebar only if not in hidden list */}
       {!hideSidebarRoutes && (
-        <aside className="w-full lg:w-[250px] h-[700px] rounded-2xl border border-gray-200 dark:border-gray-700 p-2 bg-[#FAFAFA] dark:bg-[#121111] shadow-md">
+        <aside className="w-full lg:w-[250px] h-full rounded-2xl border border-gray-200 dark:border-gray-700 p-2 bg-[#FAFAFA] dark:bg-[#121111] shadow-md">
           <SideBar />
         </aside>
       )}
