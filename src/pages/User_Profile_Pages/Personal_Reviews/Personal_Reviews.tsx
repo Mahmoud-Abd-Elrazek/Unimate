@@ -1,5 +1,5 @@
 // import React from 'react'
-import RatingComponent from "../../components/RatingComponent/ratingComponent"
+import RatingComponent from "../../../components/RatingComponent/ratingComponent"
 export default function Personal_Reviews() {
   return (
     <div className="flex flex-col justify-center items-center ">

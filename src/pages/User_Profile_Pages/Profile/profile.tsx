@@ -1,7 +1,7 @@
 // import React from 'react';
 import { Phone, Mail, FileText, MapPin, GraduationCap } from 'lucide-react';
 import { FaUserCircle } from "react-icons/fa";
-import useAuthStore from '../../Store/useAuthStore';
+import useAuthStore from '../../../Store/useAuthStore';
 
 const UserProfile = () => {
   const Role = useAuthStore((state) => state.role);

@@ -4,13 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { useState } from "react";
 import { FiEye, FiEyeOff, FiLogIn } from "react-icons/fi";
-import useAuthStore from "../../Store/useAuthStore";
+import useAuthStore from "../../../Store/useAuthStore";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [accountType, setAccountType] = useState("طالب");
-
+  // let Role= useAuthStore((state) => state.role);
   const login = useAuthStore((state) => state.login)
 
   const SignInSchema = z.object({
@@ -30,11 +30,12 @@ const LoginPage = () => {
   });
 
   const OnSubmit: SubmitHandler<SignT> = (data) => {
-    console.log({ ...data, accountType });
-    console.log(data.email, data.password)
+    const Role = accountType === "طالب" ? "Student" : "Owner";
+    console.log({ ...data, Role });
     login(data.email, data.password);
     navigate("/", { replace: true });
   };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">

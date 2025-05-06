@@ -1,4 +1,4 @@
-import Search_bar_myreservations from "../../components/search_bar_myreservations/search_bar_myreservations";
+import Search_bar_myreservations from "../../../components/search_bar_myreservations/search_bar_myreservations";
 
 //import React from 'react'
 interface BookingStatus {
