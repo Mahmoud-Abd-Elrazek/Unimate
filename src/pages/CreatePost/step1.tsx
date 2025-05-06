@@ -1,8 +1,8 @@
 
 import { useNavigate } from 'react-router-dom';
 import UploadPhoto from '../../components/UploadPhoto/uploadPhoto';
-import { Link } from 'react-router-dom';
-import { MdHelpOutline } from 'react-icons/md';
+// import { Link } from 'react-router-dom';
+// import { MdHelpOutline } from 'react-icons/md';
 const StepOne: React.FC = () => {
   const navigate = useNavigate();
 
@@ -73,12 +73,6 @@ const StepOne: React.FC = () => {
         >
           التالي
         </button>
-        {/* <button
-          onClick={() => navigate("/createpost/step2")}
-          className="px-6 py-2 rounded-full bg-gray-100 text-gray-700"
-        >
-          رجوع
-        </button> */}
       </div>
     </div>
   );

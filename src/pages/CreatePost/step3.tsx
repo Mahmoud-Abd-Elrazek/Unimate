@@ -69,23 +69,30 @@ const StepThree = () => {
         </div>
       </div>
 
-      {/* أزرار التنقل */}
-      <div className="flex justify-between items-center mt-8 border-t pt-4">
-        <button
-          onClick={() => navigate("/createpost/step2")}
-          className="px-6 py-2 rounded-full bg-gray-100 text-gray-700"
-        >
-          رجوع
+      {/* Navigation Buttons - Updated positions */}
+      <div className="flex justify-between items-center mt-8 px-4">
+        <button className="text-gray-500 hover:text-gray-700 transition-colors flex items-center gap-1">
+          <span>مركز المساعدة</span>
+          <span className="text-xl">؟</span>
         </button>
-        <button
-          onClick={() => navigate("/createpost/step4")}
-          className="px-6 py-2 rounded-full bg-[#4F4F4F] text-white dark:bg-[#515151] dark:text-white"
-        >
-          التالي
-        </button>
+        <div className="flex gap-4">
+          <button
+            onClick={() => navigate("/createpost/step1")}
+            className="px-6 py-2 rounded-full bg-gray-100 text-gray-700 "
+          >
+            رجوع
+          </button>
+          <button
+            onClick={() => navigate("/createpost/step3")}
+            className="px-6 py-2 rounded-full bg-[#4F4F4F] text-white dark:bg-[#515151] dark:text-white"
+          >
+            التالي
+          </button>
+        </div>
       </div>
     </div>
   );
 };
+
 
 export default StepThree;
