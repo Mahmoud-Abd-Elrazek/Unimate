@@ -2,11 +2,9 @@ import { IoMdMenu } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import Search_bar from '../search_bar_rooms/search_bar_rooms';
-// import "./navbar.css"
 import { useState } from "react";
 import MenuCard from "../MenuCard/menuCard";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
-import "../Logo/Logo"
 import Logo from "../Logo/Logo";
 import useAuthStore from "../../Store/useAuthStore";
 

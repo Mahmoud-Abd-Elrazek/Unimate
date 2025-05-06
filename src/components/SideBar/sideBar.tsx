@@ -14,7 +14,7 @@ export default function SideBar() {
     const Role = useAuthStore((state) => state.role);
     return (<div>
 
-        {Role !== "Owner" ?
+        {Role === "Owner" ?
 
             <div className=" w-full h-full " style={{  padding: "10px" }}>
                 {/* <h3>Sideba r</h3> */}

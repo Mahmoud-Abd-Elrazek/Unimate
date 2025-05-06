@@ -7,7 +7,11 @@ const UserProfile = () => {
   const Role = useAuthStore((state) => state.role);
   return (
     <div>
+
       { Role === "Owner" ?
+
+    
+
         <div className="min-h-screen flex items-center justify-center p-2 sm:p-4 md:p-10">
           <div className="shadow-md rounded-2xl w-full max-w-6xl grid md:grid-cols-3 gap-4 sm:gap-6 p-4 sm:p-6 md:p-40 h-[430px]">
             
@@ -41,7 +45,7 @@ const UserProfile = () => {
             </div>
 
             {/* صورة البروفايل */}
-            <div className="flex justify-center items-start ml-4 sm:ml-10 pt-[20px] sm:pt-[15px]">
+            <div className="flex justify-center items-start ml-4 sm:ml-10  sm:pt-[15px]">
               <FaUserCircle className="w-32 h-32 sm:w-48 sm:h-48 text-gray-400 dark:text-[#BDBDBD]" />
             </div>
           </div>
