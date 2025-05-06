@@ -8,22 +8,18 @@ const AuthorLayout = () => {
   const hideSidebarRoutes =
   location.pathname.startsWith('/auther/editprofile') || 
   location.pathname === '/auther/help';
-
-
-    // console.log(shouldHideSidebar) 
-    // console.log(location.pathname)
   return (
-    <div className=" flex justify-end Page min-h-screen">
-      <main className="content w-full h-full">
-        <Outlet />
-      </main>
-
+    <div className="flex lg:flex-row-reverse  px-4 py-8 lg:py-6 min-h-[80vh]">
       {/* Show sidebar only if not in hidden list */}
       {!hideSidebarRoutes && (
-        <aside className=" min-h-full w-[250px] bg-[#EFEFEF] dark:bg-[#121111]">
+        <aside className="w-full lg:w-[250px] h-[700px] rounded-2xl border border-gray-200 dark:border-gray-700 p-2 bg-[#FAFAFA] dark:bg-[#121111] shadow-md">
           <SideBar />
         </aside>
       )}
+      <main className="flex-1 w-full px-8 ">
+        <Outlet />
+      </main>
+
     </div>
   );
 };
