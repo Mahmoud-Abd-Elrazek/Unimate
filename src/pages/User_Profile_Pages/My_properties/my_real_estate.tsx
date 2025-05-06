@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import ApartmentCard from "../../components/ApartmentCard/ApartmentCard"; // عدّل المسار حسب مشروعك
+import ApartmentCard from "../../../components/ApartmentCard/ApartmentCard"; // عدّل المسار حسب مشروعك
 
 const RealEstateSlider: React.FC = () => {
   const properties = [

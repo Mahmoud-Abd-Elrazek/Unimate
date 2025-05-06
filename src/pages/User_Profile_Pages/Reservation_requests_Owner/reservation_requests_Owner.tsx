@@ -1,5 +1,5 @@
 import { FaUserCircle } from "react-icons/fa";
-import { Button } from "../../components/ui/button";
+import { Button } from "../../../components/ui/button";
 
 export default function MyProperties() {
   const requests = [

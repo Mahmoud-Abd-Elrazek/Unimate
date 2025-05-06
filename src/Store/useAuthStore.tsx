@@ -17,16 +17,20 @@ interface AuthState {
   isAuthenticated: boolean;
   user: User | null;
   token: string | null;
-  login: (user: string, token: string) => Promise<void>;
+  role: string | null;
+  setRole:(role:string)=>void;
+  login: (email: string, password: string) => Promise<void>;
   register:(data:User&{password:string})=>Promise<void>;
   logout: () => void;
 }
 
 const useAuthStore = create<AuthState>((set) => ({
+  role: null,
+  setRole: (role: string) => set({ role }),
   isAuthenticated: false,
   user: null,
   token: null,
-  register: async (data: User ) => {
+  register: async (data: User) => {
     try {
       if (data.password !== data.confrimPassword) {
         throw new Error("Passwords do not match");
@@ -41,24 +45,28 @@ const useAuthStore = create<AuthState>((set) => ({
       console.error('Registration failed:', error);
     }
   },
-  login: async (email, password) => {
+  login: async (email: string, password: string) => {
     try {
+      const currentRole = useAuthStore.getState().role;
+      if (!currentRole) {
+        throw new Error("Role is not set. Please select a role before logging in.");
+      }
+
       const res = await axios.post(
         'http://darkteam.runasp.net/LogInUserEndpoint/LogInUser',
         { email, password }
       );
-      set({ isAuthenticated: true, token: res.data.token, user: res.data.user });
+      set({ isAuthenticated: true, token: res.data.token, user: res.data.user, role: currentRole });
       localStorage.setItem('token', res.data.token);
+      localStorage.setItem('role', currentRole);
     } catch (error) {
       console.error('Login failed:', error);
     }
   },
-
-  
-
   logout: () => {
-    set({ isAuthenticated: false, user: null, token: null });
+    set({ isAuthenticated: false, user: null, token: null, role: null });
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
   },
 }));
 export default useAuthStore;

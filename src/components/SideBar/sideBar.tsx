@@ -8,12 +8,13 @@ import { MdAttachMoney, MdFavoriteBorder, MdHelpOutline, MdManageAccounts, MdOut
 import { GoHistory } from "react-icons/go";
 import { TbHomeCheck } from "react-icons/tb";
 import {  FaRegCalendarCheck } from "react-icons/fa";
+import useAuthStore from "../../Store/useAuthStore";
 
 export default function SideBar() {
-    const Role = "Owner"
+    const Role = useAuthStore((state) => state.role);
     return (<div>
 
-        {Role === "Owner" ?
+        {Role !== "Owner" ?
 
             <div className=" w-full h-full " style={{  padding: "10px" }}>
                 {/* <h3>Sideba r</h3> */}

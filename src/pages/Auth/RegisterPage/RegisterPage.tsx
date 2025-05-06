@@ -44,7 +44,6 @@ export default function RegisterPage() {
     <div className="min-h-screen flex items-center justify-center  p-4">
       <div className=" w-full max-w-md rounded-xl p-8 shadow-md text-right">
         <h2 className="text-2xl font-semibold mb-1">انشاء حساب طالب جديد</h2>
-        <p className="text-gray-500 mb-6">عملية الانشاء تبدأ من هنا</p>
 
         <form onSubmit={handleSubmit(OnSubmit)} className="space-y-4">
           {/* Names */}

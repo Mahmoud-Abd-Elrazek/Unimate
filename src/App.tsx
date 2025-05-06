@@ -7,37 +7,36 @@ import {
 
 // Pages
 import Home from "./pages/home/home";
-import Rooms from './pages/rooms/rooms';
 import NotFound from './pages/notfound/notFound';
-import Favorites from './pages/Favorites/favorites';
+import Favorites from './pages/User_Profile_Pages/Favorites/favorites';
 import SignOutCard from './components/SignOutCard/signoutCard';
 import Help from './pages/Help/help';
 import RoomDetails from './pages/RoomDetails/roomDetails';
 import ApartmentCard from './components/ApartmentCard/ApartmentCard';
-import Profile from './pages/Profile/profile';
-import AuthorLayout from './pages/AuthorLayout/authorLayout';
+import Profile from './pages/User_Profile_Pages/Profile/profile';
+import AuthorLayout from './pages/User_Profile_Pages/AuthorLayout/authorLayout';
 import EditProfilepage from './pages/EditProfilePage/editProfilepage';
-import My_reservations from './pages/My_reservations/My_reservations';
-import Personal_Reviews from './pages/Personal_Reviews/Personal_Reviews';
+import My_reservations from './pages/User_Profile_Pages/My_reservations/My_reservations';
+import Personal_Reviews from './pages/User_Profile_Pages/Personal_Reviews/Personal_Reviews';
 import Gallery from './pages/image_details/image_details';
-import UnauthorizedPage from './pages/UnauthorizedPage/UnauthorizedPage';
-import Reservation_requests_Owner from './pages/Reservation_requests_Owner/reservation_requests_Owner';
-import My_Money_transactions from './pages/My_Money_transactions/my_Money_transactions';
-import My_real_estate from './pages/My_properties/my_real_estate';
+import UnauthorizedPage from './pages/Auth/UnauthorizedPage/UnauthorizedPage';
+import Reservation_requests_Owner from './pages/User_Profile_Pages/Reservation_requests_Owner/reservation_requests_Owner';
+import My_Money_transactions from './pages/User_Profile_Pages/Personal_Reviews/My_Money_transactions/my_Money_transactions';
+import My_real_estate from './pages/User_Profile_Pages/My_properties/my_real_estate';
 import CreatePost from './pages/CreatePost/createPost';
 import Step1 from './pages/CreatePost/step1';
 import Step2 from './pages/CreatePost/step2';
 import Step3 from './pages/CreatePost/step3';
 import Step4 from './pages/CreatePost/step4';
-import LoginPage from './pages/LoginPage/LoginPage';
-import RegisterPage from './pages/RegisterPage/RegisterPage';
+import LoginPage from './pages/Auth/LoginPage/LoginPage';
+import RegisterPage from './pages/Auth/RegisterPage/RegisterPage';
 import Housing_Services from './pages/Housing_Services/housing_services';
 
 // Components
 import NavBar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
-import ForgetPassword from './pages/ForgetPassword/forgetPassword';
-import ResetPass from './pages/ResetPass/resetPass';
+import ForgetPassword from './pages/Auth/Passwords/ForgetPassword/forgetPassword';
+import ResetPass from './pages/Auth/Passwords/ResetPass/resetPass';
 import Edit_academic_information from './pages/EditProfilePage/Edit_academic_information/edit_academic_information';
 import Edit_contact_information from './pages/EditProfilePage/Edit_contact_information/edit_contact_information';
 import Edit_login_information from './pages/EditProfilePage/Edit_login_information/edit_login_information';
@@ -62,7 +61,7 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/rooms" element={<Rooms />} />
+       
 
         {/* Auth */}
         <Route path="/SignIn" element={<LoginPage />} />
@@ -84,6 +83,7 @@ export default function App() {
           <Route path="favorites" element={<Favorites />} />
           <Route path="help" element={<Help />} />
           <Route path="editprofile" element={<EditProfilepage />} >
+          <Route index element={<Navigate to="editpersonalinfo" replace />} />
           <Route path='editAcademicinfo' element={<Edit_academic_information/>} />
           <Route path='editcontactinfo' element={<Edit_contact_information/>} />
           <Route  path='editlogininfo' element={<Edit_login_information/>}/>
