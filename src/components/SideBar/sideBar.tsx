@@ -1,17 +1,11 @@
-// src/components/SideBar/SideBar.jsx
-//import React from 'react';
-//import { FaUserCircle } from "react-icons/fa";
-import { Link } from 'react-router-dom';
-import { IoPersonOutline } from 'react-icons/io5';
-import { CiLogout }         from 'react-icons/ci';
-import { BiCommentDetail }  from 'react-icons/bi';
-import { MdAttachMoney,
-         MdFavoriteBorder,
-         MdHelpOutline,
-         MdManageAccounts,
-         MdOutlinePrivacyTip } from 'react-icons/md';
+// import React from 'react'
+import { IoPersonOutline } from "react-icons/io5";
+import { CiLogout } from "react-icons/ci";
+import { BiCommentDetail } from "react-icons/bi";
+
+import { Link } from "react-router-dom";
+import { MdAttachMoney, MdFavoriteBorder, MdHelpOutline, MdManageAccounts, MdOutlinePrivacyTip } from "react-icons/md";
 import { GoHistory } from "react-icons/go";
-<<<<<<< HEAD
 import { TbHomeCheck } from "react-icons/tb";
 import {  FaRegCalendarCheck } from "react-icons/fa";
 // import useAuthStore from "../../Store/useAuthStore";
@@ -20,61 +14,157 @@ export default function SideBar() {
     // const Role = useAuthStore((state) => state.role);
     const Role="Owner"
     return (<div>
-=======
-import { TbHomeCheck } from 'react-icons/tb';
-import { FaRegCalendarCheck } from 'react-icons/fa';
-import useAuthStore from '../../Store/useAuthStore';
 
-export default function SideBar() {
-  const Role = useAuthStore((state) => state.role);
->>>>>>> 1f87dcb0bfde19dbfb20ed86b8b60a3efc15e645
+        {Role !== "Owner" ?
 
-  const links = Role !== 'Owner'
-    ? [
-        { to: '/auther/profile', label: 'عرض الملف الشخصى', icon: IoPersonOutline },
-        { to: '/auther/editprofile', label: 'الإعدادات والخصوصية', Icon: MdOutlinePrivacyTip },
-        { to: '/auther/favorites', label: 'المفضلة', icon: MdFavoriteBorder },
-        { to: '/auther/myreservations', label: 'سجل الحجوزات', icon: GoHistory},
-        { to: '/auther/personalreviews', label: 'المراجعات والتقييمات', icon: BiCommentDetail },
-        { to: '/auther/help', label: 'المساعدة', icon: MdHelpOutline },
-        { to: '/', label: 'تسجيل الخروج', icon: CiLogout },
-      ]
-    : [
-        { to: '/auther/profile', label: 'عرض الملف الشخصى', icon: IoPersonOutline },
-        { to: '/auther/editprofile', label: 'الإعدادات والخصوصية', icon: MdOutlinePrivacyTip },
-        { to: '/auther/my_real_estate', label: 'عقاراتي', icon: TbHomeCheck },
-        { to: '/auther/reservation_requests_Owner', label: 'طلبات الحجز', icon: FaRegCalendarCheck },
-        { to: '/auther/myreservations', label: 'إدارة الحجوزات', icon: MdManageAccounts },
-        { to: '/auther/my_money_transactions', label: 'المعاملات المالية', icon: MdAttachMoney },
-        { to: '/auther/personalreviews', label: 'المراجعات والتقييمات', icon: BiCommentDetail },
-        { to: '/auther/help', label: 'المساعدة', icon: MdHelpOutline },
-        { to: '/', label: 'تسجيل الخروج', icon: CiLogout },
-      ];
+            <div className=" w-full h-full " style={{  padding: "10px" }}>
+                {/* <h3>Sideba r</h3> */}
+                <ul className="grid gap-3 mt-4 ">
+                    <li className="">
+                        <Link to='/auther/profile' className="flex justify-end">
+                            عرض الملف الشخصى
+                            <span className="">
+                                <IoPersonOutline className="IconSize" />
+                            </span>
+                        </Link>
+                    </li>
+                    <li className="">
+                        <Link to='/auther/editprofile' className="flex justify-end">
+                            الاعدادات والخصوصيه
+                            <span className="">
+                                <MdOutlinePrivacyTip className="IconSize" />
+                            </span>
+                        </Link>
+                    </li>
 
-  return (
-    <div className="w-full max-w-sm   rounded-2xl  text-right ">
-        <div className="flex flex-col items-center pt-[35px]">
-                {/* <FaUserCircle className="text-7xl text-gray-400 dark:text-gray-600" /> */}
-                <h2 className="text-xl font-bold mt-2 mr-10">محمود عبدالرزاق حمدالله</h2>
-              </div>
-        
-              <hr className="my-4 border-gray-300 dark:border-gray-700" />
-              <ul className="space-y-2">
-        {links.map((link) => (
-          <li key={link.to}>
-            <Link
-              to={link.to}
-              className={`grid grid-cols-[1fr_auto] items-center p-4 rounded-lg transition-all duration-200 font-semibold ${location.pathname === link.to
-                  ? "bg-gray-100 dark:bg-gray-800 border-r-4 border-red-500"
-                  : "hover:bg-gray-50 dark:hover:bg-gray-800"
-                }`}
-            >
-              <span className="text-sm text-right">{link.label}</span>
-              {/* <span className="text-xl">{link.icon}</span> */}
-            </Link>
-          </li>
-        ))}
-      </ul>
+                    <li className="">
+                        <Link to='/auther/favorites' className="flex justify-end">
+                            المفضلة
+                            <span className="">
+                                <MdFavoriteBorder className="IconSize" />
+                            </span>
+                        </Link>
+                    </li>
+
+                    <li className="">
+                        <Link to='/auther/myreservations' className="flex justify-end">
+                            سجل الحجوزات
+                            <span className="">
+                                <GoHistory className="IconSize" />
+                            </span>
+                        </Link>
+                    </li>
+
+                    <li className="">
+                        <Link to='/auther/personalreviews' className="flex justify-end">
+                            المراجعات والتقييمات
+                            <span className="">
+                                <BiCommentDetail className="IconSize" />
+                            </span>
+                        </Link>
+                    </li>
+                    <li className="">
+                        <Link to='/auther/help' className="flex justify-end">
+                            المساعده
+                            <span className="">
+                                <MdHelpOutline className="IconSize" />
+                            </span>
+                        </Link>
+                    </li>
+                    <li className="">
+                        <Link to='/' className="flex justify-end">
+                            تسجيل الخروج
+                            <span className="">
+                                <CiLogout className="IconSize" />
+                            </span>
+                        </Link>
+                    </li>
+                </ul>
+            </div>
+
+        :
+            <div className=" w-full h-full" style={{   padding: "10px" }}>
+                {/* <h3>Sideba r</h3> */}
+                <ul className="grid gap-3 mt-4">
+                    <li className="">
+                        <Link to='/auther/profile' className="flex justify-end">
+                            عرض الملف الشخصى
+                            <span className="">
+                                <IoPersonOutline className="IconSize" />
+                            </span>
+                        </Link>
+                    </li>
+                    <li className="">
+                        <Link to='/auther/editprofile' className="flex justify-end">
+                            الاعدادات والخصوصيه
+                            <span className="">
+                                <MdOutlinePrivacyTip className="IconSize" />
+                            </span>
+                        </Link>
+                    </li>
+
+                    <li className="">
+                        <Link to='/auther/my_real_estate' className="flex justify-end">
+                            العقارات الخاصه بى
+                            <span className="">
+                                <TbHomeCheck className="IconSize" />
+                            </span>
+                        </Link>
+                    </li>
+                    <li className="">
+                        <Link to='/auther/reservation_requests_Owner' className="flex justify-end">
+                                طلبات الحجز
+                            <span className="">
+                                <FaRegCalendarCheck className="IconSize" />
+                            </span>
+                        </Link>
+                    </li>
+
+                    <li className="">
+                        <Link to='/auther/myreservations' className="flex justify-end">
+                            ادارة الحجوزات
+                            <span className="">
+                                <MdManageAccounts className="IconSize" />
+                            </span>
+                        </Link>
+                    </li>
+                    <li className="">
+                        <Link to='/auther/my_money_transactions' className="flex justify-end">
+                            المعاملات الماليه 
+                            <span className="">
+                                <MdAttachMoney className="IconSize" />
+                            </span>
+                        </Link>
+                    </li>
+
+                    <li className="">
+                        <Link to='/auther/personalreviews' className="flex justify-end">
+                            المراجعات والتقييمات
+                            <span className="">
+                                <BiCommentDetail className="IconSize" />
+                            </span>
+                        </Link>
+                    </li>
+                    <li className="">
+                        <Link to='/auther/help' className="flex justify-end">
+                            المساعده
+                            <span className="">
+                                <MdHelpOutline className="IconSize" />
+                            </span>
+                        </Link>
+                    </li>
+                    <li className="">
+                        <Link to='/' className="flex justify-end">
+                            تسجيل الخروج
+                            <span className="">
+                                <CiLogout className="IconSize" />
+                            </span>
+                        </Link>
+                    </li>
+                </ul>
+            </div>
+
+        }
     </div>
-  );
+    )
 }
