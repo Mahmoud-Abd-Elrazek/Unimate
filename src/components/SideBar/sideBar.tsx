@@ -18,7 +18,7 @@ export default function SideBar() {
   const links = Role === 'Owner'
     ? [
         { to: '/auther/profile', label: 'عرض الملف الشخصى', icon: IoPersonOutline },
-        { to: '/auther/editprofile', label: 'الإعدادات والخصوصية', Icon: MdOutlinePrivacyTip },
+        { to: '/auther/editprofile', label: 'الإعدادات والخصوصية', icon: MdOutlinePrivacyTip },
         { to: '/auther/favorites', label: 'المفضلة', icon: MdFavoriteBorder },
         { to: '/auther/myreservations', label: 'سجل الحجوزات', icon: GoHistory},
         { to: '/auther/personalreviews', label: 'المراجعات والتقييمات', icon: BiCommentDetail },
@@ -56,7 +56,7 @@ export default function SideBar() {
                 }`}
             >
               <span className="text-sm text-right">{link.label}</span>
-              {/* <span className="text-xl">{link.icon}</span> */}
+              <span className="text-xl"><link.icon /></span>
             </Link>
           </li>
         ))}
