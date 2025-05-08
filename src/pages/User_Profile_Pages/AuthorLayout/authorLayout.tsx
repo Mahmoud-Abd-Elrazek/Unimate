@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import SideBar from '../../../components/SideBar/sideBar';
+import SideBar from '../../../contexts/SideBar/sideBar';
 
 const AuthorLayout = () => {
   const location = useLocation();
