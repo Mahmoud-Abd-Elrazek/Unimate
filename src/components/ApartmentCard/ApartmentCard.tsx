@@ -8,10 +8,8 @@ import { IoLocationOutline } from "react-icons/io5";
 import { BiBath } from "react-icons/bi";
 import { LuBed } from "react-icons/lu";
 import { Link } from "react-router-dom";
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import 'swiper/swiper-bundle.css';
+import { Swiper as SwiperClass } from "swiper";
 
 interface ApartmentCardProps {
   className?: string;
@@ -20,7 +18,7 @@ interface ApartmentCardProps {
 const ApartmentCard = ({ className = "" }: ApartmentCardProps) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-  const swiperRef = useRef<typeof Swiper | null>(null);
+  const swiperRef = useRef<SwiperClass | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const images = [
@@ -31,13 +29,13 @@ const ApartmentCard = ({ className = "" }: ApartmentCardProps) => {
   ];
 
   const handlePrevClick = () => {
-    if (swiperRef.current && currentIndex > 0) {
+    if (swiperRef.current) {
       swiperRef.current.slidePrev();
     }
   };
 
   const handleNextClick = () => {
-    if (swiperRef.current && currentIndex < images.length - 1) {
+    if (swiperRef.current) {
       swiperRef.current.slideNext();
     }
   };
@@ -46,7 +44,6 @@ const ApartmentCard = ({ className = "" }: ApartmentCardProps) => {
     <div className={`border border-[#e0e0e0] rounded-xl overflow-hidden group relative transition-transform duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md dark:bg-[#171515] w-full max-w-sm ${className}`}>
       <div className="relative">
         <Swiper
-          ref={swiperRef}
           modules={[Navigation, Pagination]}
           pagination={{
             clickable: true,

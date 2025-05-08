@@ -1,6 +1,3 @@
-// src/components/SideBar/SideBar.jsx
-//import React from 'react';
-//import { FaUserCircle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { IoPersonOutline } from 'react-icons/io5';
 import { CiLogout }         from 'react-icons/ci';
