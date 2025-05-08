@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import './forgetpassword.css';
 
 const ForgotPassword: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [message, setMessage] = useState<string>('');
-
+  const navigate = useNavigate();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessage('');
@@ -27,7 +27,7 @@ const ForgotPassword: React.FC = () => {
       } else {
         alert("Something went wrong.");
       }
-
+      navigate('/resetpassword', { replace: true });
     } catch {
       setMessage('❌ Something went wrong. Please try again.');
     }

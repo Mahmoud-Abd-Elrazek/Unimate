@@ -12,6 +12,7 @@ const LoginPage = () => {
   const [accountType, setAccountType] = useState("طالب");
   // let Role= useAuthStore((state) => state.role);
   const login = useAuthStore((state) => state.login)
+  const setRole = useAuthStore((state) => state.setRole);
 
   const SignInSchema = z.object({
     email: z.string().min(1, "مطلوب").email("ادخل بريد الكتروني صحيح"),
@@ -32,6 +33,9 @@ const LoginPage = () => {
   const OnSubmit: SubmitHandler<SignT> = (data) => {
     const Role = accountType === "طالب" ? "Student" : "Owner";
     console.log({ ...data, Role });
+    setRole(Role);
+    // localStorage.setItem("role", Role);
+   
     login(data.email, data.password);
     navigate("/", { replace: true });
   };

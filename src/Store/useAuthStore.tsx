@@ -23,6 +23,7 @@ interface AuthState {
   login: (email: string, password: string) => Promise<void>;
   registerStudent:(data:User)=>Promise<void>;
   registerOwner:(username: string, email: string, password: string, phone: string) => Promise<void>;
+  resetpassword:(email:string,password:string,confrimPassword:string,token:string)=>Promise<void>;
   logout: () => void;
 }
 
@@ -89,5 +90,18 @@ const useAuthStore = create<AuthState>((set) => ({
     localStorage.removeItem('token');
     localStorage.removeItem('role');
   },
+  resetpassword: async (email: string,password:string ,confrimPassword:string,token:string) => {
+
+    try{
+        const res=await axios.post("http://darkteam.runasp.net/ResetPasswordWithOutIdentityEndpoint/ResetPassword",(
+          {email,password,confrimPassword,token}
+        ))
+        set({isAuthenticated:true,user:res.data.user,token:res.data.token,role:res.data.role})
+        console.log(res.data)
+    }catch(error){
+        console.log("there is an error in reset Password"+error)
+    }
+
+  }
 }));
 export default useAuthStore;

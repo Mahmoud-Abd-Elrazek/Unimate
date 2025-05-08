@@ -5,6 +5,7 @@ import useAuthStore from '../../../Store/useAuthStore';
 
 const UserProfile = () => {
   const Role = useAuthStore((state) => state.role);
+  // console.log("this is role in userpage", Role)
   return (
     <div>
 

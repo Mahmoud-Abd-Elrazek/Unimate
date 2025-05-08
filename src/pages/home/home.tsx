@@ -10,8 +10,11 @@ import HeroSection from '../../components/HeroSection/HeroSection';
 
 // import animation file
 import "../../../public/animations.css";
+import useAuthStore from '../../Store/useAuthStore';
 
 export default function Home() {
+  const role=useAuthStore((state) => state.role)
+  console.log("this is role", role)
   // const cards=
   return (
     <div className='min-h-lvh Page fade-in'>
