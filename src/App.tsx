@@ -29,7 +29,6 @@ import Step2 from './pages/CreatePost/step2';
 import Step3 from './pages/CreatePost/step3';
 import Step4 from './pages/CreatePost/step4';
 import LoginPage from './pages/Auth/LoginPage/LoginPage';
-import RegisterPage from './pages/Auth/RegisterPage/RegisterPage';
 import Housing_Services from './pages/Housing_Services/housing_services';
 
 // Components
@@ -41,7 +40,9 @@ import Edit_academic_information from './pages/EditProfilePage/Edit_academic_inf
 import Edit_contact_information from './pages/EditProfilePage/Edit_contact_information/edit_contact_information';
 import Edit_login_information from './pages/EditProfilePage/Edit_login_information/edit_login_information';
 import Edit_profile_information from './pages/EditProfilePage/Edit_personal_information/edit_profile_information';
-
+import RegisterStudentPage from './pages/Auth/RegisterPage/registerStudentPage';
+import RegisterOwnerPage from './pages/Auth/RegisterPage/registerOwnerPage';
+import RegisterPage from './pages/Auth/RegisterPage/registerPage';
 export default function App() {
   const location = useLocation();
   const hideFooterNavbarRoutes = [
@@ -65,7 +66,11 @@ export default function App() {
 
         {/* Auth */}
         <Route path="/SignIn" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        
+        <Route path='/register' element={<RegisterPage />} >
+        <Route path="student" element={<RegisterStudentPage />} />
+        <Route path="owner" element={<RegisterOwnerPage />} />
+        </Route>
         <Route path="/signout" element={<SignOutCard />} />
         <Route path='/forgetpassword'element={<ForgetPassword/>} />
         <Route path='/resetpassword' element={<ResetPass/>}  />

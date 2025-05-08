@@ -20,7 +20,7 @@ interface AuthState {
   role: string | null;
   setRole:(role:string)=>void;
   login: (email: string, password: string) => Promise<void>;
-  register:(data:User&{password:string})=>Promise<void>;
+  registerStudent:(data:User)=>Promise<void>;
   logout: () => void;
 }
 
@@ -30,7 +30,9 @@ const useAuthStore = create<AuthState>((set) => ({
   isAuthenticated: false,
   user: null,
   token: null,
-  register: async (data: User) => {
+
+  // register students
+  registerStudent: async (data: User) => {
     try {
       if (data.password !== data.confrimPassword) {
         throw new Error("Passwords do not match");
@@ -39,12 +41,26 @@ const useAuthStore = create<AuthState>((set) => ({
         'http://darkteam.runasp.net/RegisterStudentEndPoint/RegisterStudent',
         { ...data }
       );
-      set({ isAuthenticated: true, token: res.data.token, user: res.data.user });
+      set({ isAuthenticated: true, token: res.data.token, user: res.data.user, role: "Student" });
       localStorage.setItem('token', res.data.token);
     } catch (error) {
       console.error('Registration failed:', error);
     }
   },
+  // register owner
+  registerOwner: async (username: string, email: string, password: string) => {
+    try {
+      const res = await axios.post(
+        'http://darkteam.runasp.net/RegisterOwnerEndPoint/RegisterOwner',
+        { username, email, password }
+      );
+      set({ isAuthenticated: true, token: res.data.token, user: res.data.user, role: "Owner" });
+      localStorage.setItem('token', res.data.token);
+    } catch (error) {
+      console.error('Registration failed:', error);
+    }
+  },
+
   login: async (email: string, password: string) => {
     try {
       const currentRole = useAuthStore.getState().role;
