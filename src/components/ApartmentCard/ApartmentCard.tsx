@@ -1,13 +1,11 @@
 import { useRef, useState } from "react";
-import { MdOutlineStar } from "react-icons/md";
+import { MdOutlineStar, MdOutlineAccessTime, MdOutlineMeetingRoom } from "react-icons/md";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { FaHeart } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { IoLocationOutline } from "react-icons/io5";
-import { MdOutlineAccessTime } from "react-icons/md";
 import { BiBath } from "react-icons/bi";
-import { MdOutlineMeetingRoom } from "react-icons/md";
 import { LuBed } from "react-icons/lu";
 import { Link } from "react-router-dom";
 
@@ -15,28 +13,21 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+interface ApartmentCardProps {
+  className?: string;
+}
 
-
-const ApartmentCard = () => {
+const ApartmentCard = ({ className = "" }: ApartmentCardProps) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const swiperRef = useRef<typeof Swiper | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Apartment images
   const images = [
     "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
     "https://doudapartmenthomes.com/wp-content/uploads/2023/12/sidekix-media-LFlbLb8vJls-unsplash-scaled.jpg",
     "https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg",
     "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
-    "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
-    "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
-    "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
-    "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
-    "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
-    "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
-    "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
-
   ];
 
   const handlePrevClick = () => {
@@ -52,8 +43,7 @@ const ApartmentCard = () => {
   };
 
   return (
-    <div className=" border border-[#e0e0e0] rounded-xl overflow-hidden w-[420px] group relative transition-transform duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md dark:bg-[#171515]">
-      {/* Image Slider Section */}
+    <div className={`border border-[#e0e0e0] rounded-xl overflow-hidden group relative transition-transform duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md dark:bg-[#171515] w-full max-w-sm ${className}`}>
       <div className="relative">
         <Swiper
           ref={swiperRef}
@@ -70,21 +60,16 @@ const ApartmentCard = () => {
         >
           {images.map((src, index) => (
             <SwiperSlide key={index}>
-              <img
-                src={src}
-                alt="img"
-                className="w-full h-[250px] object-cover"
-              />
+              <img src={src} alt="img" className="w-full h-[250px] object-cover" />
             </SwiperSlide>
           ))}
         </Swiper>
 
-        {/* Custom Navigation Buttons */}
         {currentIndex > 0 && (
           <button
             ref={prevRef}
             onClick={handlePrevClick}
-            className="absolute left-3 top-1/2 -translate-y-1/2 bg-white w-[32px] h-[32px] rounded-full shadow-lg z-10 flex items-center justify-center cursor-pointer  group-hover:opacity-100 transition-opacity duration-300"
+            className="absolute left-3 top-1/2 -translate-y-1/2 bg-white w-[32px] h-[32px] rounded-full shadow-lg z-10 flex items-center justify-center cursor-pointer group-hover:opacity-100 transition-opacity duration-300"
           >
             <IoIosArrowBack className="text-[#000]" style={{ width: "100%", height: "20px" }} />
           </button>
@@ -94,113 +79,90 @@ const ApartmentCard = () => {
           <button
             ref={nextRef}
             onClick={handleNextClick}
-            className="absolute right-3 top-1/2 -translate-y-1/2 bg-white w-[32px] h-[32px] rounded-full shadow-lg z-10 flex items-center justify-center cursor-pointer  group-hover:opacity-100 transition-opacity duration-300"
+            className="absolute right-3 top-1/2 -translate-y-1/2 bg-white w-[32px] h-[32px] rounded-full shadow-lg z-10 flex items-center justify-center cursor-pointer group-hover:opacity-100 transition-opacity duration-300"
           >
             <IoIosArrowForward className="text-[#000]" style={{ width: "100%", height: "20px" }} />
           </button>
         )}
-        {/* Custom styles for pagination dots */}
+
         <style
           dangerouslySetInnerHTML={{
             __html: `
-                .swiper-pagination-bullet {
-                  background-color: white !important; /* White background */
-                  opacity: .5 !important; /* Ensure visibility */
-                  width: 8px; /* Adjust size */
-                  height: 8px;
-                  margin: 0 3px !important; /* Adds space between dots */
-                }
-                .swiper-pagination-bullet-active {
-                  opacity: 1 !important; /* Ensure visibility */
-                }
-              `,
+              .swiper-pagination-bullet {
+                background-color: white !important;
+                opacity: .5 !important;
+                width: 8px;
+                height: 8px;
+                margin: 0 3px !important;
+              }
+              .swiper-pagination-bullet-active {
+                opacity: 1 !important;
+              }
+            `,
           }}
         />
 
-        {/* Favorite Icon on the Left */}
         <div title="Add to Favourites" className="absolute top-3 left-3 bg-white p-2 rounded-full shadow-md cursor-pointer z-10">
           <FaHeart className="text-[#00000080] hover:text-red-500 hover:scale-110 transition duration-300" />
         </div>
       </div>
-      {/* Details Section */}
-          <Link to='/roomdetails'>
-      <div className="p-3 text-right">
-        <div className="flex items-center justify-between mb-2">
-          <span
-            className="block text-[14px] font-bold text-[#DC3545] text-right leading-[20px]">
-            6,600/mo
-          </span>
-          <h3 className="text-[16px] font-semibold text-[#212529] dark:text-[white] ">
-            الشؤون · أولاد · 3 غرف · 6 ضيف · الدور الثالث
-          </h3>
-        </div>
 
-        {/* location */}
-        <div className="flex items-center justify-end mb-2 ">
-          <span className="text-[14px] text-[#515151] mr-2 dark:text-[white]"> الشؤون / شارع ابو علاء </span>
-          <IoLocationOutline className="text-[#515151] dark:text-[white]" />
-        </div>
-
-        {/* descritpion */}
-        <p className="text-[14px] text-[#515151] dark:text-[white]">
-          سكن مناسب للطلبه و العائلات · قريب من المواصلات العامة · قريب من المحلات التجارية · قريب من المطاعم · قريب من الجامعه
-        </p>
-
-        {/* Services */}
-        <div className="flex items-center justify-end mb-2 mt-2 gap-x-2 pb-2 border-b border-[#e0e0e0]">
-          {/* bed */}
-          <div className="flex items-center justify-end mb-2 mt-2">
-            <span className="text-[14px] text-[#111111] mr-2 dark:text-[white]"> 12 سرير </span>
-            <LuBed className="text-[#111111]" />
-          </div>
-          {/* room */}
-          <div className="flex items-center justify-end mb-2 mt-2">
-            <span className="text-[14px] text-[#111111] mr-2 dark:text-[white]">4 غرفه</span>
-            <MdOutlineMeetingRoom className="text-[#111111]" />
-          </div>
-          {/* bath */}
-          <div className="flex items-center justify-end mb-2 mt-2">
-            <span className="text-[14px] text-[#111111] mr-2 dark:text-[white]">1 حمام</span>
-            <BiBath className="text-[#111111]" />
-          </div>
-        </div>
-
-        {/* Some Services */}
-        <div className="flex items-center justify-end gap-x-2 ">
-          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[white] dark:bg-[#515151]">
-            +10 اخري
-          </span>
-          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[white] dark:bg-[#515151]">
-            WiFi
-          </span>
-          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[white] dark:bg-[#515151]">
-            غاز طبيعي
-          </span>
-          <span className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[white] dark:bg-[#515151]">
-            مكيف
-          </span>
-        </div>
-
-        <div className="flex items-center justify-between">
-          {/* deuration */}
-          <div className="flex items-center justify-end mb-2 mt-2">
-            <span className="text-[13px] text-[#515151] mr-2 dark:text-[white]">قبل يوم </span>
-            <MdOutlineAccessTime className="text-[#515151]" />
+      <Link to="/roomdetails">
+        <div className="p-3 text-right">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[14px] font-bold text-[#DC3545]">6,600/mo</span>
+            <h3 className="text-[16px] font-semibold text-[#212529] dark:text-white">
+              الشؤون · أولاد · 3 غرف · 6 ضيف · الدور الثالث
+            </h3>
           </div>
 
-          {/* number of comments & rating */}
-          <div className="flex items-center justify-end mb-2 mt-2">
-            <span className="text-[14px] text-[#515151] mr-2 dark:text-[white]"> +10 تعليقات </span>
+          <div className="flex items-center justify-end mb-2">
+            <span className="text-[14px] text-[#515151] mr-2 dark:text-white">الشؤون / شارع ابو علاء</span>
+            <IoLocationOutline className="text-[#515151] dark:text-white" />
+          </div>
 
-            <div className="flex items-center justify-end mb-2 mt-2">
-              <span className="text-[13px] text-[#515151] mr-2 dark:text-[white]">4.5 </span>
-              <MdOutlineStar className="text-[#515151]" />
+          <p className="text-[14px] text-[#515151] dark:text-white">
+            سكن مناسب للطلبه و العائلات · قريب من المواصلات العامة · قريب من المحلات التجارية · قريب من المطاعم · قريب من الجامعه
+          </p>
+
+          <div className="flex items-center justify-end mb-2 mt-2 gap-x-2 pb-2 border-b border-[#e0e0e0]">
+            <div className="flex items-center justify-end">
+              <span className="text-[14px] text-[#111111] mr-2 dark:text-white">12 سرير</span>
+              <LuBed className="text-[#111111]" />
+            </div>
+            <div className="flex items-center justify-end">
+              <span className="text-[14px] text-[#111111] mr-2 dark:text-white">4 غرفه</span>
+              <MdOutlineMeetingRoom className="text-[#111111]" />
+            </div>
+            <div className="flex items-center justify-end">
+              <span className="text-[14px] text-[#111111] mr-2 dark:text-white">1 حمام</span>
+              <BiBath className="text-[#111111]" />
+            </div>
+          </div>
+
+          <div className="flex items-center justify-end gap-x-2 mt-2">
+            {["+10 اخري", "WiFi", "غاز طبيعي", "مكيف"].map((feature, i) => (
+              <span key={i} className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-white dark:bg-[#515151]">
+                {feature}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-between mt-2">
+            <div className="flex items-center justify-end">
+              <span className="text-[13px] text-[#515151] mr-2 dark:text-white">قبل يوم</span>
+              <MdOutlineAccessTime className="text-[#515151]" />
+            </div>
+            <div className="flex items-center justify-end">
+              <span className="text-[14px] text-[#515151] mr-2 dark:text-white">+10 تعليقات</span>
+              <div className="flex items-center">
+                <span className="text-[13px] text-[#515151] mr-2 dark:text-white">4.5</span>
+                <MdOutlineStar className="text-[#515151]" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </Link>
-
     </div>
   );
 };
