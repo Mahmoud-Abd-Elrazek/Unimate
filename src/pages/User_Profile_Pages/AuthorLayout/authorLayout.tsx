@@ -17,11 +17,9 @@ const AuthorLayout = () => {
           <SideBar />
         </aside>
       )}
-<<<<<<< HEAD
+
       <main className="flex-1  w-[0px]">
-=======
-      <main className="flex-1 w-full w-0">
->>>>>>> db3f63fbf97ecc74e1a882cdc060cd6c54b18705
+
         <Outlet />
       </main>
 
