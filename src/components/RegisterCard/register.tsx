@@ -49,7 +49,7 @@ export default function Register() {
                 </div>
                 <div className="flex flex-col text-right">
                   <label htmlFor="firstname" className="text-xl">الاسم الاول</label><br />
-                  <input dir="rtl" type="text" id="firstname" required className="InputStyle" {...register("firstname")} />
+                  <input dir="rtl" type="text" id="firstname" required className="InputStyle" {...register("lastname")} />
                   {errors.firstname && <span className="ErrorMessage">{errors.firstname.message}</span>}
                 </div>
               </div>

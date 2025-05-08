@@ -18,9 +18,11 @@ interface AuthState {
   user: User | null;
   token: string | null;
   role: string | null;
+  phone :string;
   setRole:(role:string)=>void;
   login: (email: string, password: string) => Promise<void>;
   registerStudent:(data:User)=>Promise<void>;
+  registerOwner:(username: string, email: string, password: string, phone: string) => Promise<void>;
   logout: () => void;
 }
 
@@ -30,7 +32,8 @@ const useAuthStore = create<AuthState>((set) => ({
   isAuthenticated: false,
   user: null,
   token: null,
-
+  phonen: null,
+  phone: '',
   // register students
   registerStudent: async (data: User) => {
     try {
@@ -43,19 +46,23 @@ const useAuthStore = create<AuthState>((set) => ({
       );
       set({ isAuthenticated: true, token: res.data.token, user: res.data.user, role: "Student" });
       localStorage.setItem('token', res.data.token);
+      localStorage.setItem('role', useAuthStore.getState().role ?? '');
+      console.log(useAuthStore.getState().role)
     } catch (error) {
       console.error('Registration failed:', error);
     }
   },
   // register owner
-  registerOwner: async (username: string, email: string, password: string) => {
+  registerOwner: async (username: string, email: string, password: string, phone: string) => {
     try {
       const res = await axios.post(
         'http://darkteam.runasp.net/RegisterOwnerEndPoint/RegisterOwner',
-        { username, email, password }
+        { username, email, password, phone }
       );
       set({ isAuthenticated: true, token: res.data.token, user: res.data.user, role: "Owner" });
       localStorage.setItem('token', res.data.token);
+      localStorage.setItem('role', useAuthStore.getState().role ?? '');
+      console.log(useAuthStore.getState().role)
     } catch (error) {
       console.error('Registration failed:', error);
     }
@@ -63,18 +70,16 @@ const useAuthStore = create<AuthState>((set) => ({
 
   login: async (email: string, password: string) => {
     try {
-      const currentRole = useAuthStore.getState().role;
-      if (!currentRole) {
-        throw new Error("Role is not set. Please select a role before logging in.");
-      }
+     
 
       const res = await axios.post(
         'http://darkteam.runasp.net/LogInUserEndpoint/LogInUser',
         { email, password }
       );
-      set({ isAuthenticated: true, token: res.data.token, user: res.data.user, role: currentRole });
+      set({ isAuthenticated: true, token: res.data.token, user: res.data.user });
       localStorage.setItem('token', res.data.token);
-      localStorage.setItem('role', currentRole);
+      console.log("this is res is "+ res)
+      // localStorage.setItem('role',res.data.token.role);
     } catch (error) {
       console.error('Login failed:', error);
     }

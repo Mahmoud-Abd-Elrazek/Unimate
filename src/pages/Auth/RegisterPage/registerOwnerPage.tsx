@@ -4,18 +4,22 @@ import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { useState } from "react";
 import { FiEye, FiEyeOff, FiUserPlus } from "react-icons/fi";
-// import useAuthStore from "../../../Store/useAuthStore";
-
+import useAuthStore from "../../../Store/useAuthStore";
+import "./register.css";
 const RegisterOwnerPage = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  // let Role= useAuthStore((state) => state.role);
-    // const  registerowner = useAuthStore((state) => state.registerOwner);
+
+  const registerowner = useAuthStore((state) => state.registerOwner);
   const SignInSchema = z.object({
-    username: z.string().min(1, { message: "ادخل اسم المستخدم" }),
-    
+    firstname: z.string().min(1, { message: "ادخل الاسم الاول" }),
+    lastname: z.string().min(1, { message: "ادخل الاسم الاخير" }),
     email: z.string().min(1, "مطلوب").email("ادخل بريد الكتروني صحيح"),
     password: z.string().min(8, "يجب أن تكون كلمة المرور أطول من 8 أحرف"),
+    phone: z
+      .string()
+      .min(10, "يجب أن يتكون رقم الهاتف من 10 أرقام على الأقل")
+      .regex(/^\d+$/, "يجب أن يحتوي رقم الهاتف على أرقام فقط"),
   });
 
   type SignT = z.infer<typeof SignInSchema>;
@@ -30,31 +34,45 @@ const RegisterOwnerPage = () => {
   });
 
   const OnSubmit: SubmitHandler<SignT> = (data) => {
-    
+
     console.log({ ...data });
-    // registerowner(data.username,data.email, data.password);
-    navigate("/", { replace: true });
+    const fullname = `${data.firstname} ${data.lastname}`;
+    registerowner(fullname, data.email, data.password,data.phone);
+    navigate("/SignIn", { replace: true });
   };
-  
+
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-md rounded-xl p-8 shadow-md text-right">
         <h2 className="text-2xl font-semibold mb-2">تسجيل الدخول</h2>
 
-        
+
         <form onSubmit={handleSubmit(OnSubmit)} className="space-y-4">
-             {/* username */}
-          <div>
-            <label className="block mb-1">اسم المستخدم</label>
-            <input
-              type="text"
-              dir="rtl"
-              className="InputStyle w-full"
-              placeholder="ادخل اسم المستخدم"
-              {...register("username")}
-            />
-            {errors.username && <p className="ErrorMessage">{errors.username.message}</p>}
+          {/* Names */}
+          <div className="flex gap-4" dir="rtl">
+            <div className="flex-1">
+              <label className="block mb-1">الاسم الاول</label>
+              <input
+                type="text"
+                dir="rtl"
+                className="InputStyle w-full"
+                placeholder="ادخل الاسم الاول"
+                {...register("lastname")}
+              />
+              {errors.firstname && <p className="ErrorMessage">{errors.firstname.message}</p>}
+            </div>
+            <div className="flex-1">
+              <label className="block mb-1">الاسم الاخير</label>
+              <input
+                type="text"
+                dir="rtl"
+                className="InputStyle w-full"
+                placeholder="ادخل الاسم الاخير"
+                {...register("lastname")}
+              />
+              {errors.lastname && <p className="ErrorMessage">{errors.lastname.message}</p>}
+            </div>
           </div>
           {/* Email */}
           <div className="text-right">
@@ -97,8 +115,26 @@ const RegisterOwnerPage = () => {
             {errors.password && <p className="ErrorMessage">{errors.password.message}</p>}
           </div>
 
-          {/* Remember + Forgot */}
-          <div className="flex justify-between items-center text-sm">
+         
+          {/* phone */}
+          <div   
+          className="  text-right appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+            <label htmlFor="phone" className="block mb-1 font-medium">
+              رقم التليفون
+            </label>
+            <input
+              dir="rtl"
+              type="number"
+              id="phone"
+              className="InputStyle w-full"
+              placeholder="رقم التليفون"
+              {...register("phone")}
+
+            />
+            {errors.phone && <p className="ErrorMessage">{errors.phone.message}</p>}
+          </div>
+           {/* Remember + Forgot */}
+           <div className="flex justify-between items-center text-sm">
             <p className="flex items-center gap-2">
               <input type="checkbox" className="h-4 w-4" />
               تذكرني
@@ -107,20 +143,19 @@ const RegisterOwnerPage = () => {
               نسيت كلمة المرور؟
             </Link>
           </div>
-
           {/* Submit */}
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex justify-center items-center gap-2 w-full MainColorBG text-white rounded-md py-3 mt-2"
+            className="flex justify-center items-center gap-2 w-full MainColorBG text-white rounded-md py-3 mt-4"
           >
-           <FiUserPlus className="text-xl" />
-            انشاء حساب جديد 
+            <FiUserPlus className="text-xl" />
+            انشاء حساب جديد
           </button>
         </form>
 
         <p className="mt-4 text-center text-sm">
-        لديك حساب ب الفعل؟
+          لديك حساب ب الفعل؟
           <Link to="/SignIn" className="text-blue-500 font-medium underline">
             سجل الآن
           </Link>

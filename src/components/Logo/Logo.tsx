@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { cn } from "../../lib/utils";
 import { PiStudentFill } from "react-icons/pi";
 import { IconType } from "react-icons";
-
 interface LogoProps {
    className?: string;
    icon?: IconType;
@@ -11,7 +10,7 @@ interface LogoProps {
    leftText?: string;
    rightText?: string;
    textSize?: "sm" | "md" | "lg" | "xl";
-   to?: string;
+   
 }
 
 const Logo = ({
@@ -22,7 +21,7 @@ const Logo = ({
    leftText = "Uni",
    rightText = "mate",
    textSize = "xl",
-   to = "/",
+   
 }: LogoProps) => {
    const textSizeClasses = {
       sm: "text-sm",
@@ -30,10 +29,13 @@ const Logo = ({
       lg: "text-lg",
       xl: "text-xl",
    };
-
+   const navigate = useNavigate();
+   const Handelclick = () => {
+      navigate("/")
+   }
    return (
-      <Link
-         to={to}
+      <button 
+         onClick={Handelclick}
          className={cn(
             "flex flex-wrap justify-center items-center text-center cursor-pointer",
             className
@@ -63,7 +65,7 @@ const Logo = ({
                {rightText}
             </span>
          )}
-      </Link>
+      </button>
    );
 };
 
