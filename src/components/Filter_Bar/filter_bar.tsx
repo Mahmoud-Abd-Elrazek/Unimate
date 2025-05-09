@@ -7,24 +7,26 @@ import Dropdown from 'react-bootstrap/Dropdown';
 const FilterBar: React.FC = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([400, 800]);
 
-  const handlePriceChange = (value: number | [number, number]) => {
-    if (Array.isArray(value)) {
-      setPriceRange(value);
+  const handlePriceChange = (value: number | number[]) => {
+    if (Array.isArray(value) && value.length === 2) {
+      setPriceRange([value[0], value[1]]);
     }
   };
 
   return (
-    <div className=" rounded-full p-4 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-3 dark:bg-[#1D1D1D] ">
-      
+    <div className="w-full rounded-xl p-4 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-3 dark:bg-[#1D1D1D]">
+
       {/* Search Icon */}
-      <div className="rounded-full w-[2.5rem] h-[2.5rem] bg-red-500 flex justify-center items-center">
-        <IoIosSearch className="text-white text-xl" />
+      <div className="w-full md:w-auto flex justify-center md:justify-start">
+        <div className="rounded-full w-10 h-10 bg-red-500 flex items-center justify-center">
+          <IoIosSearch className="text-white text-xl" />
+        </div>
       </div>
 
-      {/* Price Slider */}
-      <div className="flex flex-col md:flex-row items-start md:items-center gap-2 w-full md:w-auto">
-        <span className="text-sm text-gray-500">السعر</span>
-        <div className="w-full md:w-40">
+      {/* Price Range */}
+      <div className="w-full md:w-auto flex flex-col sm:flex-row sm:items-center gap-2 text-right">
+        <span className="text-sm text-gray-500 dark:text-gray-300">السعر</span>
+        <div className="w-full sm:w-64">
           <Slider
             range
             min={0}
@@ -33,46 +35,52 @@ const FilterBar: React.FC = () => {
             value={priceRange}
             onChange={handlePriceChange}
             allowCross={false}
-            trackStyle={[{ backgroundColor: '#EF4444', height: 12 }]}
+            trackStyle={[{ backgroundColor: '#EF4444', height: 10 }]}
             handleStyle={[
               {
                 borderColor: '#EF4444',
                 backgroundColor: '#fff',
-                borderWidth: 6,
-                width: 23,
-                height: 23,
-                marginTop: -7
+                borderWidth: 4,
+                width: 20,
+                height: 20,
+                marginTop: -5,
               },
               {
                 borderColor: '#EF4444',
                 backgroundColor: '#fff',
-                borderWidth: 6,
-                width: 23,
-                height: 23,
-                marginTop: -7
+                borderWidth: 4,
+                width: 20,
+                height: 20,
+                marginTop: -5,
               },
             ]}
-            railStyle={{ backgroundColor: '#ccc', height: 12 }}
+            railStyle={{ backgroundColor: '#ccc', height: 10 }}
           />
         </div>
-        <span className="text-sm whitespace-nowrap">
+        <span className="text-sm text-gray-600 dark:text-gray-200 whitespace-nowrap">
           {priceRange[0]} ج.م - {priceRange[1]} ج.م
         </span>
       </div>
 
-      {/* Dropdowns */}
-      {["عدد الافراد", "عدد الغرف", "النوع", "المنطقه"].map((label, index) => (
-        <Dropdown key={index}>
-          <Dropdown.Toggle className="bg-white text-black border border-gray-300 px-3 py-1 rounded-md text-sm shadow-sm" id={`dropdown-${index}`}>
-            {label}
-          </Dropdown.Toggle>
-          <Dropdown.Menu className="text-right">
-            <Dropdown.Item href="#/action-1">الخيار الأول</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">الخيار الثاني</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">خيار آخر</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      ))}
+      {/* Dropdown Filters */}
+      <div className="w-full md:w-auto flex flex-wrap justify-between gap-2">
+        {["عدد الأفراد", "عدد الغرف", "النوع", "المنطقة"].map((label, index) => (
+          <Dropdown key={index}>
+            <Dropdown.Toggle
+              variant="light"
+              className="bg-white dark:bg-[#2A2A2A] text-black dark:text-white border border-gray-300 dark:border-gray-600 px-3 py-2 rounded-md text-sm shadow-sm"
+              id={`dropdown-${index}`}
+            >
+              {label}
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="text-right w-40">
+              <Dropdown.Item href="#/action-1">الخيار الأول</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">الخيار الثاني</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">خيار آخر</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        ))}
+      </div>
     </div>
   );
 };

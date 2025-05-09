@@ -2,7 +2,7 @@
 import { IoShareOutline } from "react-icons/io5";
 import { FcLike } from "react-icons/fc";
 import { IoWifi } from "react-icons/io5";
-import { TbToolsKitchen2,TbAirConditioning } from "react-icons/tb";
+import { TbToolsKitchen2, TbAirConditioning } from "react-icons/tb";
 import RoomCard from "../../components/RoomCard/roomCard";
 import Room_Photo from "../../assets/room_photo.jpg";
 import { FaBath, FaStar } from "react-icons/fa";
@@ -23,10 +23,10 @@ import "../../../public/animations.css";
 export default function RoomDetails() {
   return (
     <div className="min-h-screen Page slide-in">
-          <Link to='/' className="flex items-center gap-1 cursor-pointer my-3 ml-3">
-            <IoMdArrowRoundBack className="IconSize" />
-            <h2 className=" text-sm md:text-base">رجوع</h2>
-          </Link>
+      <Link to='/' className="flex items-center gap-1 cursor-pointer my-3 ml-3">
+        <IoMdArrowRoundBack className="IconSize" />
+        <h2 className=" text-sm md:text-base">رجوع</h2>
+      </Link>
       {/* the first section */}
       <div className="flex justify-between items-center px-5">
         <div className="flex gap-4">
@@ -108,9 +108,10 @@ export default function RoomDetails() {
       </div>
       <hr className="border-t border-gray-300 w-5/6 mx-auto my-8" />
       {/* ما يقدمه السكن */}
-      <div className="flex justify-between p-5">
-        <div className="left dark:bg-[#1D1D1D]">
-          <div className="rounded-xl border p-4 w-[320px] shadow-md  space-y-3">
+      <div className="flex flex-col lg:flex-row justify-between p-5">
+        {/* Left section */}
+        <div className="left dark:bg-[#1D1D1D] lg:w-[320px] w-full mb-4 lg:mb-0">
+          <div className="rounded-xl border p-4 shadow-md space-y-3">
             <div className="flex justify-between items-center">
               <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">
                 متاحة للسكان
@@ -124,20 +125,19 @@ export default function RoomDetails() {
               <p>الدور الثالث</p>
             </div>
 
-            <div className="grid grid-cols-3 text-center  py-2 rounded-md text-sm">
-              <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 ml-1 p-1">
+            <div className="grid grid-cols-3 sm:grid-cols-2 gap-4 text-center py-2 rounded-md text-sm">
+              <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 p-2">
                 <FaBath className="text-[#D32F2F] IconSize" />
                 <p className="font-bold text-lg">2</p>
-                <p className="flex ">      حمام</p>
+                <p className="flex">حمام</p>
               </div>
-              <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 ml-1 p-1">
-              <MdMeetingRoom className="text-[#D32F2F] IconSize text-[#D32F2F]" />
-              
+              <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 p-2">
+                <MdMeetingRoom className="text-[#D32F2F] IconSize text-[#D32F2F]" />
                 <p className="font-bold text-lg">4</p>
                 <p>غرف</p>
               </div>
-              <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 ml-1 p-1">
-              <PiStudentBold className="text-[#D32F2F] IconSize text-[#D32F2F]" />
+              <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 p-2">
+                <PiStudentBold className="text-[#D32F2F] IconSize text-[#D32F2F]" />
                 <p className="font-bold text-lg">12</p>
                 <p>طالب</p>
               </div>
@@ -169,17 +169,19 @@ export default function RoomDetails() {
             </button>
           </div>
         </div>
-        <div className="right container mx-auto my-10 px-5">
-          <h2 className="text-xl md:text-2xl text-right font-semibold mb-5 ">
+
+        {/* Right section */}
+        <div className="right container mx-auto my-10 px-5 lg:w-[60%] w-full">
+          <h2 className="text-xl md:text-2xl text-right font-semibold mb-5">
             ما يقدمه السكن
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="flex items-center justify-center gap-2 text-right w-[195px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="flex items-center justify-center gap-2 text-right">
               <IoWifi className="IconSize" />
               <h3 className="text-sm md:text-base">واى فاى</h3>
             </div>
             <div className="flex items-center justify-center gap-2 text-right">
-            <MdOutlineFireplace className="IconSize" />
+              <MdOutlineFireplace className="IconSize" />
               <h3 className="text-sm md:text-base">ماء سخن</h3>
             </div>
             <div className="flex items-center justify-center gap-2 text-right">
@@ -190,27 +192,27 @@ export default function RoomDetails() {
               <TbToolsKitchen2 className="IconSize" />
               <h3 className="text-sm md:text-base">أدوات مطبخ</h3>
             </div>
-            <div className="flex items-center justify-center gap-2 text-right w-[194px]">
-            <LuWashingMachine className="IconSize" />
+            <div className="flex items-center justify-center gap-2 text-right">
+              <LuWashingMachine className="IconSize" />
               <h3 className="text-sm md:text-base">غساله</h3>
             </div>
-            <div className="flex items-center justify-center gap-2 text-right w-[192px]">
-            <GiFireplace className="IconSize" />
+            <div className="flex items-center justify-center gap-2 text-right">
+              <GiFireplace className="IconSize" />
               <h3 className="text-sm md:text-base">مدفأه</h3>
             </div>
-            <div className="flex items-center justify-center gap-2 text-right w-[180px]">
-            <TbAirConditioning className="IconSize" />
+            <div className="flex items-center justify-center gap-2 text-right">
+              <TbAirConditioning className="IconSize" />
               <h3 className="text-sm md:text-base">تكييف</h3>
             </div>
-            {/* Add the remaining features here */}
           </div>
           <div className="text-center mt-8">
-            <Link to='/housing_services' className="border border-black rounded-lg px-4 py-2 text-sm md:text-base">
+            <Link to="/housing_services" className="border border-black rounded-lg px-4 py-2 text-sm md:text-base">
               عرض كل المميزات ال 10
             </Link>
           </div>
         </div>
       </div>
+
       <hr className="border-t border-gray-300 w-5/6 mx-auto my-8" />
       {/* a place for sleeping */}
       <div className="container mx-auto px-5 py-6">
@@ -286,7 +288,7 @@ export default function RoomDetails() {
         </div>
       </div>
       {/* Booking Section (moved out of the fixed height div) */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 py-3 px-5 md:hidden">
+      {/* <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 py-3 px-5 md:hidden">
         <div className="flex justify-between items-center">
           <div className="text-green-500 font-semibold text-lg">
             6,600 <span className="text-gray-600 text-sm">/ شهر</span>
@@ -295,7 +297,7 @@ export default function RoomDetails() {
             احجز الان
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
