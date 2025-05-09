@@ -15,7 +15,7 @@ import useAuthStore from '../../Store/useAuthStore';
 export default function SideBar() {
   const Role = useAuthStore((state) => state.role);
 
-  const links = Role !== 'Owner'
+  const links = Role === 'Owner'
     ? [
         { to: '/auther/profile', label: 'عرض الملف الشخصى', icon: IoPersonOutline },
         { to: '/auther/editprofile', label: 'الإعدادات والخصوصية', icon: MdOutlinePrivacyTip },
@@ -38,25 +38,24 @@ export default function SideBar() {
       ];
 
   return (
-    <div className="w-full max-w-sm   rounded-2xl  text-right ">
-        <div className="flex flex-col items-center pt-[35px]">
-                {/* <FaUserCircle className="text-7xl text-gray-400 dark:text-gray-600" /> */}
-                <h2 className="text-xl font-bold mt-2 mr-10">محمود عبدالرزاق حمدالله</h2>
+    <div className="w-full max-w-sm  rounded-2xl  text-right ">
+        <div className="flex flex-col items-center py-6">
+                <h2 className="text-lg font-semibold ">محمود عبدالرزاق حمدالله</h2>
               </div>
         
               <hr className="my-4 border-gray-300 dark:border-gray-700" />
-              <ul className="space-y-2">
+              <ul className="space-y-1">
         {links.map((link) => (
           <li key={link.to}>
             <Link
               to={link.to}
-              className={`grid grid-cols-[1fr_auto] items-center p-4 rounded-lg transition-all duration-200 font-semibold ${location.pathname === link.to
+              className={`flex justify-between items-center p-3 rounded-lg transition-all duration-200 text-sm font-medium ${location.pathname === link.to
                   ? "bg-gray-100 dark:bg-gray-800 border-r-4 border-red-500"
                   : "hover:bg-gray-50 dark:hover:bg-gray-800"
                 }`}
             >
               <span className="text-sm text-right">{link.label}</span>
-              <span className="text-xl"><link.icon /></span>
+              <span className="text-xl text-gray-600 dark:text-gray-300"><link.icon /></span>
             </Link>
           </li>
         ))}

@@ -57,7 +57,7 @@ const ApartmentCard = ({ className = "" }: ApartmentCardProps) => {
         >
           {images.map((src, index) => (
             <SwiperSlide key={index}>
-              <img src={src} alt="img" className="w-full h-[250px] object-cover" />
+              <img src={src} alt="img" className="w-full h-[200px] sm:h-[250px] md:h-[280px] object-cover" />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -107,8 +107,8 @@ const ApartmentCard = ({ className = "" }: ApartmentCardProps) => {
       <Link to="/roomdetails">
         <div className="p-3 text-right">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[14px] font-bold text-[#DC3545]">6,600/mo</span>
-            <h3 className="text-[16px] font-semibold text-[#212529] dark:text-white">
+            <span className="text-[13px] sm:text-[14px] font-bold text-[#DC3545]">6,600/mo</span>
+            <h3 className="text-[14px] sm:text-[16px] font-semibold text-[#212529] dark:text-white">
               الشؤون · أولاد · 3 غرف · 6 ضيف · الدور الثالث
             </h3>
           </div>
