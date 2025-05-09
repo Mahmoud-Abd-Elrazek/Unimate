@@ -27,7 +27,7 @@ const ForgotPassword: React.FC = () => {
       } else {
         alert("Something went wrong.");
       }
-      navigate('/resetpassword', { replace: true });
+      navigate('/confirmemail', { replace: true, state: { from: "forgetpassword" } });
     } catch {
       setMessage('❌ Something went wrong. Please try again.');
     }

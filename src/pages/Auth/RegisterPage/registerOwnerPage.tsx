@@ -7,23 +7,24 @@ import { FiEye, FiEyeOff, FiUserPlus } from "react-icons/fi";
 import useAuthStore from "../../../Store/useAuthStore";
 import "./register.css";
 
-const SignInSchema = z.object({
-  firstname: z.string().min(1, { message: "ادخل الاسم الاول" }),
-  lastname: z.string().min(1, { message: "ادخل الاسم الاخير" }),
-  email: z.string().min(1, "مطلوب").email("ادخل بريد الكتروني صحيح"),
-  password: z.string().min(8, "يجب أن تكون كلمة المرور أطول من 8 أحرف"),
-  phone: z
-    .string()
-    .min(10, "يجب أن يتكون رقم الهاتف من 10 أرقام على الأقل")
-    .regex(/^\d+$/, "يجب أن يحتوي رقم الهاتف على أرقام فقط"),
-});
-
-type SignT = z.infer<typeof SignInSchema>;
-
 const RegisterOwnerPage = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const registerOwner = useAuthStore((state) => state.registerOwner);
+
+  const registerowner = useAuthStore((state) => state.registerOwner);
+
+  const SignInSchema = z.object({
+    firstname: z.string().min(1, { message: "ادخل الاسم الاول" }),
+    lastname: z.string().min(1, { message: "ادخل الاسم الاخير" }),
+    email: z.string().min(1, "مطلوب").email("ادخل بريد الكتروني صحيح"),
+    password: z.string().min(8, "يجب أن تكون كلمة المرور أطول من 8 أحرف"),
+    phone: z
+      .string()
+      .min(10, "يجب أن يتكون رقم الهاتف من 10 أرقام على الأقل")
+      .regex(/^\d+$/, "يجب أن يحتوي رقم الهاتف على أرقام فقط"),
+  });
+
+  type SignT = z.infer<typeof SignInSchema>;
 
   const {
     register,
@@ -35,30 +36,23 @@ const RegisterOwnerPage = () => {
   });
 
   const OnSubmit: SubmitHandler<SignT> = async (data) => {
-    try {
-      const fullname = `${data.firstname} ${data.lastname}`;
-      await registerOwner(fullname, data.email, data.password, data.phone);
-
-      localStorage.setItem("role", "Owner");
-
-      navigate("/SignIn", { replace: true });
-    } catch (error) {
-      console.error("Registration error:", error);
-      alert("فشل التسجيل. تحقق من البيانات المدخلة أو حاول لاحقاً.");
-    }
+    console.log(data);
+    await registerowner(data.firstname, data.lastname, data.email, data.password, data.phone);
+    localStorage.setItem("role", "Owner");
+    navigate("/confirmemail", { replace: true, state: { from: "register" } });
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-md rounded-xl p-8 shadow-md text-right">
-        <h2 className="text-2xl font-semibold mb-2">تسجيل مالك جديد</h2>
+        <h2 className="text-2xl font-semibold mb-2">تسجيل الدخول</h2>
         <form onSubmit={handleSubmit(OnSubmit)} className="space-y-4">
           <div className="flex gap-4" dir="rtl">
             <div className="flex-1">
               <label className="block mb-1">الاسم الاول</label>
               <input
-                dir="rtl"
                 type="text"
+                dir="rtl"
                 className="InputStyle w-full"
                 placeholder="ادخل الاسم الاول"
                 {...register("firstname")}
@@ -68,8 +62,8 @@ const RegisterOwnerPage = () => {
             <div className="flex-1">
               <label className="block mb-1">الاسم الاخير</label>
               <input
-                dir="rtl"
                 type="text"
+                dir="rtl"
                 className="InputStyle w-full"
                 placeholder="ادخل الاسم الاخير"
                 {...register("lastname")}
@@ -79,12 +73,11 @@ const RegisterOwnerPage = () => {
           </div>
 
           <div className="text-right">
-            <label htmlFor="email" className="block mb-1 font-medium">
-              البريد الالكترونى
-            </label>
+            <label htmlFor="email" className="block mb-1 font-medium">البريد الالكترونى</label>
             <input
               dir="rtl"
               type="email"
+              id="email"
               className="InputStyle w-full"
               placeholder="البريد الالكترونى"
               {...register("email")}
@@ -93,12 +86,11 @@ const RegisterOwnerPage = () => {
           </div>
 
           <div className="text-right relative">
-            <label htmlFor="password" className="block mb-1 font-medium">
-              كلمة المرور
-            </label>
+            <label htmlFor="password" className="block mb-1 font-medium">كلمة المرور</label>
             <input
               dir="rtl"
               type={showPassword ? "text" : "password"}
+              id="password"
               className="InputStyle w-full pr-10"
               placeholder="كلمة المرور"
               {...register("password")}
@@ -114,13 +106,11 @@ const RegisterOwnerPage = () => {
           </div>
 
           <div className="text-right">
-            <label htmlFor="phone" className="block mb-1 font-medium">
-              رقم التليفون
-            </label>
+            <label htmlFor="phone" className="block mb-1 font-medium">رقم التليفون</label>
             <input
               dir="rtl"
-              type="tel"
-              inputMode="numeric"
+              type="text"
+              id="phone"
               className="InputStyle w-full"
               placeholder="رقم التليفون"
               {...register("phone")}
@@ -133,9 +123,7 @@ const RegisterOwnerPage = () => {
               <input type="checkbox" className="h-4 w-4" />
               تذكرني
             </p>
-            <Link to="/forgetpassword" className="text-blue-500 underline">
-              نسيت كلمة المرور؟
-            </Link>
+            <Link to="/forgetpassword" className="text-blue-500 underline">نسيت كلمة المرور؟</Link>
           </div>
 
           <button
@@ -150,9 +138,7 @@ const RegisterOwnerPage = () => {
 
         <p className="mt-4 text-center text-sm">
           لديك حساب بالفعل؟
-          <Link to="/SignIn" className="text-blue-500 font-medium underline ml-1">
-            سجل الآن
-          </Link>
+          <Link to="/SignIn" className="text-blue-500 font-medium underline">سجل الآن</Link>
         </p>
       </div>
     </div>

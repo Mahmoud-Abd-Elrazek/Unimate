@@ -44,6 +44,7 @@ import RegisterStudentPage from './pages/Auth/RegisterPage/registerStudentPage';
 import RegisterOwnerPage from './pages/Auth/RegisterPage/registerOwnerPage';
 import RegisterPage from './pages/Auth/RegisterPage/registerPage';
 import ChangePass from './pages/Auth/Passwords/ChangePass/changepass';
+import ConfirmEmail from './pages/Auth/Emails/confirmemail';
 export default function App() {
   const location = useLocation();
   const hideFooterNavbarRoutes = [
@@ -75,6 +76,7 @@ export default function App() {
         <Route path="/signout" element={<SignOutCard />} />
         <Route path='/forgetpassword'element={<ForgetPassword/>} />
         <Route path='/resetpassword' element={<ResetPass/>}  />
+        <Route path='/confirmemail' element={<ConfirmEmail/>} />
         <Route path='/changepassord' element={<ChangePass/>}/>
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
 

@@ -91,13 +91,13 @@ export default function Resetpass() {
 
            {/* Password */}
            <div className="text-right relative">
-            <label htmlFor="password" className="block mb-1 font-medium">
+            <label htmlFor="confirmPassword" className="block mb-1 font-medium">
                تاكيد كلمة المرور
             </label>
             <input
               dir="rtl"
               type={showPassword ? "text" : "password"}
-              id="password"
+              id="confirmPassword"
               className="InputStyle w-full pr-10"
               placeholder=" تاكيد كلمة المرور الجديدة "
               {...register("confirmPassword")}

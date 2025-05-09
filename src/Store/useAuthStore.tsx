@@ -22,7 +22,7 @@ interface AuthState {
   setRole:(role:string)=>void;
   login: (email: string, password: string) => Promise<void>;
   registerStudent:(data:User)=>Promise<void>;
-  registerOwner:(username: string, email: string, password: string, phone: string) => Promise<void>;
+  registerOwner:(firstname: string,lastname:string, email: string, password: string, phone: string) => Promise<void>;
   resetpassword:(email:string,password:string,confrimPassword:string,token:string)=>Promise<void>;
   logout: () => void;
 }
@@ -54,28 +54,35 @@ const useAuthStore = create<AuthState>((set) => ({
     }
   },
   // register owner
-  registerOwner: async (username: string, email: string, password: string, phone: string) => {
-    try {
-      const res = await axios.post(
-        'http://darkteam.runasp.net/RegisterOwnerEndPoint/RegisterOwner',
-        { username, email, password, phone }
-      );
-      
-      set({
-        isAuthenticated: true,
-        token: res.data.token,
-        user: res.data.user,
-        role: "Owner",
-      });
-  
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('role', 'Owner'); // 👈 fixed here
-  
-      console.log("Role stored:", 'Owner');
-    } catch (error) {
-      console.error('Registration failed:', error);
-    }
-  },
+ registerOwner: async (firstname: string, lastname: string, email: string, password: string, phone: string) => {
+  try {
+    const res = await axios.post(
+      'http://darkteam.runasp.net/RegisterOwnerEndPoint/RegisterOwner',
+      {
+        email,
+        password,
+        fName: firstname,
+        lName: lastname,
+        phoneNo: phone,
+      }
+    );
+
+    set({
+      isAuthenticated: true,
+      token: res.data.token,
+      user: res.data.user,
+      role: "Owner",
+    });
+
+    localStorage.setItem('token', res.data.token);
+    localStorage.setItem('role', 'Owner');
+
+    console.log("Role stored:", 'Owner');
+  } catch (error) {
+    console.error('Registration failed:', error);
+  }
+},
+
   
 
   login: async (email: string, password: string) => {
