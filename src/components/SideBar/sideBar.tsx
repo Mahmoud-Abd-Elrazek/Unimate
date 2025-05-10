@@ -15,7 +15,7 @@ import useAuthStore from '../../Store/useAuthStore';
 export default function SideBar() {
   const Role = useAuthStore((state) => state.role);
 
-  const links = Role === 'Owner'
+  const links = Role !== 'Owner'
     ? [
         { to: '/auther/profile', label: 'عرض الملف الشخصى', icon: IoPersonOutline },
         { to: '/auther/editprofile', label: 'الإعدادات والخصوصية', icon: MdOutlinePrivacyTip },
@@ -49,7 +49,7 @@ export default function SideBar() {
           <li key={link.to}>
             <Link
               to={link.to}
-              className={`flex justify-between items-center p-3 rounded-lg transition-all duration-200 text-sm font-medium ${location.pathname === link.to
+              className={`flex justify-end items-center p-3 rounded-lg transition-all duration-200 text-sm font-medium ${location.pathname === link.to
                   ? "bg-gray-100 dark:bg-gray-800 border-r-4 border-red-500"
                   : "hover:bg-gray-50 dark:hover:bg-gray-800"
                 }`}
