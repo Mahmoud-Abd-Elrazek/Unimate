@@ -22,11 +22,11 @@ const FilterBar: React.FC = () => {
           <IoIosSearch className="text-white text-xl" />
         </div>
       </div>
-
       {/* Price Range */}
-      <div className="w-full md:w-auto flex flex-col sm:flex-row sm:items-center gap-2 text-right">
-        <span className="text-sm text-gray-500 dark:text-gray-300">السعر</span>
-        <div className="w-full sm:w-64">
+      <div className="w-full md:w-auto flex flex-col sm:flex-row sm:items-center gap-2 text-right relative">
+        <span className="text-sm text-gray-500 dark:text-gray-300 sm:static absolute right-0 top-0">السعر</span>
+
+        <div className="relative w-full sm:w-64">
           <Slider
             range
             min={0}
@@ -56,11 +56,19 @@ const FilterBar: React.FC = () => {
             ]}
             railStyle={{ backgroundColor: '#ccc', height: 10 }}
           />
+
+          {/* Price in small screens*/}
+          <span className="block sm:hidden absolute top-full left-1/2 transform -translate-x-1/2 mt-1 text-xs font-medium  px-2">
+            {priceRange[0]} ج.م - {priceRange[1]} ج.م
+          </span>
         </div>
-        <span className="text-sm text-gray-600 dark:text-gray-200 whitespace-nowrap">
+
+        {/* Price in big screens*/}
+        <span className="hidden sm:inline text-sm text-gray-600 dark:text-gray-200 whitespace-nowrap">
           {priceRange[0]} ج.م - {priceRange[1]} ج.م
         </span>
       </div>
+
 
       {/* Dropdown Filters */}
       <div className="w-full md:w-auto flex flex-wrap justify-between gap-2">

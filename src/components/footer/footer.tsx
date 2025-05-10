@@ -26,9 +26,9 @@ export default function Footer() {
 
             {/* Social Icons */}
             <div className='flex justify-center gap-6 text-[#212529] dark:text-[white]'>
-                <FaFacebook className='cursor-pointer w-5 h-5 hover:text-[#0a0707]' />
-                <FaSquareInstagram className='cursor-pointer w-5 h-5 hover:text-[#0a0707]' />
-                <FaWhatsapp className='cursor-pointer w-5 h-5 hover:text-[#0a0707]' />
+                <FaFacebook className='cursor-pointer w-5 h-5 hover:text-[#0a0707] hover:text-[blue]' />
+                <FaSquareInstagram className='cursor-pointer w-5 h-5 hover:text-[#0a0707] hover:text-red-800' />
+                <FaWhatsapp className='cursor-pointer w-5 h-5 hover:text-[#0a0707] hover:text-[green]' />
             </div>
 
             {/* Copyrights */}

@@ -21,7 +21,7 @@ export default function NavBar() {
             </Link>
 
             {/* Search bar */}
-            <div className='hidden lg:block dark:bg-[#1D1D1D] dark:rounded-3xl dark:shadow '>
+            <div className='dark:bg-[#1D1D1D] dark:rounded-3xl dark:shadow'>
                 <div>
                     <Search_bar placeholderval="ابحث عن سكن مناسب لك" />
                 </div>
