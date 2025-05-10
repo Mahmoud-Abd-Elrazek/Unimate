@@ -8,7 +8,7 @@ interface ProtectedRouteProps {
 }
 
 function ProtectedRoute({ children, allowedRoles }: ProtectedRouteProps) {
-  const { user, isAuthenticated } = useAuthStore();
+  const { role, isAuthenticated } = useAuthStore();
   const navigate = useNavigate();
 
   if (!isAuthenticated) {
@@ -16,7 +16,7 @@ function ProtectedRoute({ children, allowedRoles }: ProtectedRouteProps) {
     return null;
   }
 
-  if (isAuthenticated && (!user || !allowedRoles.includes(user))) {
+  if (isAuthenticated && (!role || !allowedRoles.includes(role))) {
     navigate('/unauthorized');
     return null;
   }

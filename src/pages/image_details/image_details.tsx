@@ -73,7 +73,7 @@ const Gallery = () => {
       {/* صورة مكبرة مع زر رجوع */}
       {selectedImage && (
         <div
-          className="absolute top-0 left-0 w-full min-h-full bg-white/80 dark:bg-gray-900/60 backdrop-blur-[2px] flex items-center justify-center z-50 p-4"
+          className="absolute top-0 left-0 w-full min-h-screen bg-white/80 dark:bg-gray-900/60 backdrop-blur-[2px] flex items-center justify-center z-50 p-4"
           onClick={() => setSelectedImage(null)}
           onTouchStart={(e) => setStartY(e.touches[0].clientY)}
           onTouchMove={(e) => {

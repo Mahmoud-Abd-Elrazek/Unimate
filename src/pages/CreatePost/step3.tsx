@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { FaCheckCircle, FaPlusCircle } from "react-icons/fa";
 import {  MdMicrowave, MdBlender, MdLocalDrink } from "react-icons/md";
 import { GiGasStove } from "react-icons/gi";
@@ -71,19 +71,19 @@ const StepThree = () => {
 
       {/* Navigation Buttons - Updated positions */}
       <div className="flex justify-between items-center mt-8 px-4">
-        <button className="text-gray-500 hover:text-gray-700 transition-colors flex items-center gap-1">
+        <Link to='/help' className="text-gray-500 hover:text-gray-700 transition-colors flex items-center gap-1">
           <span>مركز المساعدة</span>
           <span className="text-xl">؟</span>
-        </button>
+        </Link>
         <div className="flex gap-4">
           <button
-            onClick={() => navigate("/createpost/step1")}
+            onClick={() => navigate("/createpost/step2")}
             className="px-6 py-2 rounded-full bg-gray-100 text-gray-700 "
           >
             رجوع
           </button>
           <button
-            onClick={() => navigate("/createpost/step3")}
+            onClick={() => navigate("/createpost/step4")}
             className="px-6 py-2 rounded-full bg-[#4F4F4F] text-white dark:bg-[#515151] dark:text-white"
           >
             التالي
