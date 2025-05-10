@@ -42,7 +42,7 @@ import Edit_login_information from './pages/EditProfilePage/Edit_login_informati
 import Edit_profile_information from './pages/EditProfilePage/Edit_personal_information/edit_profile_information';
 import RegisterStudentPage from './pages/Auth/RegisterPage/registerStudentPage';
 import RegisterOwnerPage from './pages/Auth/RegisterPage/registerOwnerPage';
-import RegisterPage from './pages/Auth/RegisterPage/RegisterPage';
+import RegisterPage from './pages/Auth/RegisterPage/registe';
 import ChangePass from './pages/Auth/Passwords/ChangePass/changepass';
 import ConfirmEmail from './pages/Auth/Emails/confirmemail';
 export default function App() {
