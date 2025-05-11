@@ -1,9 +1,12 @@
 import { Outlet } from 'react-router-dom';
 import Side_bar_edit_profile from '../../components/Side_bar_edit_Profile/side_bar_edit_profile';
 
+// import animation file
+import "../../../public/animations.css";
+
 const EditProfilePage = () => {
   return (
-    <div className="flex  lg:flex-row-reverse lg:py-6 min-h-[80vh] lg:ml-auto ">
+    <div className="flex  lg:flex-row-reverse lg:py-6 min-h-[80vh] lg:ml-auto fade-in">
   
   {/* الشريط الجانبي */}
   <aside className="w-full lg:w-[280px] rounded-2xl border border-gray-200 dark:border-gray-700 p-2 bg-[#FAFAFA] dark:bg-[#121111] shadow-md">

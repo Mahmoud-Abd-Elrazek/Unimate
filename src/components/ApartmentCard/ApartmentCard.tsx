@@ -13,9 +13,10 @@ import { Swiper as SwiperClass } from "swiper";
 
 interface ApartmentCardProps {
   className?: string;
+  edit?: boolean;
 }
 
-const ApartmentCard = ({ className = "" }: ApartmentCardProps) => {
+const ApartmentCard = ({ className = "", edit = false}: ApartmentCardProps) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const swiperRef = useRef<SwiperClass | null>(null);
@@ -160,6 +161,19 @@ const ApartmentCard = ({ className = "" }: ApartmentCardProps) => {
           </div>
         </div>
       </Link>
+
+      {/* add edit button */}
+      {edit && (
+        <div className="absolute top-3 right-3 z-10">
+          <button
+            type="button"
+            className="bg-green-500 text-white px-8 py-2 rounded-[10px] text-base shadow-md cursor-pointer"
+          >
+            edit
+          </button>
+        </div>
+      )}
+
     </div>
   );
 };

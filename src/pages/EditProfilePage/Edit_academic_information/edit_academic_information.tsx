@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
+// import animation file
+import "../../../../public/animations.css";
+
 export default function AccountSettings() {
   const [, setSelectedImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -13,7 +17,7 @@ export default function AccountSettings() {
   };
 
   return (
-    <div dir="rtl" className="container mx-auto px-4 py-6">
+    <div dir="rtl" className="container mx-auto px-4 py-6 fade-in">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between">

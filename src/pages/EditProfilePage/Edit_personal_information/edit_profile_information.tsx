@@ -1,8 +1,12 @@
 //import React from 'react';
 import { Link } from 'react-router-dom';
+
+// import animation file
+import "../../../../public/animations.css";
+
 export default function Edit_profile_information() {
   return (
-    <div dir="rtl" className="container mx-auto px-4 py-6">
+    <div dir="rtl" className="container mx-auto px-4 py-6 fade-in">
 
       <div className="max-w-4xl mx-auto">
         {/* Header Section with Button and Title in one line */}
