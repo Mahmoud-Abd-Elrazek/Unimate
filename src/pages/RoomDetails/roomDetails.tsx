@@ -49,51 +49,55 @@ export default function RoomDetails() {
         </h1>
       </div>
       {/* Imgs Section */}
-      <div className="mt-4 bg-white rounded-xl shadow-md overflow-hidden">
-        {/* الصور */}
-        <div className="flex flex-row-reverse gap-2 p-3 dark:bg-[#171515]">
-          {/* الصورة الكبيرة */}
-          <div className="flex-1">
-            <img
-              src="https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp" // الصورة الكبيرة
-              alt="Main Room"
-              className="w-full h-full max-h-[400px] object-cover rounded-lg"
-            />
-          </div>
+      <div className="mt-4  rounded-xl shadow-md overflow-hidden">
+  {/* الصور */}
+  <div className="flex flex-col lg:flex-row-reverse gap-2 p-3">
+    {/* الصورة الكبيرة */}
+    <div className="w-full lg:flex-1">
+      <img
+        src="https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp"
+        alt="Main Room"
+        className="w-full h-full max-h-[400px] object-cover rounded-lg"
+      />
+    </div>
 
-          {/* الصور الجانبية + زر اظهار كل الصور */}
-          <div className="w-[30%] flex flex-col gap-2">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
-              alt="Thumb 1"
-              className="w-full h-[128px] object-cover rounded-md"
-            />
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
-              alt="Thumb 2"
-              className="w-full h-[128px] object-cover rounded-md"
-            />
-            <div className="relative w-full h-[128px]">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
-                alt="Thumb 3"
-                className="w-full h-[128px] object-cover rounded-md"
-              />
-              {/* زر اظهار كل الصور */}
-              <Link to='/img_details' className="absolute bottom-3 left-3 bg-red-600/90 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-full flex items-center gap-2 shadow-md transition">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M3 3h2v2H3V3zm3 0h2v2H6V3zm3 0h2v2H9V3zm3 0h2v2h-2V3zm3 0h2v2h-2V3zM3 6h2v2H3V6zm3 0h2v2H6V6zm3 0h2v2H9V6zm3 0h2v2h-2V6zm3 0h2v2h-2V6zM3 9h2v2H3V9zm3 0h2v2H6V9zm3 0h2v2H9V9zm3 0h2v2h-2V9zm3 0h2v2h-2V9z" />
-                </svg>
-                اظهار كل الصور
-              </Link>
-            </div>
-          </div>
-        </div>
+    {/* الصور الجانبية + زر اظهار كل الصور */}
+    <div className="w-full lg:w-[30%] flex flex-col lg:gap-2 gap-3 mt-2 lg:mt-0">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
+        alt="Thumb 1"
+        className="w-full h-[120px] object-cover rounded-md"
+      />
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
+        alt="Thumb 2"
+        className="w-full h-[120px] object-cover rounded-md"
+      />
+      <div className="relative w-full h-[120px]">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
+          alt="Thumb 3"
+          className="w-full h-full object-cover rounded-md"
+        />
+        {/* زر اظهار كل الصور */}
+        <Link
+          to="/img_details"
+          className="absolute bottom-3 left-3 bg-red-600/90 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-full flex items-center gap-2 shadow-md transition"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M3 3h2v2H3V3zm3 0h2v2H6V3zm3 0h2v2H9V3zm3 0h2v2h-2V3zm3 0h2v2h-2V3zM3 6h2v2H3V6zm3 0h2v2H6V6zm3 0h2v2H9V6zm3 0h2v2h-2V6zm3 0h2v2h-2V6zM3 9h2v2H3V9zm3 0h2v2H6V9zm3 0h2v2H9V9zm3 0h2v2h-2V9zm3 0h2v2h-2V9z" />
+          </svg>
+          اظهار كل الصور
+        </Link>
+      </div>
+    </div>
+</div>
+
 
         {/* الوصف */}
         <div className="px-5 py-4 text-right dark:bg-[#171515]">
@@ -120,9 +124,11 @@ export default function RoomDetails() {
         {/* Left section */}
         <div className="left dark:bg-[#1D1D1D]
         w-full
-        lg:w-[35%] 
-        md:flex-1 
-        sm:w-full sm:mb-4">
+        md:max-w-[40%]
+        sm:max-[50%] sm:mb-4
+        md
+        lg:max-w-[35%]
+        xl:max-w-[30%]">
           <div className="rounded-xl border p-4 shadow-md space-y-3">
             <div className="flex justify-between items-center">
               <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 rounded p-2">

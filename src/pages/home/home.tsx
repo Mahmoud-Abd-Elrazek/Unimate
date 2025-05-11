@@ -28,9 +28,10 @@ export default function Home() {
         </h1>
 
         <div className='w-full'>
-          <div className='w-full flex justify-center items-center h-auto sm:h-40'>
+          <div className='w-full max-w-[1050px] mx-auto flex justify-center items-center h-auto sm:h-40'>
             <Filter_bar />
           </div>
+
         </div>
       </section>
 
