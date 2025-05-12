@@ -60,24 +60,26 @@ export default function MyProperties() {
         {requests.map((req) => (
           <div
             key={req.id}
-            className="flex flex-col md:flex-row justify-between items-center gap-4 border rounded-xl p-4 shadow-sm "
+            className="flex flex-col md:flex-row justify-between md:items-center gap-4 border rounded-xl p-4 shadow-sm w-full"
           >
             {/* الأكشنات */}
-            <div className="flex flex-col items-center gap-2 h-[90px] ">
-              <Button className="bg-green-600 text-white hover:bg-green-700 w-[110px]" onClick={() => { }}>
+            <div className="flex flex-row md:flex-col items-center md:items-start gap-2 md:h-[90px] w-full md:w-auto">
+              <Button className="bg-green-600 text-white hover:bg-green-700 w-full md:w-[110px] " onClick={() => { }}>
                 قبول
               </Button>
-              <Button className="bg-red-500 text-white hover:bg-red-600 w-[110px]" onClick={() => { }}>
+              <Button className="bg-red-500 text-white hover:bg-red-600 w-full md:w-[110px] " onClick={() => { }}>
                 رفض
               </Button>
-              <span className="text-sm text-gray-500">{req.timeAgo}</span>
+              <span className="text-sm text-gray-500 md:mt-2">{req.timeAgo}</span>
             </div>
 
 
             {/* التفاصيل */}
-            <div className="flex-1 text-right">
-              <h3 className="text-md md:text-lg font-semibold text-gray-800 dark:text-[#D9D9D9]">{req.description}</h3>
-              <div className="flex justify-end items-center gap-2 mt-1 ">
+            <div className="flex-1 text-right w-full ">
+              <h3 className="text-md md:text-lg font-semibold text-gray-800 dark:text-[#D9D9D9]">
+                {req.description}
+              </h3>
+              <div className="flex justify-end items-center gap-2 mt-1">
                 <span className="text-sm text-gray-600 dark:text-[#D9D9D9]">{req.requester}</span>
                 <FaUserCircle className="text-xl text-gray-600 dark:text-[#D9D9D9]" />
               </div>

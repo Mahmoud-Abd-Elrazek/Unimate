@@ -10,6 +10,31 @@
    }
 }
 
+@keyframes fadeInRight {
+   from {
+      transform: translateX(100px);
+      opacity: 0;
+   }
+
+   to {
+      transform: translateX(0);
+      opacity: 1;
+   }
+}
+
+
+@keyframes fadeOutRight {
+   from {
+      transform: translateX(0);
+      opacity: 1;
+   }
+   to {
+      transform: translateX(100px);
+      opacity: 0;
+   }
+
+}
+
 @keyframes slideOutDown {
    from {
       transform: translateY(0);
@@ -70,4 +95,10 @@
 
 .slide-out {
    animation: slideOutDown 0.4s ease-in forwards;
+}
+.fade-in-right{
+   animation: fadeInRight 0.2s ease-out forwards;
+}
+.fade-out-right{
+   animation: fadeOutRight 0.2s ease-out forwards;
 }
