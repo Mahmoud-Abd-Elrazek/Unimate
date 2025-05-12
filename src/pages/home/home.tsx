@@ -42,9 +42,9 @@ export default function Home() {
           <h1 className='flex justify-end text-2xl items-center my-5'>
             الاعلى تقييما <FaRegStar />
           </h1>
-          {/* <div>
+          <div>
             <ApartmentGrid count={5} />
-          </div> */}
+          </div>
         </div>
 
         {/* اضيف حديثا */}
