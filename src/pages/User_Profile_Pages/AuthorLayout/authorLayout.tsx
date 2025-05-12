@@ -29,12 +29,14 @@ const AuthorLayout = () => {
       <main className="w-full flex-1 px-4 py-6 lg:w-0">
         {/* ✅ زر إظهار الـ Sidebar في الموبايل */}
         {!hideSidebarRoutes && !sidebarOpen && (
+          <div className='flex justify-end w-full'>
           <button
             onClick={() => setSidebarOpen(true)}
-            className="lg:hidden mb-4 bg-gray-200 dark:bg-gray-700 p-2 rounded-md shadow-md flex justify-self-end"
+            className="lg:hidden mb-4 bg-gray-200 dark:bg-gray-700 p-2 rounded-md shadow-md "
           >
             <IoMdMenu className="text-xl text-gray-800 dark:text-white" />
           </button>
+          </div>
         )}
       {/* ✅ Sidebar Overlay في الموبايل */}
       {sidebarOpen && (

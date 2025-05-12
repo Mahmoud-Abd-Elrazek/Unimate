@@ -24,7 +24,7 @@ const RealEstateSlider: React.FC = () => {
 
         <div className="relative">
           {/* السهم السابق */}
-          <button className="custom-prev absolute top-1/2 left-2 sm:-left-5 z-10 -translate-y-1/2 bg-white dark:bg-gray-800 shadow-md p-2 rounded-full">
+          <button className="custom-prev absolute top-1/2 left-2 sm:-left-5 z-10 -translate-y-1/2  dark:bg-gray-800 shadow-md p-2 rounded-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-5 h-5 text-gray-700 dark:text-white"
@@ -37,7 +37,7 @@ const RealEstateSlider: React.FC = () => {
           </button>
 
           {/* السهم التالي */}
-          <button className="custom-next absolute top-1/2 right-2 sm:-right-5 z-10 -translate-y-1/2 bg-white dark:bg-gray-800 shadow-md p-2 rounded-full">
+          <button className="custom-next absolute top-1/2 right-2 sm:-right-5 z-10 -translate-y-1/2  dark:bg-gray-800 shadow-md p-2 rounded-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-5 h-5 text-gray-700 dark:text-white"
