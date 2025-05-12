@@ -41,15 +41,6 @@ export default function Help() {
 
         {/* Step 1 */}
         <div className=" border rounded-xl p-4 mb-6">
-  <div className="grid md:grid-cols-2 gap-4 items-center">
-    <div>
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
-        alt="الخطوة الأولى"
-        className="rounded-md border w-full"
-      />
-    </div>
-
     <div className="text-right">
       <h3 className="font-semibold text-lg text-gray-800 dark:text-white mb-2 flex items-center gap-2 justify-end">
         <span>الخطوه الاولي: انتقل الي اضافه مسكن</span>
@@ -62,6 +53,15 @@ export default function Help() {
         سجل حساب علي unimate كا صاحب عقار لاضافه المسكن (تواصل معنا لتفعيل حسابك الان بكل سهوله)
       </p>
     </div>
+  <div className="grid md:grid-cols-2 gap-4 items-center">
+    <div>
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
+        alt="الخطوة الأولى"
+        className="rounded-md border w-full"
+      />
+    </div>
+
   </div>
 </div>
 
@@ -82,14 +82,6 @@ export default function Help() {
         {/* Step 3 */}
         <div className="border rounded-xl p-4 mb-6">
   <div className="grid md:grid-cols-2 gap-4 items-center">
-    <div>
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
-        alt="الخطوة الثالثة"
-        className="rounded-md border w-full"
-      />
-    </div>
-
     <div className="text-right">
       <h3 className="font-semibold text-lg text-gray-800 dark:text-white mb-2 flex items-center gap-2 justify-end">
         <span>الخطوه الثالثه: أرسل معلومات المسكن</span>
@@ -105,6 +97,14 @@ export default function Help() {
         سيتم مراجعة معلومات مسكنك من قبل فريقنا ونشرها خلال 24 ساعة
       </p>
     </div>
+    <div>
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
+        alt="الخطوة الثالثة"
+        className="rounded-md border w-full"
+      />
+    </div>
+
   </div>
 </div>
 
