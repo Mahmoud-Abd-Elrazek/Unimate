@@ -10,46 +10,52 @@ import useAuthStore from "../../Store/useAuthStore";
 
 
 export default function NavBar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const Role = useAuthStore((state) => state.role);
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const Role = useAuthStore((state) => state.role);
-    return (
-        <div className='px-4 md:px-10 m-0 h-[80px] w-full flex justify-between items-center bg-[#EFEFEF] dark:bg-[#121111]' >
-            {/* Logo */}
-            <Link to='/' className='flex flex-wrap justify-center items-center text-center text-[#212529] cursor-pointer'>
-                <Logo />
-            </Link>
+  return (
+    <div className='px-4 md:px-10 m-0 h-[80px] w-full flex justify-between items-center bg-[#EFEFEF] dark:bg-[#121111]'>
 
-            {/* Search bar */}
-            <div className='dark:bg-[#1D1D1D] dark:rounded-3xl dark:shadow'>
-                <div>
-                    <Search_bar placeholderval="ابحث عن سكن مناسب لك" />
-                </div>
-            </div>
+      {/* Logo */}
+      <Link to='/' className='flex items-center text-[#212529] cursor-pointer'>
+        <Logo />
+      </Link>
 
-            {/* nav-bar right side */}
-            <div className='flex justify-between items-center gap-[40px]'>
-                
-                {/* create post button for owner */}
-                {Role==="Owner"&&<Link to='/createpost' className="btn MainColorBG text-white ">اضافه مسكن جديد</Link>}
-                
-                {/* lang & theme icons */}
-                <div className="flex justify-between items-center gap-[25px] ">
-                    <ThemeToggle />
-                </div>
+      {/* Search Bar - Hidden on small screens */}
+      <div className=' sm:block dark:bg-[#1D1D1D] dark:rounded-3xl dark:shadow'>
+        <Search_bar placeholderval="ابحث عن سكن مناسب لك" />
+      </div>
 
-                {/* user icon */}
-                <div className='border-[1px] border-[#CED4DA] rounded-3xl flex items-center w-[95px] h-[49px] justify-between p-[10px] hover:shadow hover:cursor-pointer
-'                   onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                    <IoMdMenu className="w-[23px] h-[23px] mr-1 text-[#1E1E1E] dark:text-[white]" />
-                    <FaUserCircle className='w-[29px] h-[29px] mr-1 text-[#1E1E1E] dark:text-[white]' />
-                </div>
+      {/* Right section */}
+      <div className='flex items-center gap-4'>
 
-            </div>
+        {/* Create post - only on medium and up */}
+        {Role === "Owner" && (
+          <Link
+            to='/createpost'
+            className="hidden md:block btn MainColorBG text-white"
+          >
+            اضافه مسكن جديد
+          </Link>
+        )}
 
-            {/* menu card */}
-            {(isMenuOpen && <MenuCard setIsOpen={setIsMenuOpen} />)}
-
+        {/* Theme toggle always visible */}
+        <div className="hidden sm:block">
+          <ThemeToggle />
         </div>
-    )
+
+        {/* Mobile menu toggle */}
+        <div
+          className='border border-[#CED4DA] rounded-3xl flex items-center w-[95px] h-[49px] justify-between p-2 hover:shadow cursor-pointer'
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <IoMdMenu className="w-[23px] h-[23px] mr-1 text-[#1E1E1E] dark:text-white" />
+          <FaUserCircle className='w-[29px] h-[29px] mr-1 text-[#1E1E1E] dark:text-white' />
+        </div>
+      </div>
+
+      {/* Dropdown Menu (user) */}
+      {isMenuOpen && <MenuCard setIsOpen={setIsMenuOpen} />}
+    </div>
+  );
 }
