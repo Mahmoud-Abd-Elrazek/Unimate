@@ -100,13 +100,7 @@ input {
    }
 }
 
-@media (max-width: 768px) { 
-   .input-container {
-      position: absolute;
-      bottom: 10px;
-      left: calc(50% - 250px / 2);
-   }
-}
+
 
 @media (max-width: 480px) {
    .input-container { 
