@@ -8,6 +8,16 @@ import './authorLayout.css';
 const AuthorLayout = () => {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setSidebarOpen(false);
+      setIsClosing(false); // reset للفتح مره ثانية
+    }, 300); // نفس مدة fade-out animation بالـ CSS
+  };
+
+
 
   const hideSidebarRoutes =
     location.pathname.startsWith('/auther/editprofile') ||
@@ -29,31 +39,30 @@ const AuthorLayout = () => {
       <main className="w-full flex-1 px-4 py-6 lg:w-0">
         {/* ✅ زر إظهار الـ Sidebar في الموبايل */}
         {!hideSidebarRoutes && !sidebarOpen && (
-          <div className='flex justify-end w-full'>
-          <button
-            onClick={() => setSidebarOpen(true)}
-            className="lg:hidden mb-4 bg-gray-200 dark:bg-gray-700 p-2 rounded-md shadow-md "
-          >
-            <IoMdMenu className="text-xl text-gray-800 dark:text-white" />
-          </button>
+          <div className='flex justify-end w-full '>
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="lg:hidden mb-4 bg-gray-200 dark:bg-gray-700 p-2 rounded-md shadow-md "
+            >
+              <IoMdMenu className="text-xl text-gray-800 dark:text-white" />
+            </button>
           </div>
         )}
-      {/* ✅ Sidebar Overlay في الموبايل */}
-      {sidebarOpen && (
-        <div className="lg:hidden fixed inset-0  bg-opacity-4 flex justify-end items-start z-50">
-          <div className="sm:w-[50%] md:w-[25%] max-w-sm bg-[#FAFAFA] dark:bg-[#121111] p-4 shadow-lg h-full relative">
-            {/* زر إغلاق */}
-            <button
-              onClick={() => setSidebarOpen(false)}
-              className="bg-gray-200 dark:bg-gray-700 p-2 rounded-md shadow-md"
-            >
-              <IoMdClose />
-            </button>
-
-            <SideBar />
+        {/* ✅ Sidebar Overlay في الموبايل */}
+        {sidebarOpen && (
+          <div className="lg:hidden fixed inset-0 bg-black bg-opacity-25 flex justify-end items-start z-50">
+            <div className={`sm:w-[50%] md:w-[25%] max-w-sm bg-[#FAFAFA] dark:bg-[#121111] p-4 shadow-lg h-full relative ${isClosing ? "fade-out-right" : "fade-in-right"}`}>
+              <button
+                onClick={handleClose}
+                className="bg-gray-200 dark:bg-gray-700 p-2 rounded-md shadow-md absolute top-4 left-4"
+              >
+                <IoMdClose />
+              </button>
+              <SideBar onLinkClick={handleClose} /> {/* ✅ هنا التعديل */}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+
 
         <Outlet />
       </main>

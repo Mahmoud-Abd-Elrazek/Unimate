@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { IoPersonOutline } from 'react-icons/io5';
 import { CiLogout }         from 'react-icons/ci';
 import { BiCommentDetail }  from 'react-icons/bi';
@@ -11,9 +11,12 @@ import { GoHistory } from "react-icons/go";
 import { TbHomeCheck } from 'react-icons/tb';
 import { FaRegCalendarCheck } from 'react-icons/fa';
 import useAuthStore from '../../Store/useAuthStore';
-
-export default function SideBar() {
+type SideBarProps = {
+  onLinkClick?: () => void;
+};
+export default function SideBar({ onLinkClick }: SideBarProps) {
   const Role = useAuthStore((state) => state.role);
+  const location = useLocation();
 
   const links = Role === 'Owner'
     ? [
@@ -39,23 +42,28 @@ export default function SideBar() {
 
   return (
     <div className="w-full max-w-sm  rounded-2xl  text-right ">
-        <div className="flex flex-col items-center py-6">
-                <h2 className="text-lg font-semibold ">محمود عبدالرزاق حمدالله</h2>
-              </div>
-        
-              <hr className="my-4 border-gray-300 dark:border-gray-700" />
-              <ul className="space-y-1">
+      <div className="flex flex-col items-center py-6">
+        <h2 className="text-lg font-semibold ">محمود عبدالرزاق حمدالله</h2>
+      </div>
+
+      <hr className="my-4 border-gray-300 dark:border-gray-700" />
+
+      <ul className="space-y-1">
         {links.map((link) => (
           <li key={link.to}>
             <Link
               to={link.to}
-              className={`flex justify-end items-center p-3 rounded-lg transition-all duration-200 text-sm font-medium ${location.pathname === link.to
+              onClick={onLinkClick}
+              className={`flex justify-end items-center p-3 rounded-lg transition-all duration-200 text-sm font-medium ${
+                location.pathname === link.to
                   ? "bg-gray-100 dark:bg-gray-800 border-r-4 border-red-500"
                   : "hover:bg-gray-50 dark:hover:bg-gray-800"
-                }`}
+              }`}
             >
               <span className="text-sm text-right">{link.label}</span>
-              <span className="text-xl text-gray-600 dark:text-gray-300"><link.icon /></span>
+              <span className="text-xl text-gray-600 dark:text-gray-300">
+                <link.icon />
+              </span>
             </Link>
           </li>
         ))}

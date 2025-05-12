@@ -37,32 +37,31 @@ export default function My_reservations() {
         </div>
             {/* the table */}
         <div className="p-5">
-
-        <div className="overflow-x-auto rounded-xl shadow-md ">
-      <table className="min-w-full text-right border-collapse ">
-        <thead className="text-center">
-          <tr className="bg-gray-300 dark:text[white] dark:bg-[#1D1D1D]">
-            <th className="py-3 px-4">الحالة</th>
-            <th className="py-3 px-4">تاريخ الحجز</th>
-            <th className="py-3 px-4">مكان الإقامة</th>
+  <div className="overflow-x-auto rounded-xl shadow-md w-full">
+    <table className="w-full min-w-[500px] text-right border-collapse">
+      <thead className="text-center">
+        <tr className="bg-gray-300 dark:text-[white] dark:bg-[#1D1D1D]">
+          <th className="py-3 px-4">الحالة</th>
+          <th className="py-3 px-4">تاريخ الحجز</th>
+          <th className="py-3 px-4">مكان الإقامة</th>
+        </tr>
+      </thead>
+      <tbody className="text-center">
+        {bookings.map((booking, index) => (
+          <tr key={index} className="border-b border-gray-200">
+            <td className="py-2 px-4">
+              <span className={`px-3 py-1 rounded-lg text-sm ${getStatusStyle(booking.status)}`}>
+                {booking.status}
+              </span>
+            </td>
+            <td className="py-2 px-4">{booking.date}</td>
+            <td className="py-2 px-4">{booking.location}</td>
           </tr>
-        </thead>
-        <tbody className="text-center">
-          {bookings.map((booking, index) => (
-              <tr key={index} className="border-b border-gray-200">
-              <td className="py-2 px-4">
-                <span className={`px-3 py-1 rounded-lg text-sm ${getStatusStyle(booking.status)}`}>
-                  {booking.status}
-                </span>
-              </td>
-              <td className="py-2 px-4">{booking.date}</td>
-              <td className="py-2 px-4">{booking.location}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-          </div>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
     </div>
   )
 }

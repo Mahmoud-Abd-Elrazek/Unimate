@@ -1,33 +1,72 @@
 import { Outlet } from 'react-router-dom';
+import { useState } from 'react';
 import Side_bar_edit_profile from '../../components/Side_bar_edit_Profile/side_bar_edit_profile';
+import { IoMdMenu, IoMdClose } from 'react-icons/io';
 
-// import animation file
+// استيراد ملف الأنيميشن
 import "../../../public/animations.css";
 
 const EditProfilePage = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setSidebarOpen(false);
+      setIsClosing(false);
+    }, 300); // نفس مدة fade-out
+  };
+
   return (
-    <div className="flex  lg:flex-row-reverse lg:py-6 min-h-[80vh] lg:ml-auto fade-in">
-  
-  {/* الشريط الجانبي */}
-  <aside className="w-full lg:w-[280px] rounded-2xl border border-gray-200 dark:border-gray-700 p-2 bg-[#FAFAFA] dark:bg-[#121111] shadow-md">
-    <Side_bar_edit_profile />
-  </aside>
+    <div className="flex flex-col lg:flex-row-reverse min-h-[80vh] relative">
 
-  {/* المحتوى الرئيسي */}
-  <main className="flex-1 w-full max-w-7xl lg:mr-20 ">
+      {/* ✅ Sidebar في الشاشات الكبيرة */}
+      <aside className="hidden lg:block lg:w-[280px] p-2 lg:p-4 lg:mt-12">
+        <div className="h-screen rounded-2xl border border-gray-200 dark:border-gray-700 bg-[#FAFAFA] dark:bg-[#121111] shadow-md">
+          <Side_bar_edit_profile />
+        </div>
+      </aside>
 
-    <h1 className="text-center text-2xl font-bold mb-6 border-b border-gray-300 pb-3 dark:text-white dark:border-gray-600">
-      إعدادات الحساب
-    </h1>
+      {/* ✅ محتوى الصفحة */}
+      <main className="w-full flex-1 px-4 py-6">
+        {/* ✅ زر إظهار الـ Sidebar في الشاشات الصغيرة */}
+        {!sidebarOpen && (
+          <div className='flex justify-end w-full'>
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="lg:hidden mb-4 bg-gray-200 dark:bg-gray-700 p-2 rounded-md shadow-md "
+            >
+              <IoMdMenu className="text-xl text-gray-800 dark:text-white" />
+            </button>
+          </div>
+        )}
 
-    {/* المحتوى المتغير */}
-    <div className="rounded-2xl p-6 shadow-md">
-      <Outlet />
+        {/* ✅ Sidebar Overlay في الشاشات الصغيرة */}
+        {sidebarOpen && (
+          <div className="lg:hidden fixed inset-0 bg-black bg-opacity-25 flex justify-end items-start z-50">
+            <div className={`sm:w-[50%] md:w-[25%] max-w-sm bg-[#FAFAFA] dark:bg-[#121111] p-4 shadow-lg h-full relative ${isClosing ? "fade-out-right" : "fade-in-right"}`}>
+              <button
+                onClick={handleClose}
+                className="bg-gray-200 dark:bg-gray-700 p-2 rounded-md shadow-md absolute top-4 left-4"
+              >
+                <IoMdClose />
+              </button>
+              <Side_bar_edit_profile onLinkClick={handleClose} /> {/* ✅ هنا التعديل */}
+            </div>
+          </div>
+        )}
+
+
+        {/* العنوان والمحتوى */}
+        <h1 className="text-center text-2xl font-bold mb-6 border-b border-gray-300 pb-3 dark:text-white dark:border-gray-600">
+          إعدادات الحساب
+        </h1>
+
+        <div className="rounded-2xl p-6 shadow-md">
+          <Outlet />
+        </div>
+      </main>
     </div>
-  </main>
-
-</div>
-
   );
 };
 

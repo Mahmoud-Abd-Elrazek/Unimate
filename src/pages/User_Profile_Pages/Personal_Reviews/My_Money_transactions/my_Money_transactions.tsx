@@ -10,7 +10,6 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-// import { FaSearch } from "react-icons/fa";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -24,22 +23,17 @@ const data = {
       borderRadius: {
         topLeft: 10,
         topRight: 10,
-        bottomLeft: 0,
-        bottomRight: 0,
       },
       barThickness: 30,
-      borderSkipped: false, // يمنع قص الزوايا الدائرية
+      borderSkipped: false,
     },
   ],
 };
 
-
 const options = {
   responsive: true,
   plugins: {
-    legend: {
-      display: false,
-    },
+    legend: { display: false },
     tooltip: {
       backgroundColor: "rgba(0, 0, 0, 0.7)",
       titleFont: { size: 14 },
@@ -49,26 +43,13 @@ const options = {
   },
   scales: {
     x: {
-      ticks: {
-        font: {
-          size: 14,
-        },
-      },
-      grid: {
-        display: false,
-      },
+      ticks: { font: { size: 12 } },
+      grid: { display: false },
     },
     y: {
       beginAtZero: true,
-      grid: {
-        drawBorder: false,
-        color: "#eee",
-      },
-      ticks: {
-        font: {
-          size: 14,
-        },
-      },
+      grid: { drawBorder: false, color: "#eee" },
+      ticks: { font: { size: 12 } },
     },
   },
 };
@@ -82,29 +63,21 @@ const FinancialTransactions = () => {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="flex flex-col  ">
-
-      {/* Main scrollable */}
-      <main className=" overflow-auto p-4 md:p-6">
-        <h1 className="text-2xl font-bold text-center mb-6">معاملاتي المالية</h1>
+    <div className="flex flex-col">
+      <main className="overflow-auto px-4 py-4 md:px-6">
+        <h1 className="text-xl sm:text-2xl font-bold text-center mb-6">معاملاتي المالية</h1>
 
         {/* جدول المعاملات */}
         <div className="rounded shadow p-4 mb-8">
-          <div className="relative w-full">
-            <input
-              type="text"
-              placeholder="...ابحث في سجل المعاملات"
-              className="w-full p-2 mr-10 mb-4 border border-gray-300 rounded-full text-right focus:border-black focus:ring-1 focus:ring-black"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            {/* Search Icon */}
-            {/* <span className="absolute right-3 top-3 text-gray-500">
-              <FaSearch className="text-gray-400" />
-            </span> */}
-          </div>
+          <input
+            type="text"
+            placeholder="...ابحث في سجل المعاملات"
+            className="w-full p-2 mb-4 border border-gray-300 rounded-full text-right focus:border-black focus:ring-1 focus:ring-black"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
           <div className="overflow-x-auto">
-            <table className="w-full text-right border-t text-sm">
+            <table className="min-w-[500px] w-full text-right border-t text-sm">
               <thead className="bg-gray-100 dark:bg-[#1D1D1D]">
                 <tr>
                   <th className="p-2">اسم الطلب</th>
@@ -127,55 +100,45 @@ const FinancialTransactions = () => {
           </div>
         </div>
 
-        {/* الكروت التحليلية */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-center">
-          <div className=" rounded shadow p-4">
-            <p className="text-sm text-gray-600 dark:text-[white]">إجمالي الأرباح خلال الثلاثة أشهر الماضية</p>
+        {/* الكروت */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8 text-center">
+          <div className="rounded shadow p-4">
+            <p className="text-sm text-gray-600 dark:text-white">إجمالي الأرباح</p>
             <p className="text-red-600 font-bold text-xl">10,350</p>
           </div>
           <div className="rounded shadow p-4">
-            <p className="text-sm text-gray-600 dark:text-[white]">عدد الحجوزات الأخيرة</p>
+            <p className="text-sm text-gray-600 dark:text-white">عدد الحجوزات</p>
             <p className="text-red-600 font-bold text-xl">27</p>
           </div>
           <div className="rounded shadow p-4">
-            <p className="text-sm text-gray-600 dark:text-[white]">نسبة التغيير في الأرباح</p>
+            <p className="text-sm text-gray-600 dark:text-white">نسبة التغيير</p>
             <p className="text-red-600 font-bold text-xl">11.11%</p>
           </div>
         </div>
+
         {/* الرسم البياني والعقارات */}
-        <div className="grid md:grid-cols-2 gap-3">
-          <div className=" rounded shadow p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="rounded shadow p-4">
             <h2 className="text-lg font-semibold mb-4">إحصائيات الربح والتأجير</h2>
             <Bar data={data} options={options} />
           </div>
-          <div className=" rounded shadow p-4">
+          <div className="rounded shadow p-4">
             <h2 className="text-lg font-semibold mb-4">أكثر العقارات حجزًا</h2>
             <div className="space-y-4 max-h-72 overflow-y-auto pr-2">
-              <div className="flex gap-4">
-                <img
-                  src="https://doudapartmenthomes.com/wp-content/uploads/2023/12/sidekix-media-LFlbLb8vJls-unsplash-scaled.jpg"
-                  className="w-32 h-24 object-cover rounded"
-                  alt="عقار"
-                />
-                <div>
-                  <p className="font-semibold">عقار 1</p>
-                  <p className="text-sm text-gray-500">غرفة خاصة - مكيف - إنترنت</p>
-                  <p className="text-yellow-500">★★★★★</p>
+              {[1, 2].map((_, idx) => (
+                <div key={idx} className="flex gap-4">
+                  <img
+                    src="https://doudapartmenthomes.com/wp-content/uploads/2023/12/sidekix-media-LFlbLb8vJls-unsplash-scaled.jpg"
+                    className="w-28 h-20 sm:w-32 sm:h-24 object-cover rounded"
+                    alt="عقار"
+                  />
+                  <div>
+                    <p className="font-semibold">عقار 1</p>
+                    <p className="text-sm text-gray-500">غرفة خاصة - مكيف - إنترنت</p>
+                    <p className="text-yellow-500">★★★★★</p>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="flex gap-4">
-                <img
-                  src="https://doudapartmenthomes.com/wp-content/uploads/2023/12/sidekix-media-LFlbLb8vJls-unsplash-scaled.jpg"
-                  className="w-32 h-24 object-cover rounded"
-                  alt="عقار"
-                />
-                <div>
-                  <p className="font-semibold">عقار 1</p>
-                  <p className="text-sm text-gray-500">غرفة خاصة - مكيف - إنترنت</p>
-                  <p className="text-yellow-500">★★★★★</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -185,4 +148,3 @@ const FinancialTransactions = () => {
 };
 
 export default FinancialTransactions;
-
