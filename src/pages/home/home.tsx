@@ -49,12 +49,12 @@ export default function Home() {
 
         {/* اضيف حديثا */}
         <div className='p-3'>
-          <h1 className='flex justify-end text-2xl items-center my-5'>
+          {/* <h1 className='flex justify-end text-2xl items-center my-5'>
             اضيف حديثا <FaRegStar />
           </h1>
           <div className="flex justify-center items-center w-full min-h-screen">
             <ApartmentGrid count={5} />
-          </div>
+          </div> */}
 
           <div className='flex items-center justify-center mt-10'>
             <button className='text-center MainColorBG rounded-full w-[300px] h-[3rem] text-white'>عرض المزيد</button>
