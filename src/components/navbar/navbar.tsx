@@ -40,7 +40,7 @@ export default function NavBar() {
         )}
 
         {/* Theme toggle always visible */}
-        <div className="hidden sm:block">
+        <div className="sm:block">
           <ThemeToggle />
         </div>
 

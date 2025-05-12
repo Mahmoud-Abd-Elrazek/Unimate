@@ -15,7 +15,7 @@ import useAuthStore from '../../Store/useAuthStore';
 export default function SideBar() {
   const Role = useAuthStore((state) => state.role);
 
-  const links = Role !== 'Owner'
+  const links = Role === 'Owner'
     ? [
         { to: '/auther/profile', label: 'عرض الملف الشخصى', icon: IoPersonOutline },
         { to: '/auther/editprofile', label: 'الإعدادات والخصوصية', icon: MdOutlinePrivacyTip },

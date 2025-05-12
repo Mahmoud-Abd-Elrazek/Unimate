@@ -9,13 +9,13 @@ const UserProfile = () => {
   return (
     <div>
 
-      { Role !== "Owner" ?
+      {Role !== "Owner" ?
 
-    
+
 
         <div className="min-h-screen flex items-center justify-center p-2 sm:p-4 md:p-10">
-          <div className="shadow-md rounded-2xl w-full max-w-6xl grid md:grid-cols-3 gap-4 sm:gap-6 p-4 sm:p-6 md:p-40 h-[430px]">
-            
+          <div className="shadow-md rounded-2xl w-full max-w-6xl flex flex-col-reverse md:grid md:grid-cols-3 gap-4 sm:gap-6 p-4 sm:p-6 md:p-40 h-auto md:h-[430px]">
+
             {/* محتوى البيانات */}
             <div className="md:col-span-2 text-right space-y-4 sm:space-y-6">
               <h1 className="text-xl sm:text-2xl font-bold">اسم المستخدم</h1>
@@ -24,11 +24,11 @@ const UserProfile = () => {
                 <h2 className=" text-[black] font-bold mb-2 dark:text-[white]">وسائل التواصل</h2>
                 <ul className="space-y-2 text-gray-600 text-sm dark:text-[#BDBDBD]">
                   <li className="flex items-center justify-end gap-2 dark:text-[#BDBDBD]">
-                    <span>رقم الهاتف :</span>
+                    <span>: رقم الهاتف </span>
                     <Phone className="text-lg" />
                   </li>
                   <li className="flex items-center justify-end gap-2 dark:text-[#BDBDBD]">
-                    <span>البريد الإلكتروني :</span>
+                    <span>: البريد الإلكتروني </span>
                     <Mail className="text-lg" />
                   </li>
                 </ul>
@@ -46,15 +46,15 @@ const UserProfile = () => {
             </div>
 
             {/* صورة البروفايل */}
-            <div className="flex justify-center items-start ml-4 sm:ml-10  sm:pt-[15px]">
+            <div className="flex justify-center items-center pt-4 md:items-start md:ml-4">
               <FaUserCircle className="w-32 h-32 sm:w-48 sm:h-48 text-gray-400 dark:text-[#BDBDBD]" />
             </div>
           </div>
         </div>
         :
         <div className="min-h-screen flex items-center justify-center p-2 sm:p-4 md:p-10">
-          <div className="shadow-md rounded-2xl w-full max-w-6xl grid md:grid-cols-3 gap-4 sm:gap-6 p-4 sm:p-6 md:p-10">
-            
+          <div className="shadow-md rounded-2xl w-full max-w-6xl flex flex-col-reverse md:grid md:grid-cols-3 gap-4 sm:gap-6 p-4 sm:p-6 md:p-10">
+
             {/* Student Information Content */}
             <div className="md:col-span-2 text-right ">
               <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">اسم المستخدم</h1>
@@ -101,10 +101,8 @@ const UserProfile = () => {
             </div>
 
             {/* Profile Image and College Info */}
-            <div className="flex flex-col items-center space-y-3 sm:space-y-4">
-              <div className="relative pt-[10px] sm:pt-[15px]">
-                <FaUserCircle className="w-32 h-32 sm:w-48 sm:h-48 rounded-full text-gray-400 dark:text-[#BDBDBD]" strokeWidth={1} />
-              </div>
+            <div className="flex flex-col items-center pt-4 md:pt-0 space-y-3 sm:space-y-4">
+              <FaUserCircle className="w-32 h-32 sm:w-48 sm:h-48 text-gray-400 dark:text-[#BDBDBD]" />
               <div className="text-center space-y-1 sm:space-y-2">
                 <div className="flex items-center justify-center gap-2 text-[black] font-bold dark:text-[white] text-sm sm:text-base">
                   <span> ..... طالب في كلية </span>
