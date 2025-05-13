@@ -39,35 +39,35 @@ export default function MenuCard({ setIsOpen }: MenuCardProps) {
                 <div className="flex flex-col items-end gap-[2px]">
                     {Role !== null &&
                         <Link to="/auther"
-                            className='menu-link w-full text-right hover:bg-[#F1F3F4] hover:pr-1 transition-all duration-200 rounded-md'
+                            className='menu-link w-full text-right hover:bg-[#F1F3F4] dark:hover:bg-[#111111] hover:pr-1 transition-all duration-200 rounded-md'
                             onClick={closeWithAnimation}>
                          عرض الملف الشخصى<GoSignIn className='IconSize inline my-3 ml-2' />
                         </Link>
                     }
                     {Role == null &&
                         <Link to="/SignIn"
-                            className='menu-link w-full text-right hover:bg-[#F1F3F4] hover:pr-1 transition-all duration-200 rounded-md'
+                            className='menu-link w-full text-right hover:bg-[#F1F3F4] dark:hover:bg-[#111111] hover:pr-1 transition-all duration-200 rounded-md'
                             onClick={closeWithAnimation}>
                             تسجيل الدخول <GoSignIn className='IconSize inline my-3 ml-2' />
                         </Link>
                     }
                     {Role == null &&
                         <Link to="/register"
-                            className='menu-link w-full text-right hover:bg-[#F1F3F4] hover:pr-1 transition-all duration-200 rounded-md'
+                            className='menu-link w-full text-right hover:bg-[#F1F3F4] dark:hover:bg-[#111111] hover:pr-1 transition-all duration-200 rounded-md'
                             onClick={closeWithAnimation}>
                             انشاء حساب جديد <IoPersonAddOutline className='IconSize inline my-3 ml-2' />
                         </Link>
                     }
 
                     <Link to="/SignOut"
-                        className='menu-link w-full text-right hover:bg-[#F1F3F4] hover:pr-1 transition-all duration-200 rounded-md'
+                        className='menu-link w-full text-right hover:bg-[#F1F3F4] dark:hover:bg-[#111111] hover:pr-1 transition-all duration-200 rounded-md'
                         onClick={closeWithAnimation}>
                         unimate اعرض مسكنك على
                         <IoHomeOutline className='IconSize inline my-3 ml-2' />
                     </Link>
 
                     <Link to="/help"
-                        className='menu-link w-full text-right hover:bg-[#F1F3F4] hover:pr-1 transition-all duration-200 rounded-md'
+                        className='menu-link w-full text-right hover:bg-[#F1F3F4] dark:hover:bg-[#111111] hover:pr-1 transition-all duration-200 rounded-md'
                         onClick={closeWithAnimation}>مركز المساعده <IoIosHelpCircleOutline className='IconSize inline my-3 ml-2' />
                     </Link>
 
