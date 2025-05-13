@@ -145,8 +145,10 @@ const useAuthStore = create<AuthState>()(
           phone: '',
           otp: null
         });
+        localStorage.removeItem('auth-storage')
+        localStorage.removeItem('role')
         console.log("Logged out.");
-      }
+      },
     }),
     {
       name: 'auth-storage', // اسم الـ localStorage key

@@ -46,6 +46,7 @@ import RegisterPage from './pages/Auth/RegisterPage/registe';
 import ChangePass from './pages/Auth/Passwords/ChangePass/changepass';
 import ConfirmEmail from './pages/Auth/Emails/confirmemail';
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import LogOut from './pages/Auth/LogOut/logout';
 export default function App() {
   const location = useLocation();
   const hideFooterNavbarRoutes = [
@@ -69,6 +70,7 @@ export default function App() {
 
         {/* Auth */}
         <Route path="/SignIn" element={<LoginPage />} />
+        <Route path='/logout' element={<LogOut/>} />
 
         <Route path='/register' element={<RegisterPage />} >
           <Route path="student" element={<RegisterStudentPage />} />
