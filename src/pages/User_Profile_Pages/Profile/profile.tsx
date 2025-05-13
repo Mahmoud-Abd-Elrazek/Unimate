@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 const UserProfile = () => {
   const { fname, lname, userName, email, nationalId } = useProfileStore((state) => state);
   const showProfile = useProfileStore((state) => state.DisplayStudentinfo);
+  const {briefOverView,faculty,academicYear,address}=useProfileStore()
   const Role = useAuthStore((state) => state.role);
   console.log(fname, lname, userName, email, nationalId);
   console.log("hello");
@@ -28,7 +29,7 @@ const UserProfile = () => {
 
             {/* محتوى البيانات */}
             <div className="md:col-span-2 text-right space-y-4 sm:space-y-6">
-              <h1 className="text-xl sm:text-2xl font-bold">{userName}</h1>
+              <h1 className="text-xl sm:text-2xl font-bold">ali</h1>
 
               <div>
                 <h2 className=" text-[black] font-bold mb-2 dark:text-[white]">وسائل التواصل</h2>
@@ -48,7 +49,7 @@ const UserProfile = () => {
                 <h2 className=" text-[black] mb-2 font-bold dark:text-[white]">الوصف</h2>
                 <div className="flex gap-2 items-start text-gray-600 text-sm dark:text-[#BDBDBD]">
                   <p className="text-xs sm:text-sm">
-                    هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة. لقد تم توليد هذا النص من مولد النصوص في أدوات منصة تقابل، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى لإضافة إلى زيادة عدد الحروف التي تولدها الأداة.
+                  hello world !!!!!!!!!!!!!!!!!!!!!!!!
                   </p>
                   <FileText className="w-[30px] sm:w-[50px] h-[30px] sm:h-[40px] text-lg mt-1" />
                 </div>
@@ -92,7 +93,7 @@ const UserProfile = () => {
                       <GraduationCap className="text-base sm:text-lg" />
                     </li>
                     <li className="flex items-center justify-end gap-2">
-                      <span>العنوان: القاهرة، مصر</span>
+                      <span>العنوان:{address}</span>
                       <MapPin className="text-base sm:text-lg" />
                     </li>
                   </ul>
@@ -103,7 +104,7 @@ const UserProfile = () => {
                 <h2 className=" text-[black] font-bold mb-2 dark:text-[white] text-sm sm:text-base">الوصف</h2>
                 <div className="flex gap-2 items-start text-gray-600 text-xs sm:text-sm dark:text-[#BDBDBD]">
                   <p>
-                    هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة. لقد تم توليد هذا النص من مولد النصوص في أدوات منصة تقابل، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى لإضافة إلى زيادة عدد الحروف التي تولدها الأداة.
+                    {briefOverView}
                   </p>
                   <FileText className="w-[30px] sm:w-[50px] h-[30px] sm:h-[40px] text-base sm:text-lg mt-1" />
                 </div>
@@ -115,10 +116,10 @@ const UserProfile = () => {
               <FaUserCircle className="w-32 h-32 sm:w-48 sm:h-48 text-gray-400 dark:text-[#BDBDBD]" />
               <div className="text-center space-y-1 sm:space-y-2">
                 <div className="flex items-center justify-center gap-2 text-[black] font-bold dark:text-[white] text-sm sm:text-base">
-                  <span> ..... طالب في كلية </span>
+                  <span> {faculty} طالب في كلية </span>
                 </div>
                 <div className="flex items-center justify-center gap-2 text-[black] font-bold dark:text-[white] text-sm sm:text-base">
-                  <span>..... الفرقة </span>
+                  <span>{academicYear} الفرقة </span>
                 </div>
               </div>
             </div>

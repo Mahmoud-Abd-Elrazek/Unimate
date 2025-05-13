@@ -12,13 +12,12 @@ export default function Edit_profile_information() {
   const [gov,setgov]=useState("")
   const [add,setadd]=useState("")
   const [brief,setbrief]=useState("")
-  const [cnt,setcnt]=useState("")
   const UPdateStudentProfile=useProfileStore(state=>state.UPdateStudentProfile)
   const {governorate,address,fname,lname,briefOverView}=useProfileStore()
 
   const handelchange=()=>{
     console.log("update the user profile sucess@")
-    UPdateStudentProfile(fisrtname,lastname,gov,add,brief,cnt)
+    UPdateStudentProfile(fisrtname,lastname,gov,add,brief)
   }
 
   return (
@@ -51,7 +50,7 @@ export default function Edit_profile_information() {
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
               </div>
-              <div>
+              {/* <div>
                 <label className="block text-sm font-medium  mb-1">البلد</label>
                 <input
                   type="text"
@@ -60,7 +59,7 @@ export default function Edit_profile_information() {
                    onChange={(e)=>setcnt(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
-              </div>
+              </div> */}
               <div>
                 <label className="block text-sm font-medium  mb-1">العنوان</label>
                 <input

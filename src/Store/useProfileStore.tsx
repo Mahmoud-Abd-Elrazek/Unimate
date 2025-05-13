@@ -1,5 +1,6 @@
 import axios from "axios";
 import { create } from "zustand";
+import useAuthStore from "./useAuthStore";
 
 interface ProfileState {
   fname: string;
@@ -19,7 +20,7 @@ interface ProfileState {
   karnihImage: string;
   country:string;
   DisplayStudentinfo: () => void;
-  UPdateStudentProfile: (fname: string, lname: string, governorate: string, address: string, briefOverView: string,country:string) => Promise<void>
+  UPdateStudentProfile: (fname: string, lname: string, governorate: string, address: string, briefOverView: string) => Promise<void>
   AddAcadmicInfo:(university:string,faculty:string,academicYear:string,department:string,karnihImage:string)=>Promise<void>
 }
 
@@ -42,7 +43,16 @@ const useProfileStore = create<ProfileState>((set) => ({
   country:"",
   // show profile
   DisplayStudentinfo: () => {
-    axios.get("https://darkteam.runasp.net/UpdateProfileDisplayEndpoint/UpdateProfileDisplay").then((response) => {
+    const token=useAuthStore.getState().token;
+    console.log("Token used in Info Page:", token);
+    axios.get("https://darkteam.runasp.net/GetStudentEndpoint/GetStudent",
+      {
+        headers:{
+          Authorization:`Bearer ${token}`
+        }
+        
+      }
+    ).then((response) => {
       const res = response.data;
       set({ fname: res.fname, lname: res.lname, userName: res.userName, email: res.email, password: res.password, confrimPassword: res.confrimPassword, nationalId: res.nationalId });
     }).catch((error) => {
@@ -50,12 +60,18 @@ const useProfileStore = create<ProfileState>((set) => ({
     });
   },
   // update profile
-  UPdateStudentProfile: async (firstname: string, lastname: string, Governorate: string, Address: string, BriefOverView: string,Country:string): Promise<void> => {
+  UPdateStudentProfile: async (firstname: string, lastname: string, Governorate: string, Address: string, BriefOverView: string): Promise<void> => {
+    const token=useAuthStore.getState().token;
+    console.log("Token used in Info Page:", token);
     try {
       await axios.post("https://darkteam.runasp.net/UpdateProfileSaveEndpoint/UpdateProfileSave", {
-        firstname, lastname, governorate: Governorate, Address, BriefOverView,Country
+        firstName:firstname, lastName:lastname, governorate: Governorate, address:Address,briefOverView: BriefOverView
+      },{
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
       });
-      set({ fname: firstname, lname: lastname, governorate: Governorate, address: Address, briefOverView: BriefOverView,country:Country });
+      set({ fname: firstname, lname: lastname, governorate: Governorate, address: Address, briefOverView: BriefOverView, });
       console.log("updated successfully !!");
     } catch (error) {
       console.log("update failed", error);
