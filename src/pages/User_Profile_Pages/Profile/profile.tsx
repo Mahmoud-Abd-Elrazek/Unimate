@@ -6,15 +6,14 @@ import useProfileStore from '../../../Store/useProfileStore';
 import { useEffect } from 'react';
 
 const UserProfile = () => {
-  const { fname, lname, userName, email, nationalId } = useProfileStore((state) => state);
+  const { fname, lname, email, nationalId ,briefOverView,faculty,academicYear,address } = useProfileStore();
   const showProfile = useProfileStore((state) => state.DisplayStudentinfo);
-  const {briefOverView,faculty,academicYear,address}=useProfileStore()
   const Role = useAuthStore((state) => state.role);
-  console.log(fname, lname, userName, email, nationalId);
-  console.log("hello");
+
 
   useEffect(() => {
     showProfile();
+    console.log(lname,fname)
   }, []);
   // console.log("this is role in userpage", Role)
   return (
@@ -68,7 +67,7 @@ const UserProfile = () => {
 
             {/* Student Information Content */}
             <div className="md:col-span-2 text-right ">
-              <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">{userName}</h1>
+              <h1 className="text-xl sm:text-xl font-bold mb-4 sm:mb-6">{fname} {lname}</h1>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-3 sm:space-y-4">
@@ -89,11 +88,11 @@ const UserProfile = () => {
                   <h2 className=" text-[black] mb-2 dark:text-[white] font-bold text-sm sm:text-base">البيانات الأساسية</h2>
                   <ul className="space-y-2 sm:space-y-3 text-gray-600 text-xs sm:text-sm dark:text-[#BDBDBD]">
                     <li className="flex items-center justify-end gap-2">
-                      <span>الرقم القومي: {nationalId}</span>
+                      <span>الرقم القومى : {nationalId}</span>
                       <GraduationCap className="text-base sm:text-lg" />
                     </li>
                     <li className="flex items-center justify-end gap-2">
-                      <span>العنوان:{address}</span>
+                      <span >العنوان : {address}</span>
                       <MapPin className="text-base sm:text-lg" />
                     </li>
                   </ul>
@@ -116,10 +115,10 @@ const UserProfile = () => {
               <FaUserCircle className="w-32 h-32 sm:w-48 sm:h-48 text-gray-400 dark:text-[#BDBDBD]" />
               <div className="text-center space-y-1 sm:space-y-2">
                 <div className="flex items-center justify-center gap-2 text-[black] font-bold dark:text-[white] text-sm sm:text-base">
-                  <span> {faculty} طالب في كلية </span>
+                  <span> طالب في كلية  {faculty}</span>
                 </div>
                 <div className="flex items-center justify-center gap-2 text-[black] font-bold dark:text-[white] text-sm sm:text-base">
-                  <span>{academicYear} الفرقة </span>
+                  <span> الفرقة {academicYear}</span>
                 </div>
               </div>
             </div>

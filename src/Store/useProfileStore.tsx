@@ -44,7 +44,6 @@ const useProfileStore = create<ProfileState>((set) => ({
   // show profile
   DisplayStudentinfo: () => {
     const token=useAuthStore.getState().token;
-    console.log("Token used in Info Page:", token);
     axios.get("https://darkteam.runasp.net/GetStudentEndpoint/GetStudent",
       {
         headers:{
@@ -62,7 +61,6 @@ const useProfileStore = create<ProfileState>((set) => ({
   // update profile
   UPdateStudentProfile: async (firstname: string, lastname: string, Governorate: string, Address: string, BriefOverView: string): Promise<void> => {
     const token=useAuthStore.getState().token;
-    console.log("Token used in Info Page:", token);
     try {
       await axios.post("https://darkteam.runasp.net/UpdateProfileSaveEndpoint/UpdateProfileSave", {
         firstName:firstname, lastName:lastname, governorate: Governorate, address:Address,briefOverView: BriefOverView

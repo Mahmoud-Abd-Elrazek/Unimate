@@ -16,7 +16,7 @@ export default function Edit_profile_information() {
   const {governorate,address,fname,lname,briefOverView}=useProfileStore()
 
   const handelchange=()=>{
-    console.log("update the user profile sucess@")
+    console.log("update the user profile sucess@",fisrtname,lastname)
     UPdateStudentProfile(fisrtname,lastname,gov,add,brief)
   }
 
@@ -50,16 +50,6 @@ export default function Edit_profile_information() {
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
               </div>
-              {/* <div>
-                <label className="block text-sm font-medium  mb-1">البلد</label>
-                <input
-                  type="text"
-                  placeholder='مصر'
-                  // defaultValue=
-                   onChange={(e)=>setcnt(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
-                />
-              </div> */}
               <div>
                 <label className="block text-sm font-medium  mb-1">العنوان</label>
                 <input

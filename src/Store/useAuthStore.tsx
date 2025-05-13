@@ -48,9 +48,9 @@ const useAuthStore = create<AuthState>()(
             'https://darkteam.runasp.net/LogInUserEndpoint/LogInUser',
             { email, password }
           );
-          set({ isAuthenticated: true, token: res.data.token, user: res.data.user });
+          set({ isAuthenticated: true, token: res.data.data.token, user: res.data.data.user });
           console.log(res)
-          console.log("Login successful. Token:", res.data.token);
+          // console.log("Login successful. Token:", res.data.data.token);
         } catch (error) {
           console.error('Login failed:', error);
         }
