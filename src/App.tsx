@@ -45,6 +45,7 @@ import RegisterOwnerPage from './pages/Auth/RegisterPage/registerOwnerPage';
 import RegisterPage from './pages/Auth/RegisterPage/registe';
 import ChangePass from './pages/Auth/Passwords/ChangePass/changepass';
 import ConfirmEmail from './pages/Auth/Emails/confirmemail';
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 export default function App() {
   const location = useLocation();
   const hideFooterNavbarRoutes = [
@@ -61,25 +62,25 @@ export default function App() {
   return (
     <>
       {!shouldHideFooterNavbar && <NavBar />}
-
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
-       
+
 
         {/* Auth */}
         <Route path="/SignIn" element={<LoginPage />} />
-        
+
         <Route path='/register' element={<RegisterPage />} >
-        <Route path="student" element={<RegisterStudentPage />} />
-        <Route path="owner" element={<RegisterOwnerPage />} />
+          <Route path="student" element={<RegisterStudentPage />} />
+          <Route path="owner" element={<RegisterOwnerPage />} />
         </Route>
         <Route path="/signout" element={<SignOutCard />} />
-        <Route path='/forgetpassword'element={<ForgetPassword/>} />
-        <Route path='/resetpassword' element={<ResetPass/>}  />
-        <Route path='/confirmemail' element={<ConfirmEmail/>} />
+        <Route path='/forgetpassword' element={<ForgetPassword />} />
+        <Route path='/resetpassword' element={<ResetPass />} />
+        <Route path='/confirmemail' element={<ConfirmEmail />} />
         <Route path="/confirmemail/:email/:otp" element={<ConfirmEmail />} />
 
-        <Route path='/changepassord' element={<ChangePass/>}/>
+        <Route path='/changepassord' element={<ChangePass />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
         {/* Room details */}
@@ -94,11 +95,11 @@ export default function App() {
           <Route path="favorites" element={<Favorites />} />
           <Route path="help" element={<Help />} />
           <Route path="editprofile" element={<EditProfilepage />} >
-          <Route index element={<Navigate to="editpersonalinfo" replace />} />
-          <Route path='editAcademicinfo' element={<Edit_academic_information/>} />
-          <Route path='editcontactinfo' element={<Edit_contact_information/>} />
-          <Route  path='editlogininfo' element={<Edit_login_information/>}/>
-          <Route path='editpersonalinfo' element={<Edit_profile_information/>}/>
+            <Route index element={<Navigate to="editpersonalinfo" replace />} />
+            <Route path='editAcademicinfo' element={<Edit_academic_information />} />
+            <Route path='editcontactinfo' element={<Edit_contact_information />} />
+            <Route path='editlogininfo' element={<Edit_login_information />} />
+            <Route path='editpersonalinfo' element={<Edit_profile_information />} />
           </Route>
           <Route path="myreservations" element={<My_reservations />} />
           <Route path="personalreviews" element={<Personal_Reviews />} />
