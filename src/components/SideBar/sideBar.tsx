@@ -18,7 +18,7 @@ export default function SideBar({ onLinkClick }: SideBarProps) {
   const Role = useAuthStore((state) => state.role);
   const location = useLocation();
 
-  const links = Role === 'Owner'
+  const links = Role !== 'Owner'
     ? [
         { to: '/auther/profile', label: 'عرض الملف الشخصى', icon: IoPersonOutline },
         { to: '/auther/editprofile', label: 'الإعدادات والخصوصية', icon: MdOutlinePrivacyTip },

@@ -34,7 +34,7 @@ const LoginPage = () => {
     const Role = accountType === "طالب" ? "Student" : "Owner";
     console.log({ ...data, Role });
     setRole(Role);
-    // localStorage.setItem("role", Role);
+    localStorage.setItem("role", Role);
    
     login(data.email, data.password);
     navigate("/", { replace: true });

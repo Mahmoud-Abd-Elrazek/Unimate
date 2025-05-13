@@ -2,14 +2,24 @@
 import { Phone, Mail, FileText, MapPin, GraduationCap } from 'lucide-react';
 import { FaUserCircle } from "react-icons/fa";
 import useAuthStore from '../../../Store/useAuthStore';
+import useProfileStore from '../../../Store/useProfileStore';
+import { useEffect } from 'react';
 
 const UserProfile = () => {
+  const { fname, lname, userName, email, nationalId } = useProfileStore((state) => state);
+  const showProfile = useProfileStore((state) => state.ShowProfile);
   const Role = useAuthStore((state) => state.role);
+  console.log(fname, lname, userName, email, nationalId);
+  console.log("hello");
+
+  useEffect(() => {
+    showProfile();
+  }, []);
   // console.log("this is role in userpage", Role)
   return (
     <div>
 
-      {Role !== "Owner" ?
+      {Role === "Owner" ?
 
 
 
@@ -18,7 +28,7 @@ const UserProfile = () => {
 
             {/* محتوى البيانات */}
             <div className="md:col-span-2 text-right space-y-4 sm:space-y-6">
-              <h1 className="text-xl sm:text-2xl font-bold">اسم المستخدم</h1>
+              <h1 className="text-xl sm:text-2xl font-bold">{userName}</h1>
 
               <div>
                 <h2 className=" text-[black] font-bold mb-2 dark:text-[white]">وسائل التواصل</h2>
@@ -57,7 +67,7 @@ const UserProfile = () => {
 
             {/* Student Information Content */}
             <div className="md:col-span-2 text-right ">
-              <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">اسم المستخدم</h1>
+              <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">{userName}</h1>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-3 sm:space-y-4">
@@ -68,7 +78,7 @@ const UserProfile = () => {
                       <Phone className="text-base sm:text-lg" />
                     </li>
                     <li className="flex items-center justify-end gap-2">
-                      <span>user@example.com : البريد الإلكتروني </span>
+                      <span>{email}: البريد الإلكتروني </span>
                       <Mail className="text-base sm:text-lg" />
                     </li>
                   </ul>
@@ -78,7 +88,7 @@ const UserProfile = () => {
                   <h2 className=" text-[black] mb-2 dark:text-[white] font-bold text-sm sm:text-base">البيانات الأساسية</h2>
                   <ul className="space-y-2 sm:space-y-3 text-gray-600 text-xs sm:text-sm dark:text-[#BDBDBD]">
                     <li className="flex items-center justify-end gap-2">
-                      <span>الرقم القومي: 12345678901234</span>
+                      <span>الرقم القومي: {nationalId}</span>
                       <GraduationCap className="text-base sm:text-lg" />
                     </li>
                     <li className="flex items-center justify-end gap-2">

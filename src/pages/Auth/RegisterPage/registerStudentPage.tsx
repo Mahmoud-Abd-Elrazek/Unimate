@@ -4,14 +4,16 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { FiEye, FiEyeOff, FiUserPlus } from "react-icons/fi";
+// import useAuthStore from "../../../Store/useAuthStore";
 import useAuthStore from "../../../Store/useAuthStore";
 
 export default function RegisterStudentPage() {
   
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [showConfirmationCard, setShowConfirmationCard] = useState(false);
-  const RegisterStudent = useAuthStore((state) => state.registerStudent);
+  const setrole=useAuthStore((state) => state.setRole);
+  // const [showConfirmationCard, setShowConfirmationCard] = useState(false);
+  // const RegisterStudent = useAuthStore((state) => state.registerStudent);
   const RegisterSchema = z.object({
     firstname: z.string().min(1, { message: "ادخل الاسم الاول" }),
     lastname: z.string().min(1, { message: "ادخل الاسم الاخير" }),
@@ -38,7 +40,7 @@ export default function RegisterStudentPage() {
     mode: "onChange",
     resolver: zodResolver(RegisterSchema),
   });
-
+  const navigate = useNavigate();
   const OnSubmit: SubmitHandler<RegisterT> = (data) => {
     const userData = {
       email: data.email,
@@ -50,21 +52,20 @@ export default function RegisterStudentPage() {
       nationalId: data.nationalID,
     };
     console.log(userData);
-
-    RegisterStudent(userData).then(() => {
-      setShowConfirmationCard(true);
+    localStorage.setItem("role", "Student");
+    setrole("Student");
+    // RegisterStudent(userData).then(() => {
+    //   setShowConfirmationCard(true);
       
-    });
+    // });
 
-    // navigate("/");
+    navigate("/");
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center  p-4">
       <div className=" w-full max-w-md rounded-xl p-8 shadow-md text-right">
-        {showConfirmationCard ? (
-          <ConfirmationCard />
-        ) : (<>
+       <>
           <h2 className="text-2xl font-semibold mb-1">انشاء حساب طالب جديد</h2>
           <form onSubmit={handleSubmit(OnSubmit)} className="space-y-4">
             {/* Names */}
@@ -194,25 +195,25 @@ export default function RegisterStudentPage() {
               تسجيل الدخول
             </Link>
           </p>
-        </>)}
+        </>
       </div>
     </div>
   );
 }
-const ConfirmationCard = () => {
-  const navigate = useNavigate();
-  return (
-    <div className="bg-white p-6 rounded-xl shadow-lg text-center space-y-4">
-      <h2 className="text-xl font-bold text-green-600">تم إنشاء الحساب بنجاح</h2>
-      <p className="text-gray-700">
-        تم إرسال رسالة تأكيد إلى بريدك الإلكتروني. يرجى التحقق من بريدك وتأكيد الحساب قبل تسجيل الدخول.
-      </p>
-      <button
-        className="bg-blue-600 text-white px-4 py-2 rounded-md"
-        onClick={() => navigate("/SignIn")}
-      >
-        الانتقال إلى صفحة تسجيل الدخول
-      </button>
-    </div>
-  );
-}
+// const ConfirmationCard = () => {
+//   const navigate = useNavigate();
+//   return (
+//     <div className="bg-white p-6 rounded-xl shadow-lg text-center space-y-4">
+//       <h2 className="text-xl font-bold text-green-600">تم إنشاء الحساب بنجاح</h2>
+//       <p className="text-gray-700">
+//         تم إرسال رسالة تأكيد إلى بريدك الإلكتروني. يرجى التحقق من بريدك وتأكيد الحساب قبل تسجيل الدخول.
+//       </p>
+//       <button
+//         className="bg-blue-600 text-white px-4 py-2 rounded-md"
+//         onClick={() => navigate("/SignIn")}
+//       >
+//         الانتقال إلى صفحة تسجيل الدخول
+//       </button>
+//     </div>
+//   );
+// }

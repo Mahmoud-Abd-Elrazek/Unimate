@@ -19,6 +19,7 @@ interface AuthState {
   token: string | null;
   role: string | null;
   phone :string;
+  otp:string|null;
   setRole:(role:string)=>void;
   login: (email: string, password: string) => Promise<void>;
   registerStudent:(data:User)=>Promise<void>;
@@ -34,6 +35,7 @@ const useAuthStore = create<AuthState>((set) => ({
   user: null,
   token: null,
   phonen: null,
+  otp:null,
   phone: '',
   // register students
   registerStudent: async (data: User) => {
@@ -42,7 +44,7 @@ const useAuthStore = create<AuthState>((set) => ({
         throw new Error("Passwords do not match");
       }
       const res = await axios.post(
-        'http://darkteam.runasp.net/RegisterStudentEndPoint/RegisterStudent',
+        'https://darkteam.runasp.net/RegisterStudentEndPoint/RegisterStudent',
         { ...data }
       );
       set({ isAuthenticated: true, token: res.data.token, user: res.data.user, role: "Student" });
@@ -57,7 +59,7 @@ const useAuthStore = create<AuthState>((set) => ({
  registerOwner: async (firstname: string, lastname: string, email: string, password: string, phone: string) => {
   try {
     const res = await axios.post(
-      'http://darkteam.runasp.net/RegisterOwnerEndPoint/RegisterOwner',
+      'https://darkteam.runasp.net/RegisterOwnerEndPoint/RegisterOwner',
       {
         email,
         password,
@@ -68,7 +70,7 @@ const useAuthStore = create<AuthState>((set) => ({
     );
 
     set({
-      isAuthenticated: true,
+      isAuthenticated: false,
       token: res.data.token,
       user: res.data.user,
       role: "Owner",
@@ -90,7 +92,7 @@ const useAuthStore = create<AuthState>((set) => ({
      
 
       const res = await axios.post(
-        'http://darkteam.runasp.net/LogInUserEndpoint/LogInUser',
+        'https://darkteam.runasp.net/LogInUserEndpoint/LogInUser',
         { email, password }
       );
       set({ isAuthenticated: true, token: res.data.token, user: res.data.user });
@@ -109,7 +111,7 @@ const useAuthStore = create<AuthState>((set) => ({
   resetpassword: async (email: string,password:string ,confrimPassword:string,token:string) => {
 
     try{
-        const res=await axios.post("http://darkteam.runasp.net/ResetPasswordWithOutIdentityEndpoint/ResetPassword",(
+        const res=await axios.post("https://darkteam.runasp.net/ResetPasswordWithOutIdentityEndpoint/ResetPassword",(
           {email,password,confrimPassword,token}
         ))
         set({isAuthenticated:true,user:res.data.user,token:res.data.token,role:res.data.role})
@@ -118,6 +120,15 @@ const useAuthStore = create<AuthState>((set) => ({
         console.log("there is an error in reset Password"+error)
     }
 
+  },
+  confirmemail: async (email: string,otp:string) => {
+    try{
+      const res=await axios.get(`https://darkteam.runasp.net/ConfirmEmailEndpoint/ConfirmEmail?email=${email}&OTP=${otp}`)
+      set({isAuthenticated:true,user:res.data.user,token:res.data.token,role:res.data.role})
+      console.log(res.data)
+    }catch(error){
+        console.log("there is an error in confirm email"+error)
+    }
   }
 }));
 export default useAuthStore;
