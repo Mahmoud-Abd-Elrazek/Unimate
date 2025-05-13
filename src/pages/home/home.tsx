@@ -114,7 +114,6 @@ export default function Home() {
     </div>
   )
 }
-// ========================================================================
 interface ApartmentGridProps {
   count: number; // Number of cards to display
 }
@@ -130,4 +129,3 @@ const ApartmentGrid: React.FC<ApartmentGridProps> = ({ count }) => {
     </div>
   );
 };
-// ========================================================================

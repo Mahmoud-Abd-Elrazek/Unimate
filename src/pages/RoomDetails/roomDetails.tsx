@@ -18,13 +18,16 @@ import { Link } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa6";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { TbElevator } from "react-icons/tb";
-
-
-
-// import animation file
 import "../../../public/animations.css";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+const features = [
+  { label: "واي فاي", icon: <IoWifi className="IconSize" /> },
+  { label: "ماء سخن", icon: <MdOutlineFireplace className="IconSize" /> },
+  { label: "تلفزيون", icon: <BsDisplay size={24} className="mx-1" /> },
+  { label: "أدوات مطبخ", icon: <TbToolsKitchen2 className="IconSize" /> },
+  { label: "غسالة", icon: <LuWashingMachine className="IconSize" /> },
+  { label: "مدفأة", icon: <GiFireplace className="IconSize" /> },
+  { label: "تكييف", icon: <TbAirConditioning className="IconSize" /> },
+];
 export default function RoomDetails() {
   return (
     <div className="min-h-screen Page slide-in">
@@ -50,53 +53,53 @@ export default function RoomDetails() {
       </div>
       {/* Imgs Section */}
       <div className="mt-4  rounded-xl shadow-md overflow-hidden">
-  {/* الصور */}
-  <div className="flex flex-col lg:flex-row-reverse gap-2 p-3">
-    {/* الصورة الكبيرة */}
-    <div className="w-full lg:flex-1">
-      <img
-        src="https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp"
-        alt="Main Room"
-        className="w-full h-full max-h-[400px] object-cover rounded-lg"
-      />
-    </div>
+        {/* الصور */}
+        <div className="flex flex-col lg:flex-row-reverse gap-2 p-3">
+          {/* الصورة الكبيرة */}
+          <div className="w-full lg:flex-1">
+            <img
+              src="https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp"
+              alt="Main Room"
+              className="w-full h-full max-h-[400px] object-cover rounded-lg"
+            />
+          </div>
 
-    {/* الصور الجانبية + زر اظهار كل الصور */}
-    <div className="w-full lg:w-[30%] flex flex-col lg:gap-2 gap-3 mt-2 lg:mt-0">
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
-        alt="Thumb 1"
-        className="w-full h-[120px] object-cover rounded-md"
-      />
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
-        alt="Thumb 2"
-        className="w-full h-[120px] object-cover rounded-md"
-      />
-      <div className="relative w-full h-[120px]">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
-          alt="Thumb 3"
-          className="w-full h-full object-cover rounded-md"
-        />
-        {/* زر اظهار كل الصور */}
-        <Link
-          to="/img_details"
-          className="absolute bottom-3 left-3 bg-red-600/90 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-full flex items-center gap-2 shadow-md transition"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path d="M3 3h2v2H3V3zm3 0h2v2H6V3zm3 0h2v2H9V3zm3 0h2v2h-2V3zm3 0h2v2h-2V3zM3 6h2v2H3V6zm3 0h2v2H6V6zm3 0h2v2H9V6zm3 0h2v2h-2V6zm3 0h2v2h-2V6zM3 9h2v2H3V9zm3 0h2v2H6V9zm3 0h2v2H9V9zm3 0h2v2h-2V9zm3 0h2v2h-2V9z" />
-          </svg>
-          اظهار كل الصور
-        </Link>
-      </div>
-    </div>
-</div>
+          {/* الصور الجانبية + زر اظهار كل الصور */}
+          <div className="w-full lg:w-[30%] flex flex-col lg:gap-2 gap-3 mt-2 lg:mt-0">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
+              alt="Thumb 1"
+              className="w-full h-[120px] object-cover rounded-md"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
+              alt="Thumb 2"
+              className="w-full h-[120px] object-cover rounded-md"
+            />
+            <div className="relative w-full h-[120px]">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
+                alt="Thumb 3"
+                className="w-full h-full object-cover rounded-md"
+              />
+              {/* زر اظهار كل الصور */}
+              <Link
+                to="/img_details"
+                className="absolute bottom-3 left-3 bg-red-600/90 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-full flex items-center gap-2 shadow-md transition"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M3 3h2v2H3V3zm3 0h2v2H6V3zm3 0h2v2H9V3zm3 0h2v2h-2V3zm3 0h2v2h-2V3zM3 6h2v2H3V6zm3 0h2v2H6V6zm3 0h2v2H9V6zm3 0h2v2h-2V6zm3 0h2v2h-2V6zM3 9h2v2H3V9zm3 0h2v2H6V9zm3 0h2v2H9V9zm3 0h2v2h-2V9zm3 0h2v2h-2V9z" />
+                </svg>
+                اظهار كل الصور
+              </Link>
+            </div>
+          </div>
+        </div>
 
 
         {/* الوصف */}
@@ -203,7 +206,7 @@ export default function RoomDetails() {
         </div>
 
         {/* Right section */}
-        <div className="right flex-1 md:w-[50%] sm:w-full flex flex-col gap-4 items-end [align-items:revert]">    
+        <div className="right flex-1 md:w-[50%] sm:w-full flex flex-col gap-4 items-end [align-items:revert]">
           <h2 className="text-xl md:text-2xl text-right font-semibold">
             ما يقدمه السكن
           </h2>
@@ -213,38 +216,12 @@ export default function RoomDetails() {
             lg:gap-x-5 lg:gap-y-4 
             md:gap-x-3 md:gap-y-2 
             sm:gap-x-5 sm:gap-y-4">
-            <div className="col-start-3 col-end-4 row-start-1 row-end-2 flex items-center justify-end gap-2 text-right">
-              <h3 className="text-sm md:text-base">واى فاى</h3>
-              <IoWifi className="IconSize" />
-            </div>
-            <div className="col-start-2 col-end-3 row-start-1 row-end-2 flex items-center justify-end gap-2 text-right">
-              <h3 className="text-sm md:text-base">ماء سخن</h3>
-              <MdOutlineFireplace className="IconSize" />
-            </div>
-            <div className="col-start-1 col-end-2 row-start-1 row-end-2 flex items-center justify-end gap-2 text-right">
-              <h3 className="text-sm md:text-base">تلفيزيون</h3>
-              <BsDisplay size={24} className="mx-1" />
-            </div>
-            <div className="col-start-3 col-end-4 row-start-2 row-end-3 flex items-center justify-end gap-2 text-right">
-              <h3 className="text-sm md:text-base">أدوات مطبخ</h3>
-              <TbToolsKitchen2 className="IconSize" />
-            </div>
-            <div className="col-start-2 col-end-3 row-start-2 row-end-3 flex items-center justify-end gap-2 text-right">
-              <h3 className="text-sm md:text-base">غساله</h3>
-              <LuWashingMachine className="IconSize" />
-            </div>
-            <div className="col-start-1 col-end-2 row-start-2 row-end-3 flex items-center justify-end gap-2 text-right">
-              <h3 className="text-sm md:text-base">مدفأه</h3>
-              <GiFireplace className="IconSize" />
-            </div>
-            <div className="col-start-3 col-end-4 row-start-3 row-end-4 flex items-center justify-end gap-2 text-right">
-              <h3 className="text-sm md:text-base">تكييف</h3>
-              <TbAirConditioning className="IconSize" />
-            </div>
-            <div className="col-start-2 col-end-3 row-start-3 row-end-4 flex items-center justify-end gap-2 text-right">
-              <h3 className="text-sm md:text-base">تكييف</h3>
-              <TbAirConditioning className="IconSize" />
-            </div>
+            {features.map((item, idx) => (
+              <div key={idx} className="flex items-center justify-end gap-2 text-right">
+                <h3 className="text-sm md:text-base">{item.label}</h3>
+                {item.icon}
+              </div>
+            ))}
           </div>
 
           <div className="text-center mt-8">

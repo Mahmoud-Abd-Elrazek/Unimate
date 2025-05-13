@@ -88,12 +88,12 @@ const Gallery = () => {
           onTouchEnd={() => setStartY(null)}
         >
           <div
-            className="relative bg-white dark:bg-gray-800 rounded-lg p-2 shadow-lg"
+            className="relative dark:bg-gray-800 rounded-lg p-2 shadow-lg"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-2 left-2 text-gray-700 dark:text-white bg-gray-100 dark:bg-gray-100 px-3 py-1 rounded-[2px] shadow hover:bg-gray-200 dark:hover:bg-gray-200 transition"
+              className="absolute top-2 left-2 text-gray-700  bg-gray-100 dark:bg-gray-100 px-3 py-1 rounded-[2px] shadow hover:bg-gray-200 dark:hover:bg-gray-200 transition"
             >
               <IoChevronBack className="text-black" />
             </button>
