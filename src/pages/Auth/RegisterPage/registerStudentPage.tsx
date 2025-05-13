@@ -59,7 +59,7 @@ export default function RegisterStudentPage() {
       
     // });
 
-    navigate("/");
+    navigate("/confirmemail");
   };
 
   return (

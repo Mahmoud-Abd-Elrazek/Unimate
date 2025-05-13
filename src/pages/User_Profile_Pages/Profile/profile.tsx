@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 
 const UserProfile = () => {
   const { fname, lname, userName, email, nationalId } = useProfileStore((state) => state);
-  const showProfile = useProfileStore((state) => state.ShowProfile);
+  const showProfile = useProfileStore((state) => state.DisplayStudentinfo);
   const Role = useAuthStore((state) => state.role);
   console.log(fname, lname, userName, email, nationalId);
   console.log("hello");

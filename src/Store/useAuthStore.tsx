@@ -121,6 +121,7 @@ const useAuthStore = create<AuthState>((set) => ({
     }
 
   },
+  // ti's not use
   confirmemail: async (email: string,otp:string) => {
     try{
       const res=await axios.get(`https://darkteam.runasp.net/ConfirmEmailEndpoint/ConfirmEmail?email=${email}&OTP=${otp}`)
