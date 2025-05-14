@@ -7,7 +7,7 @@ import { PiStudentFill } from "react-icons/pi";
 
 export default function Footer() {
     return (
-        <div className=' py-10 w-full bg-[#EFEFEF] grid place-items-center gap-6 md:gap-10 dark:bg-[#141313] '>
+        <div className=' py-10 w-full bg-[#EFEFEF] grid place-items-center gap-6 md:gap-10 dark:bg-[#151d30] '>
             {/* First Row */}
             <div className='flex flex-wrap justify-center items-center gap-6 md:gap-14 px-4 md:px-20 w-full max-w-6xl text-[#212529] text-[16px] sm:text-[17px] text-center md:text-start'>
                 <a href="#" className='cursor-pointer border-b-2 border-transparent hover:border-gray-500 dark:text-[white]'>

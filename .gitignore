@@ -24,5 +24,8 @@ dist-ssr
 *.sw?
 
 # Mac System files
+/public/notes.txt
 /src/pages/RegisterPage/
 /src/pages/LoginPage/
+/src/components/PropertyManagementSystem/
+/src/components/PropertyManagementSystem/PropertyManagement

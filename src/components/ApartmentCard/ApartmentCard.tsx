@@ -16,7 +16,7 @@ interface ApartmentCardProps {
   edit?: boolean;
 }
 
-const ApartmentCard = ({ className = "", edit = false}: ApartmentCardProps) => {
+const ApartmentCard = ({ className = "", edit = false }: ApartmentCardProps) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const swiperRef = useRef<SwiperClass | null>(null);
@@ -43,7 +43,7 @@ const ApartmentCard = ({ className = "", edit = false}: ApartmentCardProps) => {
 
   
   return (
-    <div className={`border border-[#e0e0e0] rounded-xl overflow-hidden group relative transition-transform duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md dark:bg-[#171515] w-full max-w-sm ${className}`}>
+    <div className={`rounded-xl overflow-hidden group relative transition-transform duration-300 ease-in-out hover:scale-[1.03] hover:shadow-md dark:bg-[#0f1729] w-full max-w-sm ${className} border-1 border-[#e0e0e0] dark:border-[#1f2630]`}>
       <div className="relative">
         <Swiper
           modules={[Navigation, Pagination]}
@@ -68,9 +68,9 @@ const ApartmentCard = ({ className = "", edit = false}: ApartmentCardProps) => {
           <button
             ref={prevRef}
             onClick={handlePrevClick}
-            className="absolute left-3 top-1/2 -translate-y-1/2 bg-white w-[32px] h-[32px] rounded-full shadow-lg z-10 flex items-center justify-center cursor-pointer group-hover:opacity-100 transition-opacity duration-300"
+            className="absolute left-3 top-1/2 -translate-y-1/2 bg-white w-[32px] h-[32px] rounded-full shadow-lg z-10 flex items-center justify-center cursor-pointer group-hover:opacity-100 transition-opacity duration-300 "
           >
-            <IoIosArrowBack className="text-[#000]" style={{ width: "100%", height: "20px" }} />
+            <IoIosArrowBack className="text-[#0f1729] " style={{ width: "100%", height: "20px" }} />
           </button>
         )}
 
@@ -78,7 +78,7 @@ const ApartmentCard = ({ className = "", edit = false}: ApartmentCardProps) => {
           <button
             ref={nextRef}
             onClick={handleNextClick}
-            className="absolute right-3 top-1/2 -translate-y-1/2 bg-white w-[32px] h-[32px] rounded-full shadow-lg z-10 flex items-center justify-center cursor-pointer group-hover:opacity-100 transition-opacity duration-300"
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-[32px] h-[32px] rounded-full shadow-lg z-10 flex items-center justify-center cursor-pointer group-hover:opacity-100 transition-opacity duration-300 bg-white"
           >
             <IoIosArrowForward className="text-[#000]" style={{ width: "100%", height: "20px" }} />
           </button>
@@ -108,40 +108,42 @@ const ApartmentCard = ({ className = "", edit = false}: ApartmentCardProps) => {
 
       <Link to="/roomdetails">
         <div className="p-3 text-right">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-[13px] sm:text-[14px] font-bold text-[#DC3545]">6,600/mo</span>
-            <h3 className="text-[14px] sm:text-[16px] font-semibold text-[#212529] dark:text-white">
+          <div className="flex items-start justify-between mb-2">
+            <span className="text-[13px] sm:text-[14px] md:text-[15px] lg:text-[15px] font-bold text-[#DC3545] dark:text-[#ff6170]">
+              6,600/mo
+            </span>
+            <h3 className="text-[14px] sm:text-[16px] font-semibold text-[#212529] dark:text-[#f8fafc]">
               الشؤون · أولاد · 3 غرف · 6 ضيف · الدور الثالث
             </h3>
           </div>
 
           <div className="flex items-center justify-end mb-2">
-            <span className="text-[14px] text-[#515151] mr-2 dark:text-white">الشؤون / شارع ابو علاء</span>
-            <IoLocationOutline className="text-[#515151] dark:text-white" />
+            <span className="text-[14px] text-[#515151] mr-2 dark:text-[#8492a7]">الشؤون / شارع ابو علاء</span>
+            <IoLocationOutline className="text-[#515151] dark:text-[#8492a7]" />
           </div>
 
-          <p className="text-[14px] text-[#515151] dark:text-white">
+          <p className="text-[14px] text-[#515151] dark:text-[#8492a7]">
             سكن مناسب للطلبه و العائلات · قريب من المواصلات العامة · قريب من المحلات التجارية · قريب من المطاعم · قريب من الجامعه
           </p>
 
-          <div className="flex items-center justify-end mb-2 mt-2 gap-x-2 pb-2 border-b border-[#e0e0e0]">
+          <div className="flex items-center justify-end mb-2 mt-2 gap-x-2 pb-2 border-b border-[#e0e0e0] dark:border-[#1f2630]">
             <div className="flex items-center justify-end">
-              <span className="text-[14px] text-[#111111] mr-2 dark:text-white">12 سرير</span>
-              <LuBed className="text-[#111111]" />
+              <span className="text-[14px] text-[#111111] mr-2 dark:text-[#f8fafc]">12 سرير</span>
+              <LuBed className="text-[#111111] dark:text-[#f8fafc]" />
             </div>
             <div className="flex items-center justify-end">
-              <span className="text-[14px] text-[#111111] mr-2 dark:text-white">4 غرفه</span>
-              <MdOutlineMeetingRoom className="text-[#111111]" />
+              <span className="text-[14px] text-[#111111] mr-2 dark:text-[#f8fafc]">4 غرفه</span>
+              <MdOutlineMeetingRoom className="text-[#111111] dark:text-[#f8fafc]" />
             </div>
             <div className="flex items-center justify-end">
-              <span className="text-[14px] text-[#111111] mr-2 dark:text-white">1 حمام</span>
-              <BiBath className="text-[#111111]" />
+              <span className="text-[14px] text-[#111111] mr-2 dark:text-[#f8fafc]">1 حمام</span>
+              <BiBath className="text-[#111111] dark:text-[#f8fafc]" />
             </div>
           </div>
 
           <div className="flex items-center justify-end gap-x-2 mt-2">
             {["+10 اخري", "WiFi", "غاز طبيعي", "مكيف"].map((feature, i) => (
-              <span key={i} className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-white dark:bg-[#515151]">
+              <span key={i} className="px-3 py-1 bg-[#F1F5F9] text-sm text-[#111111] rounded-full dark:text-[#f8fafc] dark:bg-[#1E293B] text-[12px]">
                 {feature}
               </span>
             ))}
@@ -149,14 +151,14 @@ const ApartmentCard = ({ className = "", edit = false}: ApartmentCardProps) => {
 
           <div className="flex items-center justify-between mt-2">
             <div className="flex items-center justify-end">
-              <span className="text-[13px] text-[#515151] mr-2 dark:text-white">قبل يوم</span>
-              <MdOutlineAccessTime className="text-[#515151]" />
+              <span className="text-[13px] text-[#515151] mr-2 dark:text-[#8492a7]">قبل يوم</span>
+              <MdOutlineAccessTime className="text-[#515151] dark:text-[#8492a7]" />
             </div>
             <div className="flex items-center justify-end">
-              <span className="text-[14px] text-[#515151] mr-2 dark:text-white">+10 تعليقات</span>
+              <span className="text-[14px] text-[#515151] mr-2 dark:text-[#8492a7]">+10 تعليقات</span>
               <div className="flex items-center">
-                <span className="text-[13px] text-[#515151] mr-2 dark:text-white">4.5</span>
-                <MdOutlineStar className="text-[#515151]" />
+                <span className="text-[13px] text-[#515151] mr-2 dark:text-[#8492a7]">4.5</span>
+                <MdOutlineStar className="text-[#515151] dark:text-[#8492a7]" />
               </div>
             </div>
           </div>

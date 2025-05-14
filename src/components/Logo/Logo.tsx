@@ -16,7 +16,7 @@ interface LogoProps {
 const Logo = ({
    className,
    icon: Icon = PiStudentFill,
-   iconSize = 24,
+   iconSize = 30,
    showText = true,
    leftText = "Uni",
    rightText = "mate",
@@ -44,7 +44,7 @@ const Logo = ({
          {showText && (
             <span
                className={cn(
-                  "font-playwrite text-[24px] sm:text-[28px] dark:text-white",
+                  "font-playwrite text-[20px] sm:text-[24px] dark:text-[#f8fafc]",
                   textSizeClasses[textSize]
                )}
             >
@@ -52,13 +52,13 @@ const Logo = ({
             </span>
          )}
          <Icon
-            className="w-9 h-9 text-red-500 transition-transform duration-300 hover:scale-110"
+            className="text-red-500 transition-transform duration-300 hover:scale-110"
             size={iconSize}
          />
          {showText && (
             <span
                className={cn(
-                  "font-playwrite text-[24px] sm:text-[28px] dark:text-white",
+                  "font-playwrite text-[20px] sm:text-[24px] dark:text-[#f8fafc]",
                   textSizeClasses[textSize]
                )}
             >

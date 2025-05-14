@@ -6,6 +6,8 @@ import ApartmentCard from '../../components/ApartmentCard/ApartmentCard';
 import HeroSection from '../../components/HeroSection/HeroSection';
 // import { Col, Row } from 'react-bootstrap';
 
+//import PropertyManagement from '../../components/PropertyManagementSystem/PropertyManagement'
+
 // import animation file
 import "../../../public/animations.css";
 import useAuthStore from '../../Store/useAuthStore';
@@ -64,7 +66,7 @@ export default function Home() {
   // ================== End ================== 
 
   return (
-    <div className='min-h-lvh Page fade-in'>
+    <div className='min-h-lvh Page fade-in dark:bg-[#0f1729] pt-[80px]'>
       {/* hero section */}
       <HeroSection />
 
