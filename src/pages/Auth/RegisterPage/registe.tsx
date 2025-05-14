@@ -10,7 +10,7 @@ const RegisterPage = () => {
     <div>
 
         {showButtons && (
-        <div className="min-h-screen bg-gradient-to-br from-red-100 via-white to-green-100 flex items-center justify-center px-4">
+        <div className="min-h-screen dark:bg-[#171515] bg-gradient-to-br from-red-100 via-white to-green-100 flex items-center justify-center px-4">
       <div className="shadow-2xl rounded-2xl p-10 max-w-md w-full text-center">
         <h1 className="text-3xl font-bold mb-6 text-gray-800">انشاء حساب </h1>
 

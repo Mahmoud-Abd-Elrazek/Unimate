@@ -1,12 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { MdOutlineFileUpload } from 'react-icons/md';
 
 const UploadPhoto: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
 
   const handleUploadClick = () => {
     if (fileInputRef.current) {
-      fileInputRef.current.click(); // Trigger the file input click
+      fileInputRef.current.click();
     }
   };
 
@@ -14,8 +15,8 @@ const UploadPhoto: React.FC = () => {
     const files = event.target.files;
     if (files && files.length > 0) {
       const file = files[0];
-      console.log('Selected file:', file);
-      // You can handle the file upload here
+      const imageUrl = URL.createObjectURL(file);
+      setPreview(imageUrl);
     }
   };
 
@@ -28,9 +29,20 @@ const UploadPhoto: React.FC = () => {
         onChange={handleFileChange}
         style={styles.input}
       />
-      <div style={styles.uploadButton} onClick={handleUploadClick}>
-        <div style={styles.icon}><MdOutlineFileUpload/></div>
-      </div>
+      {preview ? (
+        <img
+          src={preview}
+          alt="Uploaded Preview"
+          style={styles.imagePreview}
+          onClick={handleUploadClick}
+          title="Click to change image"
+        />
+      ) : (
+        <div style={styles.uploadButton} onClick={handleUploadClick}>
+          <div style={styles.icon}><MdOutlineFileUpload /></div>
+          <div style={styles.text}>Upload Photo</div>
+        </div>
+      )}
     </div>
   );
 };
@@ -42,7 +54,7 @@ const styles = {
     cursor: 'pointer',
   },
   input: {
-    display: 'none', // Hide the file input
+    display: 'none',
   },
   uploadButton: {
     border: '2px dashed grey',
@@ -53,13 +65,22 @@ const styles = {
     flexDirection: 'column' as const,
     alignItems: 'center',
     justifyContent: 'center',
+    width: '120px',
+    height: '120px',
   },
   icon: {
-    fontSize: '24px',
+    fontSize: '32px',
+    marginBottom: '8px',
   },
   text: {
-    marginTop: '5px',
     fontSize: '16px',
+  },
+  imagePreview: {
+    width: '120px',
+    height: '120px',
+    objectFit: 'cover' as const,
+    borderRadius: '4px',
+    border: '2px solid #ccc',
   },
 };
 

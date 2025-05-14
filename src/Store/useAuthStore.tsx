@@ -22,7 +22,7 @@ interface AuthState {
   setRole: (role: string) => void;
   setToken: (token: string) => void;
   login: (email: string, password: string) => Promise<void>;
-  registerStudent: (data: User) => Promise<void>;
+  registerStudent: (Email:string,Password:string,Fname:string,Lname:string,Username:string,NationalId:string,confrimPassword:string) => Promise<void>;
   registerOwner: (firstname: string, lastname: string, email: string, password: string, phone: string) => Promise<void>;
   resetpassword: (email: string, password: string, confrimPassword: string, token: string) => Promise<void>;
   logout: () => void;
@@ -56,19 +56,27 @@ const useAuthStore = create<AuthState>()(
         }
       },
 
-      registerStudent: async (data: User) => {
+      registerStudent: async (Email:string,Password:string,Fname:string,Lname:string,Username:string,NationalId:string,confrimPassword:string) => {
         try {
-          if (data.password !== data.confrimPassword) {
+          if (Password !== confrimPassword) {
             throw new Error("Passwords do not match");
           }
           const res = await axios.post(
             'https://darkteam.runasp.net/RegisterStudentEndPoint/RegisterStudent',
-            { ...data }
+            { 
+              fname:Fname,
+              lname:Lname,
+              userName:Username,
+              email:Email,
+              password:Password,
+              confrimPassword:confrimPassword,
+              nationalId:NationalId
+             }
           );
           set({
             isAuthenticated: false,
-            token: res.data.token,
-            user: res.data.user,
+            token: res.data.data.token,
+            user: res.data.data.user,
             role: "Student"
           });
           console.log("Student registered successfully.");
@@ -90,7 +98,7 @@ const useAuthStore = create<AuthState>()(
             }
           );
           set({
-            isAuthenticated: false, // أو true حسب سلوك الـ backend
+            isAuthenticated: false, 
             token: res.data.token,
             user: res.data.user,
             role: "Owner"

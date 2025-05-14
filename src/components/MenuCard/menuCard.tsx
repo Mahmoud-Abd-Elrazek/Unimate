@@ -41,7 +41,7 @@ export default function MenuCard({ setIsOpen }: MenuCardProps) {
                         <Link to="/auther"
                             className='menu-link w-full text-right hover:bg-[#F1F3F4] dark:hover:bg-[#111111] hover:pr-1 transition-all duration-200 rounded-md'
                             onClick={closeWithAnimation}>
-                         عرض الملف الشخصى<GoSignIn className='IconSize inline my-3 ml-2' />
+                            عرض الملف الشخصى<GoSignIn className='IconSize inline my-3 ml-2' />
                         </Link>
                     }
                     {Role == null &&
@@ -59,12 +59,15 @@ export default function MenuCard({ setIsOpen }: MenuCardProps) {
                         </Link>
                     }
 
-                    <Link to="/SignOut"
-                        className='menu-link w-full text-right hover:bg-[#F1F3F4] dark:hover:bg-[#111111] hover:pr-1 transition-all duration-200 rounded-md'
-                        onClick={closeWithAnimation}>
-                        unimate اعرض مسكنك على
-                        <IoHomeOutline className='IconSize inline my-3 ml-2' />
-                    </Link>
+                    {Role === "Owner" && (
+                        <Link to="/createpost"
+                            className='menu-link w-full text-right hover:bg-[#F1F3F4] dark:hover:bg-[#111111] hover:pr-1 transition-all duration-200 rounded-md'
+                            onClick={closeWithAnimation}>
+                            unimate اعرض مسكنك على
+                            <IoHomeOutline className='IconSize inline my-3 ml-2' />
+                        </Link>
+                    )}
+
 
                     <Link to="/help"
                         className='menu-link w-full text-right hover:bg-[#F1F3F4] dark:hover:bg-[#111111] hover:pr-1 transition-all duration-200 rounded-md'
