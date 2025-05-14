@@ -1,12 +1,17 @@
-import { useState } from 'react';
+import {  useState } from 'react';
 import { Link } from 'react-router-dom';
+import useProfileStore from '../../../Store/useProfileStore';
 
 // import animation file
 import "../../../../public/animations.css";
 
 export default function AccountSettings() {
-  const [, setSelectedImage] = useState<File | null>(null);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+
+  // Convert selected image to base64 string
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const AddAcadmicInfo = useProfileStore(state => state.AddAcadmicInfo);
+  const {university,department,faculty,academicYear}=useProfileStore()
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -16,6 +21,31 @@ export default function AccountSettings() {
     }
   };
 
+  const convertToBase64 = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = (error) => reject(error);
+  });
+};
+
+  const [uni, setuni] = useState("");
+  const [dep, setdep] = useState("");
+  const [facul, setfacul] = useState("");
+  const [acYear, setacYear] = useState("");
+
+  const handelchannge = async () => {
+    console.log(uni, dep, facul, acYear, selectedImage);
+    console.log("hello this is the update acadmic page infi")
+    let karnihImage="";
+    if(selectedImage){
+       karnihImage= await convertToBase64(selectedImage)
+
+    } 
+    AddAcadmicInfo(uni, dep, facul, acYear,karnihImage);
+    // Optionally, handle image upload here as well.
+  };
   return (
     <div dir="rtl" className="container mx-auto px-4 py-6 fade-in">
       <div className="max-w-4xl mx-auto">
@@ -24,7 +54,7 @@ export default function AccountSettings() {
           <h2 className="text-g w-[450px] h-[55px] font-semibold bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border-r-4 border-red-500">
             تعديل معلومات الملف الشخصي
           </h2>
-          <button className="flex items-center gap-2 bg-[#4F4F4F] text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+          <button onClick={handelchannge} className="flex items-center gap-2 bg-[#4F4F4F] text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
             <svg className="w-5 h-5 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
             </svg>
@@ -41,7 +71,9 @@ export default function AccountSettings() {
                 <label className="block text-sm font-medium mb-1">الجامعة </label>
                 <input
                   type="text"
-                  defaultValue=" جنوب الوادي"
+                  placeholder=" جنوب الوادي"
+                  defaultValue={university}
+                  onChange={(e)=>setuni(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
               </div>
@@ -49,7 +81,9 @@ export default function AccountSettings() {
                 <label className="block text-sm font-medium mb-1"> الفرقة</label>
                 <input
                   type="text"
-                  defaultValue=" الثالثة"
+                  placeholder=" ال/ثالثة"
+                  defaultValue={academicYear}
+                  onChange={(e)=>setacYear(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
               </div>
@@ -85,7 +119,9 @@ export default function AccountSettings() {
                 <label className="block text-sm font-medium mb-1">الكلية</label>
                 <input
                   type="text"
-                  defaultValue=" حاسبات و معلومات"
+                  placeholder=" حاسبات و معلومات"
+                  defaultValue={faculty}
+                  onChange={(e)=>setfacul(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
               </div>
@@ -93,7 +129,9 @@ export default function AccountSettings() {
                 <label className="block text-sm font-medium mb-1">القسم/التخصص(ان وجد)</label>
                 <input
                   type="text"
-                  defaultValue="علوم الحاسب"
+                  placeholder="علوم الحاسب"
+                  defaultValue={department}
+                  onChange={(e)=>setdep(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
               </div>

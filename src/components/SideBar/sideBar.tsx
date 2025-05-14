@@ -26,7 +26,7 @@ export default function SideBar({ onLinkClick }: SideBarProps) {
         { to: '/auther/myreservations', label: 'سجل الحجوزات', icon: GoHistory},
         { to: '/auther/personalreviews', label: 'المراجعات والتقييمات', icon: BiCommentDetail },
         { to: '/auther/help', label: 'المساعدة', icon: MdHelpOutline },
-        { to: '/', label: 'تسجيل الخروج', icon: CiLogout },
+        { to: '/logout', label: 'تسجيل الخروج', icon: CiLogout },
       ]
     : [
         { to: '/auther/profile', label: 'عرض الملف الشخصى', icon: IoPersonOutline },
@@ -37,7 +37,7 @@ export default function SideBar({ onLinkClick }: SideBarProps) {
         { to: '/auther/my_money_transactions', label: 'المعاملات المالية', icon: MdAttachMoney },
         { to: '/auther/personalreviews', label: 'المراجعات والتقييمات', icon: BiCommentDetail },
         { to: '/auther/help', label: 'المساعدة', icon: MdHelpOutline },
-        { to: '/', label: 'تسجيل الخروج', icon: CiLogout },
+        { to: '/logout', label: 'تسجيل الخروج', icon: CiLogout },
       ];
 
   return (
