@@ -124,3 +124,6 @@
     scrollbar-width: none;
     /* Firefox */
 }
+.dark .btn-close {
+  filter: invert(1);
+}
