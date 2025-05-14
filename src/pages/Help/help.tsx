@@ -1,7 +1,9 @@
 //import React from 'react';
 import { Mail, Phone, MessageCircle, ArrowRightCircle, Send } from 'lucide-react';
-
-// import animation file
+import Step_One from "../../assets/Step_One_Help.png";
+import Step_Two from "../../assets/Step_Two_Help.png";
+import Step_Two2 from "../../assets/Step2_Two_Help.png";
+import Step_Three from "../../assets/Step_Three_Help.png";
 import "../../../public/animations.css";
 
 export default function Help() {
@@ -56,7 +58,7 @@ export default function Help() {
   <div className="grid md:grid-cols-2 gap-4 items-center">
     <div>
       <img
-        src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
+        src={Step_One}
         alt="الخطوة الأولى"
         className="rounded-md border w-full"
       />
@@ -74,8 +76,8 @@ export default function Help() {
           <p className="text-gray-600 dark:text-gray-300 mb-4">ادخل جميع المعلومات المطلوبة عن المسكن</p>
           <p className="text-gray-600 dark:text-gray-300 mb-4">اتبع التعليمات بالترتيب حتى يتم عرض مسكنك بشكل احترافي، والوصول إلى الجمهور المستهدف لتلقي طلبات الحجز</p>
           <div className="grid sm:grid-cols-2 gap-4">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg" alt="الخطوة الثانية - صورة 1" className="rounded-md border w-full" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg" alt="الخطوة الثانية - صورة 2" className="rounded-md border w-full" />
+            <img src={Step_Two} alt="الخطوة الثانية - صورة 1" className="rounded-md border w-full" />
+            <img src={Step_Two2} alt="الخطوة الثانية - صورة 2" className="rounded-md border w-full" />
           </div>
         </div>
 
@@ -99,7 +101,7 @@ export default function Help() {
     </div>
     <div>
       <img
-        src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
+        src={Step_Three}
         alt="الخطوة الثالثة"
         className="rounded-md border w-full"
       />

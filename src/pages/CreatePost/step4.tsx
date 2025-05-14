@@ -1,12 +1,13 @@
 import { MenuItem, Select, TextField } from '@mui/material';
 import { useNavigate, Link } from 'react-router-dom';
-import { FiUpload, FiSearch } from 'react-icons/fi';
+import {  FiSearch } from 'react-icons/fi';
 import { useState } from 'react';
+import UploadPhoto from '../../components/UploadPhoto/uploadPhoto';
 
 export default function Step4() {
   const navigate = useNavigate();
   const [description, setDescription] = useState('');
-  const [roomImage, setRoomImage] = useState<File | null>(null);
+  const [roomImage] = useState<File | null>(null);
 
   return (
     <div dir="rtl" className="px-4 sm:px-6 md:px-8 py-6 space-y-8">
@@ -65,16 +66,7 @@ export default function Step4() {
 
         {/* تحميل صورة */}
         <div className="flex flex-col items-center space-y-2">
-          <label className="text-sm font-medium text-gray-700 dark:text-[#BDBDBD]">تحميل صورة الغرفة</label>
-          <label className="w-full max-w-[140px] h-[100px] border border-dashed border-gray-400 rounded-md flex flex-col items-center justify-center cursor-pointer dark:bg-[#1E1E1E]">
-            <FiUpload className="text-gray-500 mb-1 dark:text-[#BDBDBD]" size={22} />
-            <span className="text-xs text-gray-600 text-center dark:text-[#BDBDBD]">رفع</span>
-            <input
-              type="file"
-              className="hidden"
-              onChange={(e) => setRoomImage(e.target.files?.[0] || null)}
-            />
-          </label>
+          <UploadPhoto/>
           {roomImage && (
             <p className="text-xs text-gray-500 dark:text-[#BDBDBD] truncate">{roomImage.name}</p>
           )}

@@ -33,7 +33,7 @@ export default function NavBar() {
         {Role === "Owner" && (
           <Link
             to='/createpost'
-            className="hidden md:block btn MainColorBG text-white"
+            className="btn MainColorBG text-white"
           >
             اضافه مسكن جديد
           </Link>
