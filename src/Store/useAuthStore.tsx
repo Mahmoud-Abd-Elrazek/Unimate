@@ -51,27 +51,29 @@ const useAuthStore = create<AuthState>()(
       setToken: (token: string) => set({ token }),
 
       login: async (email: string, password: string) => {
-        try {
-          const res = await axios.post(
-            'https://darkteam.runasp.net/LogInUserEndpoint/LogInUser',
-            { email, password }
-          );
+  try {
+    const res = await axios.post(
+      'https://darkteam.runasp.net/LogInUserEndpoint/LogInUser',
+      { email, password }
+    );
 
-          const token = res?.data?.data?.token;
-          // const user = res?.data?.user;
+    console.log("Full response data:", res.data);
 
-          if (token) {
-            set({ isAuthenticated: true, token});
-            console.log("Login successful. Token:", token);
-            console.log("Full response data:", res.data);
+    const token = res?.data?.data?.token;
 
-          } else {
-            console.error("Login failed: token or user not found in response", res.data.data.token);
-          }
-        } catch (error) {
-          console.error('Login failed:', error);
-        }
-      },
+    if (token) {
+      set({ isAuthenticated: true, token });
+      localStorage.setItem("token", token);
+      console.log("Login successful. Token:", token);
+    } else {
+      console.error("Login failed: token not found in response", res?.data?.data);
+    }
+
+  } catch (error) {
+    console.error('Login failed:', error);
+  }
+},
+
 
 
       // registerStudent: async (Email:string,Password:string,Fname:string,Lname:string,Username:string,NationalId:string,confrimPassword:string,Frontimg:File,Backimg:File) => {
