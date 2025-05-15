@@ -35,43 +35,77 @@ export default function MenuCard({ setIsOpen }: MenuCardProps) {
     return (
         <div className="fixed inset-0 z-50">
             <div ref={cardRef}
-                className={`absolute top-[90px] w-[290px] right-[20px] bg-[white] dark:bg-[#1E1E1E] rounded-lg p-6 shadow-md transition-transform duration-300 ${isVisible ? 'animate-slide-in-left' : 'animate-slide-out-left'}`}>
+                className={`
+                    absolute top-[80px] w-[270px] right-[0px] 
+                    pr-[24px] pt-[12px] pb-[12px] pl-[12px]
+                    transition-transform duration-300
+                    ${isVisible ? 'animate-slide-in-left' : 'animate-slide-out-left'} 
+                    rounded-md rounded-tl-none rounded-tr-none 
+                    shadow-lg 
+                    bg-[#f8fafc]
+                    dark:bg-[#151d30]`}>
+
                 <div className="flex flex-col items-end gap-[2px]">
                     {Role !== null &&
                         <Link to="/auther"
-                            className='menu-link w-full text-right hover:bg-[#F1F3F4] dark:hover:bg-[#111111] hover:pr-1 transition-all duration-200 rounded-md'
+                            className='menu-link w-full 
+                            flex items-center justify-end 
+                            hover:bg-[#F1F3F4] dark:hover:bg-[#1E293B] hover:pr-1 transition-all duration-200 
+                            rounded-md 
+                            text-[15px]
+                            dark:text-[#f8fafc] text-[#0f1729]'
                             onClick={closeWithAnimation}>
-                            عرض الملف الشخصى<GoSignIn className='IconSize inline my-3 ml-2' />
+                            عرض الملف الشخصى<GoSignIn className='inline text-[18px] ' />
                         </Link>
                     }
                     {Role == null &&
                         <Link to="/SignIn"
-                            className='menu-link w-full text-right hover:bg-[#F1F3F4] dark:hover:bg-[#111111] hover:pr-1 transition-all duration-200 rounded-md'
+                            className='menu-link w-full 
+                            flex items-center justify-end 
+                            hover:bg-[#F1F3F4] dark:hover:bg-[#1E293B] hover:pr-1 transition-all duration-200 
+                            rounded-md 
+                            text-[15px]
+                            dark:text-[#f8fafc] text-[#0f1729]'
                             onClick={closeWithAnimation}>
-                            تسجيل الدخول <GoSignIn className='IconSize inline my-3 ml-2' />
+                            تسجيل الدخول <GoSignIn className='inline my-3 ml-2 text-[18px]' />
                         </Link>
                     }
                     {Role == null &&
                         <Link to="/register"
-                            className='menu-link w-full text-right hover:bg-[#F1F3F4] dark:hover:bg-[#111111] hover:pr-1 transition-all duration-200 rounded-md'
+                            className='menu-link w-full 
+                            flex items-center justify-end 
+                            hover:bg-[#F1F3F4] dark:hover:bg-[#1E293B] hover:pr-1 transition-all duration-200 
+                            rounded-md 
+                            text-[15px]
+                            dark:text-[#f8fafc] text-[#0f1729]'
                             onClick={closeWithAnimation}>
-                            انشاء حساب جديد <IoPersonAddOutline className='IconSize inline my-3 ml-2' />
+                            انشاء حساب جديد <IoPersonAddOutline className='text-[18px] inline my-3 ml-2' />
                         </Link>
                     }
 
                     {Role === "Owner" && (
                         <Link to="/createpost"
-                            className='menu-link w-full text-right hover:bg-[#F1F3F4] dark:hover:bg-[#111111] hover:pr-1 transition-all duration-200 rounded-md'
+                            className='menu-link w-full 
+                            flex items-center justify-end 
+                            hover:bg-[#F1F3F4] dark:hover:bg-[#1E293B] hover:pr-1 transition-all duration-200 
+                            rounded-md 
+                            text-[15px]
+                            dark:text-[#f8fafc] text-[#0f1729]'
                             onClick={closeWithAnimation}>
                             unimate اعرض مسكنك على
-                            <IoHomeOutline className='IconSize inline my-3 ml-2' />
+                            <IoHomeOutline className='text-[18px] inline my-3 ml-2' />
                         </Link>
                     )}
 
 
                     <Link to="/help"
-                        className='menu-link w-full text-right hover:bg-[#F1F3F4] dark:hover:bg-[#111111] hover:pr-1 transition-all duration-200 rounded-md'
-                        onClick={closeWithAnimation}>مركز المساعده <IoIosHelpCircleOutline className='IconSize inline my-3 ml-2' />
+                        className='menu-link w-full 
+                            flex items-center justify-end 
+                            hover:bg-[#F1F3F4] dark:hover:bg-[#1E293B] hover:pr-1 transition-all duration-200 
+                            rounded-md 
+                            text-[15px]
+                            dark:text-[#f8fafc] text-[#0f1729]'
+                        onClick={closeWithAnimation}>مركز المساعده <IoIosHelpCircleOutline className='text-[18px] inline my-3 ml-2' />
                     </Link>
 
                 </div>

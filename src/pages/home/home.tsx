@@ -90,21 +90,23 @@ export default function Home() {
       <div id="RoomSection" className="pl-[24px] pr-[24px]">
         {/* الاعلى تقييما */}
         <div>
-          <h1 className='flex justify-end text-2xl items-center my-5'>
-            الاعلى تقييما <FaRegStar className="ml-2 text-[#FFA500] dark:text-[#FFCC00]"/>
+          <h1 className="flex justify-end items-center mt-5 mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+            الاعلى تقييما
+            <FaRegStar className="ml-2 text-[#FFA500] dark:text-[#FFCC00]" />
           </h1>
+
           <div>
-            <ApartmentGrid count={6} />
+            <ApartmentGrid count={2} />
           </div>
         </div>
 
         {/* اضيف حديثا */}
         <div>
-          <h1 className='flex justify-end text-2xl items-center my-5'>
+          <h1 className="flex justify-end items-center mt-5 mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl">
             اضيف حديثا <FaRegStar className="ml-2 dark:text-[#5bc0de] text-[#0d6efd]" />
           </h1>
           <div>
-            <ApartmentGrid count={5} />
+            <ApartmentGrid count={3} />
           </div>
 
           <div className='flex items-center justify-center mt-10'>
