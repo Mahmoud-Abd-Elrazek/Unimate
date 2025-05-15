@@ -16,7 +16,7 @@ export default function ConfirmEmail() {
   const handleConfirm = () => {
     axios
       .post(
-        `https://darkteam.runasp.net/ConfirmEmailEndpoint/ConfirmEmail?email=${email}&OTP=${otp}`
+        "https://darkteam.runasp.net/ConfirmEmailEndpoint/ConfirmEmail",{email,otp}
       )
       .then((res) => {
         console.log("Confirmed ✅", res.data);
