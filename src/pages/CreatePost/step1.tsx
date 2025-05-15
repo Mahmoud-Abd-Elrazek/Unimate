@@ -1,5 +1,5 @@
 import { useNavigate, Link } from 'react-router-dom';
-// import UploadPhoto from '../../components/UploadPhoto/uploadPhoto';
+import UploadPhoto from '../../components/UploadPhoto/uploadPhoto';
 
 const StepOne: React.FC = () => {
   const navigate = useNavigate();
@@ -12,16 +12,18 @@ const StepOne: React.FC = () => {
         <div className="w-full md:w-1/2">
           <h1 className="text-right my-4 text-xl font-bold">صور المطبخ</h1>
           <div className="flex flex-wrap gap-4">
-            {/* <UploadPhoto /> */}
-            {/* <UploadPhoto /> */}
-            {/* <UploadPhoto /> */}
+         <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
+         <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
+          <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
           </div>
         </div>
         {/* الحمام */}
         <div className="w-full md:w-1/2 md:mr-8">
           <h1 className="text-right my-4 text-xl font-bold">صور الحمام</h1>
           <div className="flex flex-wrap gap-4">
-            {/* <UploadPhoto /> */}
+           <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
+            <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
+              <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
             {/* <UploadPhoto /> */}
             {/* <UploadPhoto /> */}
           </div>
@@ -34,9 +36,9 @@ const StepOne: React.FC = () => {
         <div className="w-full lg:w-1/3">
           <h1 className="text-right my-4 text-xl font-bold">صور المدخل/الشارع الرئيسى</h1>
           <div className="flex flex-wrap gap-4">
-            {/* <UploadPhoto /> */}
-            {/* <UploadPhoto /> */}
-            {/* <UploadPhoto /> */}
+          <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
+            <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
+              <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
           </div>
         </div>
         {/* الصالة */}

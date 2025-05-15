@@ -66,7 +66,7 @@ export default function Step4() {
 
         {/* تحميل صورة */}
         <div className="flex flex-col items-center space-y-2">
-          <UploadPhoto/>
+       <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
           {roomImage && (
             <p className="text-xs text-gray-500 dark:text-[#BDBDBD] truncate">{roomImage.name}</p>
           )}
