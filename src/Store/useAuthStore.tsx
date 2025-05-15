@@ -114,6 +114,7 @@ const useAuthStore = create<AuthState>()(
             role: "Owner"
           });
           console.log("Owner registered successfully.");
+          console.log(" فاث يشفش",res.data.data);
         } catch (error) {
           console.error('Owner registration failed:', error);
         }
