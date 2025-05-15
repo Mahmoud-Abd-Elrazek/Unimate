@@ -14,9 +14,9 @@ const ThemeToggle = () => {
       <span className="theme-toggle-sr ">Toggle theme</span>
       <svg
         aria-hidden="true"
-        width="1.875rem"
-        height="1.875rem"
-        fill={theme === "dark" ? "#ffffff" : "#1f2937"}
+        width="1.6rem"
+        height="1.6rem"
+        fill={theme === "dark" ? "#f8fafc" : "#1f2937"}
         className="theme-toggle__around"
         viewBox="0 0 32 32"
       >

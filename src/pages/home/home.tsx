@@ -6,6 +6,8 @@ import ApartmentCard from '../../components/ApartmentCard/ApartmentCard';
 import HeroSection from '../../components/HeroSection/HeroSection';
 // import { Col, Row } from 'react-bootstrap';
 
+//import PropertyManagement from '../../components/PropertyManagementSystem/PropertyManagement'
+
 // import animation file
 import "../../../public/animations.css";
 import useAuthStore from '../../Store/useAuthStore';
@@ -64,7 +66,7 @@ export default function Home() {
   // ================== End ================== 
 
   return (
-    <div className='min-h-lvh Page fade-in'>
+    <div className='min-h-lvh Page fade-in dark:bg-[#0f1729] pt-[80px]'>
       {/* hero section */}
       <HeroSection />
 
@@ -85,29 +87,44 @@ export default function Home() {
         </div>
       </section>
 
-      <div id="RoomSection">
-
+      <div id="RoomSection" className="pl-[24px] pr-[24px]">
         {/* الاعلى تقييما */}
-        <div className='p-3'>
-          <h1 className='flex justify-end text-2xl items-center my-5'>
-            الاعلى تقييما <FaRegStar />
+        <div>
+          <h1 className="flex justify-end items-center mt-5 mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+            الاعلى تقييما
+            <FaRegStar className="ml-2 text-[#FFA500] dark:text-[#FFCC00]" />
           </h1>
+
           <div>
-            <ApartmentGrid count={5} />
+            <ApartmentGrid count={2} />
           </div>
         </div>
 
         {/* اضيف حديثا */}
-        <div className='p-3'>
-          <h1 className='flex justify-end text-2xl items-center my-5'>
-            اضيف حديثا <FaRegStar />
+        <div>
+          <h1 className="flex justify-end items-center mt-5 mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+            اضيف حديثا <FaRegStar className="ml-2 dark:text-[#5bc0de] text-[#0d6efd]" />
           </h1>
-          <div className="flex justify-center items-center w-full min-h-screen">
-            <ApartmentGrid count={5} />
+          <div>
+            <ApartmentGrid count={3} />
           </div>
 
           <div className='flex items-center justify-center mt-10'>
-            <button className='text-center MainColorBG rounded-full w-[300px] h-[3rem] text-white'>عرض المزيد</button>
+            <button
+              className={`
+                text-center rounded-full
+                w-[300px] h-[3rem]
+                text-[#f8fafc]
+                bg-[#ef4444]
+                mb-[50px]
+                text-[16px]
+                py-[10px] px-0
+                h-auto
+                md:mb-[50px] md:bg-[#ef4444] md:text-[16px] md:py-[10px] md:px-0 md:h-auto
+              `}>
+              عرض المزيد
+            </button>
+
           </div>
         </div>
       </div>
@@ -120,9 +137,9 @@ interface ApartmentGridProps {
 
 const ApartmentGrid: React.FC<ApartmentGridProps> = ({ count }) => {
   return (
-    <div className="flex flex-wrap justify-center items-center w-full min-h-screen gap-x-[25px] gap-y-[25px]">
+    <div className="flex flex-wrap w-full gap-x-3 gap-y-5 justify-center md:justify-center lg:justify-end">
       {[...Array(count)].map((_, i) => (
-        <div key={i} className="flex-none">
+        <div key={i}>
           <ApartmentCard />
         </div>
       ))}

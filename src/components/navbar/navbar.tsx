@@ -14,7 +14,8 @@ export default function NavBar() {
   const Role = useAuthStore((state) => state.role);
 
   return (
-    <div className='px-4 md:px-10 m-0 h-[80px] w-full flex justify-between items-center bg-[#EFEFEF] dark:bg-[#121111]'>
+    <div className='px-4 md:px-10 m-0 h-[80px] w-full flex justify-between items-center bg-[#EFEFEF] dark:bg-[#151d30]/70  
+    bg-white/70 backdrop-blur-md fixed top-0 left-0 w-full z-50'>
 
       {/* Logo */}
       <Link to='/' className='flex items-center text-[#212529] cursor-pointer'>
@@ -46,11 +47,11 @@ export default function NavBar() {
 
         {/* Mobile menu toggle */}
         <div
-          className='border border-[#CED4DA] rounded-3xl flex items-center w-[95px] h-[49px] justify-between p-2 hover:shadow cursor-pointer'
+          className='border border-[#CED4DA] rounded-3xl flex items-center w-[95px] h-[42px] justify-between p-2 hover:shadow cursor-pointer'
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-          <IoMdMenu className="w-[23px] h-[23px] mr-1 text-[#1E1E1E] dark:text-white" />
-          <FaUserCircle className='w-[29px] h-[29px] mr-1 text-[#1E1E1E] dark:text-white' />
+          <IoMdMenu className="w-[23px] h-[23px] mr-1 text-[#1E1E1E] dark:text-[#f8fafc]" />
+          <FaUserCircle className='w-[29px] h-[29px] mr-1 text-[#1E1E1E] dark:text-[#f8fafc]' />
         </div>
       </div>
 

@@ -20,9 +20,9 @@ export default function Search_bar({ placeholderval }: Funprop) {
     <>
 
       <div className="hidden md:block">
-        <div className={`input-container ${isFocused ? "focused" : ""}`}>
+        <div className={`input-container ${isFocused ? "focused" : ""} dark:bg-[#1e293b]`}>
           <input
-            className="input-field dark:text-white"
+            className="input-field dark:text-[#f8fafc]"
             placeholder={placeholderval}
             type="text"
             dir="rtl"
