@@ -10,6 +10,9 @@ import UploadPhoto from '../../../components/UploadPhoto/uploadPhoto';
 export default function RegisterStudentPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [frontImage, setFrontImage] = useState<File | null>(null);
+  const [backImage, setBackImage] = useState<File | null>(null);
+  
   const setrole = useAuthStore((state) => state.setRole);
 
   const RegisterSchema = z.object({
@@ -42,16 +45,22 @@ export default function RegisterStudentPage() {
   const navigate = useNavigate();
 
   const OnSubmit: SubmitHandler<RegisterT> = (data) => {
-    const userData = {
-      email: data.email,
-      password: data.password,
-      fname: data.firstname,
-      lname: data.lastname,
-      userName: data.username,
-      confrimPassword: data.confirmPassword,
-      nationalId: data.nationalID,
-    };
-    console.log(userData);
+    const userData = new FormData();
+    userData.append("email", data.email);
+    userData.append("password", data.password);
+    userData.append("fname", data.firstname);
+    userData.append("lname", data.lastname);
+    userData.append("userName", data.username);
+    userData.append("confrimPassword", data.confirmPassword);
+    userData.append("nationalId", data.nationalID);
+
+    if (frontImage) userData.append("frontImage", frontImage);
+    if (backImage) userData.append("backImage", backImage);
+
+    // To display FormData contents in the console
+    for (const [key, value] of userData.entries()) {
+      console.log(`${key}:`, value);
+    }
     localStorage.setItem("role", "Student");
     setrole("Student");
     navigate("/confirmemail");
@@ -131,11 +140,11 @@ export default function RegisterStudentPage() {
           <div className="flex gap-4" dir="rtl">
             <div className="flex-1">
               <label className="block mb-1">صورة البطاقة (الجهة الأمامية)</label>
-              <UploadPhoto/>
+              <UploadPhoto onFileSelect={(file) => setFrontImage(file)} />
             </div>
             <div className="flex-1">
               <label className="block mb-1">صورة البطاقة (الجهة الخلفية)</label>
-              <UploadPhoto/>
+              <UploadPhoto onFileSelect={(file) => setBackImage(file)} />
             </div>
           </div>
 

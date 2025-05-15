@@ -10,6 +10,7 @@ interface User {
   email: string;
   confrimPassword: string;
   nationalId: string;
+ 
 }
 
 interface AuthState {
@@ -19,10 +20,14 @@ interface AuthState {
   role: string | null;
   phone: string;
   otp: string | null;
+  photo1:File|null;
+  photo2:File|null;
+  setPhoto1:(file:File)=>void;
+  setPhoto2:(file:File)=>void;
   setRole: (role: string) => void;
   setToken: (token: string) => void;
   login: (email: string, password: string) => Promise<void>;
-  registerStudent: (Email:string,Password:string,Fname:string,Lname:string,Username:string,NationalId:string,confrimPassword:string) => Promise<void>;
+  registerStudent: (Email:string,Password:string,Fname:string,Lname:string,Username:string,NationalId:string,confrimPassword:string,photo1:File,photo2:File) => Promise<void>;
   registerOwner: (firstname: string, lastname: string, email: string, password: string, phone: string) => Promise<void>;
   resetpassword: (email: string, password: string, confrimPassword: string, token: string) => Promise<void>;
   logout: () => void;
@@ -38,7 +43,10 @@ const useAuthStore = create<AuthState>()(
       role: null,
       phone: '',
       otp: null,
-
+      photo1:null,
+      photo2:null,
+      setPhoto1:(file:File)=> set({photo1:file}),
+      setPhoto2:(file:File)=> set({photo1:file}),
       setRole: (role: string) => set({ role }),
       setToken: (token: string) => set({ token }),
 
@@ -56,7 +64,7 @@ const useAuthStore = create<AuthState>()(
         }
       },
 
-      registerStudent: async (Email:string,Password:string,Fname:string,Lname:string,Username:string,NationalId:string,confrimPassword:string) => {
+      registerStudent: async (Email:string,Password:string,Fname:string,Lname:string,Username:string,NationalId:string,confrimPassword:string,Frontimg:File,Backimg:File) => {
         try {
           if (Password !== confrimPassword) {
             throw new Error("Passwords do not match");
@@ -64,22 +72,24 @@ const useAuthStore = create<AuthState>()(
           const res = await axios.post(
             'https://darkteam.runasp.net/RegisterStudentEndPoint/RegisterStudent',
             { 
-              fname:Fname,
-              lname:Lname,
-              userName:Username,
-              email:Email,
-              password:Password,
-              confrimPassword:confrimPassword,
-              nationalId:NationalId
+              Fname:Fname,
+              Lname:Lname,
+              UserName:Username,
+              Email:Email,
+              Password:Password,
+              ConfrimPassword:confrimPassword,
+              NationalId:NationalId,
+              FrontPersonalImage:Frontimg,
+              BackPersonalImage:Backimg
              }
           );
           set({
             isAuthenticated: false,
             token: res.data.data.token,
             user: res.data.data.user,
-            role: "Student"
+            role: "Student",
           });
-          console.log("Student registered successfully.");
+            console.log("Student registered successfully.");
         } catch (error) {
           console.error('Student registration failed:', error);
         }
@@ -159,8 +169,7 @@ const useAuthStore = create<AuthState>()(
       },
     }),
     {
-      name: 'auth-storage', // اسم الـ localStorage key
-      // getStorage: () => localStorage, // ممكن تغييره لـ sessionStorage لو حبيت
+      name: 'auth-storage', 
     }
   )
 );

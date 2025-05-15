@@ -18,10 +18,11 @@ interface ProfileState {
   academicYear: string;
   department: string;
   karnihImage: string;
-  country:string;
+  country: string;
+  phones: string;
   DisplayStudentinfo: () => void;
   UPdateStudentProfile: (fname: string, lname: string, governorate: string, address: string, briefOverView: string) => Promise<void>
-  AddAcadmicInfo:(university:string,faculty:string,academicYear:string,department:string,karnihImage:string)=>Promise<void>
+  AddAcadmicInfo: (university: string, faculty: string, academicYear: string, department: string, karnihImage: string) => Promise<void>
 }
 
 const useProfileStore = create<ProfileState>((set) => ({
@@ -40,32 +41,63 @@ const useProfileStore = create<ProfileState>((set) => ({
   academicYear: "",
   department: "",
   karnihImage: "",
-  country:"",
-  // show profile
-  DisplayStudentinfo: () => {
-    const token=useAuthStore.getState().token;
+  country: "",
+  phones: "",
+  // show the main profile 
+  GetStudentInfo: () => {
+    const token = useAuthStore.getState().token;
     axios.get("https://darkteam.runasp.net/GetStudentEndpoint/GetStudent",
       {
-        headers:{
-          Authorization:`Bearer ${token}`
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-        
+      }).then(response => {
+        const res = response.data.data;
+        set({
+          // "fullName": "Ahmed moha",
+          // "image": null,
+          nationalId: res.national_Id,
+          university: res.university,
+          faculty: res.faculty,
+          phones: res.phones,
+          briefOverView: res.briefOverView,
+          address: res.address,
+          email: res.email
+        })
+      })
+  },
+  // show profile  for editing
+  DisplayStudentinfo: () => {
+    const token = useAuthStore.getState().token;
+    axios.get("https://darkteam.runasp.net/GetStudentEndpoint/GetStudent",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+
       }
     ).then((response) => {
-      const res = response.data;
-      set({ fname: res.fname, lname: res.lname, userName: res.userName, email: res.email, password: res.password, confrimPassword: res.confrimPassword, nationalId: res.nationalId });
+      const res = response.data.data;
+      set(
+        {
+         fname:res.firstName,
+        lname:res.lastName,
+        governorate:res.governorate,
+        address:res.address,
+        briefOverView:res.briefOverView
+        });
     }).catch((error) => {
       console.error("Error fetching profile data:", error);
     });
   },
   // update profile
   UPdateStudentProfile: async (firstname: string, lastname: string, Governorate: string, Address: string, BriefOverView: string): Promise<void> => {
-    const token=useAuthStore.getState().token;
+    const token = useAuthStore.getState().token;
     try {
       await axios.post("https://darkteam.runasp.net/UpdateProfileSaveEndpoint/UpdateProfileSave", {
-        firstName:firstname, lastName:lastname, governorate: Governorate, address:Address,briefOverView: BriefOverView
-      },{
-        headers:{
+        firstName: firstname, lastName: lastname, governorate: Governorate, address: Address, briefOverView: BriefOverView
+      }, {
+        headers: {
           Authorization: `Bearer ${token}`
         }
       });
@@ -86,7 +118,7 @@ const useProfileStore = create<ProfileState>((set) => ({
           Department,
           KarnihImage
         }
-      ).then(res=>console.log("update sucess!!",res))
+      ).then(res => console.log("update sucess!!", res))
       set({
         university: University,
         faculty: Faculty,
@@ -99,10 +131,10 @@ const useProfileStore = create<ProfileState>((set) => ({
     }
   },
   //get acadmic info
-  DisplayAcadmic:async()=>{
+  DisplayAcadmic: async () => {
     // check if this is the way of returned info 
-    axios.get("https://darkteam.runasp.net/AcademicInfoDisplayEndpoint/AcademicInfoDisplay").then((response)=>{
-      const res=response.data;
+    axios.get("https://darkteam.runasp.net/AcademicInfoDisplayEndpoint/AcademicInfoDisplay").then((response) => {
+      const res = response.data;
       set({
         university: res.university,
         faculty: res.faculty,
@@ -111,7 +143,7 @@ const useProfileStore = create<ProfileState>((set) => ({
         karnihImage: res.karnihImage,
       })
     })
-    
+
   }
 
 }));

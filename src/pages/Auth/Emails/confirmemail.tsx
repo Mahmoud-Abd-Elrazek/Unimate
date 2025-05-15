@@ -32,12 +32,14 @@ export default function ConfirmEmail() {
           <p className="text-gray-600 mb-4">
             يرجى التحقق من بريدك الإلكتروني لتأكيد حسابك.
           </p>
+        {email && otp ? (
           <button
             onClick={handleConfirm}
             className="mt-4 bg-red-500 text-white p-2 rounded w-full"
           >
             تأكيد البريد والعودة لتسجيل الدخول
           </button>
+        ) : null}   
         </div>
       </div>
     </div>

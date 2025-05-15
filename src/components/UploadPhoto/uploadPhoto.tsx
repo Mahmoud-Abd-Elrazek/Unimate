@@ -1,7 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { MdOutlineFileUpload } from 'react-icons/md';
 
-const UploadPhoto: React.FC = () => {
+interface UploadPhotoProps {
+  onFileSelect: (file: File) => void;
+}
+
+const UploadPhoto: React.FC<UploadPhotoProps> = ({ onFileSelect }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
 
@@ -17,6 +21,7 @@ const UploadPhoto: React.FC = () => {
       const file = files[0];
       const imageUrl = URL.createObjectURL(file);
       setPreview(imageUrl);
+      onFileSelect(file);
     }
   };
 
