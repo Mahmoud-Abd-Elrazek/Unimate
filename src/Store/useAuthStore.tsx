@@ -58,7 +58,7 @@ const useAuthStore = create<AuthState>()(
           );
           set({ isAuthenticated: true, token: res.data.data.token, user: res.data.data.user });
           console.log(res)
-          // console.log("Login successful. Token:", res.data.data.token);
+          console.log("Login successful. Token:", res.data.data.token);
         } catch (error) {
           console.error('Login failed:', error);
         }
