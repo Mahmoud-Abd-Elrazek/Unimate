@@ -39,7 +39,7 @@ const RegisterOwnerPage = () => {
     console.log(data);
     await registerowner(data.firstname, data.lastname, data.email, data.password, data.phone);
     localStorage.setItem("role", "Owner");
-    navigate("/confirmemail", { replace: true, state: { from: "register" } });
+    navigate("/confirmemail1", { replace: true, state: { from: "register" } });
   };
 
   return (

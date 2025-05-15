@@ -63,7 +63,7 @@ export default function RegisterStudentPage() {
     }
     localStorage.setItem("role", "Student");
     setrole("Student");
-    navigate("/confirmemail");
+    navigate("/confirmemail1");
   };
 
   return (

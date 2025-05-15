@@ -47,6 +47,7 @@ import ChangePass from './pages/Auth/Passwords/ChangePass/changepass';
 import ConfirmEmail from './pages/Auth/Emails/confirmemail';
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import LogOut from './pages/Auth/LogOut/logout';
+import ConfirmEmail12 from './pages/Auth/Emails/confirmemail12';
 export default function App() {
   const location = useLocation();
   const hideFooterNavbarRoutes = [
@@ -79,7 +80,7 @@ export default function App() {
         <Route path="/signout" element={<SignOutCard />} />
         <Route path='/forgetpassword' element={<ForgetPassword />} />
         <Route path='/resetpassword' element={<ResetPass />} />
-        <Route path='/confirmemail' element={<ConfirmEmail />} />
+        <Route path='/confirmemail1' element={<ConfirmEmail12 />} />
         <Route path="/confirmemail/:email/:otp" element={<ConfirmEmail />} />
 
         <Route path='/changepassord' element={<ChangePass />} />
