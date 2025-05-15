@@ -6,13 +6,13 @@ import { useState } from "react";
 import { FiEye, FiEyeOff, FiUserPlus } from "react-icons/fi";
 import useAuthStore from "../../../Store/useAuthStore";
 import UploadPhoto from '../../../components/UploadPhoto/uploadPhoto';
-
+import axios from "axios";
 export default function RegisterStudentPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [frontImage, setFrontImage] = useState<File | null>(null);
   const [backImage, setBackImage] = useState<File | null>(null);
-  
+
   const setrole = useAuthStore((state) => state.setRole);
 
   const RegisterSchema = z.object({
@@ -44,18 +44,27 @@ export default function RegisterStudentPage() {
 
   const navigate = useNavigate();
 
-  const OnSubmit: SubmitHandler<RegisterT> = (data) => {
+  const OnSubmit: SubmitHandler<RegisterT> = async (data) => {
     const userData = new FormData();
-    userData.append("email", data.email);
-    userData.append("password", data.password);
-    userData.append("fname", data.firstname);
-    userData.append("lname", data.lastname);
-    userData.append("userName", data.username);
-    userData.append("confrimPassword", data.confirmPassword);
-    userData.append("nationalId", data.nationalID);
+    userData.append("Email", data.email);
+    userData.append("Fname", data.firstname);
+    userData.append("Lname", data.lastname);
+    userData.append("UserName", data.username);
+    userData.append("Password", data.password);
+    userData.append("ConfrimPassword", data.confirmPassword);
+    userData.append("NationalId", data.nationalID);
 
-    if (frontImage) userData.append("frontImage", frontImage);
-    if (backImage) userData.append("backImage", backImage);
+    if (frontImage) userData.append("FrontPersonalImage", frontImage);
+    if (backImage) userData.append("BackPersonalImage", backImage);
+
+    const res =  await axios.post('https://darkteam.runasp.net/RegisterStudentEndPoint/RegisterStudent',
+      userData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      console.log(res.data)
 
     // To display FormData contents in the console
     for (const [key, value] of userData.entries()) {

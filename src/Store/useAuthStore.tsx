@@ -27,7 +27,7 @@ interface AuthState {
   setRole: (role: string) => void;
   setToken: (token: string) => void;
   login: (email: string, password: string) => Promise<void>;
-  registerStudent: (Email:string,Password:string,Fname:string,Lname:string,Username:string,NationalId:string,confrimPassword:string,photo1:File,photo2:File) => Promise<void>;
+  // registerStudent: (Email:string,Password:string,Fname:string,Lname:string,Username:string,NationalId:string,confrimPassword:string,photo1:File,photo2:File) => Promise<void>;
   registerOwner: (firstname: string, lastname: string, email: string, password: string, phone: string) => Promise<void>;
   resetpassword: (email: string, password: string, confrimPassword: string, token: string) => Promise<void>;
   logout: () => void;
@@ -62,38 +62,32 @@ const useAuthStore = create<AuthState>()(
         } catch (error) {
           console.error('Login failed:', error);
         }
-      },
+       },
 
-      registerStudent: async (Email:string,Password:string,Fname:string,Lname:string,Username:string,NationalId:string,confrimPassword:string,Frontimg:File,Backimg:File) => {
-        try {
-          if (Password !== confrimPassword) {
-            throw new Error("Passwords do not match");
-          }
-          const res = await axios.post(
-            'https://darkteam.runasp.net/RegisterStudentEndPoint/RegisterStudent',
-            { 
-              Fname:Fname,
-              Lname:Lname,
-              UserName:Username,
-              Email:Email,
-              Password:Password,
-              ConfrimPassword:confrimPassword,
-              NationalId:NationalId,
-              FrontPersonalImage:Frontimg,
-              BackPersonalImage:Backimg
-             }
-          );
-          set({
-            isAuthenticated: false,
-            token: res.data.data.token,
-            user: res.data.data.user,
-            role: "Student",
-          });
-            console.log("Student registered successfully.");
-        } catch (error) {
-          console.error('Student registration failed:', error);
-        }
-      },
+      // registerStudent: async (Email:string,Password:string,Fname:string,Lname:string,Username:string,NationalId:string,confrimPassword:string,Frontimg:File,Backimg:File) => {
+      //   try {
+      //     if (Password !== confrimPassword) {
+      //       throw new Error("Passwords do not match");
+      //     }
+      //     const res = await axios.post(
+      //       'https://darkteam.runasp.net/RegisterStudentEndPoint/RegisterStudent',
+      //       { 
+      //        headers:{
+
+      //        }
+      //        }
+      //     );
+      //     set({
+      //       isAuthenticated: false,
+      //       token: res.data.data.token,
+      //       user: res.data.data.user,
+      //       role: "Student",
+      //     });
+      //       console.log("Student registered successfully.");
+      //   } catch (error) {
+      //     console.error('Student registration failed:', error);
+      //   }
+      // },
 
       registerOwner: async (firstname, lastname, email, password, phone) => {
         try {

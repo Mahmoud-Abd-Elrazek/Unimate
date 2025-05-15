@@ -81,7 +81,7 @@ export default function App() {
         <Route path='/forgetpassword' element={<ForgetPassword />} />
         <Route path='/resetpassword' element={<ResetPass />} />
         <Route path='/confirmemail1' element={<ConfirmEmail12 />} />
-        <Route path="/confirmemail/:email/:otp" element={<ConfirmEmail />} />
+        <Route path="/confirmemail" element={<ConfirmEmail />} />
 
         <Route path='/changepassord' element={<ChangePass />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
