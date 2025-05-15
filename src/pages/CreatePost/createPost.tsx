@@ -6,7 +6,7 @@ import { PiStudentFill } from 'react-icons/pi';
 
 const CreatePost: React.FC = () => {
   return (
-    <div className="min-h-screen px-4 sm:px-6 md:px-10 lg:px-16" dir="rtl">
+    <div className="min-h-screen px-4 sm:px-6 md:px-10 lg:px-16 mt-[80px]" dir="rtl">
       <h1 className="text-2xl sm:text-3xl font-semibold text-center flex justify-center items-center gap-2 flex-wrap mb-6">
         استديو اصحاب العقارات
         <span>

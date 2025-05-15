@@ -66,7 +66,7 @@ export default function Home() {
   // ================== End ================== 
 
   return (
-    <div className='min-h-lvh Page fade-in dark:bg-[#0f1729] pt-[80px]'>
+    <div className='min-h-lvh Page fade-in dark:bg-[#0f1729] pt-[80px] mt-[80px]'>
       {/* hero section */}
       <HeroSection />
 
