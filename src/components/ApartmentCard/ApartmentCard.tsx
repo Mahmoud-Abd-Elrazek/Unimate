@@ -51,7 +51,7 @@ const ApartmentCard = ({ className = "", edit = false }: ApartmentCardProps) => 
       className={`
     relative group overflow-hidden rounded-xl
     transition-transform duration-300 ease-in-out
-    hover:scale-[1.03] hover:shadow-md
+    lg:hover:scale-[1.03] lg:hover:shadow-md
     border-1 border-[#e0e0e0] dark:border-[#1f2630] dark:bg-[#0f1729]
     
     w-[90vw]
@@ -192,8 +192,8 @@ const ApartmentCard = ({ className = "", edit = false }: ApartmentCardProps) => 
                 rounded-full 
                 dark:text-[#f8fafc] dark:bg-[#1E293B] 
 
-                text-sm
-                sm: px-3 py-1 
+                text-[11px]
+                sm: px-3 py-1 sm:text-sm 
                 md:px-1 sm:text-[12px]
                 lg: px-0 py-0 lg:text-[11px]
                 xl:px-1 xl:py-0 xl:text-[12px]

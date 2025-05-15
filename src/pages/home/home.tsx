@@ -108,7 +108,21 @@ export default function Home() {
           </div>
 
           <div className='flex items-center justify-center mt-10'>
-            <button className='text-center MainColorBG rounded-full w-[300px] h-[3rem] text-white'>عرض المزيد</button>
+            <button
+              className={`
+                text-center rounded-full
+                w-[300px] h-[3rem]
+                text-[#f8fafc]
+                bg-[#ef4444]
+                mb-[50px]
+                text-[16px]
+                py-[10px] px-0
+                h-auto
+                md:mb-[50px] md:bg-[#ef4444] md:text-[16px] md:py-[10px] md:px-0 md:h-auto
+              `}>
+              عرض المزيد
+            </button>
+
           </div>
         </div>
       </div>
