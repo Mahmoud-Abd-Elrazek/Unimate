@@ -1,26 +1,10 @@
-import { useNavigate, useParams } from "react-router-dom";
-import useAuthStore from "../../../Store/useAuthStore";
-import axios from "axios";
+
+
 
 export default function ConfirmEmail12() {
-  const role = useAuthStore((state) => state.role);
-  localStorage.setItem("role", role ?? "");
+  
 
-  const params = useParams();
-  const email = params.email ?? null;
-  const otp = params.otp ?? null;
-  const navigate=useNavigate()
-  const handleConfirm = () => {
-    axios
-      .post(`https://darkteam.runasp.net/ConfirmEmailEndpoint/ConfirmEmail?email=${email}&OTP=${otp}`)
-      .then((res) => {
-        console.log("Confirmed ✅", res.data);
-        navigate('/login');
-      })
-      .catch((err) => {
-        console.error("Confirmation failed ❌", err);
-      });
-  };
+ 
 
   return (
     <div className="w-full mx-auto p-4 flex-col min-h-screen bg-gradient-to-br from-red-100 via-white to-green-100 flex items-center justify-center px-4">
@@ -33,12 +17,7 @@ export default function ConfirmEmail12() {
             يرجى التحقق من بريدك الإلكتروني لتأكيد حسابك.
           </p>
        
-          <button
-            onClick={handleConfirm}
-            className="mt-4 bg-red-500 text-white p-2 rounded w-full"
-          >
-            تأكيد البريد والعودة لتسجيل الدخول
-          </button>
+    
         
         </div>
       </div>
