@@ -10,7 +10,7 @@ interface User {
   email: string;
   confrimPassword: string;
   nationalId: string;
- 
+
 }
 
 interface AuthState {
@@ -20,10 +20,10 @@ interface AuthState {
   role: string | null;
   phone: string;
   otp: string | null;
-  photo1:File|null;
-  photo2:File|null;
-  setPhoto1:(file:File)=>void;
-  setPhoto2:(file:File)=>void;
+  photo1: File | null;
+  photo2: File | null;
+  setPhoto1: (file: File) => void;
+  setPhoto2: (file: File) => void;
   setRole: (role: string) => void;
   setToken: (token: string) => void;
   login: (email: string, password: string) => Promise<void>;
@@ -43,10 +43,10 @@ const useAuthStore = create<AuthState>()(
       role: null,
       phone: '',
       otp: null,
-      photo1:null,
-      photo2:null,
-      setPhoto1:(file:File)=> set({photo1:file}),
-      setPhoto2:(file:File)=> set({photo1:file}),
+      photo1: null,
+      photo2: null,
+      setPhoto1: (file: File) => set({ photo1: file }),
+      setPhoto2: (file: File) => set({ photo1: file }),
       setRole: (role: string) => set({ role }),
       setToken: (token: string) => set({ token }),
 
@@ -56,13 +56,23 @@ const useAuthStore = create<AuthState>()(
             'https://darkteam.runasp.net/LogInUserEndpoint/LogInUser',
             { email, password }
           );
-          set({ isAuthenticated: true, token: res.data.data.token, user: res.data.data.user });
-          console.log(res)
-          console.log("Login successful. Token:", res.data.data.token);
+
+          const token = res?.data?.data?.token;
+          const user = res?.data?.data?.user;
+
+          if (token && user) {
+            set({ isAuthenticated: true, token, user });
+            console.log("Login successful. Token:", token);
+            console.log("Full response data:", res.data);
+
+          } else {
+            console.error("Login failed: token or user not found in response", res.data);
+          }
         } catch (error) {
           console.error('Login failed:', error);
         }
-       },
+      },
+
 
       // registerStudent: async (Email:string,Password:string,Fname:string,Lname:string,Username:string,NationalId:string,confrimPassword:string,Frontimg:File,Backimg:File) => {
       //   try {
@@ -102,13 +112,13 @@ const useAuthStore = create<AuthState>()(
             }
           );
           set({
-            isAuthenticated: false, 
+            isAuthenticated: false,
             token: res.data.token,
             user: res.data.user,
             role: "Owner"
           });
           console.log("Owner registered successfully.");
-          console.log(" فاث يشفش",res.data.data);
+          console.log(" فاث يشفش", res.data.data);
         } catch (error) {
           console.error('Owner registration failed:', error);
         }
@@ -164,7 +174,7 @@ const useAuthStore = create<AuthState>()(
       },
     }),
     {
-      name: 'auth-storage', 
+      name: 'auth-storage',
     }
   )
 );
