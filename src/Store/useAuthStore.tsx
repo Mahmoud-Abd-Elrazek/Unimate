@@ -58,15 +58,15 @@ const useAuthStore = create<AuthState>()(
           );
 
           const token = res?.data?.data?.token;
-          const user = res?.data?.data?.user;
+          // const user = res?.data?.user;
 
-          if (token && user) {
-            set({ isAuthenticated: true, token, user });
+          if (token) {
+            set({ isAuthenticated: true, token});
             console.log("Login successful. Token:", token);
             console.log("Full response data:", res.data);
 
           } else {
-            console.error("Login failed: token or user not found in response", res.data);
+            console.error("Login failed: token or user not found in response", res.data.data.token);
           }
         } catch (error) {
           console.error('Login failed:', error);
