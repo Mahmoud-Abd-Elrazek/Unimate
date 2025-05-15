@@ -87,24 +87,23 @@ export default function Home() {
         </div>
       </section>
 
-      <div id="RoomSection">
-
+      <div id="RoomSection" className="pl-[24px] pr-[24px]">
         {/* الاعلى تقييما */}
-        <div className='p-3'>
+        <div>
           <h1 className='flex justify-end text-2xl items-center my-5'>
-            الاعلى تقييما <FaRegStar />
+            الاعلى تقييما <FaRegStar className="ml-2 text-[#FFA500] dark:text-[#FFCC00]"/>
           </h1>
           <div>
-            <ApartmentGrid count={5} />
+            <ApartmentGrid count={6} />
           </div>
         </div>
 
         {/* اضيف حديثا */}
-        <div className='p-3'>
+        <div>
           <h1 className='flex justify-end text-2xl items-center my-5'>
-            اضيف حديثا <FaRegStar />
+            اضيف حديثا <FaRegStar className="ml-2 dark:text-[#5bc0de] text-[#0d6efd]" />
           </h1>
-          <div className="flex justify-center items-center w-full min-h-screen">
+          <div>
             <ApartmentGrid count={5} />
           </div>
 
@@ -122,9 +121,9 @@ interface ApartmentGridProps {
 
 const ApartmentGrid: React.FC<ApartmentGridProps> = ({ count }) => {
   return (
-    <div className="flex flex-wrap justify-center items-center w-full min-h-screen gap-x-[25px] gap-y-[25px]">
+    <div className="flex flex-wrap w-full gap-x-3 gap-y-5 justify-center md:justify-center lg:justify-end">
       {[...Array(count)].map((_, i) => (
-        <div key={i} className="flex-none">
+        <div key={i}>
           <ApartmentCard />
         </div>
       ))}
