@@ -20,7 +20,7 @@ export default function ConfirmEmail() {
       )
       .then((res) => {
         console.log("Confirmed ✅", res.data);
-        navigate("/login");
+        navigate("/SignIn");
       })
       .catch((err) => {
         console.error("Confirmation failed ❌", err);
