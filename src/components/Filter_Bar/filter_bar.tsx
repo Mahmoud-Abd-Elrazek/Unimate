@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+// import { IoIosSearch } from "react-icons/io";
 import { IoIosSearch } from "react-icons/io";
-import { FaFilter } from "react-icons/fa";
+import { LuFilter } from "react-icons/lu";
 import Dropdown from 'react-bootstrap/Dropdown';
 import Modal from 'react-bootstrap/Modal';
 // import Button from 'react-bootstrap/Button';
@@ -20,13 +21,15 @@ const FilterBar: React.FC = () => {
   return (
     <>
       {/* زر الفلتر للأجهزة الصغيرة فقط */}
-      <div className="md:hidden flex justify-end mb-4">
+      <div className="md:hidden flex flex-col justify-end mb-4 items-center gap-1 ">
         <button
           onClick={() => setShowModal(true)}
-          className="w-10 h-10 bg-red-500 text-white rounded-full flex items-center justify-center shadow-md"
+          className="px-4 py-2 bg-red-500 text-white rounded-full flex items-center justify-center shadow-md"
         >
-          <FaFilter className="text-lg" />
+        <p>فلتر نتائجك</p>
+          <LuFilter className="text-lg" />
         </button>
+        <span className='text-[12px] text-[#777]'>اضغط للبدأ</span>
       </div>
 
       {/* الفلاتر للشاشات الكبيرة */}
@@ -100,15 +103,15 @@ const FilterBar: React.FC = () => {
 
       {/* Modal للفلاتر على الموبايل */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
-        <Modal.Header closeButton className="border-0 dark:bg-[#1D1D1D] dark:text-white">
-          <Modal.Title className="text-right w-full">
+        <Modal.Header closeButton className="border-0 dark:bg-[#1E293B] dark:text-[#f8fafc]">
+          <Modal.Title className="text-right w-full pr-2">
             <div className="text-lg font-bold">فلترة نتائج البحث</div>
-            <div className="text-sm text-gray-500 mt-1 dark:text-gray-300">
+            <div className="text-sm text-gray-500 mt-1 dark:text-gray-400">
               استخدم الفلاتر الذكية لتحديد الخيارات التي تناسبك بسهولة
             </div>
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body className='dark:bg-[#1D1D1D]'>
+        <Modal.Body className='dark:bg-[#0f1729]'>
           {/* السعر */}
           <div className="mb-6 text-right">
             <label className="block mb-2 text-base font-semibold text-gray-800 dark:text-white">
@@ -144,10 +147,10 @@ const FilterBar: React.FC = () => {
               railStyle={{ backgroundColor: '#FECACA', height: 8 }}
             />
             <div className="flex justify-between mt-3">
-              <div className="px-3 py-1 border rounded-md text-sm text-gray-800 dark:text-white dark:bg-[#2A2A2A]">
+              <div className="px-3 py-1 border rounded-md text-sm text-gray-800 dark:text-[#f8fafc] dark:bg-[#1E293B]">
                 {priceRange[0]} ج.م
               </div>
-              <div className="px-3 py-1 border rounded-md text-sm text-gray-800 dark:text-white dark:bg-[#2A2A2A]">
+              <div className="px-3 py-1 border rounded-md text-sm text-gray-800 dark:text-[#f8fafc] dark:bg-[#1E293B]">
                 {priceRange[1]} ج.م
               </div>
             </div>
@@ -159,14 +162,16 @@ const FilterBar: React.FC = () => {
               <Dropdown key={index}>
                 <Dropdown.Toggle
                   variant="light"
-                  className="w-full flex justify-between items-center border border-gray-300 rounded-lg py-3 px-4 text-sm font-medium text-gray-700 shadow-sm dark:bg-[#2A2A2A] dark:text-white"
+                  className="w-full flex justify-between items-center border border-gray-300 rounded-lg py-3 px-4 text-sm font-medium text-gray-700 shadow-sm 
+                  
+                  dark:bg-[#0f1729] dark:text-[#f8fafc]"
                 >
                   {label}
                 </Dropdown.Toggle>
-                <Dropdown.Menu className="text-right w-full dark:bg-[#2A2A2A]">
-                  <Dropdown.Item href="#/action-1" className='dark:text-white'>الخيار الأول</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2" className='dark:text-white'>الخيار الثاني</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3" className='dark:text-white'>خيار آخر</Dropdown.Item>
+                <Dropdown.Menu className="text-right w-full dark:bg-[#1E293B]">
+                  <Dropdown.Item href="#/action-1" className='dark:text-[#8492a7]'>الخيار الأول</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2" className='dark:text-[#8492a7]'>الخيار الثاني</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3" className='dark:text-[#8492a7]'>خيار آخر</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             ))}
@@ -174,10 +179,10 @@ const FilterBar: React.FC = () => {
         </Modal.Body>
 
         {/* زر الفلترة */}
-        <div className="p-4 pt-0 dark:bg-[#1D1D1D]">
+        <div className="bg-[#f8fafc] dark:bg-[#1E293B] py-3 px-2 rounded-b-lg">
           <button
             onClick={() => setShowModal(false)}
-            className="w-full bg-red-500 hover:bg-red-600 text-white text-base font-semibold py-3 rounded-full transition-all duration-200"
+            className="w-full bg-red-500 hover:bg-red-600 text-[#f8fafc] text-[14px] font-semibold py-3 rounded-full transition-all duration-200"
           >
             فلتر نتائجك الآن
           </button>

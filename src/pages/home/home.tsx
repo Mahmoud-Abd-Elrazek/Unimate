@@ -73,11 +73,11 @@ export default function Home() {
       {/* filter_bar section */}
       <section
         id='filter-bar-section'
-        className='mt-20 flex flex-col items-center gap-6 px-4 sm:px-8 md:px-12 lg:px-20'
+        className='mt-10 flex flex-col items-center gap-4 px-4 sm:px-8 md:px-12 lg:px-20'
       >
-        <h1 className='text-sm sm:text-base md:text-xl font-medium MainColorText text-center'>
+        <h3 className='text-sm sm:text-[22px] text-[#1E293B] dark:text-[#f8fafc] md:text-xl text-center font-semibold ' >
           استخدم الفلتره الذكيه لتحديد ما يناسبك
-        </h1>
+        </h3>
 
         <div className='w-full'>
           <div className='w-full max-w-[1050px] mx-auto flex justify-center items-center h-auto sm:h-40'>
