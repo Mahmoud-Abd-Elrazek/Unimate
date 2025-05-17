@@ -24,6 +24,12 @@ module.exports = {
         'slide-in-left': 'slide-in-left 0.4s ease-out forwards',
         'slide-out-left': 'slide-out-left 0.3s ease-in forwards',
       },
+      screens: {
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+      }
     },
   },
   plugins: [

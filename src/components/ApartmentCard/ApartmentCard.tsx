@@ -54,12 +54,11 @@ const ApartmentCard = ({ className = "", edit = false }: ApartmentCardProps) => 
     lg:hover:scale-[1.03] lg:hover:shadow-md
     border-1 border-[#e0e0e0] dark:border-[#1f2630] dark:bg-[#1F1F1F]
     
-    w-[90vw]
-    sm:max-w-[80vw]
-    md:max-w-[44vw]
-    lg:max-w-[30vw]
-    xl:max-w-[30vw]
-
+    mn-w-full sm:w-full 
+    md:mn-w-[370px] md:mx-w-[400px] 
+    lg:mn-w-[300px] lg:mx-w-[500px] 
+    lg:hover:scale-[1.03] lg:hover:shadow-md
+    xl:mn-w-[500px]
     ${className}
   `}>
       <div className="relative">
@@ -73,7 +72,7 @@ const ApartmentCard = ({ className = "", edit = false }: ApartmentCardProps) => 
             swiperRef.current = swiper;
           }}
           onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
-          className="w-full h-[250px]"
+          className="w-full h-full"
         >
           {images.map((src, index) => (
             <SwiperSlide key={index}>
