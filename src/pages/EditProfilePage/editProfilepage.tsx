@@ -18,7 +18,7 @@ const EditProfilePage = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row-reverse min-h-[80vh] relative mt-[80px]">
+    <div className="flex flex-col lg:flex-row-reverse min-h-[80vh] relative pt-[80px]">
 
       {/* ✅ Sidebar في الشاشات الكبيرة */}
       <aside className="hidden lg:block lg:w-[280px] p-2 lg:p-4 lg:mt-12">

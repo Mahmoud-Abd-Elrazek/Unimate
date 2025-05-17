@@ -52,7 +52,7 @@ const ApartmentCard = ({ className = "", edit = false }: ApartmentCardProps) => 
     relative group overflow-hidden rounded-xl
     transition-transform duration-300 ease-in-out
     lg:hover:scale-[1.03] lg:hover:shadow-md
-    border-1 border-[#e0e0e0] dark:border-[#1f2630] dark:bg-[#0f1729]
+    border-1 border-[#e0e0e0] dark:border-[#1f2630] dark:bg-[#1F1F1F]
     
     w-[90vw]
     sm:max-w-[80vw]
@@ -134,7 +134,7 @@ const ApartmentCard = ({ className = "", edit = false }: ApartmentCardProps) => 
               ">
               6,600/mo
             </span>
-            <h3 className="text-[14px] font-semibold text-[#212529] dark:text-[#f8fafc]
+            <h3 className="text-[14px] font-semibold text-[#212529] dark:text-[#E0E0E0]
               sm:text-[16px]
               lg:text-[15px]
               ">
@@ -143,11 +143,11 @@ const ApartmentCard = ({ className = "", edit = false }: ApartmentCardProps) => 
           </div>
 
           <div className="flex items-center justify-end mb-2">
-            <span className="text-[14px] text-[#515151] mr-2 dark:text-[#8492a7]">الشؤون / شارع ابو علاء</span>
+            <span className="text-[14px] text-[#515151] mr-2 dark:text-[#E0E0E0]">الشؤون / شارع ابو علاء</span>
             <IoLocationOutline className="text-[#515151] dark:text-[#8492a7]" />
           </div>
 
-          <p className="text-[14px] text-[#515151] dark:text-[#8492a7]
+          <p className="text-[14px] text-[#515151] dark:text-[#B0B0B0]
           sm:text-[14px]
               lg:text-[14px]
               ">
@@ -157,30 +157,30 @@ const ApartmentCard = ({ className = "", edit = false }: ApartmentCardProps) => 
           <div className="flex items-center justify-end mb-2 mt-2 gap-x-2 pb-2 border-b border-[#e0e0e0] dark:border-[#1f2630]">
             <div className="flex items-center justify-end">
               <span className="
-              text-[#111111] mr-2 dark:text-[#f8fafc]
+              text-[#111111] mr-2 dark:text-[#A0A0A0]
               text-[14px]
 
               sm:text-[14px]
               lg:text-[12px]
               xl:text-[14px]
               ">12 سرير</span>
-              <LuBed className="lg:text-[14px] text-[#111111] dark:text-[#f8fafc]" />
+              <LuBed className="lg:text-[14px] text-[#111111] dark:text-[#A0A0A0]" />
             </div>
             <div className="flex items-center justify-end">
-              <span className="text-[14px] text-[#111111] mr-2 dark:text-[#f8fafc]
+              <span className="text-[14px] text-[#111111] mr-2 dark:text-[#A0A0A0]
               sm:text-[14px]
               lg:text-[12px]
               xl:text-[14px]
               ">4 غرفه</span>
-              <MdOutlineMeetingRoom className="lg:text-[14px] text-[#111111] dark:text-[#f8fafc]" />
+              <MdOutlineMeetingRoom className="lg:text-[14px] text-[#111111] dark:text-[#A0A0A0]" />
             </div>
             <div className="flex items-center justify-end">
-              <span className="text-[14px] text-[#111111] mr-2 dark:text-[#f8fafc]
+              <span className="text-[14px] text-[#111111] mr-2 dark:text-[#A0A0A0]
               sm:text-[14px]
               lg:text-[12px]
               xl:text-[14px]
               ">1 حمام</span>
-              <BiBath className="lg:text-[14px] text-[#111111] dark:text-[#f8fafc]" />
+              <BiBath className="lg:text-[14px] text-[#111111] dark:text-[#A0A0A0]" />
             </div>
           </div>
 
@@ -190,7 +190,7 @@ const ApartmentCard = ({ className = "", edit = false }: ApartmentCardProps) => 
                 bg-[#F1F5F9] 
                 text-[#111111] 
                 rounded-full 
-                dark:text-[#f8fafc] dark:bg-[#1E293B] 
+                dark:text-[#f8fafc] dark:bg-[#A0A0A0] 
 
                 text-[11px]
                 sm: px-3 py-1 sm:text-sm 
@@ -205,19 +205,19 @@ const ApartmentCard = ({ className = "", edit = false }: ApartmentCardProps) => 
 
           <div className="flex items-center justify-between mt-2">
             <div className="flex items-center justify-end">
-              <span className="text-[13px] text-[#515151] mr-2 dark:text-[#8492a7]
+              <span className="text-[13px] text-[#515151] mr-2 dark:text-[#A0A0A0]
               sm:text-[14px]
               lg:text-[12px]
               xl:text-[14px]
               ">قبل يوم</span>
-              <MdOutlineAccessTime className="text-[14px] text-[#515151] dark:text-[#8492a7]" />
+              <MdOutlineAccessTime className="text-[14px] text-[#515151] dark:text-[#A0A0A0]" />
             </div>
             <div className="flex items-center justify-end">
-              <span className="text-[14px] text-[#515151] mr-2 dark:text-[#8492a7] sm:text-[14px]
+              <span className="text-[14px] text-[#515151] mr-2 dark:text-[#A0A0A0] sm:text-[14px]
               lg:text-[12px]
               xl:text-[14px]">+10 تعليقات</span>
               <div className="flex items-center">
-                <span className="text-[13px] text-[#515151] mr-2 dark:text-[#8492a7]">4.5</span>
+                <span className="text-[13px] text-[#515151] mr-2 dark:text-[#A0A0A0]">4.5</span>
                 <MdOutlineStar className="text-[14px] text-[#FFA500] dark:text-[#FFCC00]
                 sm:text-[14px]
               lg:text-[12px]

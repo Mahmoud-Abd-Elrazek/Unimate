@@ -66,7 +66,7 @@ export default function Home() {
   // ================== End ================== 
 
   return (
-    <div className='min-h-lvh Page fade-in dark:bg-[#0f1729] pt-[80px] mt-[80px]'>
+    <div className='min-h-lvh Page fade-in pt-[80px]'>
       {/* hero section */}
       <HeroSection />
 
@@ -75,7 +75,7 @@ export default function Home() {
         id='filter-bar-section'
         className='mt-20 flex flex-col items-center gap-6 px-4 sm:px-8 md:px-12 lg:px-20'
       >
-        <h1 className='text-sm sm:text-base md:text-xl font-medium MainColorText text-center'>
+        <h1 className='hidden md:block text-sm sm:text-base md:text-xl font-medium MainColorText text-center'>
           استخدم الفلتره الذكيه لتحديد ما يناسبك
         </h1>
 

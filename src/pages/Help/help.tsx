@@ -8,7 +8,7 @@ import "../../../public/animations.css";
 
 export default function Help() {
   return (
-    <div className="min-h-lvh py-10 px-4 sm:px-10 text-right slide-in mt-[80px]">
+    <div className="min-h-lvh py-10 px-4 sm:px-10 text-right slide-in">
       {/* Header */}
       <div className="max-w-6xl mx-auto">
         <h1 className="text-2xl font-bold mb-2 text-gray-800 dark:text-white flex items-center justify-end gap-2">

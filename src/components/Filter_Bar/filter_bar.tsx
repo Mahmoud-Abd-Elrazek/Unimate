@@ -20,7 +20,7 @@ const FilterBar: React.FC = () => {
   return (
     <>
       {/* زر الفلتر للأجهزة الصغيرة فقط */}
-      <div className="md:hidden flex justify-end mb-4">
+      <div className="md:hidden w-full flex justify-end pr-4 mb-4">
         <button
           onClick={() => setShowModal(true)}
           className="w-10 h-10 bg-red-500 text-white rounded-full flex items-center justify-center shadow-md"
@@ -29,8 +29,9 @@ const FilterBar: React.FC = () => {
         </button>
       </div>
 
+
       {/* الفلاتر للشاشات الكبيرة */}
-      <div className="hidden md:flex w-full rounded-xl p-4 shadow-sm flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-3 dark:bg-[#1D1D1D]">
+      <div className="hidden md:flex w-full rounded-xl p-4 shadow-sm flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-3 dark:bg-[#1F1F1F]">
         {/* أيقونة البحث */}
         <div className="w-full md:w-auto flex justify-center md:justify-start">
           <div className="rounded-full w-10 h-10 bg-red-500 flex items-center justify-center">

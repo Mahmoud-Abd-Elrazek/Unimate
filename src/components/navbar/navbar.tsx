@@ -14,7 +14,7 @@ export default function NavBar() {
   const Role = useAuthStore((state) => state.role);
 
   return (
-    <div className='px-4 md:px-10 m-0 h-[80px] w-full flex justify-between items-center bg-[#EFEFEF] dark:bg-[#151d30]/70  
+    <div className='px-4 md:px-10 m-0 h-[80px] w-full flex justify-between items-center bg-[#EFEFEF] dark:bg-[#1F1F1F]/70  
     bg-white/70 backdrop-blur-md fixed top-0 left-0 w-full z-50'>
 
       {/* Logo */}

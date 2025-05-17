@@ -30,7 +30,7 @@ const features = [
 ];
 export default function RoomDetails() {
   return (
-    <div className="min-h-screen Page slide-in mt-[80px]">
+    <div className="min-h-screen Page slide-in pt-[80px]">
       <Link to='/' className="flex items-center gap-1 cursor-pointer my-3 ml-3">
         <IoMdArrowRoundBack className="IconSize" />
         <h2 className=" text-sm md:text-base">رجوع</h2>
@@ -103,18 +103,18 @@ export default function RoomDetails() {
 
 
         {/* الوصف */}
-        <div className="px-5 py-4 text-right dark:bg-[#171515]">
-          <p className="text-[#212529] leading-6 font-medium dark:text-[white]">
+        <div className="px-5 py-4 text-right dark:bg-[#1A1A1A]">
+          <p className="text-[#212529] leading-6 font-medium dark:text-[#E0E0E0]">
             شقه قريبه من الجامعة، هادئة وبجوار أهالي. تبعد 5 دقائق عن الجامعة
             سيراً على الأقدام. المسكن شامل المياه والغاز فقط لا غير. يُفضّل
             الإقامة لفترة لا تقل عن 6 أشهر.
           </p>
-          <p className="text-sm text-[#6C757D] mt-2 dark:text-[#D9D9D9]">
+          <p className="text-sm text-[#6C757D] mt-2 dark:text-[#B0B0B0]">
             12 ضيف · 3 غرف · أولاد · الشؤون · الدور الثالث
           </p>
-          <p className="text-sm mt-1 font-semibold dark:text-[white]">
+          <p className="text-sm mt-1 font-semibold dark:text-[#B0B0B0]">
             وصف الموقع:{" "}
-            <span className="text-[#6C757D] dark:text-[#D9D9D9]">قنا - الشؤون - شارع أبو علاء</span>
+            <span className="text-[#6C757D] dark:text-[#B0B0B0]">قنا - الشؤون - شارع أبو علاء</span>
           </p>
         </div>
       </div>
@@ -249,7 +249,7 @@ export default function RoomDetails() {
       </div>
 
       {/* the owner of house */}
-      <div className="bg-gray-200 px-5 py-4 flex items-center gap-4 dark:bg-[#1E1E1E]" dir="rtl">
+      <div className="bg-gray-200 px-5 py-4 flex items-center gap-4 dark:bg-[#1D1D1D]" dir="rtl">
         <div>
           <img
             src={Room_Photo}
@@ -275,20 +275,20 @@ export default function RoomDetails() {
         </h2>
 
         {/* No comments yet */}
-        <div className="bg-gray-100 text-right p-3 rounded-md text-gray-600 mb-6 dark:bg-[#1E1E1E]">
+        <div className="bg-gray-100 text-right p-3 rounded-md text-gray-600 mb-6 dark:bg-[#1D1D1D] dark:text-[#D9D9D9]">
           لا توجد تعليقات حتي الان، كن اول المتفاعلين علي هذا العقار
         </div>
 
         {/* Comment Box */}
         <div className="flex flex-col items-end gap-2 w-full md:w-3/4 lg:w-1/2 ml-auto">
-          <div className="w-full border rounded-md bg-gray-100 p-2 dark:bg-[#1E1E1E]">
+          <div className="w-full border rounded-md bg-gray-100 p-2 dark:bg-[#1D1D1D] ">
             <input
               type="text"
               placeholder="اكتب تعليقك هنا"
               className="w-full bg-transparent outline-none text-sm text-right placeholder-gray-500"
             />
           </div>
-          <div dir="rtl" className="w-full flex items-center justify-center">
+          <div dir="rtl" className="w-full flex items-center justify-start ">
             <div className=" flex items-center  p-2">
               {/* Send Icon */}
               <button className="text-red-600 text-xl transform -scale-x-100">
@@ -300,7 +300,7 @@ export default function RoomDetails() {
                 <span>قيم الحساب</span>
                 <div className="text-black flex">
                   {[...Array(5)].map((_, i) => (
-                    <FaStar key={i} className="text-yellow-300" size={14} />
+                    <FaStar key={i} className="text-gray-800 dark:text-gray-200" size={14} />
                   ))}
                 </div>
               </div>
