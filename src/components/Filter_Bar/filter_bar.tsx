@@ -26,14 +26,14 @@ const FilterBar: React.FC = () => {
           onClick={() => setShowModal(true)}
           className="px-4 py-2 bg-red-500 text-white rounded-full flex items-center justify-center shadow-md"
         >
-        <p>فلتر نتائجك</p>
+          <p>فلتر نتائجك</p>
           <LuFilter className="text-lg" />
         </button>
         <span className='text-[12px] text-[#777]'>اضغط للبدأ</span>
       </div>
 
       {/* الفلاتر للشاشات الكبيرة */}
-      <div className="hidden md:flex w-full rounded-xl p-4 shadow-sm flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-3 dark:bg-[#1D1D1D]">
+      <div className="hidden md:flex w-full rounded-xl p-4 shadow-sm flex-col md:flex-col-reverse md:items-center md:justify-between gap-4 md:gap-y-[5px] md:gap-3 lg:flex-row dark:bg-[#1E293B]">
         {/* أيقونة البحث */}
         <div className="w-full md:w-auto flex justify-center md:justify-start">
           <div className="rounded-full w-10 h-10 bg-red-500 flex items-center justify-center">
@@ -81,20 +81,24 @@ const FilterBar: React.FC = () => {
         </div>
 
         {/* فلاتر دروب داون */}
-        <div className="w-full md:w-auto flex flex-wrap justify-between gap-2">
+        <div className="w-full md:w-auto flex flex-wrap justify-end gap-2">
           {["عدد الأفراد", "عدد الغرف", "النوع", "المنطقة"].map((label, index) => (
             <Dropdown key={index}>
               <Dropdown.Toggle
                 variant="light"
-                className="text-black dark:text-white border border-gray-300 dark:border-gray-600 px-3 py-2 rounded-md text-sm shadow-sm"
+                className="text-[#0f1729] dark:text-[#f8fafc] 
+                px-3 py-2 outline-none focus:outline-none
+                border-1 border-gray-200 dark:border-[#777]
+                rounded-md text-sm shadow-sm 
+                bg-[#f8fafc] dark:bg-[#1f2630]"
                 id={`dropdown-${index}`}
               >
                 {label}
               </Dropdown.Toggle>
-              <Dropdown.Menu className="text-right w-40">
-                <Dropdown.Item href="#/action-1">الخيار الأول</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">الخيار الثاني</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">خيار آخر</Dropdown.Item>
+              <Dropdown.Menu className="text-right w-40 text-sm dark:bg-[#1E293B]">
+                <Dropdown.Item href="#/action-1" className='dark:text-[#8492a7]'>الخيار الأول</Dropdown.Item>
+                <Dropdown.Item href="#/action-2" className='dark:text-[#8492a7]'>الخيار الثاني</Dropdown.Item>
+                <Dropdown.Item href="#/action-3" className='dark:text-[#8492a7]'>خيار آخر</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           ))}
