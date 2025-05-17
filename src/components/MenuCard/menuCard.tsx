@@ -55,7 +55,7 @@ export default function MenuCard({ setIsOpen }: MenuCardProps) {
                             text-[15px]
                             dark:text-[#f8fafc] text-[#0f1729]'
                             onClick={closeWithAnimation}>
-                            عرض الملف الشخصى<GoSignIn className='inline text-[18px] ' />
+                            عرض الملف الشخصى<GoSignIn className='inline my-3 ml-2 text-[18px] ' />
                         </Link>
                     }
                     {Role == null &&

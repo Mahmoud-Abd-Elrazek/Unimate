@@ -6,7 +6,7 @@ import ApartmentCard from '../../components/ApartmentCard/ApartmentCard';
 import HeroSection from '../../components/HeroSection/HeroSection';
 // import { Col, Row } from 'react-bootstrap';
 
-//import PropertyManagement from '../../components/PropertyManagementSystem/PropertyManagement'
+// import PropertyManagement from '../../components/PropertyManagementSystem/PropertyManagement'
 
 // import animation file
 import "../../../public/animations.css";
@@ -73,7 +73,7 @@ export default function Home() {
       {/* filter_bar section */}
       <section
         id='filter-bar-section'
-        className='mt-20 flex flex-col items-center gap-6 px-4 sm:px-8 md:px-12 lg:px-20'
+        className='mt-10 flex flex-col items-center gap-4 px-4 sm:px-8 md:px-12 lg:px-20'
       >
         <h1 className='text-sm sm:text-base md:text-xl font-medium MainColorText text-center'>
           استخدم الفلتره الذكيه لتحديد ما يناسبك
@@ -96,7 +96,7 @@ export default function Home() {
           </h1>
 
           <div>
-            <ApartmentGrid count={2} />
+            <ApartmentGrid count={3} />
           </div>
         </div>
 
@@ -106,7 +106,7 @@ export default function Home() {
             اضيف حديثا <FaRegStar className="ml-2 dark:text-[#5bc0de] text-[#0d6efd]" />
           </h1>
           <div>
-            <ApartmentGrid count={3} />
+            <ApartmentGrid count={4} />
           </div>
 
           <div className='flex items-center justify-center mt-10'>
@@ -128,6 +128,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      {/* <PropertyManagement/> */}
     </div>
   )
 }
@@ -137,9 +138,18 @@ interface ApartmentGridProps {
 
 const ApartmentGrid: React.FC<ApartmentGridProps> = ({ count }) => {
   return (
-    <div className="flex flex-wrap w-full gap-x-3 gap-y-5 justify-center md:justify-center lg:justify-end">
+    <div className="
+    grid grid-cols-1 
+    gap-y-3 gap-x-1
+    
+    md:grid-cols-2 
+    lg:grid-cols-3 
+    xl:grid-cols-3
+    2xl:grid-cols-5
+    3xl:grid-cols-6"
+    dir="rtl">
       {[...Array(count)].map((_, i) => (
-        <div key={i}>
+        <div key={i} dir="ltr">
           <ApartmentCard />
         </div>
       ))}
