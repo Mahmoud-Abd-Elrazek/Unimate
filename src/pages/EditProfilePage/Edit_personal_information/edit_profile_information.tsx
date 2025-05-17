@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import useProfileStore from '../../../Store/useProfileStore';
 
 export default function Edit_profile_information() {
-<<<<<<< HEAD
+
   const {  governorate, address, fname, lname, briefOverView } = useProfileStore()
   const [firstname, setfirstname] = useState(fname||"")
   const [lastname, setlastname] = useState(lname||"")
@@ -33,20 +33,7 @@ export default function Edit_profile_information() {
     setadd(address);
     setbrief(briefOverView);
   }, [fname, lname, governorate, address, briefOverView]);
-=======
-  const [fisrtname, setfirstname] = useState("");
-  const [lastname, setlastname] = useState("");
-  const [gov, setgov] = useState("");
-  const [add, setadd] = useState("");
-  const [brief, setbrief] = useState("");
-  const UPdateStudentProfile = useProfileStore(state => state.UPdateStudentProfile);
-  const { governorate, address, fname, lname, briefOverView } = useProfileStore();
 
-  const handelchange = () => {
-    console.log("update the user profile success@", fisrtname, lastname);
-    UPdateStudentProfile(fisrtname, lastname, gov, add, brief);
-  };
->>>>>>> 87cf1dcc85d88d8f93034947bf92815c3a1cca09
 
   return (
     <div dir="rtl" className="container mx-auto px-4 py-6 fade-in">
@@ -77,11 +64,9 @@ export default function Edit_profile_information() {
                   type="text"
                   defaultValue={fname}
                   onChange={(e) => setfirstname(e.target.value)}
-<<<<<<< HEAD
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
-=======
+
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-[#171515] focus:outline-none focus:ring-2"
->>>>>>> 87cf1dcc85d88d8f93034947bf92815c3a1cca09
+
                 />
               </div>
               <div>
@@ -91,11 +76,9 @@ export default function Edit_profile_information() {
                   placeholder="الوشاش / الدرب"
                   defaultValue={address}
                   onChange={(e) => setadd(e.target.value)}
-<<<<<<< HEAD
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
-=======
+
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-[#171515] focus:outline-none focus:ring-2"
->>>>>>> 87cf1dcc85d88d8f93034947bf92815c3a1cca09
+
                 />
               </div>
             </div>
@@ -108,11 +91,9 @@ export default function Edit_profile_information() {
                   type="text"
                   defaultValue={lname}
                   onChange={(e) => setlastname(e.target.value)}
-<<<<<<< HEAD
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
-=======
+
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-[#171515] focus:outline-none focus:ring-2"
->>>>>>> 87cf1dcc85d88d8f93034947bf92815c3a1cca09
+
                 />
               </div>
               <div>
@@ -121,11 +102,9 @@ export default function Edit_profile_information() {
                   type="text"
                   defaultValue={governorate}
                   onChange={(e) => setgov(e.target.value)}
-<<<<<<< HEAD
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
-=======
+
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-[#171515] focus:outline-none focus:ring-2"
->>>>>>> 87cf1dcc85d88d8f93034947bf92815c3a1cca09
+
                 />
               </div>
             </div>

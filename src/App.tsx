@@ -21,7 +21,7 @@ import Personal_Reviews from './pages/User_Profile_Pages/Personal_Reviews/Person
 import Gallery from './pages/image_details/image_details';
 import UnauthorizedPage from './pages/Auth/UnauthorizedPage/UnauthorizedPage';
 import Reservation_requests_Owner from './pages/User_Profile_Pages/Reservation_requests_Owner/reservation_requests_Owner';
-import My_Money_transactions from './pages/User_Profile_Pages/Personal_Reviews/My_Money_transactions/my_Money_transactions';
+import My_Money_transactions from './pages/User_Profile_Pages/My_Money_transactions/my_Money_transactions';
 import My_real_estate from './pages/User_Profile_Pages/My_properties/my_real_estate';
 import CreatePost from './pages/CreatePost/createPost';
 import Step1 from './pages/CreatePost/step1';
