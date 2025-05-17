@@ -75,9 +75,9 @@ export default function Home() {
         id='filter-bar-section'
         className='mt-10 flex flex-col items-center gap-4 px-4 sm:px-8 md:px-12 lg:px-20'
       >
-        <h3 className='text-sm sm:text-[22px] text-[#1E293B] dark:text-[#f8fafc] md:text-xl text-center font-semibold ' >
+        <h1 className='text-sm sm:text-base md:text-xl font-medium MainColorText text-center'>
           استخدم الفلتره الذكيه لتحديد ما يناسبك
-        </h3>
+        </h1>
 
         <div className='w-full'>
           <div className='w-full max-w-[1050px] mx-auto flex justify-center items-center h-auto sm:h-40'>
@@ -96,7 +96,7 @@ export default function Home() {
           </h1>
 
           <div>
-            <ApartmentGrid count={6} />
+            <ApartmentGrid count={3} />
           </div>
         </div>
 
@@ -106,7 +106,7 @@ export default function Home() {
             اضيف حديثا <FaRegStar className="ml-2 dark:text-[#5bc0de] text-[#0d6efd]" />
           </h1>
           <div>
-            <ApartmentGrid count={5} />
+            <ApartmentGrid count={4} />
           </div>
 
           <div className='flex items-center justify-center mt-10'>
