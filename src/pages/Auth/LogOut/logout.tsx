@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import useAuthStore from "../../../Store/useAuthStore";
+import useAuthStore from "../../../Store/Auth/Auth.store";
 import { FiLogOut } from "react-icons/fi";
 
 const LogOut = () => {

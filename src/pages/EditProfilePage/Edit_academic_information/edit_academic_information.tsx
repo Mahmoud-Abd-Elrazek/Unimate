@@ -1,17 +1,26 @@
-import {  useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useProfileStore from '../../../Store/useProfileStore';
-
-// import animation file
 import "../../../../public/animations.css";
 
 export default function AccountSettings() {
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  // const AddAcadmicInfo = useProfileStore(state => state.AddAcadmicInfo);
+  const {AddAcadmicInfo,DisplayAcadmic}=useProfileStore()
+  const {
+    university,
+    department,
+    faculty,
+    academicYear
+  } = useProfileStore();
 
-  // Convert selected image to base64 string
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const AddAcadmicInfo = useProfileStore(state => state.AddAcadmicInfo);
-  const {university,department,faculty,academicYear}=useProfileStore()
+
+  // ✅ initialize from store
+  const [uni, setuni] = useState(university || "");
+  const [dep, setdep] = useState(department || "");
+  const [facul, setfacul] = useState(faculty || "");
+  const [acYear, setacYear] = useState(academicYear || "");
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -22,30 +31,31 @@ export default function AccountSettings() {
   };
 
   const convertToBase64 = (file: File): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (error) => reject(error);
-  });
-};
-
-  const [uni, setuni] = useState("");
-  const [dep, setdep] = useState("");
-  const [facul, setfacul] = useState("");
-  const [acYear, setacYear] = useState("");
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
+  };
 
   const handelchannge = async () => {
-    console.log(uni, dep, facul, acYear, selectedImage);
-    console.log("hello this is the update acadmic page infi")
-    let karnihImage="";
-    if(selectedImage){
-       karnihImage= await convertToBase64(selectedImage)
+    let karnihImage = "";
+    if (selectedImage) {
+      karnihImage = await convertToBase64(selectedImage);
+    }
 
-    } 
-    AddAcadmicInfo(uni, dep, facul, acYear,karnihImage);
-    // Optionally, handle image upload here as well.
+    AddAcadmicInfo(uni, dep, facul, acYear, karnihImage);
+    setuni(uni);
+    setdep(dep);
+    setfacul(facul);
+    setacYear(acYear);
+    
   };
+
+  useEffect(()=>{
+    DisplayAcadmic();
+  },[])
   return (
     <div dir="rtl" className="container mx-auto px-4 py-6 fade-in">
       <div className="max-w-4xl mx-auto">
@@ -72,8 +82,8 @@ export default function AccountSettings() {
                 <input
                   type="text"
                   placeholder=" جنوب الوادي"
-                  defaultValue={university}
-                  onChange={(e)=>setuni(e.target.value)}
+                  value={uni}
+                  onChange={(e) => setuni(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
               </div>
@@ -82,8 +92,8 @@ export default function AccountSettings() {
                 <input
                   type="text"
                   placeholder=" ال/ثالثة"
-                  defaultValue={academicYear}
-                  onChange={(e)=>setacYear(e.target.value)}
+                  value={acYear}
+                  onChange={(e) => setacYear(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
               </div>
@@ -91,8 +101,7 @@ export default function AccountSettings() {
               {/* كارنيه الكلية / بطاقة الترشيح */}
               <div className="space-y-2">
                 <label className="block text-sm font-medium mb-1">كارنيه الكلية / بطاقة الترشيح</label>
-
-                <div className="w-24 h-24 border-2 border-dashed border-gray-400 rounded-md flex items-center justify-center overflow-hidden">
+                <div className="w-24 h-24 border-2 border-dashed border-gray-400 rounded-md flex items-center justify-center overflow-hidden relative">
                   {previewUrl ? (
                     <img
                       src={previewUrl}
@@ -106,11 +115,10 @@ export default function AccountSettings() {
                     type="file"
                     accept="image/*"
                     onChange={handleImageChange}
-                    className="absolute w-32 h-32 opacity-0 cursor-pointer"
+                    className="absolute w-full h-full opacity-0 cursor-pointer"
                   />
                 </div>
               </div>
-
             </div>
 
             {/* Second Column */}
@@ -120,8 +128,8 @@ export default function AccountSettings() {
                 <input
                   type="text"
                   placeholder=" حاسبات و معلومات"
-                  defaultValue={faculty}
-                  onChange={(e)=>setfacul(e.target.value)}
+                  value={facul}
+                  onChange={(e) => setfacul(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
               </div>
@@ -130,8 +138,8 @@ export default function AccountSettings() {
                 <input
                   type="text"
                   placeholder="علوم الحاسب"
-                  defaultValue={department}
-                  onChange={(e)=>setdep(e.target.value)}
+                  value={dep}
+                  onChange={(e) => setdep(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
               </div>
@@ -140,14 +148,14 @@ export default function AccountSettings() {
 
           {/* Back Button */}
           <div className="mt-6 flex justify-end">
-          <Link to="/auther/profile">
-            <button className="flex items-center gap-2 bg-[#4F4F4F] text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
-              <svg className="w-5 h-5 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-              <span>الرجوع إلى المتصفح الرئيسة</span>
-            </button>
-          </Link>
+            <Link to="/auther/profile">
+              <button className="flex items-center gap-2 bg-[#4F4F4F] text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+                <svg className="w-5 h-5 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>الرجوع إلى المتصفح الرئيسة</span>
+              </button>
+            </Link>
           </div>
         </div>
       </div>

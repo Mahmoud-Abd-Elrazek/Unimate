@@ -1,20 +1,21 @@
 // import React from 'react';
 import { Phone, Mail, FileText, MapPin, GraduationCap } from 'lucide-react';
 import { FaUserCircle } from "react-icons/fa";
-import useAuthStore from '../../../Store/useAuthStore';
+import useAuthStore from '../../../Store/Auth/Auth.store';
 import useProfileStore from '../../../Store/useProfileStore';
 import { useEffect } from 'react';
+// import { useStudentStore } from '../../../Store/Student/Profile.store';
 
 const UserProfile = () => {
-  const { fname, lname, email, nationalId ,briefOverView,faculty,academicYear,address } = useProfileStore();
-  const showProfile = useProfileStore((state) => state.DisplayStudentinfo);
+  // const { fname, lname, email, nationalId ,briefOverView,faculty,academicYear,address } = useProfileStore();
   const Role = useAuthStore((state) => state.role);
+  const { GetStudentInfo,fname,lname,email, nationalId, briefOverView, faculty,address,academicYear,governorate } = useProfileStore();
 
+useEffect(() => {
+  GetStudentInfo();
+  console.log(governorate)
+}, [GetStudentInfo]);
 
-  useEffect(() => {
-    showProfile();
-    console.log(lname,fname)
-  }, []);
   // console.log("this is role in userpage", Role)
   return (
     <div>
@@ -92,7 +93,7 @@ const UserProfile = () => {
                       <GraduationCap className="text-base sm:text-lg" />
                     </li>
                     <li className="flex items-center justify-end gap-2">
-                      <span >العنوان : {address}</span>
+                      <span >العنوان : {governorate} - {address} </span>
                       <MapPin className="text-base sm:text-lg" />
                     </li>
                   </ul>

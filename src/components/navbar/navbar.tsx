@@ -6,7 +6,7 @@ import { useState } from "react";
 import MenuCard from "../MenuCard/menuCard";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import Logo from "../Logo/Logo";
-import useAuthStore from "../../Store/useAuthStore";
+import useAuthStore from "../../Store/Auth/Auth.store";
 
 
 export default function NavBar() {

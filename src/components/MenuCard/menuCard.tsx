@@ -3,7 +3,7 @@ import { GoSignIn } from "react-icons/go";
 import { IoHomeOutline, IoPersonAddOutline } from "react-icons/io5";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
-import useAuthStore from '../../Store/useAuthStore';
+import useAuthStore from '../../Store/Auth/Auth.store';
 interface MenuCardProps {
     setIsOpen: (isOpen: boolean) => void;
 }

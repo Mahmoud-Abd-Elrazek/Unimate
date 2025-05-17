@@ -3,22 +3,38 @@ import { Link } from 'react-router-dom';
 
 // import animation file
 import "../../../../public/animations.css";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useProfileStore from '../../../Store/useProfileStore';
 
 export default function Edit_profile_information() {
-  const [fisrtname,setfirstname]=useState("")
-  const [lastname,setlastname]=useState("")
-  const [gov,setgov]=useState("")
-  const [add,setadd]=useState("")
-  const [brief,setbrief]=useState("")
-  const UPdateStudentProfile=useProfileStore(state=>state.UPdateStudentProfile)
-  const {governorate,address,fname,lname,briefOverView}=useProfileStore()
-
-  const handelchange=()=>{
-    console.log("update the user profile sucess@",fisrtname,lastname)
-    UPdateStudentProfile(fisrtname,lastname,gov,add,brief)
+  const {  governorate, address, fname, lname, briefOverView } = useProfileStore()
+  const [firstname, setfirstname] = useState(fname||"")
+  const [lastname, setlastname] = useState(lname||"")
+  const [gov, setgov] = useState(governorate||"")
+  const [add, setadd] = useState(address||"")
+  const [brief, setbrief] = useState(briefOverView||"")
+  const UPdateStudentProfile = useProfileStore(state => state.UPdateStudentProfile)
+  // const {DisplayStudentinfo} =useProfileStore()
+  const handelchange = () => {
+    console.log("update the user profile sucess@", firstname, lastname)
+    UPdateStudentProfile(firstname, lastname, gov, add, brief)
+    setfirstname(firstname);
+    setlastname(lastname);
+    setgov(gov);
+    setadd(address);
+    setbrief(brief);
   }
+  // useEffect(() => {
+  //   DisplayStudentinfo()
+  // }, [DisplayStudentinfo])
+
+  useEffect(() => {
+    setfirstname(fname);
+    setlastname(lname);
+    setgov(governorate);
+    setadd(address);
+    setbrief(briefOverView);
+  }, [fname, lname, governorate, address, briefOverView]);
 
   return (
     <div dir="rtl" className="container mx-auto px-4 py-6 fade-in">
@@ -46,7 +62,7 @@ export default function Edit_profile_information() {
                 <input
                   type="text"
                   defaultValue={fname}
-                  onChange={(e)=>setfirstname(e.target.value)}
+                  onChange={(e) => setfirstname(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
               </div>
@@ -56,7 +72,7 @@ export default function Edit_profile_information() {
                   type="text"
                   placeholder="الوشاش / الدرب"
                   defaultValue={address}
-                   onChange={(e)=>setadd(e.target.value)}
+                  onChange={(e) => setadd(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
               </div>
@@ -70,7 +86,7 @@ export default function Edit_profile_information() {
                 <input
                   type="text"
                   defaultValue={lname}
-                   onChange={(e)=>setlastname(e.target.value)}
+                  onChange={(e) => setlastname(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
               </div>
@@ -79,7 +95,7 @@ export default function Edit_profile_information() {
                 <input
                   type="text"
                   defaultValue={governorate}
-                   onChange={(e)=>setgov(e.target.value)}
+                  onChange={(e) => setgov(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                 />
               </div>
@@ -94,7 +110,7 @@ export default function Edit_profile_information() {
               rows={4}
               placeholder="نبذة مختصرة عنك (مثلاً: اهتماماتك، المهارات)"
               defaultValue={briefOverView}
-               onChange={(e)=>setbrief(e.target.value)}
+              onChange={(e) => setbrief(e.target.value)}
             ></textarea>
             {/* <div className="flex justify-start mt-1">
             <span className="text-sm text-gray-500 ltr">0 / 30</span>

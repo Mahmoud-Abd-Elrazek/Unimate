@@ -10,7 +10,7 @@ import HeroSection from '../../components/HeroSection/HeroSection';
 
 // import animation file
 import "../../../public/animations.css";
-import useAuthStore from '../../Store/useAuthStore';
+import useAuthStore from '../../Store/Auth/Auth.store';
 
 // import { useEffect } from 'react';
 

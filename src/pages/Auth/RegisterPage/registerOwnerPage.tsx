@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { useState } from "react";
 import { FiEye, FiEyeOff, FiUserPlus } from "react-icons/fi";
-import useAuthStore from "../../../Store/useAuthStore";
+import useAuthStore from "../../../Store/Auth/Auth.store";
 import "./register.css";
 
 const RegisterOwnerPage = () => {

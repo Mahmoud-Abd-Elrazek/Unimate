@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import useAuthStore from "../../../Store/useAuthStore";
+import useAuthStore from "../../../Store/Auth/Auth.store";
 import axios from "axios";
 
 export default function ConfirmEmail() {

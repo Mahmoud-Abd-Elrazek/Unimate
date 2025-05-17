@@ -10,7 +10,7 @@ import { MdAttachMoney,
 import { GoHistory } from "react-icons/go";
 import { TbHomeCheck } from 'react-icons/tb';
 import { FaRegCalendarCheck } from 'react-icons/fa';
-import useAuthStore from '../../Store/useAuthStore';
+import useAuthStore from '../../Store/Auth/Auth.store';
 type SideBarProps = {
   onLinkClick?: () => void;
 };

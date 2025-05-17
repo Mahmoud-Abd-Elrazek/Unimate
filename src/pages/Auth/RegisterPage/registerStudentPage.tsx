@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { FiEye, FiEyeOff, FiUserPlus } from "react-icons/fi";
-import useAuthStore from "../../../Store/useAuthStore";
+import useAuthStore from "../../../Store/Auth/Auth.store";
 import UploadPhoto from '../../../components/UploadPhoto/uploadPhoto';
 import axios from "axios";
 export default function RegisterStudentPage() {
