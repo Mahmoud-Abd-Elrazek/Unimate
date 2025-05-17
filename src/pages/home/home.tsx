@@ -66,7 +66,7 @@ export default function Home() {
   // ================== End ================== 
 
   return (
-    <div className='min-h-lvh Page fade-in dark:bg-[#0f1729] pt-[80px] mt-[80px]'>
+    <div className='min-h-lvh Page fade-in dark:bg-[#181818] pt-[80px] mt-[80px]'>
       {/* hero section */}
       <HeroSection />
 
@@ -77,7 +77,7 @@ export default function Home() {
       >
         <h1 className='text-sm sm:text-base md:text-xl font-medium MainColorText text-center'>
           استخدم الفلتره الذكيه لتحديد ما يناسبك
-        </h3>
+        </h1>
 
         <div className='w-full'>
           <div className='w-full max-w-[1050px] mx-auto flex justify-center items-center h-auto sm:h-40'>
