@@ -23,6 +23,7 @@ interface ProfileState {
   phones: string;
   img: File | undefined;
   GetStudentInfo: () => void;
+  DisplayUpdatedStudentinfo:()=>void;
   DisplayAcadmic: () => void;
   UPdateStudentProfile: (
     fname: string,
@@ -61,6 +62,7 @@ const useProfileStore = create<ProfileState>()(
       country: "",
       phones: "",
       img: undefined,
+
       GetStudentInfo: () => {
         const token = useAuthStore.getState().token;
         axios
@@ -115,6 +117,14 @@ const useProfileStore = create<ProfileState>()(
         } catch (error) {
           console.log("update failed", error);
         }
+      },
+      DisplayUpdatedStudentinfo:async()=>{
+        const token=useAuthStore.getState().token;
+        axios.get("https://darkteam.runasp.net/UpdateProfileDisplayEndpoint/UpdateProfileDisplay",{
+          headers:{
+            'Authorization': `Bearer ${token}`
+          }
+        })
       },
       AddAcadmicInfo: async (
         University,
@@ -196,7 +206,7 @@ const useProfileStore = create<ProfileState>()(
           karnihImage,
           country,
           phones,
-          // img, // File is not serializable, so you may want to exclude it
+           img, // File is not serializable, so you may want to exclude it
         } = state;
         return {
           fname,
@@ -216,6 +226,7 @@ const useProfileStore = create<ProfileState>()(
           karnihImage,
           country,
           phones,
+          img
         };
       },
     }

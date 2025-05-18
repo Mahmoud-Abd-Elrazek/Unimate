@@ -5,6 +5,7 @@ import { z } from "zod";
 import { useState } from "react";
 import { FiEye, FiEyeOff, FiLogIn } from "react-icons/fi";
 import useAuthStore from "../../../Store/Auth/Auth.store";
+import {  Slide, toast, ToastContainer } from "react-toastify";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -13,7 +14,6 @@ const LoginPage = () => {
   // let Role= useAuthStore((state) => state.role);
   const login = useAuthStore((state) => state.login)
   const setRole = useAuthStore((state) => state.setRole);
-
   const SignInSchema = z.object({
     email: z.string().min(1, "مطلوب").email("ادخل بريد الكتروني صحيح"),
     password: z.string().min(8, "يجب أن تكون كلمة المرور أطول من 8 أحرف"),
@@ -30,16 +30,22 @@ const LoginPage = () => {
     mode: "onChange",
   });
 
-  const OnSubmit: SubmitHandler<SignT> = (data) => {
+  const OnSubmit: SubmitHandler<SignT> = async (data) => {
     const Role = accountType === "طالب" ? "Student" : "Owner";
     console.log({ ...data, Role });
     setRole(Role);
-    localStorage.setItem("role", Role);
-   
-    login(data.email, data.password);
-    navigate("/", { replace: true });
+    
+    const success = await login(data.email, data.password);
+    
+    if (success) {
+      localStorage.setItem("role", Role);
+      toast.success("Welcome back! 🎉");
+      navigate("/", { replace: true });
+  } else {
+    toast.error("Invalid email or password ❌");
+  }
   };
-  
+
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
@@ -141,6 +147,7 @@ const LoginPage = () => {
           </Link>
         </p>
       </div>
+      <ToastContainer position="top-center" autoClose={3000} transition={Slide} />
     </div>
   );
 };

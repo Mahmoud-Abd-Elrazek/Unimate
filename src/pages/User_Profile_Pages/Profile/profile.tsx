@@ -9,11 +9,11 @@ import { useEffect } from 'react';
 const UserProfile = () => {
   // const { fname, lname, email, nationalId ,briefOverView,faculty,academicYear,address } = useProfileStore();
   const Role = useAuthStore((state) => state.role);
-  const { GetStudentInfo,fname,lname,email, nationalId, briefOverView, faculty,address,academicYear,governorate } = useProfileStore();
-
+  const { GetStudentInfo,fname,lname,email, nationalId, briefOverView, faculty,address,academicYear,governorate,img } = useProfileStore();
+  // const {img}=useProfileStore();
 useEffect(() => {
   GetStudentInfo();
-  console.log(governorate)
+  console.log(img)
 }, [GetStudentInfo]);
 
   // console.log("this is role in userpage", Role)
@@ -113,7 +113,12 @@ useEffect(() => {
 
             {/* Profile Image and College Info */}
             <div className="flex flex-col items-center pt-4 md:pt-0 space-y-3 sm:space-y-4">
-              <FaUserCircle className="w-32 h-32 sm:w-48 sm:h-48 text-gray-400 dark:text-[#BDBDBD]" />
+            
+              {img != null
+                ? <img src={typeof img === "string" ? img : URL.createObjectURL(img)} alt="Profile" />
+                : <FaUserCircle className="w-32 h-32 sm:w-48 sm:h-48 text-gray-400 dark:text-[#BDBDBD]" />
+              }
+
               <div className="text-center space-y-1 sm:space-y-2">
                 <div className="flex items-center justify-center gap-2 text-[black] font-bold dark:text-[white] text-sm sm:text-base">
                   <span> طالب في كلية  {faculty}</span>

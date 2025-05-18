@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 interface User {
   fname: string;
@@ -22,11 +23,12 @@ interface AuthState {
   otp: string | null;
   photo1: File | null;
   photo2: File | null;
+  iSSuccess: boolean;
   setPhoto1: (file: File) => void;
   setPhoto2: (file: File) => void;
   setRole: (role: string) => void;
   setToken: (token: string) => void;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<boolean>;
   // registerStudent: (Email:string,Password:string,Fname:string,Lname:string,Username:string,NationalId:string,confrimPassword:string,photo1:File,photo2:File) => Promise<void>;
   registerOwner: (firstname: string, lastname: string, email: string, password: string, phone: string) => Promise<void>;
   resetpassword: (email: string, password: string, confrimPassword: string, token: string) => Promise<void>;
@@ -45,34 +47,41 @@ const useAuthStore = create<AuthState>()(
       otp: null,
       photo1: null,
       photo2: null,
+      iSSuccess: false,
       setPhoto1: (file: File) => set({ photo1: file }),
       setPhoto2: (file: File) => set({ photo1: file }),
       setRole: (role: string) => set({ role }),
       setToken: (token: string) => set({ token }),
 
-      login: async (email: string, password: string) => {
-  try {
-    const res = await axios.post(
-      'https://darkteam.runasp.net/LogInUserEndpoint/LogInUser',
-      { email, password }
-    );
+      login: async (email, password) => {
+        try {
+          const res = await axios.post(
+            'https://darkteam.runasp.net/LogInUserEndpoint/LogInUser',
+            { email, password }
+          );
 
-    console.log("Full response data:", res.data);
+          if (!res.data.isSuccess) {
+            // toast.error(res.data.message);
+            console.log("the is success not true!!!!!!!!!!!")
+            return false;
+          }
 
-    const token = res?.data?.data?.token;
+          const token = res?.data?.data?.token;
+          if (token) {
+            set({ isAuthenticated: true, token });
+            localStorage.setItem("token", token);
+            return true;
+          } else {
+            toast.error("Login failed. Please try again.");
+            return false;
+          }
+        } catch (error) {
+          toast.error("Network error. Please try again." + error);
+          return false;
+        }
+      },
 
-    if (token) {
-      set({ isAuthenticated: true, token });
-      localStorage.setItem("token", token);
-      console.log("Login successful. Token:", token);
-    } else {
-      console.error("Login failed: token not found in response", res?.data?.data);
-    }
 
-  } catch (error) {
-    console.error('Login failed:', error);
-  }
-},
 
 
 

@@ -70,7 +70,7 @@ export default function RegisterStudentPage() {
     for (const [key, value] of userData.entries()) {
       console.log(`${key}:`, value);
     }
-    localStorage.setItem("role", "Student");
+    // localStorage.setItem("role", "Student");
     setrole("Student");
     navigate("/confirmemail1");
   };
