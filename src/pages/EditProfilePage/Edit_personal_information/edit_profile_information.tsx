@@ -54,7 +54,7 @@ export default function Edit_profile_information() {
         </div>
 
         {/* Form */}
-        <div className="rounded-lg p-4 sm:p-6 shadow-sm bg-white dark:bg-gray-900">
+        <div className="rounded-lg p-4 sm:p-6 shadow-sm  ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* First Column */}
             <div className="space-y-4">
@@ -65,7 +65,7 @@ export default function Edit_profile_information() {
                   defaultValue={fname}
                   onChange={(e) => setfirstname(e.target.value)}
 
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-[#171515] focus:outline-none focus:ring-2"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2"
 
                 />
               </div>
@@ -77,7 +77,7 @@ export default function Edit_profile_information() {
                   defaultValue={address}
                   onChange={(e) => setadd(e.target.value)}
 
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-[#171515] focus:outline-none focus:ring-2"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2"
 
                 />
               </div>
@@ -92,7 +92,7 @@ export default function Edit_profile_information() {
                   defaultValue={lname}
                   onChange={(e) => setlastname(e.target.value)}
 
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-[#171515] focus:outline-none focus:ring-2"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2"
 
                 />
               </div>
@@ -103,7 +103,7 @@ export default function Edit_profile_information() {
                   defaultValue={governorate}
                   onChange={(e) => setgov(e.target.value)}
 
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-[#171515] focus:outline-none focus:ring-2"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2"
 
                 />
               </div>
@@ -114,7 +114,7 @@ export default function Edit_profile_information() {
           <div className="mt-6">
             <label className="block text-sm font-medium mb-1">نبذة مختصرة</label>
             <textarea
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-[#171515] focus:outline-none focus:ring-2"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg  dark:bg-[#171515] focus:outline-none focus:ring-2"
               rows={4}
               placeholder="نبذة مختصرة عنك (مثلاً: اهتماماتك، المهارات)"
               defaultValue={briefOverView}
