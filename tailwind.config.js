@@ -1,3 +1,5 @@
+const { colors } = require('@mui/material');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class', // Enable dark mode
@@ -9,6 +11,15 @@ module.exports = {
     extend: {
       fontFamily: {
         playwrite: ['"Playwrite US Trad"', 'sans-serif'],
+        colors: {
+          primary_BGD: '#181818',
+          primary_TXD: '#E0E0E0',
+          secondary_BGD: '#1F1F1F',
+          secondary_TXD: '#B0B0B0',
+          BTN_BGD: '#A0A0A0',
+          BTN_TXD: '#f8fafc',
+          FOTR_BGD: '#1A1A1A',
+        },
       },
       keyframes: {
         'slide-in-left': {
@@ -36,4 +47,5 @@ module.exports = {
     require('tailwind-scrollbar-hide')
   ],
 }
+
 
