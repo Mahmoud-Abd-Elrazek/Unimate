@@ -9,12 +9,12 @@ import { useEffect } from 'react';
 const UserProfile = () => {
   // const { fname, lname, email, nationalId ,briefOverView,faculty,academicYear,address } = useProfileStore();
   const Role = useAuthStore((state) => state.role);
-  const { GetStudentInfo,fname,lname,email, nationalId, briefOverView, faculty,address,academicYear,governorate,img } = useProfileStore();
+  const { GetStudentInfo, fname, lname, email, nationalId, briefOverView, faculty, address, academicYear, governorate, img } = useProfileStore();
   // const {img}=useProfileStore();
-useEffect(() => {
-  GetStudentInfo();
-  console.log(img)
-}, [GetStudentInfo]);
+  useEffect(() => {
+    GetStudentInfo();
+    console.log(img)
+  }, [GetStudentInfo]);
 
   // console.log("this is role in userpage", Role)
   return (
@@ -44,16 +44,16 @@ useEffect(() => {
                   </li>
                 </ul>
               </div>
-
-              <div>
-                <h2 className=" text-[black] mb-2 font-bold dark:text-[white]">الوصف</h2>
-                <div className="flex gap-2 items-start text-gray-600 text-sm dark:text-[#BDBDBD]">
-                  <p className="text-xs sm:text-sm">
-                  hello world !!!!!!!!!!!!!!!!!!!!!!!!
-                  </p>
-                  <FileText className="w-[30px] sm:w-[50px] h-[30px] sm:h-[40px] text-lg mt-1" />
+              <div className="mt-4 sm:mt-6">
+                <div className="flex items-center justify-end gap-2 mb-2 text-sm sm:text-base text-right">
+                  <span className="text-gray-400 text-xs sm:text-sm">
+                    {briefOverView || "لا يوجد وصف"}
+                  </span>
+                  <h2 className="text-sm sm:text-base dark:text-[#BDBDBD]">: الوصف</h2>
+                  <FileText className="text-base sm:text-lg w-6 h-6 dark:text-[#BDBDBD]" />
                 </div>
               </div>
+
             </div>
 
             {/* صورة البروفايل */}
@@ -100,20 +100,20 @@ useEffect(() => {
                 </div>
               </div>
 
-              <div className="mt-4 sm:mt-6">
-                <h2 className=" text-[black] font-bold mb-2 dark:text-[white] text-sm sm:text-base">الوصف</h2>
-                <div className="flex gap-2 items-start text-gray-600 text-xs sm:text-sm dark:text-[#BDBDBD]">
-                  <p>
-                    {briefOverView}
-                  </p>
-                  <FileText className="w-[30px] sm:w-[50px] h-[30px] sm:h-[40px] text-base sm:text-lg mt-1" />
+             <div className="mt-4 sm:mt-6">
+                <div className="flex items-center justify-end gap-2 mb-2 text-sm sm:text-base text-right">
+                  <span className="text-gray-400 text-xs sm:text-sm">
+                    {briefOverView || "لا يوجد وصف"}
+                  </span>
+                  <h2 className="text-sm sm:text-base dark:text-[#BDBDBD]">: الوصف</h2>
+                  <FileText className="text-base sm:text-lg w-5 h-5 dark:text-[#BDBDBD]" />
                 </div>
               </div>
             </div>
 
             {/* Profile Image and College Info */}
             <div className="flex flex-col items-center pt-4 md:pt-0 space-y-3 sm:space-y-4">
-            
+
               {img != null
                 ? <img src={typeof img === "string" ? img : URL.createObjectURL(img)} alt="Profile" />
                 : <FaUserCircle className="w-32 h-32 sm:w-48 sm:h-48 text-gray-400 dark:text-[#BDBDBD]" />

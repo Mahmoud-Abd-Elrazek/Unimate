@@ -50,7 +50,7 @@ const ApartmentCard = ({ className = "", edit = false, data }: ApartmentCardProp
     swiperRef.current?.slideNext();
   };
 // Helper function
-const parseFloor = (floorRaw: any): string => {
+const parseFloor = (floorRaw: unknown): string => {
   if (typeof floorRaw !== "string") return "?";
 
   const trimmed = floorRaw.trim();
@@ -102,7 +102,8 @@ const addressMap: { [key: string]: string } = {
 
 
   const type = data?.gender === "Male" ? "أولاد" : "بنات";
-  const numofRooms = (data?.numberOfRooms ?? 0) > 4 ? 4 : data?.numberOfRooms ;
+  let numofRooms = (data?.numberOfRooms ?? 3) > 4 ? 4 : data?.numberOfRooms;
+  numofRooms=numofRooms==0? 3:numofRooms
   return (
     <div
       className={`
