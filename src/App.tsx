@@ -30,6 +30,7 @@ import Step3 from './pages/CreatePost/step3';
 import Step4 from './pages/CreatePost/step4';
 import LoginPage from './pages/Auth/LoginPage/LoginPage';
 import Housing_Services from './pages/Housing_Services/housing_services';
+// import edit_property from '../../components/PropertyManagementSystem/PropertyManagement'
 
 // Components
 import NavBar from './components/navbar/navbar';
@@ -48,6 +49,7 @@ import ConfirmEmail from './pages/Auth/Emails/confirmemail';
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import LogOut from './pages/Auth/LogOut/logout';
 import ConfirmEmail12 from './pages/Auth/Emails/confirmemail12';
+import PropertyManagement from './components/PropertyManagementSystem/PropertyManagement';
 export default function App() {
   const location = useLocation();
   const hideFooterNavbarRoutes = [
@@ -90,6 +92,7 @@ export default function App() {
         <Route path="/img_details" element={<Gallery />} />
         <Route path="/housing_services" element={<Housing_Services />} />
         <Route path="/ApartmentCard" element={<ApartmentCard />} />
+        <Route path="/edit_property" element={<PropertyManagement />} />
 
         {/* Author Pages */}
         <Route path="/auther/*" element={<AuthorLayout />}>
