@@ -7,6 +7,7 @@ import MenuCard from "../MenuCard/menuCard";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import Logo from "../Logo/Logo";
 import useAuthStore from "../../Store/Auth/Auth.store";
+import { IoAdd } from "react-icons/io5";
 
 
 export default function NavBar() {
@@ -15,7 +16,7 @@ export default function NavBar() {
 
   return (
     <div className='px-4 md:px-10 m-0 h-[80px] w-full flex justify-between items-center bg-[#EFEFEF] dark:bg-[#151d30]/70  
-    bg-white/70 backdrop-blur-md fixed top-0 left-0 w-full z-50'>
+    bg-white/70 backdrop-blur-md fixed top-0 left-0 w-full z-50 border-b border-gray-300 dark:border-[#1f2630]'>
 
         {/* Logo */}
         <Link to='/' className='flex items-center text-[#212529] cursor-pointer'>
@@ -34,9 +35,17 @@ export default function NavBar() {
           {Role === "Owner" && (
             <Link
               to='/createpost'
-              className="btn MainColorBG text-white"
+              className="
+              flex items-center justify-center gap-x-1
+              btn bg-[#495057] text-[#f8fafc] text-[14px] 
+              border-1 border-[#495057]
+              transition duration-300 ease-in-out transform
+              hover:bg-transparent hover:border-[#495057] hover:text-[#0f1729]
+              hover:dark:text-[#f8fafc]
+              hover:dark:border-[#f8fafc]"
             >
-              اضافه مسكن جديد
+              اضافه مسكن 
+              <IoAdd className="text-[17px]"/>
             </Link>
           )}
 
