@@ -30,7 +30,7 @@ const features = [
 ];
 export default function RoomDetails() {
   return (
-    <div className="min-h-screen Page slide-in mt-[80px]">
+    <div className="min-h-screen Page slide-in pt-[80px]">
       <Link to='/' className="flex items-center gap-1 cursor-pointer my-3 ml-3">
         <IoMdArrowRoundBack className="IconSize" />
         <h2 className=" text-sm md:text-base">رجوع</h2>

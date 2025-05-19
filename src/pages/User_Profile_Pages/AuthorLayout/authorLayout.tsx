@@ -24,7 +24,7 @@ const AuthorLayout = () => {
     location.pathname === '/auther/help';
 
   return (
-    <div className="flex flex-col lg:flex-row-reverse min-h-[80vh] relative mt-[80px]">
+    <div className="flex flex-col lg:flex-row-reverse min-h-[80vh] relative pt-[80px]">
 
       {/* ✅ Sidebar في الشاشات الكبيرة */}
       {!hideSidebarRoutes && (
