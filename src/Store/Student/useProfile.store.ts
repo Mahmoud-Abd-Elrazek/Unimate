@@ -1,7 +1,7 @@
 import axios from "axios";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import useAuthStore from "./Auth/Auth.store";
+import useAuthStore from "../Auth/Auth.store";
 
 interface ProfileState {
   fname: string;

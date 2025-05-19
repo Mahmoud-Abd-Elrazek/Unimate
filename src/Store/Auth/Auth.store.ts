@@ -31,6 +31,7 @@ interface AuthState {
   login: (email: string, password: string) => Promise<boolean>;
   // registerStudent: (Email:string,Password:string,Fname:string,Lname:string,Username:string,NationalId:string,confrimPassword:string,photo1:File,photo2:File) => Promise<void>;
   registerOwner: (firstname: string, lastname: string, email: string, password: string, phone: string) => Promise<void>;
+  forgetpassword:(email:string)=>Promise<boolean>;
   resetpassword: (email: string, password: string, confrimPassword: string, token: string) => Promise<void>;
   logout: () => void;
   confirmemail: (email: string, otp: string) => Promise<void>;
@@ -63,17 +64,19 @@ const useAuthStore = create<AuthState>()(
           if (!res.data.isSuccess) {
             // toast.error(res.data.message);
             console.log("the is success not true!!!!!!!!!!!")
+            set({ role: null });
             return false;
-          }
-
-          const token = res?.data?.data?.token;
-          if (token) {
-            set({ isAuthenticated: true, token });
-            localStorage.setItem("token", token);
-            return true;
           } else {
-            toast.error("Login failed. Please try again.");
-            return false;
+            const token = res?.data?.data?.token;
+            if (token) {
+              set({ isAuthenticated: true, token });
+              localStorage.setItem("token", token);
+              return true;
+            } else {
+              toast.error("Login failed. Please try again.");
+              return false;
+            }
+            return true;
           }
         } catch (error) {
           toast.error("Network error. Please try again." + error);
@@ -134,14 +137,29 @@ const useAuthStore = create<AuthState>()(
           console.error('Owner registration failed:', error);
         }
       },
-
-      resetpassword: async (email, password, confrimPassword, token) => {
+      forgetpassword:async(email:string)=>{
+        try{
+          const res=axios.post("https://darkteam.runasp.net/ForgotPasswordEndpoint/ForgotPassword",{
+            email
+          })
+          console.log(res)
+          // if(!res.isSuccess){
+          //   toast.error("There Is No Such Email")
+          //   return false;
+          // }else{return true;}
+          return true;
+        }catch(error){
+          console.log("forgetpadd failed!!"+error)
+          return false;
+        }
+      },
+      resetpassword: async (email, token, password, confrimPassword) => {
         try {
           const res = await axios.post("https://darkteam.runasp.net/ResetPasswordWithOutIdentityEndpoint/ResetPassword", {
             email,
+            token,
             password,
-            confrimPassword,
-            token
+            confrimPassword
           });
           set({
             isAuthenticated: true,
@@ -179,8 +197,7 @@ const useAuthStore = create<AuthState>()(
           phone: '',
           otp: null
         });
-        localStorage.removeItem('auth-storage')
-        localStorage.removeItem('role')
+        localStorage.clear();
         console.log("Logged out.");
       },
     }),

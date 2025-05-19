@@ -2,7 +2,7 @@
 import { Phone, Mail, FileText, MapPin, GraduationCap } from 'lucide-react';
 import { FaUserCircle } from "react-icons/fa";
 import useAuthStore from '../../../Store/Auth/Auth.store';
-import useProfileStore from '../../../Store/useProfileStore';
+import useProfileStore from '../../../Store/Student/useProfile.store';
 import { useEffect } from 'react';
 // import { useStudentStore } from '../../../Store/Student/Profile.store';
 

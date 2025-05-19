@@ -11,6 +11,8 @@ import HeroSection from '../../components/HeroSection/HeroSection';
 // import animation file
 import "../../../public/animations.css";
 import useAuthStore from '../../Store/Auth/Auth.store';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 // import { useEffect } from 'react';
 
@@ -65,6 +67,25 @@ export default function Home() {
   // }, []);
   // ================== End ================== 
 
+
+  // const [numofpage,setnumofpage]=useState(0);
+  const [pagesize,setpagesize]=useState(6);
+  
+  const [apartments,setapartments]=useState([])
+  const FetchData=async()=>{
+    try{
+      const res=await  axios.get(`https://darkteam.runasp.net/GetApartmentEndpoint/GetApartment?PageNumber=1&PageSize=${pagesize}`)
+      console.log(res.data)
+      setapartments(res.data.data.apartments)
+      console.log("this is the apartments array"+apartments)
+    }catch(error){
+      console.log("failed to fetch the data!!!!!!!!!!!"+error)
+    }
+  }
+  
+  useEffect(()=>{
+    FetchData()
+  },[pagesize])
   return (
     <div className='min-h-lvh Page fade-in dark:bg-[#0f1729] pt-[80px]'>
       {/* hero section */}
@@ -96,7 +117,7 @@ export default function Home() {
           </h1>
 
           <div>
-            <ApartmentGrid count={3} />
+            <ApartmentGrid apartments={apartments} />
           </div>
         </div>
 
@@ -106,11 +127,12 @@ export default function Home() {
             اضيف حديثا <FaRegStar className="ml-2 dark:text-[#5bc0de] text-[#0d6efd]" />
           </h1>
           <div>
-            <ApartmentGrid count={4} />
+            <ApartmentGrid apartments={apartments} />
           </div>
 
           <div className='flex items-center justify-center mt-10'>
             <button
+            onClick={() => setpagesize(prev => prev + 6)}
               className={`
                 text-center rounded-full
                 w-[300px] h-[3rem]
@@ -119,7 +141,6 @@ export default function Home() {
                 mb-[50px]
                 text-[16px]
                 py-[10px] px-0
-                h-auto
                 md:mb-[50px] md:bg-[#ef4444] md:text-[16px] md:py-[10px] md:px-0 md:h-auto
               `}>
               عرض المزيد
@@ -133,10 +154,11 @@ export default function Home() {
   )
 }
 interface ApartmentGridProps {
-  count: number; // Number of cards to display
+  // count: number; 
+  apartments:object[];
 }
 
-const ApartmentGrid: React.FC<ApartmentGridProps> = ({ count }) => {
+const ApartmentGrid: React.FC<ApartmentGridProps> = ({  apartments}) => {
   return (
     <div className="
     grid grid-cols-1 
@@ -148,9 +170,9 @@ const ApartmentGrid: React.FC<ApartmentGridProps> = ({ count }) => {
     2xl:grid-cols-5
     3xl:grid-cols-6"
     dir="rtl">
-      {[...Array(count)].map((_, i) => (
+      {apartments.map((apartment, i) => (
         <div key={i} dir="ltr">
-          <ApartmentCard />
+          <ApartmentCard data={apartment} />
         </div>
       ))}
     </div>

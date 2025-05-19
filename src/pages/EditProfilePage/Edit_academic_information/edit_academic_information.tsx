@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import useProfileStore from '../../../Store/useProfileStore';
+import useProfileStore from '../../../Store/Student/useProfile.store';
 import "../../../../public/animations.css";
 
 export default function AccountSettings() {

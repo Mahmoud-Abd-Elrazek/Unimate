@@ -7,7 +7,6 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const resetPassSchema = z
   .object({
-    email: z.string().min(1, "مطلوب").email("ادخل بريد الكتروني صحيح"),
     password: z.string().min(8, "يجب أن تكون كلمة المرور أطول من 8 أحرف"),
     confirmPassword: z.string().min(8, "يجب أن تكون كلمة المرور أطول من 8 أحرف"),
   })
@@ -38,8 +37,7 @@ export default function Resetpass() {
       return;
     }
 
-    // Simulate API call
-    console.log("Resetting password for:", data.email);
+  
     console.log("New Password:", data.password);
     console.log("Token:", token);
 
@@ -54,16 +52,7 @@ export default function Resetpass() {
       <div className="bg-white shadow-2xl rounded-2xl p-10 max-w-md w-full text-right">
         <h2 className="text-xl font-bold mb-4 text-center">إعادة تعيين كلمة المرور</h2>
         <form onSubmit={handleSubmit(onSubmit)} dir="rtl" className="space-y-3">
-          <div>
-            <input
-              dir="rtl"
-              type="email"
-              placeholder="ادخل البريد الإلكتروني"
-              className="InputStyle w-full"
-              {...register("email")}
-            />
-            {errors.email && <p className="ErrorMessage">{errors.email.message}</p>}
-          </div>
+          
 
           {/* Password */}
           <div className="text-right relative">

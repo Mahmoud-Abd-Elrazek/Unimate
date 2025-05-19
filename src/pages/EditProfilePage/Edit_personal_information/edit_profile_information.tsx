@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import "../../../../public/animations.css";
 import { useEffect, useState } from 'react';
-import useProfileStore from '../../../Store/useProfileStore';
+import useProfileStore from '../../../Store/Student/useProfile.store';
 
 export default function Edit_profile_information() {
 
