@@ -28,7 +28,7 @@ const AuthorLayout = () => {
 
       {/* ✅ Sidebar في الشاشات الكبيرة */}
       {!hideSidebarRoutes && (
-        <aside className="hidden lg:block lg:w-[250px] p-2 lg:p-4 lg:mt-12">
+        <aside className="hidden lg:block lg:w-[280px] p-2 lg:p-4 lg:mt-12">
           <div className="rounded-2xl border border-gray-200 dark:border-gray-700 bg-[#FAFAFA] dark:bg-[#121111] shadow-md">
             <SideBar />
           </div>

@@ -1,12 +1,8 @@
 import "./home.css"
 import Filter_bar from '../../components/Filter_Bar/filter_bar'
-// import Search_bar from '../../components/search_bar_rooms/search_bar_rooms'
 import { FaRegStar } from "react-icons/fa";
 import ApartmentCard from '../../components/ApartmentCard/ApartmentCard';
 import HeroSection from '../../components/HeroSection/HeroSection';
-// import { Col, Row } from 'react-bootstrap';
-
-// import PropertyManagement from '../../components/PropertyManagementSystem/PropertyManagement'
 
 // import animation file
 import "../../../public/animations.css";
@@ -89,7 +85,7 @@ export default function Home() {
           <div className='flex items-center justify-center mt-10'>
             {apartments.length < totalCount ? (
               <button
-                onClick={() => setpagesize(prev => prev + 6)}
+                onClick={() => setpagesize(prev => prev + 12)}
                 disabled={isLoading}
                 className={`
                 text-center rounded-full
@@ -133,7 +129,7 @@ const ApartmentGrid: React.FC<ApartmentGridProps> = ({ apartments }) => {
   return (
     <div className="
       grid grid-cols-1 
-      gap-y-3 gap-x-1
+      gap-y-3 gap-x-2
       md:grid-cols-2 
       lg:grid-cols-3 
       xl:grid-cols-3

@@ -69,7 +69,8 @@ const Gallery = () => {
   }, [selectedImage]);
 
   return (
-    <div className="relative p-4 md:p-6 max-w-screen-lg mx-auto space-y-10 mt-[80px] slide-in">
+    <div className='pt-[80px]  slide-in'>
+    <div className="relative p-4 md:p-6 max-w-screen-lg mx-auto space-y-10">
       {/* صورة مكبرة مع زر رجوع */}
       {selectedImage && (
         <div
@@ -129,6 +130,7 @@ const Gallery = () => {
           </div>
         </div>
       ))}
+    </div>
     </div>
   );
 };

@@ -42,11 +42,9 @@ export default function SideBar({ onLinkClick }: SideBarProps) {
 
   return (
     <div className="w-full max-w-sm  rounded-2xl  text-right ">
-      <div className="flex flex-col items-center py-6">
-        <h2 className="text-lg font-semibold ">محمود عبدالرزاق حمدالله</h2>
+      <div className="flex flex-col items-end py-6">
+         <h2 className="text-lg font-bold px-[24px] pb-[30px] py-[10px] border-b border-gray-300 dark:border-gray-700">محمود عبدالرزاق حمدالله</h2>
       </div>
-
-      <hr className="my-4 border-gray-300 dark:border-gray-700" />
 
       <ul className="space-y-1">
         {links.map((link) => (

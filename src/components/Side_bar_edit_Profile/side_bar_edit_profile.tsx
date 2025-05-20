@@ -35,13 +35,13 @@ export default function Side_bar_edit_profile({ onLinkClick }: Props) {
   ];
 
   return (
-    <div className="w-full max-w-sm mx-auto  rounded-2xl  text-right ">
+    <div className="w-full max-w-sm rounded-2xl  text-right">
       <div className="flex flex-col items-center pt-[35px]">
         <FaUserCircle className="text-7xl text-gray-400 dark:text-gray-600" />
-        <h2 className="text-xl font-bold mt-2 mr-10">محمود عبدالرزاق حمدالله</h2>
+        <h2 className="text-lg font-bold px-[24px] py-[10px] border-b border-gray-300 dark:border-gray-700">محمود عبدالرزاق حمدالله</h2>
       </div>
 
-      <hr className="my-4 border-gray-300 dark:border-gray-700" />
+      {/* <hr className="my-4 border-gray-300 dark:border-gray-700" /> */}
 
       <ul className="space-y-2">
         {links.map((link) => (
