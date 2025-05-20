@@ -39,7 +39,7 @@ export default function Home() {
   }, [pagesize])
 
   return (
-    <div className='min-h-lvh Page fade-in dark:bg-[#0f1729] pt-[80px]'>
+    <div className='min-h-lvh Page fade-in pt-[80px]'>
       {/* hero section */}
       <HeroSection />
 
