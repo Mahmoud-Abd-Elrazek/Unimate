@@ -215,7 +215,13 @@ const addressMap: { [key: string]: string } = {
 
           <div className="flex items-center justify-end gap-x-2 mt-2 mb-3 lg:gap-x-1">
             {["+10 اخري", "WiFi", "غاز طبيعي", "مكيف"].map((feature, i) => (
-              <span key={i} className="bg-[#F1F5F9] text-[#111111] rounded-full dark:text-BTN_TXD dark:bg-BTN_BGD text-[11px] sm:px-3 sm:py-1 sm:text-sm md:px-1 sm:text-[12px] lg:px-0 lg:py-0 lg:text-[11px] xl:px-1 xl:py-0 xl:text-[12px]">
+              <span key={i} className="bg-[#F1F5F9] text-[#111111] rounded-full dark:text-BTN_TXD dark:bg-darkBg 
+              sm:text-sm
+              text-[12px] p-1
+              
+              sm:px-3 sm:py-1 
+              md:px-2 md:text-[12px]
+              lg:px-3 lg:py-3 lg:text-[13px]">
                 {feature}
               </span>
             ))}
