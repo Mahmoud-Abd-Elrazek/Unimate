@@ -1,5 +1,6 @@
-// import { create } from "zustand";
-// import axios from "axios";
+import { create } from "zustand";
+import axios from "axios";
+import useAuthStore from "../Auth/Auth.store";
 
 // interface Apartment {
 //     // images: string[];
@@ -13,39 +14,29 @@
 //     price: number,
 //     favourite: null
 // }
-// interface ApartmentState {
-//     apartments: Apartment[];
-//     numofpage: number;
-//     // pagesize:number;
+interface ApartmentState {
+    // apartments: Apartment[];
+    // numofpage: number;
+    // pagesize:number;
+    AddFavorite:()=>Promise<void>
+}
 
-// }
+export const useApartmentStore = create<ApartmentState>(() => ({
 
-// export const useApartmentStore = create<ApartmentState>(() => ({
-//     apartments: [],
-//     numofpage: 1,
-//     // pagesize=6,
-//     // HomeExploer: async (numofpage: number) => {
-//     //     try {
+    AddFavorite:async()=>{
+        try{
 
-//     //         const res = axios.get(`https://darkteam.runasp.net/GetApartmentEndpoint/GetApartment?PageNumber=${numofpage}&PageSize=6`)
+            const token=useAuthStore.getState().token;
+            const res=axios.post("https://darkteam.runasp.net//AddFavoriteApartEndpoint/AddFavoriteApartment",{},{
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            })
+            console.log(res)
+        }catch(error){
+            console.log("the add fav failed!!!!!!!!!!!!!!!!!!!!!!!1"+error)
+        }
+        
+    }
 
-//     //         console.log(res)
-//     //         const data=(await res).data.apartments
-//     //         set({
-//     //             address: res.a;
-//     //             detailedAddress: null,
-//     //             gender: string,
-//     //             facilities: [],
-//     //             floor: string,
-//     //             ownerName: string,
-//     //             numberOfRooms: number,
-//     //             price: number,
-//     //             favourite: null
-//     //         })
-//     //     } catch (error) {
-//     //         console.log("the home expolore failed" + error)
-//     //     }
-//     // }
-
-
-// }))
+}))

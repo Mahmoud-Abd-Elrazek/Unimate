@@ -14,11 +14,14 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { LuWashingMachine } from "react-icons/lu";
 import { MdOutlineFireplace } from "react-icons/md";
 import { GiFireplace } from "react-icons/gi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa6";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { TbElevator } from "react-icons/tb";
 import "../../../public/animations.css";
+import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useApartmentStore } from "../../Store/Data/useApartment.store";
 const features = [
   { label: "واي فاي", icon: <IoWifi className="IconSize" /> },
   { label: "ماء سخن", icon: <MdOutlineFireplace className="IconSize" /> },
@@ -28,7 +31,20 @@ const features = [
   { label: "مدفأة", icon: <GiFireplace className="IconSize" /> },
   { label: "تكييف", icon: <TbAirConditioning className="IconSize" /> },
 ];
+
 export default function RoomDetails() {
+  const [searchparams] = useSearchParams()
+  const id = searchparams.get("id");
+   const AddFavorite=useApartmentStore(state=>state.AddFavorite)
+    const AddtoFav=()=>{
+      AddFavorite();
+    }
+    const location=useLocation();
+    const data=location.state || {}
+  useEffect(() => {
+    console.log("this is the room details page of room with id " + id)
+    console.log(JSON.stringify(data))
+  }, [id])
   return (
     <div className="min-h-screen Page slide-in mt-[80px]">
       <Link to='/' className="flex items-center gap-1 cursor-pointer my-3 ml-3">
@@ -42,7 +58,7 @@ export default function RoomDetails() {
             <IoShareOutline className="IconSize" />
             <h2 className="underline text-sm md:text-base">مشاركه</h2>
           </div>
-          <div className="flex items-center gap-1 cursor-pointer">
+          <div onClick={AddtoFav} className="flex items-center gap-1 cursor-pointer">
             <FcLike className="IconSize" />
             <h2 className="underline text-sm md:text-base">حفظ</h2>
           </div>
@@ -121,9 +137,9 @@ export default function RoomDetails() {
 
       {/* ما يقدمه السكن */}
       <div className="pt-5 px-3 flex flex-col-reverse gap-y-10 justify-end flex-wrap 
-  lg:gap-[60px] lg:flex-row lg:items-start lg:px-8 
-  md:flex-row md:items-start md:px-3 
-  sm:px-8 items-end">
+        lg:gap-[60px] lg:flex-row lg:items-start lg:px-8 
+        md:flex-row md:items-start md:px-3 
+        sm:px-8 items-end">
         {/* Left section */}
         <div className="left dark:bg-[#1D1D1D]
         w-full
@@ -188,11 +204,7 @@ export default function RoomDetails() {
                     </span>
                   </div>
                   <div className="border-2 border-white outline outline-[#D32F2F] rounded-full w-14 h-14">
-                    <img
-                      src="https://scontent.fcai20-5.fna.fbcdn.net/v/t39.30808-6/459560127_3871394156453964_2593114945616772237_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=fBtEFaoqPjYQ7kNvwH1taJI&_nc_oc=AdmVlEGroEKJ6GEaPGc52BATg47dSihCDswNu3Sf2jQBWtL76qffapp3hlRmf-amhuo&_nc_zt=23&_nc_ht=scontent.fcai20-5.fna&_nc_gid=mBtMY3FKJaUzjL82ZjKJMg&oh=00_AfJTCNcpeo0Q5hM55crwhZzVlPItN0StqLqPjeSA_pqLcg&oe=6825FCEA"
-                      alt="مالك"
-                      className="rounded-full object-cover"
-                    />
+                    {/* here is the img of the owner */}
                   </div>
                 </div>
               </div>

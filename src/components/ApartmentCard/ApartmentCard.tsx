@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import {  useRef, useState } from "react";
 import { MdOutlineStar, MdOutlineAccessTime, MdOutlineMeetingRoom } from "react-icons/md";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { FaHeart } from "react-icons/fa";
@@ -10,6 +10,7 @@ import { LuBed } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import 'swiper/swiper-bundle.css';
 import { Swiper as SwiperClass } from "swiper";
+import { useApartmentStore } from "../../Store/Data/useApartment.store";
 
 interface ApartmentData {
   address?: string;
@@ -23,9 +24,10 @@ interface ApartmentCardProps {
   className?: string;
   edit?: boolean;
   data?: ApartmentData;
+  id?:number;
 }
 
-const ApartmentCard = ({ className = "", edit = false, data }: ApartmentCardProps) => {
+const ApartmentCard = ({ className = "", edit = false, data ,id}: ApartmentCardProps) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const swiperRef = useRef<SwiperClass | null>(null);
@@ -49,6 +51,10 @@ const ApartmentCard = ({ className = "", edit = false, data }: ApartmentCardProp
   const handleNextClick = () => {
     swiperRef.current?.slideNext();
   };
+  const AddFavorite=useApartmentStore(state=>state.AddFavorite)
+  const AddtoFav=()=>{
+    AddFavorite();
+  }
 // Helper function
 const parseFloor = (floorRaw: unknown): string => {
   if (typeof floorRaw !== "string") return "?";
@@ -104,6 +110,10 @@ const addressMap: { [key: string]: string } = {
   const type = data?.gender === "Male" ? "أولاد" : "بنات";
   let numofRooms = (data?.numberOfRooms ?? 3) > 4 ? 4 : data?.numberOfRooms;
   numofRooms=numofRooms==0? 3:numofRooms
+
+  // useEffect(()=>{
+  //   console.log("this is the id of apartment "+id)
+  // },[])
   return (
     <div
       className={`
@@ -173,12 +183,12 @@ const addressMap: { [key: string]: string } = {
           }}
         />
 
-        <div title="Add to Favourites" className="absolute top-3 left-3 p-2 rounded-full shadow-md cursor-pointer z-10 bg-[#f8fafc]">
+        <div onClick={AddtoFav} title="Add to Favourites" className="absolute top-3 left-3 p-2 rounded-full shadow-md cursor-pointer z-10 bg-[#f8fafc]">
           <FaHeart className="text-[#00000080] hover:text-red-500 hover:scale-110 transition duration-300" />
         </div>
       </div>
 
-      <Link to="/roomdetails">
+      <Link to={`/roomdetails?id=${id}`} state={{data:data}}>
         <div className="p-3 text-right">
           <div className="flex items-start justify-between mb-2">
             <span className="text-[13px] font-bold text-[#DC3545] dark:text-[#ff6170] sm:text-[16px] lg:text-[14px]">
