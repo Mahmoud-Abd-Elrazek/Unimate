@@ -91,15 +91,15 @@ export default function Home() {
                 text-center rounded-full
                 w-[300px] h-[3rem]
                 text-[#f8fafc]
-                ${isLoading ? 'bg-gray-400 border-[gray-400] cursor-not-allowed' : 'bg-[#ef4444]'}
+                ${isLoading ? 'bg-gray-400 border-[gray-400] cursor-not-allowed' : 'bg-mainColor'}
                 mb-[50px]
                 text-[16px]
                 py-[10px] px-0
                 md:mb-[50px] md:text-[16px] md:py-[10px] md:px-0 md:h-auto
-                border-1 border-[#ef4444]
+                border-1 border-mainColor
                 
                 transition duration-300 ease-in-out transform
-                hover:bg-transparent
+                hover:bg-transparent hover:text-mainColor
               `}
               >
                 {isLoading ? (

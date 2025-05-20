@@ -17,7 +17,9 @@ module.exports = {
         BTN_BGD: '#A0A0A0',
         BTN_TXD: '#f8fafc',
         FOTR_BGD: '#1A1A1A',
-        darkBg: '#495057'
+        darkBg: '#495057',
+
+        mainColor: '#ef4444'
       },
       fontFamily: {
         playwrite: ['"Playwrite US Trad"', 'sans-serif'],
