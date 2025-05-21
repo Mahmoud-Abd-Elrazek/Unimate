@@ -335,7 +335,7 @@ export default function RoomDetails() {
           </h2>
 
           <div>
-            {data.categoryWithFacilities.Services.length >= 2 ? (
+            {Array.isArray(data.categoryWithFacilities.Services) && data.categoryWithFacilities.Services.filter(Boolean).length >= 2 ? (
               <div
                 className="grid grid-cols-3 grid-rows-3 
                 gap-y-4 gap-x-4
