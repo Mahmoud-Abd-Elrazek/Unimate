@@ -22,7 +22,7 @@ const EditProfilePage = () => {
 
       {/* ✅ Sidebar في الشاشات الكبيرة */}
       <aside className="hidden lg:block lg:w-[280px] p-2 lg:p-4 lg:mt-12">
-        <div className="h-screen rounded-2xl border border-gray-200 dark:border-gray-700 bg-[#FAFAFA] dark:bg-[#121111] shadow-md">
+        <div className="h-full rounded-2xl border border-gray-200 dark:border-gray-700 bg-[#FAFAFA] dark:bg-[#121111] shadow-md">
           <Side_bar_edit_profile />
         </div>
       </aside>

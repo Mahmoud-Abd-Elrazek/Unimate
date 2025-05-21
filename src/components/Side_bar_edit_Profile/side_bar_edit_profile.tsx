@@ -3,6 +3,7 @@ import { MdOutlineManageHistory } from "react-icons/md";
 import { FaUserEdit, FaUserCircle } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { GiGraduateCap } from "react-icons/gi";
+import useAuthStore from "../../Store/Auth/Auth.store";
 
 type Props = {
   onLinkClick?: () => void;
@@ -10,7 +11,7 @@ type Props = {
 
 export default function Side_bar_edit_profile({ onLinkClick }: Props) {
   const location = useLocation();
-
+  const Role = useAuthStore((state) => state.role); 
   const links = [
     {
       to: "/auther/editprofile/editpersonalinfo",
@@ -22,11 +23,13 @@ export default function Side_bar_edit_profile({ onLinkClick }: Props) {
       label: "تعديل معلومات التواصل",
       icon: <FiEdit className="text-xl" />,
     },
-    {
-      to: "/auther/editprofile/editAcademicinfo",
-      label: "تعديل المعلومات الاكاديميه",
-      icon: <GiGraduateCap className="text-xl" />,
-    },
+    ...(Role?.toLowerCase() !== "owner"
+      ? [{
+          to: "/auther/editprofile/editAcademicinfo",
+          label: "تعديل المعلومات الاكاديميه",
+          icon: <GiGraduateCap className="text-xl" />,
+        }]
+      : []),
     {
       to: "/auther/editprofile/editlogininfo",
       label: "تعديل معلومات تسجيل الدخول",
@@ -40,8 +43,6 @@ export default function Side_bar_edit_profile({ onLinkClick }: Props) {
         <FaUserCircle className="text-7xl text-gray-400 dark:text-gray-600" />
         <h2 className="text-lg font-bold px-[24px] py-[10px] border-b border-gray-300 dark:border-gray-700">محمود عبدالرزاق حمدالله</h2>
       </div>
-
-      {/* <hr className="my-4 border-gray-300 dark:border-gray-700" /> */}
 
       <ul className="space-y-2">
         {links.map((link) => (
