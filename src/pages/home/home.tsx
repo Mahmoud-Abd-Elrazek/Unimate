@@ -10,11 +10,13 @@ import "../../../public/animations.css";
 // import useAuthStore from '../../Store/Auth/Auth.store';
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import CreatPostButton from "../../components/navbar/Button"
 // import { useEffect } from 'react';
+import { Link } from "react-router-dom";
+import useAuthStore from "../../Store/Auth/Auth.store";
 
 export default function Home() {
-  // const role = useAuthStore(  (state) => state.role)
+  const Role = useAuthStore((state) => state.role)
   // console.log("this is role", role)
 
   const [pagesize, setpagesize] = useState(6);
@@ -92,6 +94,16 @@ export default function Home() {
 
   return (
     <div className='min-h-lvh Page fade-in pt-[80px]'>
+
+      {/* Create post - only on medium and up */}
+      {Role === "Owner" && (
+        <Link
+          to='/createpost'
+          title="اضافة مسكن"
+          className="block md:hidden">
+          <CreatPostButton />
+        </Link>
+      )}
       {/* hero section */}
       <HeroSection />
 
@@ -102,7 +114,7 @@ export default function Home() {
       >
         <div className="w-full block md:hidden">
           <h1 className='mb-2 text-lg sm:text-lg md:text-lg  text-[#777] text-center'>
-            ابدأ عمليه بحث سهله من هنا 
+            ابدأ عمليه بحث سهله من هنا
           </h1>
           <SearchBar />
         </div>
