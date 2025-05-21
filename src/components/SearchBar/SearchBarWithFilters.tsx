@@ -6,7 +6,7 @@ import SearchBar from './UI/SearchBar'
 const SearchBarWithFilters = () => {
   return (
     <div className="w-full flex flex-row-reverse justify-center gap-2 
-    h-[50px]
+    h-[40px]
     max-w-[1050px]
     dark:bg-secondary_BGD">
       {/* Search Bar */}

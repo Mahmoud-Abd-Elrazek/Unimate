@@ -86,19 +86,19 @@ const FilterBar: React.FC = () => {
             <Dropdown key={index}>
               <Dropdown.Toggle
                 variant="light"
-                className="text-[#0f1729] dark:text-[#f8fafc] 
+                className="text-[#0f1729] dark:text-BTN_TXD 
                 px-3 py-2 outline-none focus:outline-none
-                border-1 border-gray-200 dark:border-[#777]
+                border-1 border-gray-200 
                 rounded-md text-sm shadow-sm 
-                bg-[#f8fafc] dark:bg-[#2D2D2D] dark:text-[#F1F1F1]"
+                bg-BTN_TXD dark:bg-[#2D2D2D] dark:text-[#F1F1F1]"
                 id={`dropdown-${index}`}
               >
                 {label}
               </Dropdown.Toggle>
-              <Dropdown.Menu className="text-right w-40 text-sm dark:bg-[#1E1E2E]">
-                <Dropdown.Item href="#/action-1" className='dark:text-[#D1D5DB]'>الخيار الأول</Dropdown.Item>
-                <Dropdown.Item href="#/action-2" className='dark:text-[#D1D5DB]'>الخيار الثاني</Dropdown.Item>
-                <Dropdown.Item href="#/action-3" className='dark:text-[#D1D5DB]'>خيار آخر</Dropdown.Item>
+              <Dropdown.Menu className="text-right w-40 text-sm dark:bg-secondary_BGD">
+                <Dropdown.Item href="#/action-1" className='dark:text-secondary_TXD dark:hover:bg-primary_BGD dark:hover:text-BTN_TXD'>الخيار الأول</Dropdown.Item>
+                <Dropdown.Item href="#/action-2" className='dark:text-secondary_TXD dark:hover:bg-primary_BGD dark:hover:text-BTN_TXD'>الخيار الثاني</Dropdown.Item>
+                <Dropdown.Item href="#/action-3" className='dark:text-secondary_TXD dark:hover:bg-primary_BGD dark:hover:text-BTN_TXD'>خيار آخر</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           ))}
@@ -107,15 +107,15 @@ const FilterBar: React.FC = () => {
 
       {/* Modal للفلاتر على الموبايل */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
-        <Modal.Header closeButton className="border-0 dark:bg-[#1E293B] dark:text-[#f8fafc]">
+        <Modal.Header closeButton className="border-0 dark:bg-secondary_BGD dark:text-BTN_TXD">
           <Modal.Title className="text-right w-full pr-2">
             <div className="text-lg font-bold">فلترة نتائج البحث</div>
-            <div className="text-sm text-gray-500 mt-1 dark:text-gray-400">
+            <div className="text-sm text-gray-500 mt-1 dark:text-primary_TXD">
               استخدم الفلاتر الذكية لتحديد الخيارات التي تناسبك بسهولة
             </div>
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body className='dark:bg-[#0f1729]'>
+        <Modal.Body className='dark:bg-secondary_BGD'>
           {/* السعر */}
           <div className="mb-6 text-right">
             <label className="block mb-2 text-base font-semibold text-gray-800 dark:text-white">
@@ -151,10 +151,10 @@ const FilterBar: React.FC = () => {
               railStyle={{ backgroundColor: '#FECACA', height: 8 }}
             />
             <div className="flex justify-between mt-3">
-              <div className="px-3 py-1 border rounded-md text-sm text-gray-800 dark:text-[#f8fafc] dark:bg-[#1E293B]">
+              <div className="px-3 py-1 border rounded-md text-sm text-gray-800 dark:text-BTN_TXD dark:bg-BTN_BGD">
                 {priceRange[0]} ج.م
               </div>
-              <div className="px-3 py-1 border rounded-md text-sm text-gray-800 dark:text-[#f8fafc] dark:bg-[#1E293B]">
+              <div className="px-3 py-1 border rounded-md text-sm text-gray-800 dark:text-BTN_TXD dark:bg-BTN_BGD">
                 {priceRange[1]} ج.م
               </div>
             </div>
@@ -167,14 +167,14 @@ const FilterBar: React.FC = () => {
                 <Dropdown.Toggle
                   variant="light"
                   className="w-full flex justify-between items-center border border-gray-300 rounded-lg py-3 px-4 text-sm font-medium text-gray-700 shadow-sm 
-                  dark:bg-[#0f1729] dark:text-BTN_TXD"
+                  dark:bg-secondary_BGD dark:text-BTN_TXD"
                 >
                   {label}
                 </Dropdown.Toggle>
-                <Dropdown.Menu className="text-right w-full dark:bg-[#121212] dark:text-[#CCCCCC]">
-                  <Dropdown.Item href="#/action-1" className=''>الخيار الأول</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2" className=''>الخيار الثاني</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3" className=''>خيار آخر</Dropdown.Item>
+                <Dropdown.Menu className="text-right w-full dark:bg-secondary_BGD ">
+                  <Dropdown.Item href="#/action-1" className='dark:text-secondary_TXD dark:hover:bg-primary_BGD dark:hover:text-BTN_TXD'>الخيار الأول</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2" className='dark:text-secondary_TXD dark:hover:bg-primary_BGD dark:hover:text-BTN_TXD'>الخيار الثاني</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3" className='dark:text-secondary_TXD dark:hover:bg-primary_BGD dark:hover:text-BTN_TXD'>خيار آخر</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             ))}
@@ -182,10 +182,10 @@ const FilterBar: React.FC = () => {
         </Modal.Body>
 
         {/* زر الفلترة */}
-        <div className="bg-[#f8fafc] dark:bg-[#1E293B] py-3 px-2 rounded-b-lg">
+        <div className="bg-BTN_TXD dark:bg-secondary_BGD py-3 px-2 rounded-b-lg">
           <button
             onClick={() => setShowModal(false)}
-            className="w-full bg-red-500 hover:bg-red-600 text-[#f8fafc] text-[14px] font-semibold py-3 rounded-full transition-all duration-200"
+            className="w-full bg-red-500 hover:bg-red-600 text-BTN_TXD text-[14px] font-semibold py-3 rounded-full transition-all duration-200"
           >
             فلتر نتائجك الآن
           </button>
