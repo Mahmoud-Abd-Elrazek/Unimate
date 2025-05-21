@@ -25,7 +25,6 @@ export default function SideBar({ onLinkClick }: SideBarProps) {
         { to: '/auther/favorites', label: 'المفضلة', icon: MdFavoriteBorder },
         { to: '/auther/myreservations', label: 'سجل الحجوزات', icon: GoHistory},
         { to: '/auther/personalreviews', label: 'المراجعات والتقييمات', icon: BiCommentDetail },
-        { to: '/auther/help', label: 'المساعدة', icon: MdHelpOutline },
         { to: '/logout', label: 'تسجيل الخروج', icon: CiLogout },
       ]
     : [
