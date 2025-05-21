@@ -27,7 +27,7 @@ export default function Home() {
       setIsLoading(true);
       const res = await axios.get(`https://darkteam.runasp.net/GetApartmentEndpoint/GetApartment?PageNumber=1&PageSize=${pagesize}`);
       setapartments(res.data.data.apartments);
-      setTotalCount(res.data.data.totalCount); 
+      setTotalCount(res.data.data.totalCount);
       console.log(res.data.data)
     } catch (error) {
       console.log("failed to fetch the data!!!!!!!!!!!" + error)
@@ -41,7 +41,7 @@ export default function Home() {
   // },[])
   useEffect(() => {
     FetchData()
-    
+
   }, [pagesize])
   // Unimate chatbase script: This script is used to load the chatbase script and initialize it
   // ================== Start ================== 
@@ -100,7 +100,12 @@ export default function Home() {
         id='filter-bar-section'
         className='mt-10 flex flex-col items-center gap-y-12 px-4 sm:px-8 md:px-12 lg:px-20'
       >
-        <SearchBar />
+        <div className="w-full block md:hidden">
+          <h1 className='mb-2 text-lg sm:text-lg md:text-lg  text-[#777] text-center'>
+            ابدأ عمليه بحث سهله من هنا 
+          </h1>
+          <SearchBar />
+        </div>
         <div className='w-full'>
           <h1 className='mb-2 text-xl sm:text-[20px] md:text-xl font-semibold MainColorText text-center'>
             استخدم الفلتره الذكيه لتحديد ما يناسبك
@@ -187,9 +192,9 @@ const ApartmentGrid: React.FC<ApartmentGridProps> = ({ apartments }) => {
       2xl:grid-cols-5
       3xl:grid-cols-6"
       dir="rtl">
-      {apartments.map((apartment,i) => (
-        <div key={i+1} dir="ltr">
-          <ApartmentCard data={apartment} id={i+1} />
+      {apartments.map((apartment, i) => (
+        <div key={i + 1} dir="ltr">
+          <ApartmentCard data={apartment} id={i + 1} />
         </div>
       ))}
     </div>
