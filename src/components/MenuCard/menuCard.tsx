@@ -4,6 +4,7 @@ import { IoHomeOutline, IoPersonAddOutline } from "react-icons/io5";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
 import useAuthStore from '../../Store/Auth/Auth.store';
+import { CiLogout }         from 'react-icons/ci';
 interface MenuCardProps {
     setIsOpen: (isOpen: boolean) => void;
 }
@@ -43,17 +44,17 @@ export default function MenuCard({ setIsOpen }: MenuCardProps) {
                     rounded-md rounded-tl-none rounded-tr-none 
                     shadow-lg 
                     bg-[#f8fafc]
-                    dark:bg-[#151d30]`}>
+                    dark:bg-FOTR_BGD`}>
 
                 <div className="flex flex-col items-end gap-[2px]">
                     {Role !== null &&
                         <Link to="/auther"
                             className='menu-link w-full 
                             flex items-center justify-end 
-                            hover:bg-[#F1F3F4] dark:hover:bg-[#1E293B] hover:pr-1 transition-all duration-200 
+                            hover:bg-[#F1F3F4] dark:hover:bg-secondary_BGD hover:pr-1 transition-all duration-200 
                             rounded-md 
                             text-[15px]
-                            dark:text-[#f8fafc] text-[#0f1729]'
+                            dark:text-secondary_TXDtext-[#0f1729]'
                             onClick={closeWithAnimation}>
                             عرض الملف الشخصى<GoSignIn className='inline my-3 ml-2 text-[18px] ' />
                         </Link>
@@ -62,10 +63,10 @@ export default function MenuCard({ setIsOpen }: MenuCardProps) {
                         <Link to="/SignIn"
                             className='menu-link w-full 
                             flex items-center justify-end 
-                            hover:bg-[#F1F3F4] dark:hover:bg-[#1E293B] hover:pr-1 transition-all duration-200 
+                            hover:bg-[#F1F3F4] dark:hover:bg-secondary_BGD hover:pr-1 transition-all duration-200 
                             rounded-md 
                             text-[15px]
-                            dark:text-[#f8fafc] text-[#0f1729]'
+                            dark:text-secondary_TXD text-[#0f1729]'
                             onClick={closeWithAnimation}>
                             تسجيل الدخول <GoSignIn className='inline my-3 ml-2 text-[18px]' />
                         </Link>
@@ -74,10 +75,10 @@ export default function MenuCard({ setIsOpen }: MenuCardProps) {
                         <Link to="/register"
                             className='menu-link w-full 
                             flex items-center justify-end 
-                            hover:bg-[#F1F3F4] dark:hover:bg-[#1E293B] hover:pr-1 transition-all duration-200 
+                            hover:bg-[#F1F3F4] dark:hover:bg-secondary_BGD hover:pr-1 transition-all duration-200 
                             rounded-md 
                             text-[15px]
-                            dark:text-[#f8fafc] text-[#0f1729]'
+                            dark:text-secondary_TXD text-[#0f1729]'
                             onClick={closeWithAnimation}>
                             انشاء حساب جديد <IoPersonAddOutline className='text-[18px] inline my-3 ml-2' />
                         </Link>
@@ -87,26 +88,39 @@ export default function MenuCard({ setIsOpen }: MenuCardProps) {
                         <Link to="/createpost"
                             className='menu-link w-full 
                             flex items-center justify-end 
-                            hover:bg-[#F1F3F4] dark:hover:bg-[#1E293B] hover:pr-1 transition-all duration-200 
+                            hover:bg-[#F1F3F4] dark:hover:bg-secondary_BGD hover:pr-1 transition-all duration-200 
                             rounded-md 
                             text-[15px]
-                            dark:text-[#f8fafc] text-[#0f1729]'
+                            dark:text-secondary_TXD text-[#0f1729]'
                             onClick={closeWithAnimation}>
                             unimate اعرض مسكنك على
                             <IoHomeOutline className='text-[18px] inline my-3 ml-2' />
                         </Link>
                     )}
 
-
+                    {Role === "Owner" && 
                     <Link to="/help"
                         className='menu-link w-full 
                             flex items-center justify-end 
-                            hover:bg-[#F1F3F4] dark:hover:bg-[#1E293B] hover:pr-1 transition-all duration-200 
+                            hover:bg-[#F1F3F4] dark:hover:bg-secondary_BGD hover:pr-1 transition-all duration-200 
                             rounded-md 
                             text-[15px]
-                            dark:text-[#f8fafc] text-[#0f1729]'
+                            dark:text-secondary_TXD text-[#0f1729]' 
                         onClick={closeWithAnimation}>مركز المساعده <IoIosHelpCircleOutline className='text-[18px] inline my-3 ml-2' />
                     </Link>
+                    }
+                    {Role !== null &&
+                        <Link to="/logout"
+                            className='menu-link w-full 
+                            flex items-center justify-end 
+                            hover:bg-[#F1F3F4] dark:hover:bg-secondary_BGD hover:pr-1 transition-all duration-200 
+                            rounded-md 
+                            text-[15px]
+                            dark:text-secondary_TXD text-[#0f1729]'
+                            onClick={closeWithAnimation}>
+                            تسحيل الخروج <CiLogout className='inline my-3 ml-2 text-[18px] ' />
+                        </Link>
+                    }
 
                 </div>
 

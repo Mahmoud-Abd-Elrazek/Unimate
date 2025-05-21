@@ -117,15 +117,6 @@ const RegisterOwnerPage = () => {
             />
             {errors.phone && <p className="ErrorMessage">{errors.phone.message}</p>}
           </div>
-
-          <div className="flex justify-between items-center text-sm">
-            <p className="flex items-center gap-2">
-              <input type="checkbox" className="h-4 w-4" />
-              تذكرني
-            </p>
-            <Link to="/forgetpassword" className="text-blue-500 underline">نسيت كلمة المرور؟</Link>
-          </div>
-
           <button
             type="submit"
             disabled={isSubmitting}

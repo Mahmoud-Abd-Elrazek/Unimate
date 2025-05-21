@@ -12,8 +12,8 @@ const LogOut = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="w-full max-w-sm  dark:bg-gray-800 rounded-xl p-8 shadow-md text-right">
+    <div className="min-h-screen flex items-center justify-center p-4 ">
+      <div className="w-full max-w-sm   rounded-xl p-8 shadow-md text-right">
         <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">
           تسجيل الخروج
         </h2>

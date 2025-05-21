@@ -10,9 +10,9 @@ const RegisterPage = () => {
     <div>
 
         {showButtons && (
-        <div className="min-h-screen dark:bg-[#171515] bg-gradient-to-br from-red-100 via-white to-green-100 flex items-center justify-center px-4">
+        <div className="min-h-screen bg-gradient-to-br from-red-100 via-white to-green-100 dark:bg-primary_BGD dark:from-primary_BGD dark:via-secondary_BGD dark:to-secondary_BGD flex items-center justify-center px-4">
       <div className="shadow-2xl rounded-2xl p-10 max-w-md w-full text-center">
-        <h1 className="text-3xl font-bold mb-6 text-gray-800">انشاء حساب </h1>
+        <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-primary_TXD">انشاء حساب </h1>
 
           <div className="space-y-4">
             <Link
@@ -29,7 +29,7 @@ const RegisterPage = () => {
               صاحب عقار
             </Link>
 
-            <p className="text-sm text-gray-500 mt-6">
+            <p className="text-sm text-gray-500 mt-6 dark:text-secondary_TXD">
               Choose your role to continue
             </p>
           </div>
