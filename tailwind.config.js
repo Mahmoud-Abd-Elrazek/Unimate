@@ -2,24 +2,27 @@ const { colors } = require('@mui/material');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class', // Enable dark mode
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
+      colors: {
+        primary_BGD: '#181818',
+        primary_TXD: '#E0E0E0',
+        secondary_BGD: '#1F1F1F',
+        secondary_TXD: '#B0B0B0',
+        BTN_BGD: '#A0A0A0',
+        BTN_TXD: '#f8fafc',
+        FOTR_BGD: '#1A1A1A',
+        darkBg: '#495057',
+
+        mainColor: '#ef4444'
+      },
       fontFamily: {
         playwrite: ['"Playwrite US Trad"', 'sans-serif'],
-        colors: {
-          primary_BGD: '#181818',
-          primary_TXD: '#E0E0E0',
-          secondary_BGD: '#1F1F1F',
-          secondary_TXD: '#B0B0B0',
-          BTN_BGD: '#A0A0A0',
-          BTN_TXD: '#f8fafc',
-          FOTR_BGD: '#1A1A1A',
-        },
       },
       keyframes: {
         'slide-in-left': {
@@ -40,12 +43,11 @@ module.exports = {
         md: '768px',
         lg: '1024px',
         xl: '1280px',
-      }
+      },
     },
   },
   plugins: [
     require('tailwind-scrollbar-hide')
   ],
-}
-
+};
 

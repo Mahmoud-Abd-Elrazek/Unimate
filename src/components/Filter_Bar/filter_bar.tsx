@@ -33,7 +33,7 @@ const FilterBar: React.FC = () => {
       </div>
 
       {/* الفلاتر للشاشات الكبيرة */}
-      <div className="hidden md:flex w-full rounded-xl p-4 shadow-sm flex-col md:flex-col-reverse md:items-center md:justify-between gap-4 md:gap-y-[5px] md:gap-3 lg:flex-row dark:bg-[#1E293B]">
+      <div className="hidden md:flex w-full rounded-xl p-4 shadow-sm flex-col md:flex-col-reverse md:items-center md:justify-between gap-4 md:gap-y-[5px] md:gap-3 lg:flex-row dark:bg-secondary_BGD">
         {/* أيقونة البحث */}
         <div className="w-full md:w-auto flex justify-center md:justify-start">
           <div className="rounded-full w-10 h-10 bg-red-500 flex items-center justify-center">
@@ -90,15 +90,15 @@ const FilterBar: React.FC = () => {
                 px-3 py-2 outline-none focus:outline-none
                 border-1 border-gray-200 dark:border-[#777]
                 rounded-md text-sm shadow-sm 
-                bg-[#f8fafc] dark:bg-[#1f2630]"
+                bg-[#f8fafc] dark:bg-[#2D2D2D] dark:text-[#F1F1F1]"
                 id={`dropdown-${index}`}
               >
                 {label}
               </Dropdown.Toggle>
-              <Dropdown.Menu className="text-right w-40 text-sm dark:bg-[#1E293B]">
-                <Dropdown.Item href="#/action-1" className='dark:text-[#8492a7]'>الخيار الأول</Dropdown.Item>
-                <Dropdown.Item href="#/action-2" className='dark:text-[#8492a7]'>الخيار الثاني</Dropdown.Item>
-                <Dropdown.Item href="#/action-3" className='dark:text-[#8492a7]'>خيار آخر</Dropdown.Item>
+              <Dropdown.Menu className="text-right w-40 text-sm dark:bg-[#1E1E2E]">
+                <Dropdown.Item href="#/action-1" className='dark:text-[#D1D5DB]'>الخيار الأول</Dropdown.Item>
+                <Dropdown.Item href="#/action-2" className='dark:text-[#D1D5DB]'>الخيار الثاني</Dropdown.Item>
+                <Dropdown.Item href="#/action-3" className='dark:text-[#D1D5DB]'>خيار آخر</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           ))}
@@ -167,15 +167,14 @@ const FilterBar: React.FC = () => {
                 <Dropdown.Toggle
                   variant="light"
                   className="w-full flex justify-between items-center border border-gray-300 rounded-lg py-3 px-4 text-sm font-medium text-gray-700 shadow-sm 
-                  
-                  dark:bg-[#0f1729] dark:text-[#f8fafc]"
+                  dark:bg-[#0f1729] dark:text-BTN_TXD"
                 >
                   {label}
                 </Dropdown.Toggle>
-                <Dropdown.Menu className="text-right w-full dark:bg-[#1E293B]">
-                  <Dropdown.Item href="#/action-1" className='dark:text-[#8492a7]'>الخيار الأول</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2" className='dark:text-[#8492a7]'>الخيار الثاني</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3" className='dark:text-[#8492a7]'>خيار آخر</Dropdown.Item>
+                <Dropdown.Menu className="text-right w-full dark:bg-[#121212] dark:text-[#CCCCCC]">
+                  <Dropdown.Item href="#/action-1" className=''>الخيار الأول</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2" className=''>الخيار الثاني</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3" className=''>خيار آخر</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             ))}
