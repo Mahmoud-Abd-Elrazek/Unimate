@@ -46,7 +46,6 @@ import RegisterOwnerPage from './pages/Auth/RegisterPage/registerOwnerPage';
 import RegisterPage from './pages/Auth/RegisterPage/registe';
 import ChangePass from './pages/Auth/Passwords/ChangePass/changepass';
 import ConfirmEmail from './pages/Auth/Emails/confirmemail';
-// import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import LogOut from './pages/Auth/LogOut/logout';
 import ConfirmEmail12 from './pages/Auth/Emails/confirmemail12';
 import PropertyManagement from './components/PropertyManagementSystem/PropertyManagement';
@@ -66,7 +65,6 @@ export default function App() {
   return (
     <>
       {!shouldHideFooterNavbar && <NavBar />}
-      {/* <ScrollToTop /> */}
       <Routes>
         <Route path="/" element={<Home />} />
 
