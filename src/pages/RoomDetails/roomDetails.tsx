@@ -370,12 +370,13 @@ export default function RoomDetails() {
               </div>
             )}
           </div>
-
+{/* 
           {data.categoryWithFacilities.Services.length > 6 ? <div className="text-center mt-8">
             <Link to="/housing_services" className="border border-black rounded-lg px-4 py-2 text-sm md:text-base">
               عرض كل المميزات ال 10
             </Link>
-          </div> : null}
+          </div> : null} */}
+
         </div>
 
       </div>
