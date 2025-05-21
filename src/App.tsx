@@ -51,20 +51,49 @@ import ConfirmEmail12 from './pages/Auth/Emails/confirmemail12';
 import PropertyManagement from './components/PropertyManagementSystem/PropertyManagement';
 export default function App() {
   const location = useLocation();
-  const hideFooterNavbarRoutes = [
+  const hideFooterRoutes = [
+    '/SignIn',
+    '/register',
+    '/signout',
+    '/unauthorized',
+    '/resetpassword',
+    '/forgetpassword',
+    '/auther/profile',
+    '/auther/favorites',
+    '/auther/help',
+    '/auther/editprofile',
+    '/auther/myreservations',
+    '/auther/personalreviews',
+    '/auther/my_real_estate',
+    '/auther/reservation_requests_Owner',
+    '/auther/my_money_transactions',
+    '/createpost',
+    '/createpost/step1',
+    '/createpost/step2',
+    '/createpost/step3',
+    '/createpost/step4',
+    '/auther/editprofile/editAcademicinfo',
+    '/auther/editprofile/editcontactinfo',
+    '/auther/editprofile/editlogininfo',
+    '/auther/editprofile/editpersonalinfo',
+    '/auther/editprofile/editAcademicinfo',
+    '/auther/editprofile/editcontactinfo',
+  ];
+  const hideNavbarRoutes = [
     '/SignIn',
     '/register',
     '/signout',
     '/unauthorized',
     '/resetpassword',
     '/forgetpassword'
+    
   ];
 
-  const shouldHideFooterNavbar = hideFooterNavbarRoutes.includes(location.pathname);
-
+  const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
+  const shouldHideFooter = hideFooterRoutes.includes(location.pathname);
   return (
     <>
-      {!shouldHideFooterNavbar && <NavBar />}
+      {!shouldHideNavbar && <NavBar />}
       <Routes>
         <Route path="/" element={<Home />} />
 
@@ -128,7 +157,7 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-      {!shouldHideFooterNavbar && <Footer />}
+      {!shouldHideFooter && <Footer />}
     </>
   );
 }
