@@ -1,4 +1,5 @@
 // import React from 'react'
+import axios from "axios";
 import { IoShareOutline } from "react-icons/io5";
 import { FcLike } from "react-icons/fc";
 import { IoWifi } from "react-icons/io5";
@@ -20,7 +21,7 @@ import { MdOutlineLocationOn } from "react-icons/md";
 import { TbElevator } from "react-icons/tb";
 import "../../../public/animations.css";
 import { useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useApartmentStore } from "../../Store/Data/useApartment.store";
 const features = [
   { label: "واي فاي", icon: <IoWifi className="IconSize" /> },
@@ -31,20 +32,118 @@ const features = [
   { label: "مدفأة", icon: <GiFireplace className="IconSize" /> },
   { label: "تكييف", icon: <TbAirConditioning className="IconSize" /> },
 ];
+const servicesMap = {
+  "WiFi": { label: "واي فاي", icon: <IoWifi className="IconSize" /> },
+  "Hot Water": { label: "ماء سخن", icon: <MdOutlineFireplace className="IconSize" /> },
+  "TV": { label: "تلفزيون", icon: <BsDisplay size={24} className="mx-1" /> },
+  "Kitchen Tools": { label: "أدوات مطبخ", icon: <TbToolsKitchen2 className="IconSize" /> },
+  "Washing Machine": { label: "غسالة", icon: <LuWashingMachine className="IconSize" /> },
+  "Fireplace": { label: "مدفأة", icon: <GiFireplace className="IconSize" /> },
+  "Air Conditioning": { label: "تكييف", icon: <TbAirConditioning className="IconSize" /> },
+};
 
 export default function RoomDetails() {
   const [searchparams] = useSearchParams()
   const id = searchparams.get("id");
-   const AddFavorite=useApartmentStore(state=>state.AddFavorite)
-    const AddtoFav=()=>{
-      AddFavorite();
+  const location=useLocation();
+  const {ownerName} = location.state
+  const AddFavorite = useApartmentStore(state => state.AddFavorite)
+  const AddtoFav = (id: string) => {
+    AddFavorite(id);
+  }
+  type ApartmentData = {
+    apartmentDTO: {
+      price: number;
+      kind: string;
+      bedRoomCount: number;
+      roomCount: number;
+      floor: number;
+      location: string;
+      isAvailable: boolean;
+    };
+    categoryWithFacilities: {
+      Services: string[];
+    };
+  };
+  const [data, setdata] = useState<ApartmentData | null>(null);
+  const Fetchdata = async (id: string) => {
+    try {
+      const res = await axios.get(
+        `https://darkteam.runasp.net/ApartmentDetailsEndpoint/ApartmentDetails?id=${id}`
+      );
+      const Data = await res.data.data;
+      setdata(Data);
+      console.log(Data)
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
-    const location=useLocation();
-    const data=location.state || {}
+  };
+
   useEffect(() => {
-    console.log("this is the room details page of room with id " + id)
-    console.log(JSON.stringify(data))
+    if (id) {
+      Fetchdata(id);
+      console.log("this is the room details page of room with id " + id);
+      console.log(ownerName)
+      //  console.log( data?.categoryWithFacilities.Services)
+    }
   }, [id])
+  if (!data) return <p>Loading...</p>;
+  // نوع السكن
+  const type = data?.apartmentDTO.kind === "Male" ? "أولاد" : "بنات";
+  // عدد الغرف
+  const bedroomcount = (data?.apartmentDTO.roomCount > 4 || data?.apartmentDTO.roomCount == 0) ? 4 : data?.apartmentDTO.roomCount
+  // الطابق
+  // Helper function
+  const parseFloor = (floorRaw: unknown): string => {
+    if (typeof floorRaw !== "string") return "?";
+
+    const trimmed = floorRaw.trim();
+
+    // هل محاطة بعلامات اقتباس مزدوجة؟ مثال: "\"2nd\""
+    const isProbablyJSON = trimmed.startsWith('"') && trimmed.endsWith('"');
+
+    if (isProbablyJSON) {
+      try {
+        const parsed = JSON.parse(trimmed);
+        if (typeof parsed === "string") return parsed;
+      } catch (e) {
+        console.log(e)
+        return trimmed;
+      }
+    }
+
+    return trimmed;
+  };
+  const translateFloor = (floor: string): string => {
+    const map: Record<string, string> = {
+      "1st": "الأول",
+      "2nd": "الثاني",
+      "3rd": "الثالث",
+      "4th": "الرابع",
+      "5th": "الخامس",
+      "6th": "السادس",
+      "7th": "السابع",
+      "8th": "الثامن",
+      "9th": "التاسع",
+      "10th": "العاشر",
+    };
+
+    return map[floor] || floor;
+  };
+  const rawFloor = data?.apartmentDTO.floor;
+  const floorValue = parseFloor(rawFloor);
+  const translatedFloor = translateFloor(floorValue);
+  //   العنوان
+  const addressMap: { [key: string]: string } = {
+    "\"at Giza\"": "دردشة",
+    "at Giza": "عمر افندى",
+    "123 Main St, Downtown": "قنا الجديدة",
+    "456 College Ave": "المساكن",
+    "789 Park Lane": "الشئون",
+    "321 Arts District": "مدينة العمال",
+
+  };
+ 
   return (
     <div className="min-h-screen Page slide-in pt-[80px]">
       <Link to='/' className="flex items-center gap-1 cursor-pointer my-3 ml-3">
@@ -58,7 +157,12 @@ export default function RoomDetails() {
             <IoShareOutline className="IconSize" />
             <h2 className="underline text-sm md:text-base">مشاركه</h2>
           </div>
-          <div onClick={AddtoFav} className="flex items-center gap-1 cursor-pointer">
+          <div
+            onClick={() => {
+              if (id) AddtoFav(id);
+            }}
+            className="flex items-center gap-1 cursor-pointer"
+          >
             <FcLike className="IconSize" />
             <h2 className="underline text-sm md:text-base">حفظ</h2>
           </div>
@@ -121,16 +225,14 @@ export default function RoomDetails() {
         {/* الوصف */}
         <div className="px-5 py-4 text-right dark:bg-[#171515]">
           <p className="text-[#212529] leading-6 font-medium dark:text-[white]">
-            شقه قريبه من الجامعة، هادئة وبجوار أهالي. تبعد 5 دقائق عن الجامعة
-            سيراً على الأقدام. المسكن شامل المياه والغاز فقط لا غير. يُفضّل
-            الإقامة لفترة لا تقل عن 6 أشهر.
+            {/* {data.apartmentDTO.descripeLocation} */}
           </p>
           <p className="text-sm text-[#6C757D] mt-2 dark:text-[#D9D9D9]">
-            12 ضيف · 3 غرف · أولاد · الشؤون · الدور الثالث
+            ضيف · {bedroomcount}غرف · {type} · {addressMap[data?.apartmentDTO.location ?? ""] ?? data?.apartmentDTO.location} · الدور {translatedFloor}
           </p>
           <p className="text-sm mt-1 font-semibold dark:text-[white]">
             وصف الموقع:{" "}
-            <span className="text-[#6C757D] dark:text-[#D9D9D9]">قنا - الشؤون - شارع أبو علاء</span>
+            <span className="text-[#6C757D] dark:text-[#D9D9D9]">قنا - {addressMap[data?.apartmentDTO.location ?? ""] ?? ""} - شارع أبو علاء</span>
           </p>
         </div>
       </div>
@@ -148,25 +250,34 @@ export default function RoomDetails() {
         md
         lg:max-w-[35%]
         xl:max-w-[30%]">
+          {/* the card */}
           <div className="rounded-xl border p-4 shadow-md space-y-3">
-            <div className="flex justify-between items-center">
-              <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 rounded p-2">
-                متاحة للسكان
-              </span>
-              <span className="text-[#D32F2F] font-bold text-lg">6,600 ج.م / mo</span>
-            </div>
-
+            {data.apartmentDTO.isAvailable ?
+              <div className="flex justify-between items-center">
+                <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 rounded p-2">
+                  متاحة للسكان
+                </span>
+                <span className="text-[#D32F2F] font-bold text-lg">{data.apartmentDTO.price} ج.م / mo</span>
+              </div>
+              :
+              <div className="flex justify-between items-center">
+                <span className="bg-red-100 text-red-800 text-xs font-semibold px-2.5 rounded p-2">
+                  غير متاحة للسكان
+                </span>
+                <span className="text-[#D32F2F] font-bold text-lg">{data.apartmentDTO.price} ج.م / mo</span>
+              </div>
+            }
             <div className="text-right text-sm text-gray-700 dark:text-[#D9D9D9]">
               <div className="flex items-center justify-end gap-2 text-right">
-                <p> الشؤون - شارع أبو علاء</p>
+                <p> {addressMap[data?.apartmentDTO.location ?? ""] ?? data?.apartmentDTO.location} - شارع أبو علاء</p>
                 <MdOutlineLocationOn className="text-[16px]" />
               </div>
               <div className="flex items-center justify-end gap-2 text-right">
-                <p className="mt-1 mb-1">اولاد</p>
+                <p className="mt-1 mb-1">{type}</p>
                 <FaRegUser className="text-[15px]" />
               </div>
               <div className="flex items-center justify-end gap-2 text-right">
-                <p>الدور الثالث</p>
+                <p>الدور {translatedFloor}</p>
                 <TbElevator className="text-[16px]" />
               </div>
             </div>
@@ -179,7 +290,7 @@ export default function RoomDetails() {
               </div>
               <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 pl-8 pr-8 py-3">
                 <MdMeetingRoom className="text-[#D32F2F] text-[18px]" />
-                <p className="font-bold text-lg">4</p>
+                <p className="font-bold text-lg">{bedroomcount}</p>
                 <p>غرف</p>
               </div>
               <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 pl-8 pr-8 py-3">
@@ -197,7 +308,7 @@ export default function RoomDetails() {
               <div className="flex items-center justify-end mt-4 mb-4">
                 <div className="flex items-center gap-2">
                   <div className="text-sm flex flex-col text-right items-end">
-                    <p className="font-semibold">محمود محمد عرفه</p>
+                    <p className="font-semibold">{ownerName??""}</p>
                     <p className="text-xs text-gray-500 dark:text-[#D9D9D9]">mahmoudarafa@gmail.com</p>
                     <span className="text-yellow-500 text-sm flex items-center gap-1">
                       <FaStar size={14} /> 3.5
@@ -218,29 +329,53 @@ export default function RoomDetails() {
         </div>
 
         {/* Right section */}
-        <div className="right flex-1 md:w-[50%] sm:w-full flex flex-col gap-4 items-end [align-items:revert]">
+        <div className="right flex-1 md:w-[50%] sm:w-full flex flex-col gap-4  [align-items:revert]" dir="rtl">
           <h2 className="text-xl md:text-2xl text-right font-semibold">
             ما يقدمه السكن
           </h2>
 
-          <div className="grid grid-cols-3 grid-rows-3 
-            gap-y-4 gap-x-4
-            lg:gap-x-5 lg:gap-y-4 
-            md:gap-x-3 md:gap-y-2 
-            sm:gap-x-5 sm:gap-y-4">
-            {features.map((item, idx) => (
-              <div key={idx} className="flex items-center justify-end gap-2 text-right">
-                <h3 className="text-sm md:text-base">{item.label}</h3>
-                {item.icon}
+          <div>
+            {data.categoryWithFacilities.Services.length >= 2 ? (
+              <div
+                className="grid grid-cols-3 grid-rows-3 
+                gap-y-4 gap-x-4
+                lg:gap-x-5 lg:gap-y-4 
+                md:gap-x-3 md:gap-y-2 
+                sm:gap-x-5 sm:gap-y-4"
+              >
+                {[...new Set(data.categoryWithFacilities.Services)].map((serviceName: string, index) => {
+                  const service = servicesMap[serviceName as keyof typeof servicesMap];
+                  return service ? (
+                    <div key={index} className="flex items-center justify-end gap-2 text-right">
+                      {service.icon}
+                      <span className="text-sm md:text-base">{service.label}</span>
+                    </div>
+                  ) : null;
+                })}
               </div>
-            ))}
+            ) : (
+              <div
+                className="grid grid-cols-3 grid-rows-3 
+                gap-y-4 gap-x-4
+                lg:gap-x-10 lg:gap-y-10 
+                md:gap-x-10 md:gap-y-10
+                sm:gap-x-10 sm:gap-y-10 items-center"
+              >
+                {features.map((item, idx) => (
+                  <div key={idx} className="flex items-center justify-end gap-2 text-right">
+                    {item.icon}
+                    <h3 className="text-sm md:text-base">{item.label}</h3>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="text-center mt-8">
+          {data.categoryWithFacilities.Services.length > 6 ? <div className="text-center mt-8">
             <Link to="/housing_services" className="border border-black rounded-lg px-4 py-2 text-sm md:text-base">
               عرض كل المميزات ال 10
             </Link>
-          </div>
+          </div> : null}
         </div>
 
       </div>

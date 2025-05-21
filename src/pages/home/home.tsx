@@ -7,15 +7,15 @@ import SearchBar from '../../components/SearchBar/SearchBarWithFilters';
 
 // import animation file
 import "../../../public/animations.css";
-import useAuthStore from '../../Store/Auth/Auth.store';
+// import useAuthStore from '../../Store/Auth/Auth.store';
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 // import { useEffect } from 'react';
 
 export default function Home() {
-  const role = useAuthStore((state) => state.role)
-  console.log("this is role", role)
+  // const role = useAuthStore(  (state) => state.role)
+  // console.log("this is role", role)
 
   const [pagesize, setpagesize] = useState(6);
   const [apartments, setapartments] = useState([]);
@@ -27,7 +27,8 @@ export default function Home() {
       setIsLoading(true);
       const res = await axios.get(`https://darkteam.runasp.net/GetApartmentEndpoint/GetApartment?PageNumber=1&PageSize=${pagesize}`);
       setapartments(res.data.data.apartments);
-      setTotalCount(res.data.data.totalCount); // تأكد من اسم الخاصية في response
+      setTotalCount(res.data.data.totalCount); 
+      console.log(res.data.data)
     } catch (error) {
       console.log("failed to fetch the data!!!!!!!!!!!" + error)
     } finally {
@@ -35,10 +36,13 @@ export default function Home() {
     }
   }
 
+  // useEffect(()=>{
+  //   FetchData()
+  // },[])
   useEffect(() => {
     FetchData()
+    
   }, [pagesize])
-
   // Unimate chatbase script: This script is used to load the chatbase script and initialize it
   // ================== Start ================== 
   /*useEffect(() => {
@@ -183,9 +187,9 @@ const ApartmentGrid: React.FC<ApartmentGridProps> = ({ apartments }) => {
       2xl:grid-cols-5
       3xl:grid-cols-6"
       dir="rtl">
-      {apartments.map((apartment, i) => (
-        <div key={i} dir="ltr">
-          <ApartmentCard data={apartment} id={i} />
+      {apartments.map((apartment,i) => (
+        <div key={i+1} dir="ltr">
+          <ApartmentCard data={apartment} id={i+1} />
         </div>
       ))}
     </div>

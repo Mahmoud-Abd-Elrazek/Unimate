@@ -1,4 +1,4 @@
-import {  useRef, useState } from "react";
+import {  useEffect, useRef, useState } from "react";
 import { MdOutlineStar, MdOutlineAccessTime, MdOutlineMeetingRoom } from "react-icons/md";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { FaHeart } from "react-icons/fa";
@@ -18,16 +18,17 @@ interface ApartmentData {
   floor?: string;
   numberOfRooms?: number;
   price?: string | number;
+  ownerName?:  string;
 }
 
 interface ApartmentCardProps {
   className?: string;
   edit?: boolean;
   data?: ApartmentData;
-  id?:number;
+  id?: number;
 }
 
-const ApartmentCard = ({ className = "", edit = false, data ,id}: ApartmentCardProps) => {
+const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCardProps) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const swiperRef = useRef<SwiperClass | null>(null);
@@ -51,53 +52,53 @@ const ApartmentCard = ({ className = "", edit = false, data ,id}: ApartmentCardP
   const handleNextClick = () => {
     swiperRef.current?.slideNext();
   };
-  const AddFavorite=useApartmentStore(state=>state.AddFavorite)
-  const AddtoFav=()=>{
-    AddFavorite();
+  const AddFavorite = useApartmentStore(state => state.AddFavorite)
+  const AddtoFav = (id: string) => {
+    AddFavorite(id);
   }
-// Helper function
-const parseFloor = (floorRaw: unknown): string => {
-  if (typeof floorRaw !== "string") return "?";
+  // Helper function
+  const parseFloor = (floorRaw: unknown): string => {
+    if (typeof floorRaw !== "string") return "?";
 
-  const trimmed = floorRaw.trim();
+    const trimmed = floorRaw.trim();
 
-  // هل محاطة بعلامات اقتباس مزدوجة؟ مثال: "\"2nd\""
-  const isProbablyJSON = trimmed.startsWith('"') && trimmed.endsWith('"');
+    // هل محاطة بعلامات اقتباس مزدوجة؟ مثال: "\"2nd\""
+    const isProbablyJSON = trimmed.startsWith('"') && trimmed.endsWith('"');
 
-  if (isProbablyJSON) {
-    try {
-      const parsed = JSON.parse(trimmed);
-      if (typeof parsed === "string") return parsed;
-    } catch (e) {
-      console.log(e)
-      return trimmed;
+    if (isProbablyJSON) {
+      try {
+        const parsed = JSON.parse(trimmed);
+        if (typeof parsed === "string") return parsed;
+      } catch (e) {
+        console.log(e)
+        return trimmed;
+      }
     }
-  }
 
-  return trimmed;
-};
-const translateFloor = (floor: string): string => {
-  const map: Record<string, string> = {
-    "1st": "الأول",
-    "2nd": "الثاني",
-    "3rd": "الثالث",
-    "4th": "الرابع",
-    "5th": "الخامس",
-    "6th": "السادس",
-    "7th": "السابع",
-    "8th": "الثامن",
-    "9th": "التاسع",
-    "10th": "العاشر",
+    return trimmed;
   };
+  const translateFloor = (floor: string): string => {
+    const map: Record<string, string> = {
+      "1st": "الأول",
+      "2nd": "الثاني",
+      "3rd": "الثالث",
+      "4th": "الرابع",
+      "5th": "الخامس",
+      "6th": "السادس",
+      "7th": "السابع",
+      "8th": "الثامن",
+      "9th": "التاسع",
+      "10th": "العاشر",
+    };
 
-  return map[floor] || floor;
-};
-const rawFloor = data?.floor;
-const floorValue = parseFloor(rawFloor);
-const translatedFloor = translateFloor(floorValue);
+    return map[floor] || floor;
+  };
+  const rawFloor = data?.floor;
+  const floorValue = parseFloor(rawFloor);
+  const translatedFloor = translateFloor(floorValue);
 
-const addressMap: { [key: string]: string } = {
-    "\"at Giza\"":"دردشة",
+  const addressMap: { [key: string]: string } = {
+    "\"at Giza\"": "دردشة",
     "at Giza": "عمر افندى",
     "123 Main St, Downtown": "قنا الجديدة",
     "456 College Ave": "المساكن",
@@ -109,11 +110,11 @@ const addressMap: { [key: string]: string } = {
 
   const type = data?.gender === "Male" ? "أولاد" : "بنات";
   let numofRooms = (data?.numberOfRooms ?? 3) > 4 ? 4 : data?.numberOfRooms;
-  numofRooms=numofRooms==0? 3:numofRooms
-
-  // useEffect(()=>{
-  //   console.log("this is the id of apartment "+id)
-  // },[])
+  numofRooms = numofRooms == 0 ? 3 : numofRooms
+  useEffect(()=>{
+    console.log("data form card not room details"+data)
+  })
+  
   return (
     <div
       className={`
@@ -152,7 +153,7 @@ const addressMap: { [key: string]: string } = {
             onClick={handlePrevClick}
             className="absolute left-3 top-1/2 -translate-y-1/2 w-[32px] h-[32px] rounded-full shadow-lg z-10 items-center justify-center cursor-pointer group-hover:opacity-100 transition-opacity duration-300 bg-BTN_TXD hidden lg:flex"
           >
-            <IoIosArrowBack className="text-[#000]" style={{ width: "100%", height: "20px"  }} />
+            <IoIosArrowBack className="text-[#000]" style={{ width: "100%", height: "20px" }} />
           </button>
         )}
 
@@ -183,20 +184,18 @@ const addressMap: { [key: string]: string } = {
           }}
         />
 
-<<<<<<< HEAD
-        <div onClick={AddtoFav} title="Add to Favourites" className="absolute top-3 left-3 p-2 rounded-full shadow-md cursor-pointer z-10 bg-[#f8fafc]">
-=======
-        <div title="Add to Favourites" className="absolute top-3 left-3 p-2 rounded-full shadow-md cursor-pointer z-10 bg-BTN_TXD">
->>>>>>> 576874951eb06e7b75a51bd45f7604ae01d89b31
+
+        <div onClick={() => AddtoFav(String(id ?? ""))} title="Add to Favourites" className="absolute top-3 left-3 p-2 rounded-full shadow-md cursor-pointer z-10 bg-[#f8fafc]">
+
           <FaHeart className="text-[#00000080] hover:text-red-500 hover:scale-110 transition duration-300" />
         </div>
       </div>
 
-      <Link to={`/roomdetails?id=${id}`} state={{data:data}}>
+      <Link to={`/roomdetails?id=${id}`} state={{ data: data ,ownerName:data?.ownerName}}>
         <div className="p-3 text-right">
           <div className="flex items-start justify-between mb-2">
             <span className="text-[13px] font-bold text-[#DC3545] dark:text-[#ff6170] sm:text-[16px] lg:text-[14px]">
-              {data?.price==0 ? 200 : data?.price}/mo
+              {data?.price == 0 ? 200 : data?.price}/mo
             </span>
             <h3 className="text-[14px] font-semibold text-[#212529] dark:text-primary_TXD sm:text-[16px] lg:text-[15px]">
               {addressMap[data?.address ?? ""] ?? data?.address} · {type} · {numofRooms} غرف · 6 ضيف · الدور {translatedFloor}
@@ -204,7 +203,7 @@ const addressMap: { [key: string]: string } = {
           </div>
 
           <div className="flex items-center justify-end mb-2">
-            <span className="text-[14px] text-[#515151] mr-2 dark:text-primary_TXD">الشؤون / شارع ابو علاء</span>
+            <span className="text-[14px] text-[#515151] mr-2 dark:text-primary_TXD">{addressMap[data?.address ?? ""] ?? data?.address} / شارع ابو علاء</span>
             <IoLocationOutline className="text-[#515151] dark:text-[#8492a7]" />
           </div>
 
