@@ -4,6 +4,7 @@ import { IoHomeOutline, IoPersonAddOutline } from "react-icons/io5";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
 import useAuthStore from '../../Store/Auth/Auth.store';
+import { CiLogout }         from 'react-icons/ci';
 interface MenuCardProps {
     setIsOpen: (isOpen: boolean) => void;
 }
@@ -107,6 +108,18 @@ export default function MenuCard({ setIsOpen }: MenuCardProps) {
                             dark:text-[#f8fafc] text-[#0f1729]'
                         onClick={closeWithAnimation}>مركز المساعده <IoIosHelpCircleOutline className='text-[18px] inline my-3 ml-2' />
                     </Link>
+                    {Role !== null &&
+                        <Link to="/logout"
+                            className='menu-link w-full 
+                            flex items-center justify-end 
+                            hover:bg-[#F1F3F4] dark:hover:bg-[#1E293B] hover:pr-1 transition-all duration-200 
+                            rounded-md 
+                            text-[15px]
+                            dark:text-[#f8fafc] text-[#0f1729]'
+                            onClick={closeWithAnimation}>
+                            تسحيل الخروج <CiLogout className='inline my-3 ml-2 text-[18px] ' />
+                        </Link>
+                    }
 
                 </div>
 
