@@ -29,7 +29,7 @@ interface AuthState {
   setRole: (role: string) => void;
   setToken: (token: string) => void;
   login: (email: string, password: string) => Promise<boolean>;
-  // registerStudent: (Email:string,Password:string,Fname:string,Lname:string,Username:string,NationalId:string,confrimPassword:string,photo1:File,photo2:File) => Promise<void>;
+  registerStudent: (formData:FormData) => Promise<void>;
   registerOwner: (firstname: string, lastname: string, email: string, password: string, phone: string) => Promise<void>;
   forgetpassword:(email:string)=>Promise<boolean>;
   resetpassword: (email: string, password: string, confrimPassword: string, token: string) => Promise<void>;
@@ -88,30 +88,28 @@ const useAuthStore = create<AuthState>()(
 
 
 
-      // registerStudent: async (Email:string,Password:string,Fname:string,Lname:string,Username:string,NationalId:string,confrimPassword:string,Frontimg:File,Backimg:File) => {
-      //   try {
-      //     if (Password !== confrimPassword) {
-      //       throw new Error("Passwords do not match");
-      //     }
-      //     const res = await axios.post(
-      //       'https://darkteam.runasp.net/RegisterStudentEndPoint/RegisterStudent',
-      //       { 
-      //        headers:{
-
-      //        }
-      //        }
-      //     );
-      //     set({
-      //       isAuthenticated: false,
-      //       token: res.data.data.token,
-      //       user: res.data.data.user,
-      //       role: "Student",
-      //     });
-      //       console.log("Student registered successfully.");
-      //   } catch (error) {
-      //     console.error('Student registration failed:', error);
-      //   }
-      // },
+      registerStudent: async (formData:FormData) => {
+        try {
+         
+          const res = await axios.post(
+            'https://darkteam.runasp.net/RegisterStudentEndPoint/RegisterStudent',{formData},
+            {
+              headers:{
+                "Content-Type": 'multipart/form-data',
+              }
+            }
+          );
+          set({
+            isAuthenticated: false,
+            token: res.data.data.token,
+            user: res.data.data.user,
+           
+          });
+            console.log("Student registered successfully.");
+        } catch (error) {
+          console.error('Student registration failed:', error);
+        }
+      },
 
       registerOwner: async (firstname, lastname, email, password, phone) => {
         try {
@@ -129,7 +127,6 @@ const useAuthStore = create<AuthState>()(
             isAuthenticated: false,
             token: res.data.token,
             user: res.data.user,
-            role: "Owner"
           });
           console.log("Owner registered successfully.");
           console.log(" فاث يشفش", res.data.data);

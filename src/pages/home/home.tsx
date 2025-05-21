@@ -176,7 +176,7 @@ const ApartmentGrid: React.FC<ApartmentGridProps> = ({ apartments }) => {
   return (
     <div className="
       grid grid-cols-1 
-      gap-y-3 gap-x-2
+      gap-y-3 gap-x-1
       md:grid-cols-2 
       lg:grid-cols-3 
       xl:grid-cols-3
@@ -185,7 +185,7 @@ const ApartmentGrid: React.FC<ApartmentGridProps> = ({ apartments }) => {
       dir="rtl">
       {apartments.map((apartment, i) => (
         <div key={i} dir="ltr">
-          <ApartmentCard data={apartment} />
+          <ApartmentCard data={apartment} id={i} />
         </div>
       ))}
     </div>
