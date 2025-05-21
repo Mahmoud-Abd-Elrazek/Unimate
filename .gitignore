@@ -26,6 +26,7 @@ dist-ssr
 # Mac System files
 /public/notes.txt
 /src/pages/RegisterPage/
+src/pages/RoomDetails/PropertyImages.tsx
 /src/pages/LoginPage/
-/src/components/PropertyManagementSystem/
-/src/components/PropertyManagementSystem/PropertyManagement
+# /src/components/PropertyManagementSystem/
+# /src/components/PropertyManagementSystem/PropertyManagement

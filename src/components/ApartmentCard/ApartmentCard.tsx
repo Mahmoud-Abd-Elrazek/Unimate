@@ -152,7 +152,7 @@ const addressMap: { [key: string]: string } = {
             onClick={handlePrevClick}
             className="absolute left-3 top-1/2 -translate-y-1/2 w-[32px] h-[32px] rounded-full shadow-lg z-10 items-center justify-center cursor-pointer group-hover:opacity-100 transition-opacity duration-300 bg-[#f8fafc] hidden lg:flex"
           >
-            <IoIosArrowBack className="text-[#000]" style={{ width: "100%", height: "20px" }} />
+            <IoIosArrowBack className="text-[#000]" style={{ width: "100%", height: "20px"  }} />
           </button>
         )}
 
@@ -248,11 +248,16 @@ const addressMap: { [key: string]: string } = {
       </Link>
 
       {edit && (
-        <div className="absolute top-3 right-3 z-10">
-          <button type="button" className="bg-green-500 text-white px-8 py-2 rounded-[10px] text-base shadow-md cursor-pointer">
-            edit
-          </button>
-        </div>
+        <Link to="/edit_property">
+          <div className="absolute top-3 right-3 z-10">
+            <button
+              type="button"
+              className="bg-green-500 text-white px-8 py-2 rounded-[10px] text-base shadow-md cursor-pointer"
+            >
+              edit
+            </button>
+          </div>
+        </Link>
       )}
     </div>
   );

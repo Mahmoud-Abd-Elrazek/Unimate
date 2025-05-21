@@ -1,6 +1,6 @@
 import "./home.css"
 import Filter_bar from '../../components/Filter_Bar/filter_bar'
-//import Search_bar from '../../components/search_bar_rooms/search_bar_rooms'
+// import Search_bar from '../../components/search_bar_rooms/search_bar_rooms'
 import { FaRegStar } from "react-icons/fa";
 import ApartmentCard from '../../components/ApartmentCard/ApartmentCard';
 import HeroSection from '../../components/HeroSection/HeroSection';
@@ -20,72 +20,28 @@ export default function Home() {
   const role = useAuthStore((state) => state.role)
   console.log("this is role", role)
 
-  // Unimate chatbase script: This script is used to load the chatbase script and initialize it
-  // ================== Start ================== 
-  // useEffect(() => {
-  //   if (
-  //     !window.chatbase ||
-  //     window.chatbase("getState") !== "initialized"
-  //   ) {
-  //     window.chatbase = (...args) => {
-  //       if (!window.chatbase.q) {
-  //         window.chatbase.q = [];
-  //       }
-  //       window.chatbase.q.push(args);
-  //     };
-  //     window.chatbase = new Proxy(window.chatbase, {
-  //       get(target, prop) {
-  //         if (prop === "q") {
-  //           return target.q;
-  //         }
-  //         return (...args) => target(prop, ...args);
-  //       },
-  //     });
-  //   }
+  const [pagesize, setpagesize] = useState(6);
+  const [apartments, setapartments] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [totalCount, setTotalCount] = useState(0);
 
-  //   const onLoad = () => {
-  //     const script = document.createElement("script");
-  //     script.src = "https://www.chatbase.co/embed.min.js";
-  //     script.id = "mmxgFf-wRNPfCTfGJjPhf";
-  //     script.domain = "www.chatbase.co";
-  //     document.body.appendChild(script);
-  //   };
-
-  //   if (document.readyState === "complete") {
-  //     onLoad();
-  //   } else {
-  //     window.addEventListener("load", onLoad);
-  //   }
-
-  //   return () => {
-  //     window.removeEventListener("load", onLoad);
-  //     const script = document.getElementById("mmxgFf-wRNPfCTfGJjPhf");
-  //     if (script) {
-  //       script.remove();
-  //     }
-  //   };
-  // }, []);
-  // ================== End ================== 
-
-
-  // const [numofpage,setnumofpage]=useState(0);
-  const [pagesize,setpagesize]=useState(6);
-  
-  const [apartments,setapartments]=useState([])
-  const FetchData=async()=>{
-    try{
-      const res=await  axios.get(`https://darkteam.runasp.net/GetApartmentEndpoint/GetApartment?PageNumber=1&PageSize=${pagesize}`)
-      console.log(res.data)
-      setapartments(res.data.data.apartments)
-      console.log("this is the apartments array"+apartments)
-    }catch(error){
-      console.log("failed to fetch the data!!!!!!!!!!!"+error)
+  const FetchData = async () => {
+    try {
+      setIsLoading(true);
+      const res = await axios.get(`https://darkteam.runasp.net/GetApartmentEndpoint/GetApartment?PageNumber=1&PageSize=${pagesize}`);
+      setapartments(res.data.data.apartments);
+      setTotalCount(res.data.data.totalCount); // تأكد من اسم الخاصية في response
+    } catch (error) {
+      console.log("failed to fetch the data!!!!!!!!!!!" + error)
+    } finally {
+      setIsLoading(false);
     }
   }
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     FetchData()
-  },[pagesize])
+  }, [pagesize])
+
   return (
     <div className='min-h-lvh Page fade-in dark:bg-[#0f1729] pt-[80px]'>
       {/* hero section */}
@@ -131,20 +87,36 @@ export default function Home() {
           </div>
 
           <div className='flex items-center justify-center mt-10'>
-            <button
-            onClick={() => setpagesize(prev => prev + 6)}
-              className={`
+            {apartments.length < totalCount ? (
+              <button
+                onClick={() => setpagesize(prev => prev + 6)}
+                disabled={isLoading}
+                className={`
                 text-center rounded-full
                 w-[300px] h-[3rem]
                 text-[#f8fafc]
-                bg-[#ef4444]
+                ${isLoading ? 'bg-gray-400 border-[gray-400] cursor-not-allowed' : 'bg-[#ef4444]'}
                 mb-[50px]
                 text-[16px]
                 py-[10px] px-0
-                md:mb-[50px] md:bg-[#ef4444] md:text-[16px] md:py-[10px] md:px-0 md:h-auto
-              `}>
-              عرض المزيد
-            </button>
+                md:mb-[50px] md:text-[16px] md:py-[10px] md:px-0 md:h-auto
+                border-1 border-[#ef4444]
+                
+                transition duration-300 ease-in-out transform
+                hover:bg-transparent
+              `}
+              >
+                {isLoading ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <span className="loader"></span> جاري التحميل...
+                  </span>
+                ) : (
+                  "عرض المزيد"
+                )}
+              </button>
+            ) : (
+              <p className="text-center mb-[50px] text-gray-500 text-lg">لا يوجد المزيد من العقارات</p>
+            )}
 
           </div>
         </div>
@@ -155,12 +127,12 @@ export default function Home() {
 }
 interface ApartmentGridProps {
   // count: number; 
-  apartments:object[];
+  apartments: object[];
 }
-
-const ApartmentGrid: React.FC<ApartmentGridProps> = ({  apartments}) => {
+const ApartmentGrid: React.FC<ApartmentGridProps> = ({ apartments }) => {
   return (
     <div className="
+
     grid grid-cols-1 
     gap-y-3 gap-x-1
     md:grid-cols-2 
@@ -169,6 +141,7 @@ const ApartmentGrid: React.FC<ApartmentGridProps> = ({  apartments}) => {
     2xl:grid-cols-5
     3xl:grid-cols-6"
     dir="rtl">
+
       {apartments.map((apartment, i) => (
         <div key={i} dir="ltr">
           <ApartmentCard data={apartment} id={i} />

@@ -21,11 +21,11 @@ const StepOne: React.FC = () => {
         <div className="w-full md:w-1/2 md:mr-8">
           <h1 className="text-right my-4 text-xl font-bold">صور الحمام</h1>
           <div className="flex flex-wrap gap-4">
-           <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
             <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
-              <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
-            {/* <UploadPhoto /> */}
-            {/* <UploadPhoto /> */}
+            <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
+            <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
+            <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
+            <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
           </div>
         </div>
       </div>
@@ -36,31 +36,30 @@ const StepOne: React.FC = () => {
         <div className="w-full lg:w-1/3">
           <h1 className="text-right my-4 text-xl font-bold">صور المدخل/الشارع الرئيسى</h1>
           <div className="flex flex-wrap gap-4">
-          <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
             <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
-              <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
+            <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
+            <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
           </div>
         </div>
         {/* الصالة */}
         <div className="w-full lg:w-1/3">
           <h1 className="text-right my-4 text-xl font-bold">صور الصاله</h1>
           <div className="flex flex-wrap gap-4">
-            {/* <UploadPhoto /> */}
-            {/* <UploadPhoto /> */}
-            {/* <UploadPhoto /> */}
+            <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
+            <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
+            <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
           </div>
         </div>
         {/* إضافية */}
         <div className="w-full lg:w-1/3">
           <h1 className="text-right my-4 text-xl font-bold">صور اضافيه</h1>
           <div className="flex flex-wrap gap-4">
-            {/* <UploadPhoto /> */}
-            {/* <UploadPhoto /> */}
-            {/* <UploadPhoto /> */}
+            <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
+            <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
+            <UploadPhoto onFileSelect={(file) => console.log('Selected file:', file)} />
           </div>
         </div>
       </div>
-
       {/* تنويه */}
       <h1 className="text-gray-500 text-right mt-10 dark:text-white">
         يمكنك اضافة صور الغرف في قسم الغرف في الخطوات التالية
