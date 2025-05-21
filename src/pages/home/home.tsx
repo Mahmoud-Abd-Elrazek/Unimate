@@ -3,6 +3,7 @@ import Filter_bar from '../../components/Filter_Bar/filter_bar'
 import { FaRegStar } from "react-icons/fa";
 import ApartmentCard from '../../components/ApartmentCard/ApartmentCard';
 import HeroSection from '../../components/HeroSection/HeroSection';
+import SearchBar from '../../components/SearchBar/SearchBarWithFilters';
 
 // import animation file
 import "../../../public/animations.css";
@@ -38,6 +39,53 @@ export default function Home() {
     FetchData()
   }, [pagesize])
 
+  // Unimate chatbase script: This script is used to load the chatbase script and initialize it
+  // ================== Start ================== 
+  /*useEffect(() => {
+    if (
+      !window.chatbase ||
+      window.chatbase("getState") !== "initialized"
+    ) {
+      window.chatbase = (...args) => {
+        if (!window.chatbase.q) {
+          window.chatbase.q = [];
+        }
+        window.chatbase.q.push(args);
+      };
+      window.chatbase = new Proxy(window.chatbase, {
+        get(target, prop) {
+          if (prop === "q") {
+            return target.q;
+          }
+          return (...args) => target(prop, ...args);
+        },
+      });
+    }
+
+    const onLoad = () => {
+      const script = document.createElement("script");
+      script.src = "https://www.chatbase.co/embed.min.js";
+      script.id = "mmxgFf-wRNPfCTfGJjPhf";
+      script.domain = "www.chatbase.co";
+      document.body.appendChild(script);
+    };
+
+    if (document.readyState === "complete") {
+      onLoad();
+    } else {
+      window.addEventListener("load", onLoad);
+    }
+
+    return () => {
+      window.removeEventListener("load", onLoad);
+      const script = document.getElementById("mmxgFf-wRNPfCTfGJjPhf");
+      if (script) {
+        script.remove();
+      }
+    };
+  }, []);*/
+  // ================== End ================== 
+
   return (
     <div className='min-h-lvh Page fade-in pt-[80px]'>
       {/* hero section */}
@@ -46,17 +94,16 @@ export default function Home() {
       {/* filter_bar section */}
       <section
         id='filter-bar-section'
-        className='mt-10 flex flex-col items-center gap-4 px-4 sm:px-8 md:px-12 lg:px-20'
+        className='mt-10 flex flex-col items-center gap-y-12 px-4 sm:px-8 md:px-12 lg:px-20'
       >
-        <h1 className='text-sm sm:text-base md:text-xl font-medium MainColorText text-center'>
-          استخدم الفلتره الذكيه لتحديد ما يناسبك
-        </h1>
-
+        <SearchBar />
         <div className='w-full'>
+          <h1 className='mb-2 text-xl sm:text-[20px] md:text-xl font-semibold MainColorText text-center'>
+            استخدم الفلتره الذكيه لتحديد ما يناسبك
+          </h1>
           <div className='w-full max-w-[1050px] mx-auto flex justify-center items-center h-auto sm:h-40'>
             <Filter_bar />
           </div>
-
         </div>
       </section>
 
