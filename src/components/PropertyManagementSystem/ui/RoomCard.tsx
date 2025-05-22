@@ -1,6 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Room } from './RoomsList';
-import { Pencil, Trash2, X, Check, Upload } from 'lucide-react';
+import { Pencil, Trash2, X, Check } from 'lucide-react';
+import { ImageUpload } from './ImageUpload'; // تأكد من مسار الاستيراد الصحيح
+
 interface RoomCardProps {
   room: Room;
   onUpdate: (room: Room) => void;
@@ -10,12 +12,9 @@ interface RoomCardProps {
 export const RoomCard: React.FC<RoomCardProps> = ({ room, onUpdate, onDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedRoom, setEditedRoom] = useState<Room>(room);
-  // const [isHovering, setIsHovering] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
-    
     setEditedRoom(prev => ({
       ...prev,
       [name]: type === 'number' ? Number(value) : value
@@ -24,28 +23,10 @@ export const RoomCard: React.FC<RoomCardProps> = ({ room, onUpdate, onDelete }) 
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
-    
     setEditedRoom(prev => ({
       ...prev,
       [name]: checked
     }));
-  };
-
-  const handleImageClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    setTimeout(() => {
-      const localUrl = URL.createObjectURL(file);
-      setEditedRoom(prev => ({
-        ...prev,
-        imageUrl: localUrl
-      }));
-    }, 500);
   };
 
   const handleSave = () => {
@@ -58,40 +39,45 @@ export const RoomCard: React.FC<RoomCardProps> = ({ room, onUpdate, onDelete }) 
     setIsEditing(false);
   };
 
+  const handleImageChange = (url: string) => {
+    setEditedRoom(prev => ({
+      ...prev,
+      imageUrl: url,
+    }));
+  };
+
   return (
-    <div 
-      className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-      // onMouseEnter={() => setIsHovering(true)}
-      // onMouseLeave={() => setIsHovering(false)}
-    >
+    <div className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
       <div className="relative">
-        <div 
-          className="aspect-video bg-gray-100 flex items-center justify-center cursor-pointer"
-          onClick={isEditing ? handleImageClick : undefined}
-        >
-          {editedRoom.imageUrl ? (
-            <img 
-              src={editedRoom.imageUrl} 
-              alt={editedRoom.description} 
-              className="h-full w-full object-cover"
-            />
-          ) : (
-            <div className="text-gray-400 flex flex-col items-center justify-center">
-              <Upload size={24} className="mb-1" />
-              <p className="text-sm">{isEditing ? 'انقر لرفع صورة' : 'لا توجد صورة'}</p>
-            </div>
-          )}
-        </div>
-        
+        {isEditing ? (
+          <ImageUpload
+            imageUrl={editedRoom.imageUrl}
+            onChange={handleImageChange}
+            index={1}
+          />
+        ) : (
+          <div className="aspect-video bg-gray-100 flex items-center justify-center">
+            {room.imageUrl ? (
+              <img
+                src={room.imageUrl}
+                alt={room.description}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <p className="text-gray-400">لا توجد صورة</p>
+            )}
+          </div>
+        )}
+
         {!isEditing && (
           <div className="absolute top-2 right-2 flex space-x-2 gap-1">
-            <button 
+            <button
               onClick={() => setIsEditing(true)}
               className="bg-white p-1.5 rounded-full shadow hover:bg-gray-100 transition-colors"
             >
               <Pencil size={16} className="text-blue-500" />
             </button>
-            <button 
+            <button
               onClick={() => onDelete(room.id)}
               className="bg-white p-1.5 rounded-full shadow hover:bg-gray-100 transition-colors"
             >
@@ -100,18 +86,10 @@ export const RoomCard: React.FC<RoomCardProps> = ({ room, onUpdate, onDelete }) 
           </div>
         )}
       </div>
-      
+
       <div className="p-4">
         {isEditing ? (
           <div className="space-y-3">
-            <input
-              type="file"
-              ref={fileInputRef}
-              className="hidden"
-              accept="image/*"
-              onChange={handleFileChange}
-            />
-            
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 وصف الغرفة
@@ -124,7 +102,7 @@ export const RoomCard: React.FC<RoomCardProps> = ({ room, onUpdate, onDelete }) 
                 className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
             </div>
-            
+
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -139,7 +117,7 @@ export const RoomCard: React.FC<RoomCardProps> = ({ room, onUpdate, onDelete }) 
                   className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   سعر السرير
@@ -159,7 +137,7 @@ export const RoomCard: React.FC<RoomCardProps> = ({ room, onUpdate, onDelete }) 
                 </div>
               </div>
             </div>
-            
+
             <div>
               <label className="flex items-center space-x-2">
                 <input
@@ -172,16 +150,16 @@ export const RoomCard: React.FC<RoomCardProps> = ({ room, onUpdate, onDelete }) 
                 <span className="text-sm text-gray-700 mr-2">تكييف</span>
               </label>
             </div>
-            
+
             <div className="flex justify-end space-x-2 pt-2">
-              <button 
+              <button
                 onClick={handleCancel}
                 className="flex items-center px-3 py-1.5 border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50 transition-colors"
               >
                 <X size={14} className="ml-1" />
                 إلغاء
               </button>
-              <button 
+              <button
                 onClick={handleSave}
                 className="flex items-center px-3 py-1.5 bg-blue-500 rounded text-sm text-white hover:bg-blue-600 transition-colors mr-2"
               >
@@ -210,8 +188,3 @@ export const RoomCard: React.FC<RoomCardProps> = ({ room, onUpdate, onDelete }) 
     </div>
   );
 };
-//  ضفت نظام لاداره العقار 
-// اظهار زرار االتعديل في صفحه عقارتي لدي مالك العقار 
-// ربط الزرار بصفحه تعديل العقار
-// حزف ال slider من ال cards في صفحه عقارتي 
-// اضافه responsive grid للعقارت في صفحه عقارتي
