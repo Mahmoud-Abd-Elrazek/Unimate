@@ -1,4 +1,4 @@
-import {  useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MdOutlineStar, MdOutlineAccessTime, MdOutlineMeetingRoom } from "react-icons/md";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { FaHeart } from "react-icons/fa";
@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import 'swiper/swiper-bundle.css';
 import { Swiper as SwiperClass } from "swiper";
 import { useApartmentStore } from "../../Store/Data/useApartment.store";
+import { useNavigate } from 'react-router-dom';
 
 interface ApartmentData {
   address?: string;
@@ -18,7 +19,7 @@ interface ApartmentData {
   floor?: string;
   numberOfRooms?: number;
   price?: string | number;
-  ownerName?:  string;
+  ownerName?: string;
 }
 
 interface ApartmentCardProps {
@@ -33,6 +34,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
   const nextRef = useRef(null);
   const swiperRef = useRef<SwiperClass | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
 
   const images = [
     "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
@@ -111,10 +113,10 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
   const type = data?.gender === "Male" ? "أولاد" : "بنات";
   let numofRooms = (data?.numberOfRooms ?? 3) > 4 ? 4 : data?.numberOfRooms;
   numofRooms = numofRooms == 0 ? 3 : numofRooms
-  useEffect(()=>{
-    console.log("data form card not room details"+data)
+  useEffect(() => {
+    console.log("data form card not room details" + data)
   })
-  
+
   return (
     <div
       className={`
@@ -191,7 +193,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
         </div>
       </div>
 
-      <Link to={`/roomdetails?id=${id}`} state={{ data: data ,ownerName:data?.ownerName}}>
+      <Link to={`/roomdetails?id=${id}`} state={{ data: data, ownerName: data?.ownerName }}>
         <div className="p-3 text-right">
           <div className="flex items-start justify-between mb-2">
             <span className="text-[13px] font-bold text-[#DC3545] dark:text-[#ff6170] sm:text-[16px] lg:text-[14px]">
@@ -257,16 +259,16 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
       </Link>
 
       {edit && (
-        <Link to="/edit_property">
-          <div className="absolute top-3 right-3 z-10">
-            <button
-              type="button"
-              className="bg-green-500 text-white px-8 py-2 rounded-[10px] text-base shadow-md cursor-pointer"
-            >
-              edit
-            </button>
-          </div>
-        </Link>
+        <div className="absolute top-3 right-3 z-10">
+          <button
+            type="button"
+            className="bg-green-500 text-white px-8 py-2 rounded-[10px] text-base shadow-md cursor-pointer"
+            onClick={() => navigate('/manage_property', { state: { mode: 'eidt' } })}
+          >
+            edit
+          </button>
+        </div>
+
       )}
     </div>
   );

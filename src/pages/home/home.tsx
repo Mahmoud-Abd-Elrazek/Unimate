@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import CreatPostButton from "../../components/navbar/Button"
 // import { useEffect } from 'react';
-import { Link } from "react-router-dom";
 import useAuthStore from "../../Store/Auth/Auth.store";
 
 export default function Home() {
@@ -96,14 +95,11 @@ export default function Home() {
     <div className='min-h-lvh Page fade-in pt-[80px]'>
 
       {/* Create post - only on medium and up */}
-      {Role === "Owner" && (
-        <Link
-          to='/createpost'
-          title="اضافة مسكن"
-          className="block md:hidden">
-          <CreatPostButton />
-        </Link>
-      )}
+        {Role === "Owner" && (
+          <div className="block md:hidden"> 
+            <CreatPostButton />
+          </div>
+        )}
       {/* hero section */}
       <HeroSection />
 
