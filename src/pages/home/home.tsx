@@ -205,8 +205,8 @@ const ApartmentGrid: React.FC<ApartmentGridProps> = ({ apartments }) => {
       3xl:grid-cols-6"
       dir="rtl">
       {apartments.map((apartment, i) => (
-        <div key={i + 1} dir="ltr">
-          <ApartmentCard data={apartment} id={i + 1} />
+        <div key={i} dir="ltr">
+          <ApartmentCard data={apartment} id={i+3} />
         </div>
       ))}
     </div>

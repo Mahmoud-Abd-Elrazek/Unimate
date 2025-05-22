@@ -136,15 +136,16 @@ const useAuthStore = create<AuthState>()(
       },
       forgetpassword:async(email:string)=>{
         try{
-          const res=axios.post("https://darkteam.runasp.net/ForgotPasswordEndpoint/ForgotPassword",{
-            email
+          const res= await axios.post("https://darkteam.runasp.net/ForgotPasswordEndpoint/ForgotPassword",{
+            email:email
           })
           console.log(res)
-          // if(!res.isSuccess){
-          //   toast.error("There Is No Such Email")
-          //   return false;
-          // }else{return true;}
-          return true;
+          if (!res.data.isSuccess) {
+            toast.error("There Is No Such Email")
+            return false;
+          } else {
+            return true;
+          }
         }catch(error){
           console.log("forgetpadd failed!!"+error)
           return false;

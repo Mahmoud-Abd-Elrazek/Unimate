@@ -112,7 +112,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
   let numofRooms = (data?.numberOfRooms ?? 3) > 4 ? 4 : data?.numberOfRooms;
   numofRooms = numofRooms == 0 ? 3 : numofRooms
   useEffect(()=>{
-    console.log("data form card not room details"+data)
+    console.log("data form card not room details"+data+" this si the id "+id)
   })
   
   return (
