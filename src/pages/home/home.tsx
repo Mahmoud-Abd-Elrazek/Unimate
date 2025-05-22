@@ -14,6 +14,13 @@ import CreatPostButton from "../../components/navbar/Button"
 // import { useEffect } from 'react';
 import useAuthStore from "../../Store/Auth/Auth.store";
 
+// Extend the Window interface to include chatbase
+declare global {
+  interface Window {
+    chatbase?: any;
+  }
+}
+
 export default function Home() {
   const Role = useAuthStore((state) => state.role)
   // console.log("this is role", role)
@@ -36,22 +43,23 @@ export default function Home() {
       setIsLoading(false);
     }
   }
+  
 
-  // useEffect(()=>{
-  //   FetchData()
-  // },[])
+  useEffect(()=>{
+     FetchData()
+   },[])
   useEffect(() => {
     FetchData()
 
   }, [pagesize])
   // Unimate chatbase script: This script is used to load the chatbase script and initialize it
   // ================== Start ================== 
-  /*useEffect(() => {
+  useEffect(() => {
     if (
       !window.chatbase ||
       window.chatbase("getState") !== "initialized"
     ) {
-      window.chatbase = (...args) => {
+      window.chatbase = (...args: any) => {
         if (!window.chatbase.q) {
           window.chatbase.q = [];
         }
@@ -62,7 +70,7 @@ export default function Home() {
           if (prop === "q") {
             return target.q;
           }
-          return (...args) => target(prop, ...args);
+          return (...args: any) => target(prop, ...args);
         },
       });
     }
@@ -71,7 +79,6 @@ export default function Home() {
       const script = document.createElement("script");
       script.src = "https://www.chatbase.co/embed.min.js";
       script.id = "mmxgFf-wRNPfCTfGJjPhf";
-      script.domain = "www.chatbase.co";
       document.body.appendChild(script);
     };
 
@@ -88,7 +95,7 @@ export default function Home() {
         script.remove();
       }
     };
-  }, []);*/
+  }, []);
   // ================== End ================== 
 
   return (
