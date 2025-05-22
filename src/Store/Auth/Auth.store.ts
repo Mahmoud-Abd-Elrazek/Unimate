@@ -29,7 +29,7 @@ interface AuthState {
   setRole: (role: string) => void;
   setToken: (token: string) => void;
   login: (email: string, password: string) => Promise<boolean>;
-  registerStudent: (formData:FormData) => Promise<void>;
+  // registerStudent: (formData:FormData) => Promise<void>;
   registerOwner: (firstname: string, lastname: string, email: string, password: string, phone: string) => Promise<void>;
   forgetpassword:(email:string)=>Promise<boolean>;
   resetpassword: (email: string, password: string, confrimPassword: string, token: string) => Promise<void>;
@@ -88,28 +88,28 @@ const useAuthStore = create<AuthState>()(
 
 
 
-      registerStudent: async (formData:FormData) => {
-        try {
+      // registerStudent: async (formData:FormData) => {
+      //   try {
          
-          const res = await axios.post(
-            'https://darkteam.runasp.net/RegisterStudentEndPoint/RegisterStudent',{formData},
-            {
-              headers:{
-                "Content-Type": 'multipart/form-data',
-              }
-            }
-          );
-          set({
-            isAuthenticated: false,
-            token: res.data.data.token,
-            user: res.data.data.user,
+      //     const res = await axios.post(
+      //       'https://darkteam.runasp.net/RegisterStudentEndPoint/RegisterStudent',{formData},
+      //       {
+      //         headers:{
+      //           "Content-Type": 'multipart/form-data',
+      //         }
+      //       }
+      //     );
+      //     set({
+      //       isAuthenticated: false,
+      //       token: res.data.data.token,
+      //       user: res.data.data.user,
            
-          });
-            console.log("Student registered successfully.");
-        } catch (error) {
-          console.error('Student registration failed:', error);
-        }
-      },
+      //     });
+      //       console.log("Student registered successfully.");
+      //   } catch (error) {
+      //     console.error('Student registration failed:', error);
+      //   }
+      // },
 
       registerOwner: async (firstname, lastname, email, password, phone) => {
         try {

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Upload, Image, CheckCircle2, X } from 'lucide-react';
+import { Upload, CheckCircle2, X } from 'lucide-react';
 
 interface ImageUploadProps {
   imageUrl: string;

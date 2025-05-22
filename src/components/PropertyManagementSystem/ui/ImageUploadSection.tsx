@@ -8,7 +8,7 @@ interface ImageUploadSectionProps {
 }
 
 export const ImageUploadSection: React.FC<ImageUploadSectionProps> = ({
-  title,
+
   description,
   maxImages
 }) => {

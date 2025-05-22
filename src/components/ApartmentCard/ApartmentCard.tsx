@@ -187,8 +187,8 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
         />
 
 
-        <div onClick={() => AddtoFav(String(id ?? ""))} title="Add to Favourites" className="absolute top-3 left-3 p-2 rounded-full shadow-md cursor-pointer z-10 bg-[#f8fafc]">
 
+        <div onClick={() => AddtoFav(String(id ?? ""))} title="Add to Favourites" className="absolute top-3 left-3 p-2 rounded-full shadow-md cursor-pointer z-10 bg-[#f8fafc]">
           <FaHeart className="text-[#00000080] hover:text-red-500 hover:scale-110 transition duration-300" />
         </div>
       </div>

@@ -4,7 +4,6 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { FiEye, FiEyeOff, FiUserPlus } from "react-icons/fi";
-import useAuthStore from "../../../Store/Auth/Auth.store";
 import UploadPhoto from '../../../components/UploadPhoto/uploadPhoto';
 import axios from "axios";
 export default function RegisterStudentPage() {
@@ -13,7 +12,6 @@ export default function RegisterStudentPage() {
   const [frontImage, setFrontImage] = useState<File | null>(null);
   const [backImage, setBackImage] = useState<File | null>(null);
 
-  const setrole = useAuthStore((state) => state.setRole);
 
   const RegisterSchema = z.object({
     firstname: z.string().min(1, { message: "ادخل الاسم الاول" }),
@@ -46,10 +44,10 @@ export default function RegisterStudentPage() {
 
   const OnSubmit: SubmitHandler<RegisterT> = async (data) => {
     const userData = new FormData();
-    userData.append("Email", data.email);
     userData.append("Fname", data.firstname);
     userData.append("Lname", data.lastname);
     userData.append("UserName", data.username);
+    userData.append("Email", data.email);
     userData.append("Password", data.password);
     userData.append("ConfrimPassword", data.confirmPassword);
     userData.append("NationalId", data.nationalID);
@@ -64,14 +62,14 @@ export default function RegisterStudentPage() {
           "Content-Type": "multipart/form-data",
         },
       })
-      console.log(res.data)
-
-    // To display FormData contents in the console
-    for (const [key, value] of userData.entries()) {
-      console.log(`${key}:`, value);
-    }
+      console.log(res)
+      console.log(res.status, res.data);
+  
+    // for (const [key, value] of userData.entries()) {
+    //   console.log(`${key}:`, value);
+    // }
     // localStorage.setItem("role", "Student");
-    setrole("Student");
+    
     navigate("/confirmemail1");
   };
 
