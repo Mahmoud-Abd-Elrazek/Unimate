@@ -78,6 +78,7 @@ export default function App() {
     '/auther/editprofile/editpersonalinfo',
     '/auther/editprofile/editAcademicinfo',
     '/auther/editprofile/editcontactinfo',
+    '/manage_property'
   ];
   const hideNavbarRoutes = [
     '/SignIn',
@@ -119,7 +120,7 @@ export default function App() {
         <Route path="/img_details" element={<Gallery />} />
         <Route path="/housing_services" element={<Housing_Services />} />
         <Route path="/ApartmentCard" element={<ApartmentCard />} />
-        <Route path="/edit_property" element={<PropertyManagement />} />
+        <Route path="/manage_property" element={<PropertyManagement />} />
 
         {/* Author Pages */}
         <Route path="/auther/*" element={<AuthorLayout />}>

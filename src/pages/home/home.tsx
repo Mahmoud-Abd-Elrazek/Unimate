@@ -12,8 +12,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import CreatPostButton from "../../components/navbar/Button"
 // import { useEffect } from 'react';
-import { Link } from "react-router-dom";
 import useAuthStore from "../../Store/Auth/Auth.store";
+
+// Extend the Window interface to include chatbase
+declare global {
+  interface Window {
+    chatbase?: any;
+  }
+}
 
 export default function Home() {
   const Role = useAuthStore((state) => state.role)
@@ -37,22 +43,23 @@ export default function Home() {
       setIsLoading(false);
     }
   }
+  
 
   // useEffect(()=>{
-  //   FetchData()
-  // },[])
+  //    FetchData()
+  //  },[])
   useEffect(() => {
     FetchData()
 
   }, [pagesize])
   // Unimate chatbase script: This script is used to load the chatbase script and initialize it
   // ================== Start ================== 
-  /*useEffect(() => {
+  useEffect(() => {
     if (
       !window.chatbase ||
       window.chatbase("getState") !== "initialized"
     ) {
-      window.chatbase = (...args) => {
+      window.chatbase = (...args: unknown[]) => {
         if (!window.chatbase.q) {
           window.chatbase.q = [];
         }
@@ -63,7 +70,7 @@ export default function Home() {
           if (prop === "q") {
             return target.q;
           }
-          return (...args) => target(prop, ...args);
+          return (...args: unknown[]) => target(prop, ...args);
         },
       });
     }
@@ -72,7 +79,6 @@ export default function Home() {
       const script = document.createElement("script");
       script.src = "https://www.chatbase.co/embed.min.js";
       script.id = "mmxgFf-wRNPfCTfGJjPhf";
-      script.domain = "www.chatbase.co";
       document.body.appendChild(script);
     };
 
@@ -89,7 +95,7 @@ export default function Home() {
         script.remove();
       }
     };
-  }, []);*/
+  }, []);
   // ================== End ================== 
 
   return (
@@ -97,12 +103,9 @@ export default function Home() {
 
       {/* Create post - only on medium and up */}
       {Role === "Owner" && (
-        <Link
-          to='/createpost'
-          title="اضافة مسكن"
-          className="block md:hidden">
+        <div className="block md:hidden">
           <CreatPostButton />
-        </Link>
+        </div>
       )}
       {/* hero section */}
       <HeroSection />
@@ -127,35 +130,39 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <div id="RoomSection" className="pl-[24px] pr-[24px]">
-        {/* الاعلى تقييما */}
-        <div>
-          <h1 className="flex justify-end items-center mt-5 mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl">
-            الاعلى تقييما
-            <FaRegStar className="ml-2 text-[#FFA500] dark:text-[#FFCC00]" />
-          </h1>
-
-          <div>
-            <ApartmentGrid apartments={apartments} />
-          </div>
+      {isLoading && apartments.length === 0 ? (
+        <div className="flex justify-center items-center py-10 h-[50vh]">
+          <div className="loading"></div>
         </div>
-
-        {/* اضيف حديثا */}
-        <div>
-          <h1 className="flex justify-end items-center mt-5 mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl">
-            اضيف حديثا <FaRegStar className="ml-2 dark:text-[#5bc0de] text-[#0d6efd]" />
-          </h1>
+      ) : (
+        <div id="RoomSection" className="pl-[24px] pr-[24px]">
+          {/* الاعلى تقييما */}
           <div>
-            <ApartmentGrid apartments={apartments} />
+            <h1 className="flex justify-end items-center mt-5 mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+              الاعلى تقييما
+              <FaRegStar className="ml-2 text-[#FFA500] dark:text-[#FFCC00]" />
+            </h1>
+
+            <div>
+              <ApartmentGrid apartments={apartments} />
+            </div>
           </div>
 
-          <div className='flex items-center justify-center mt-10'>
-            {apartments.length < totalCount ? (
-              <button
-                onClick={() => setpagesize(prev => prev + 12)}
-                disabled={isLoading}
-                className={`
+          {/* اضيف حديثا */}
+          <div>
+            <h1 className="flex justify-end items-center mt-5 mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+              اضيف حديثا <FaRegStar className="ml-2 dark:text-[#5bc0de] text-[#0d6efd]" />
+            </h1>
+            <div>
+              <ApartmentGrid apartments={apartments} />
+            </div>
+
+            <div className='flex items-center justify-center mt-10'>
+              {apartments.length < totalCount ? (
+                <button
+                  onClick={() => setpagesize(prev => prev + 12)}
+                  disabled={isLoading}
+                  className={`
                 text-center rounded-full
                 w-[300px] h-[3rem]
                 text-[#f8fafc]
@@ -169,22 +176,23 @@ export default function Home() {
                 transition duration-300 ease-in-out transform
                 hover:bg-transparent hover:text-mainColor
               `}
-              >
-                {isLoading ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <span className="loader"></span> جاري التحميل...
-                  </span>
-                ) : (
-                  "عرض المزيد"
-                )}
-              </button>
-            ) : (
-              <p className="text-center mb-[50px] text-gray-500 text-lg">لا يوجد المزيد من العقارات</p>
-            )}
+                >
+                  {isLoading ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <span className="loader"></span> جاري التحميل...
+                    </span>
+                  ) : (
+                    "عرض المزيد"
+                  )}
+                </button>
+              ) : (
+                <p className="text-center mb-[50px] text-gray-500 text-lg">لا يوجد المزيد من العقارات</p>
+              )}
 
+            </div>
           </div>
         </div>
-      </div>
+      )}
       {/* <PropertyManagement/> */}
     </div>
   )

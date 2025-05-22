@@ -29,16 +29,11 @@ export default function NavBar() {
 
       {/* Right section */}
       <div className='flex items-center gap-4'>
-
         {/* Create post - only on medium and up */}
         {Role === "Owner" && (
-          <Link
-            to='/createpost'
-            title="اضافة مسكن"
-            className="hidden md:block"
-          >
+          <div className="hidden md:block">
             <Button />
-          </Link>
+          </div>
         )}
 
         {/* Theme toggle always visible */}
