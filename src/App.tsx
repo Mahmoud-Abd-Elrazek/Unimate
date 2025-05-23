@@ -18,7 +18,7 @@ import AuthorLayout from './pages/User_Profile_Pages/AuthorLayout/authorLayout';
 import EditProfilepage from './pages/EditProfilePage/editProfilepage';
 import My_reservations from './pages/User_Profile_Pages/My_reservations/My_reservations';
 import Personal_Reviews from './pages/User_Profile_Pages/Personal_Reviews/Personal_Reviews';
-import Gallery from './pages/image_details/image_details';
+import Gallery from './pages/image_details/PropertyImages';
 import UnauthorizedPage from './pages/Auth/UnauthorizedPage/UnauthorizedPage';
 import Reservation_requests_Owner from './pages/User_Profile_Pages/Reservation_requests_Owner/reservation_requests_Owner';
 import My_Money_transactions from './pages/User_Profile_Pages/My_Money_transactions/my_Money_transactions';
@@ -78,7 +78,8 @@ export default function App() {
     '/auther/editprofile/editpersonalinfo',
     '/auther/editprofile/editAcademicinfo',
     '/auther/editprofile/editcontactinfo',
-    '/manage_property'
+    '/manage_property',
+    '/img_details'
   ];
   const hideNavbarRoutes = [
     '/SignIn',
