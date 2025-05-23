@@ -29,8 +29,8 @@ interface BookingStatus {
 
 export default function My_reservations() {
   return (
-    <div className=" ">
-        <h1 className="text-4xl text-semibold text-center my-5 dark:text[white]">حجوزاتى</h1>
+    <div className=" h-screen">
+        <h1 className="text-4xl text-semibold text-center my-5 ">حجوزاتى</h1>
         {/* the search bar */}
         <div className="dark:text[white]">
             <Search_bar_myreservations placeholderval="ابحث فى حجوزاتى"/>
