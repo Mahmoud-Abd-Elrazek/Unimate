@@ -18,7 +18,7 @@ import { Slide, ToastContainer } from "react-toastify";
 // Extend the Window interface to include chatbase
 declare global {
   interface Window {
-    chatbase?: any;
+    chatbase?: ((...args: unknown[]) => void) & { q?: unknown[] };
   }
 }
 
@@ -27,19 +27,35 @@ export default function Home() {
   // console.log("this is role", role)
 
   const [pagesize, setpagesize] = useState(6);
+  // اضيف حدثيا
+  const [newapartments, setnewapartments] = useState([]);
+  // الاعلى تقييما
   const [apartments, setapartments] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
-
+  // الاعلى تقييما
   const FetchData = async () => {
     try {
       setIsLoading(true);
-      const res = await axios.get(`https://darkteam.runasp.net/GetApartmentEndpoint/GetApartment?PageNumber=1&PageSize=${pagesize}`);
+      const res = await axios.get(`https://darkteam.runasp.net/GetApartmentEndpoint/GetApartment?PageNumber=1&PageSize=6`);
       setapartments(res.data.data.apartments);
+    }
+    catch (error) {
+      console.log("failed to fetch the data!!!!!!!!!!!" + error)
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  // اضيف حديثا
+  const FetchNewData = async () => {
+    try {
+      setIsLoading(true);
+      const res = await axios.get(`https://darkteam.runasp.net/GetApartmentEndpoint/GetApartment?PageNumber=1&PageSize=${pagesize}`);
+      setnewapartments(res.data.data.apartments);
       setTotalCount(res.data.data.totalCount);
       console.log(res.data.data)
     } catch (error) {
-      console.log("failed to fetch the data!!!!!!!!!!!" + error)
+      console.log("failed to fetch the data!!!" + error)
     } finally {
       setIsLoading(false);
     }
@@ -51,20 +67,19 @@ export default function Home() {
   //  },[])
   useEffect(() => {
     FetchData()
-
+FetchNewData();
   }, [pagesize])
   // Unimate chatbase script: This script is used to load the chatbase script and initialize it
   // ================== Start ================== 
   useEffect(() => {
-    if (
-      !window.chatbase ||
-      window.chatbase("getState") !== "initialized"
-    ) {
+    if (!window.chatbase) {
       window.chatbase = (...args: unknown[]) => {
-        if (!window.chatbase.q) {
-          window.chatbase.q = [];
+        if (window.chatbase) {
+          if (!window.chatbase.q) {
+            window.chatbase.q = [];
+          }
+          window.chatbase.q.push(args);
         }
-        window.chatbase.q.push(args);
       };
       window.chatbase = new Proxy(window.chatbase, {
         get(target, prop) {
@@ -155,11 +170,11 @@ export default function Home() {
               اضيف حديثا <FaRegStar className="ml-2 dark:text-[#5bc0de] text-[#0d6efd]" />
             </h1>
             <div>
-              <ApartmentGrid apartments={apartments} />
+              <ApartmentGrid apartments={newapartments} />
             </div>
 
             <div className='flex items-center justify-center mt-10'>
-              {apartments.length < totalCount ? (
+              {newapartments.length < totalCount ? (
                 <button
                   onClick={() => setpagesize(prev => prev + 12)}
                   disabled={isLoading}

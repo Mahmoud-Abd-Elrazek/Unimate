@@ -32,6 +32,7 @@ interface AuthState {
   // registerStudent: (formData:FormData) => Promise<void>;
   registerOwner: (firstname: string, lastname: string, email: string, password: string, phone: string) => Promise<void>;
   forgetpassword:(email:string)=>Promise<boolean>;
+  changePassword: (OldPassword: string, NewPassword: string, ConfirmPassword: string) => Promise<void>;
   resetpassword: (email: string, password: string, confrimPassword: string, token: string) => Promise<void>;
   logout: () => void;
   confirmemail: (email: string, otp: string) => Promise<void>;
@@ -83,11 +84,6 @@ const useAuthStore = create<AuthState>()(
           return false;
         }
       },
-
-
-
-
-
       // registerStudent: async (formData:FormData) => {
       //   try {
          
@@ -170,6 +166,29 @@ const useAuthStore = create<AuthState>()(
           console.error("Password reset failed:", error);
         }
       },
+      changePassword: async (OldPassword: string, NewPassword: string, ConfirmPassword: string) => {
+        try {
+          const res = await axios.post("https://darkteam.runasp.net/ChangePasswordEndpoint/ChangePassword", {
+            OldPassword,
+            NewPassword,
+            ConfirmPassword,
+          },
+        {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+          set({
+            isAuthenticated: true,
+            user: res.data.user,
+            token: res.data.token,
+            role: res.data.role
+          });
+          console.log("Password changed successfully.");
+        } catch (error) {
+          console.error("Password change failed:", error);
+        }
+      },
 
       confirmemail: async (email, otp) => {
         try {
@@ -185,6 +204,7 @@ const useAuthStore = create<AuthState>()(
           console.error("Email confirmation failed:", error);
         }
       },
+      
 
       logout: () => {
         set({
