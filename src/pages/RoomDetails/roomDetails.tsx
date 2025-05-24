@@ -11,7 +11,7 @@ import { BsDisplay } from "react-icons/bs"; // Monitor/Display icon (from Bootst
 import { FaPaperPlane } from "react-icons/fa";
 import { MdMeetingRoom } from "react-icons/md";
 import { PiStudentBold } from "react-icons/pi";
-import { IoMdArrowRoundBack } from "react-icons/io";
+import { ArrowLeft } from 'lucide-react';
 import { LuWashingMachine } from "react-icons/lu";
 import { MdOutlineFireplace } from "react-icons/md";
 import { GiFireplace } from "react-icons/gi";
@@ -23,6 +23,7 @@ import "../../../public/animations.css";
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useApartmentStore } from "../../Store/Data/useApartment.store";
+import { useNavigate } from 'react-router-dom';
 const features = [
   { label: "واي فاي", icon: <IoWifi className="IconSize" /> },
   { label: "ماء سخن", icon: <MdOutlineFireplace className="IconSize" /> },
@@ -45,8 +46,8 @@ const servicesMap = {
 export default function RoomDetails() {
   const [searchparams] = useSearchParams()
   const id = searchparams.get("id");
-  const location=useLocation();
-  const {ownerName} = location.state
+  const location = useLocation();
+  const { ownerName } = location.state
   const AddFavorite = useApartmentStore(state => state.AddFavorite)
   const AddtoFav = (id: string) => {
     AddFavorite(id);
@@ -65,6 +66,7 @@ export default function RoomDetails() {
       Services: string[];
     };
   };
+  const navigate = useNavigate();
   const [data, setdata] = useState<ApartmentData | null>(null);
   const Fetchdata = async (id: string) => {
     try {
@@ -143,13 +145,16 @@ export default function RoomDetails() {
     "321 Arts District": "مدينة العمال",
 
   };
- 
+
   return (
     <div className="min-h-screen Page slide-in pt-[80px]">
-      <Link to='/' className="flex items-center gap-1 cursor-pointer my-3 ml-3">
-        <IoMdArrowRoundBack className="IconSize" />
-        <h2 className=" text-sm md:text-base">رجوع</h2>
-      </Link>
+      <button
+        onClick={() => navigate(-1)}
+        className="flex flex-row-reverse gap-1 text-blue-500 hover:text-blue-600 p-3"
+      >
+        <ArrowLeft size={20} />
+        العودة للتفاصيل
+      </button>
       {/* the first section */}
       <div className="flex justify-between items-center px-5">
         <div className="flex gap-4">
@@ -308,7 +313,7 @@ export default function RoomDetails() {
               <div className="flex items-center justify-end mt-4 mb-4">
                 <div className="flex items-center gap-2">
                   <div className="text-sm flex flex-col text-right items-end">
-                    <p className="font-semibold">{ownerName??""}</p>
+                    <p className="font-semibold">{ownerName ?? ""}</p>
                     <p className="text-xs text-gray-500 dark:text-[#D9D9D9]">mahmoudarafa@gmail.com</p>
                     <span className="text-yellow-500 text-sm flex items-center gap-1">
                       <FaStar size={14} /> 3.5
@@ -370,7 +375,7 @@ export default function RoomDetails() {
               </div>
             )}
           </div>
-{/* 
+          {/* 
           {data.categoryWithFacilities.Services.length > 6 ? <div className="text-center mt-8">
             <Link to="/housing_services" className="border border-black rounded-lg px-4 py-2 text-sm md:text-base">
               عرض كل المميزات ال 10

@@ -47,12 +47,12 @@ const PropertyImages: React.FC = () => {
                      <ArrowLeft size={20} />
                      العودة للتفاصيل
                   </button>
-                  <h1 className="text-2xl font-bold text-gray-800">صور العقار</h1>
+                  <h1 className="text-2xl font-bold ">صور العقار</h1>
                </div>
 
                <div className="space-y-12">
                   <section>
-                     <h2 className="text-xl font-semibold text-gray-800 mb-4">صور الصالة</h2>
+                     <h2 className="text-xl font-semibold mb-4 dark:text-secondary_TXD">صور الصالة</h2>
                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {images.livingRoom.map((url, index) => (
                            <div
@@ -71,7 +71,7 @@ const PropertyImages: React.FC = () => {
                   </section>
 
                   <section>
-                     <h2 className="text-xl font-semibold text-gray-800 mb-4">صور المطبخ</h2>
+                     <h2 className="text-xl font-semibold mb-4 dark:text-secondary_TXD">صور المطبخ</h2>
                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {images.kitchen.map((url, index) => (
                            <div
@@ -90,7 +90,7 @@ const PropertyImages: React.FC = () => {
                   </section>
 
                   <section>
-                     <h2 className="text-xl font-semibold text-gray-800 mb-4">صور الحمام</h2>
+                     <h2 className="text-xl font-semibold mb-4 dark:text-secondary_TXD">صور الحمام</h2>
                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {images.bathroom.map((url, index) => (
                            <div
@@ -109,7 +109,7 @@ const PropertyImages: React.FC = () => {
                   </section>
 
                   <section>
-                     <h2 className="text-xl font-semibold text-gray-800 mb-4">صور المدخل</h2>
+                     <h2 className="text-xl font-semibold dark:text-secondary_TXD mb-4">صور المدخل</h2>
                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {images.entrance.map((url, index) => (
                            <div
@@ -128,7 +128,7 @@ const PropertyImages: React.FC = () => {
                   </section>
 
                   <section>
-                     <h2 className="text-xl font-semibold text-gray-800 mb-4">صور اضافيه</h2>
+                     <h2 className="text-xl font-semibold dark:text-secondary_TXD mb-4">صور اضافيه</h2>
                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {images.more.map((url, index) => (
                            <div
