@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { ServiceSelector } from './ServiceSelector';
-
-type PropertyType = 'male' | 'female' | 'any';
+import { Plus, Minus, Wifi, Car, UtilityPole, Coffee, UtensilsCrossed, Droplets, Fan, Tv } from 'lucide-react';
 
 interface PropertyFormData {
   description: string;
@@ -10,9 +8,63 @@ interface PropertyFormData {
   floor: number;
   capacity: number;
   price: number;
-  type: PropertyType;
+  type: 'male' | 'female' | 'any';
   services: string[];
 }
+
+interface ServiceSelectorProps {
+  selectedServices: string[];
+  onChange: (services: string[]) => void;
+}
+
+const ServiceSelector: React.FC<ServiceSelectorProps> = ({ selectedServices, onChange }) => {
+  const availableServices = [
+    { id: 'wifi', name: 'واي فاي', icon: <Wifi size={18} /> },
+    { id: 'parking', name: 'موقف سيارات', icon: <Car size={18} /> },
+    { id: 'electricity', name: 'كهرباء', icon: <UtilityPole size={18} /> },
+    { id: 'breakfast', name: 'إفطار', icon: <Coffee size={18} /> },
+    { id: 'kitchen', name: 'مطبخ', icon: <UtensilsCrossed size={18} /> },
+    { id: 'water', name: 'مياه', icon: <Droplets size={18} /> },
+    { id: 'ac', name: 'تكييف', icon: <Fan size={18} /> },
+    { id: 'tv', name: 'تلفاز', icon: <Tv size={18} /> },
+  ];
+
+  const toggleService = (serviceId: string) => {
+    if (selectedServices.includes(serviceId)) {
+      onChange(selectedServices.filter(id => id !== serviceId));
+    } else {
+      onChange([...selectedServices, serviceId]);
+    }
+  };
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 rtl">
+      {availableServices.map((service) => {
+        const isSelected = selectedServices.includes(service.id);
+        return (
+          <div
+            key={service.id}
+            onClick={() => toggleService(service.id)}
+            className={`
+              border rounded-lg p-3 flex items-center cursor-pointer transition-all select-none
+              ${isSelected
+                ? 'border-blue-500 bg-blue-50 text-blue-700'
+                : 'border-gray-300 hover:border-gray-400 text-gray-700'}
+            `}
+          >
+            <div className="ml-2">{service.icon}</div>
+            <span className="flex-1">{service.name}</span>
+            {isSelected ? (
+              <Minus size={16} className="text-blue-500" />
+            ) : (
+              <Plus size={16} className="text-gray-400" />
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
 export const PropertyForm: React.FC = () => {
   const [formData, setFormData] = useState<PropertyFormData>({
@@ -36,36 +88,35 @@ export const PropertyForm: React.FC = () => {
     'الحي السكني',
     'المنطقة الجامعية',
     'المنطقة التاريخية',
-    'ضاحية المدينة'
+    'ضاحية المدينة',
   ];
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
-    
     setFormData(prev => ({
       ...prev,
-      [name]: name === 'floor' || name === 'capacity' || name === 'price' 
-        ? Number(value) 
-        : value
+      [name]: ['floor', 'capacity', 'price'].includes(name) ? Number(value) : value,
     }));
   };
 
   const handleServiceChange = (services: string[]) => {
-    setFormData(prev => ({
-      ...prev,
-      services
-    }));
+    setFormData(prev => ({ ...prev, services }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('تم إرسال البيانات:', formData);
+    alert('تم حفظ بيانات العقار!');
   };
 
   return (
-    <div>
+    <div className="rtl">
       <h2 className="text-xl font-semibold text-gray-800 mb-4">تفاصيل العقار</h2>
-      <p className="text-gray-600 mb-6">
-        أدخل المعلومات التفصيلية عن العقار
-      </p>
-      
-      <form className="space-y-6">
-        {/* Property Description */}
+      <p className="text-gray-600 mb-6">أدخل المعلومات التفصيلية عن العقار</p>
+
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
             وصف العقار
@@ -80,8 +131,7 @@ export const PropertyForm: React.FC = () => {
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        
-        {/* Location Description */}
+
         <div>
           <label htmlFor="locationDescription" className="block text-sm font-medium text-gray-700 mb-1">
             وصف الموقع
@@ -96,9 +146,8 @@ export const PropertyForm: React.FC = () => {
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Area Selection */}
           <div>
             <label htmlFor="area" className="block text-sm font-medium text-gray-700 mb-1">
               المنطقة
@@ -112,12 +161,13 @@ export const PropertyForm: React.FC = () => {
             >
               <option value="">اختر منطقة</option>
               {areas.map(area => (
-                <option key={area} value={area}>{area}</option>
+                <option key={area} value={area}>
+                  {area}
+                </option>
               ))}
             </select>
           </div>
-          
-          {/* Floor/Level */}
+
           <div>
             <label htmlFor="floor" className="block text-sm font-medium text-gray-700 mb-1">
               الطابق/الدور
@@ -133,9 +183,8 @@ export const PropertyForm: React.FC = () => {
             />
           </div>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* Capacity */}
           <div>
             <label htmlFor="capacity" className="block text-sm font-medium text-gray-700 mb-1">
               عدد الأفراد
@@ -150,8 +199,7 @@ export const PropertyForm: React.FC = () => {
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          
-          {/* Price */}
+
           <div>
             <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-1">
               السعر
@@ -164,55 +212,48 @@ export const PropertyForm: React.FC = () => {
                 min={0}
                 value={formData.price}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-right"
               />
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                 <span className="text-gray-500">ر.س</span>
               </div>
             </div>
           </div>
-          
-          {/* Type */}
+
           <div>
-            <label htmlFor="type" className="block text-sm font-medium text-gray-700 mb-1">
-              نوع السكن
-            </label>
-            <div className="flex space-x-4 gap-2">
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="type"
-                  value="male"
-                  checked={formData.type === 'male'}
-                  onChange={handleChange}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500"
-                />
-                <span className="mr-2 text-sm text-gray-700">رجال</span>
-              </label>
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="type"
-                  value="female"
-                  checked={formData.type === 'female'}
-                  onChange={handleChange}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500"
-                />
-                <span className="mr-2 text-sm text-gray-700">نساء</span>
-              </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">نوع السكن</label>
+            <div className="flex space-x-4 gap-2 rtl:space-x-reverse">
+              {['male', 'female', 'any'].map(type => (
+                <label key={type} className="inline-flex items-center cursor-pointer">
+                  <input
+                    type="radio"
+                    name="type"
+                    value={type}
+                    checked={formData.type === type}
+                    onChange={handleChange}
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500"
+                  />
+                  <span className="mr-2 text-sm text-gray-700">
+                    {type === 'male' ? 'رجال' : type === 'female' ? 'نساء' : 'أي'}
+                  </span>
+                </label>
+              ))}
             </div>
           </div>
         </div>
-        
-        {/* Services */}
+
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            الخدمات الإضافية
-          </label>
-          <ServiceSelector 
-            selectedServices={formData.services} 
-            onChange={handleServiceChange} 
-          />
+          <label className="block text-sm font-medium text-gray-700 mb-2">الخدمات الإضافية</label>
+          <ServiceSelector selectedServices={formData.services} onChange={handleServiceChange} />
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
+          >
+            حفظ العقار
+          </button>
         </div>
       </form>
     </div>

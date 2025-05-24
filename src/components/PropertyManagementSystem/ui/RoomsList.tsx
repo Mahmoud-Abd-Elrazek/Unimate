@@ -40,14 +40,18 @@ export const RoomsList: React.FC = () => {
       hasAC: false,
       imageUrl: '',
     };
-    
+
     setRooms([...rooms, newRoom]);
   };
 
   const updateRoom = (updatedRoom: Room) => {
-    setRooms(rooms.map(room => 
+    console.log("Room saved:", updatedRoom); // ✅ اطبع البيانات هنا
+
+    setRooms(rooms.map(room =>
       room.id === updatedRoom.id ? updatedRoom : room
     ));
+
+    console.log("All rooms after update:", rooms);
   };
 
   const deleteRoom = (roomId: string) => {
@@ -61,7 +65,7 @@ export const RoomsList: React.FC = () => {
           <h2 className="text-xl font-semibold text-gray-800">إدارة الغرف</h2>
           <p className="text-gray-600">إدارة الغرف الفردية في العقار</p>
         </div>
-        <button 
+        <button
           onClick={addRoom}
           className="flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-md transition-colors"
         >
@@ -73,7 +77,7 @@ export const RoomsList: React.FC = () => {
       {rooms.length === 0 ? (
         <div className="text-center py-10 bg-gray-50 rounded-lg border border-dashed border-gray-300">
           <p className="text-gray-500">لم يتم إضافة غرف بعد. أضف أول غرفة!</p>
-          <button 
+          <button
             onClick={addRoom}
             className="mt-4 flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-md transition-colors mx-auto"
           >
@@ -84,7 +88,7 @@ export const RoomsList: React.FC = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {rooms.map(room => (
-            <RoomCard 
+            <RoomCard
               key={room.id}
               room={room}
               onUpdate={updateRoom}
