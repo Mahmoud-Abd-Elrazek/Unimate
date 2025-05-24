@@ -27,12 +27,12 @@ const LogOut = () => {
             تسجيل الخروج
           </button>
 
-          <button
-            onClick={() => navigate("/profile")}
+            <button
+            onClick={() => navigate(-1)}
             className="flex justify-center items-center gap-2 w-full border border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-700 transition text-gray-800 dark:text-white rounded-md py-3"
-          >
+            >
             عدم تسجيل الخروج
-          </button>
+            </button>
         </div>
       </div>
     </div>

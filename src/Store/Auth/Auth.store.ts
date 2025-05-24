@@ -151,13 +151,13 @@ const useAuthStore = create<AuthState>()(
           return false;
         }
       },
-      resetpassword: async (email, token, password, confrimPassword) => {
+      resetpassword: async (email:string, otp:string, password:string, confirmPassword:string) => {
         try {
           const res = await axios.post("https://darkteam.runasp.net/ResetPasswordWithOutIdentityEndpoint/ResetPassword", {
             email,
-            token,
+            token:otp,
             password,
-            confrimPassword
+            confirmPassword
           });
           set({
             isAuthenticated: true,

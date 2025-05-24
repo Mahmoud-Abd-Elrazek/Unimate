@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import useAuthStore from "../../../../Store/Auth/Auth.store";
 
 const resetPassSchema = z
   .object({
@@ -19,10 +20,12 @@ type ResetPassForm = z.infer<typeof resetPassSchema>;
 
 export default function Resetpass() {
   const [searchParams] = useSearchParams();
-  const token = searchParams.get("token");
+  const otp = searchParams.get("otp");
+  const email = searchParams.get("email");
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const resetpassword = useAuthStore((state) => state.resetpassword);
   const {
     register,
     handleSubmit,
@@ -32,20 +35,30 @@ export default function Resetpass() {
   });
 
   const onSubmit = async (data: ResetPassForm) => {
-    if (!token) {
-      setMessage("الرابط غير صالح أو مفقود.");
-      return;
-    }
+    console.log("this is the otp and email"+otp+" and this is the email "+ email);
+    // if (!otp || !email) {
+    //   setMessage("الرابط غير صالح أو مفقود.");
+    //   return;
+    // }
 
-  
     console.log("New Password:", data.password);
-    console.log("Token:", token);
+    console.log("OTP:", otp);
 
     // await api.resetPassword(token, data.password)
-
-    setMessage("تم تحديث كلمة المرور بنجاح!");
-    setTimeout(() => navigate("/SignIn"), 2000);
+    if (email && otp) {
+      resetpassword(email, otp, data.password, data.confirmPassword);
+      setMessage("تم تحديث كلمة المرور بنجاح!");
+      setTimeout(() => navigate("/SignIn"), 2000);
+    } else {
+      setMessage("الرابط غير صالح أو مفقود.");
+    }
   };
+
+  useEffect(() => {
+  const query = new URLSearchParams(window.location.search);
+  console.log("email:", query.get("email"));
+  console.log("otp:", query.get("otp"));
+}, []);
 
   return (
     <div className="w-full mx-auto p-4 flex-col min-h-screen bg-gradient-to-br from-red-100 via-white to-green-100 flex items-center justify-center px-4">

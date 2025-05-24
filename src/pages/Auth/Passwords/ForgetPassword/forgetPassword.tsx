@@ -11,7 +11,7 @@ const ForgotPassword: React.FC = () => {
     setMessage('');
 
     try {
-      const res = await fetch("http://darkteam.runasp.net/ForgotPasswordEndpoint/ForgotPassword", {
+      const res = await fetch("https://darkteam.runasp.net/ForgotPasswordEndpoint/ForgotPassword", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
