@@ -13,7 +13,7 @@ export const useApartmentStore = create<ApartmentState>(() => ({
         try {
 
             const token = useAuthStore.getState().token;
-            const res = axios.post("https://darkteam.runasp.net//AddFavoriteApartEndpoint/AddFavoriteApartment",
+            const res = axios.post("https://darkteam.runasp.net/AddFavoriteApartEndpoint/AddFavoriteApartment",
                 {
                     id
                 },

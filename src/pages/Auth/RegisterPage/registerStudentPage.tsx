@@ -22,9 +22,22 @@ export default function RegisterStudentPage() {
       .string()
       .length(14, { message: "ادخل الرقم القومي المكون من 14 رقماً" })
       .regex(/^[23]\d{13}$/, { message: "الرقم القومي غير صحيح" }),
-    password: z.string().min(8, { message: "يجب أن تكون كلمة المرور أطول من 8 أحرف" }),
-    confirmPassword: z.string().min(8, "أعد كتابة كلمة المرور"),
-  }).refine((data) => data.password === data.confirmPassword, {
+    password: z
+      .string()
+      .min(8, { message: "يجب أن تكون كلمة المرور أطول من 8 أحرف" })
+      .regex(/[A-Z]/, { message: "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل" })
+      .regex(/[a-z]/, { message: "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل" })
+      .regex(/[^a-zA-Z0-9]/, { message: "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل" }),
+    
+    confirmPassword: z
+      .string()
+      .min(8, { message: "أعد كتابة كلمة المرور" })
+      .regex(/[A-Z]/, { message: "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل" })
+      .regex(/[a-z]/, { message: "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل" })
+      .regex(/[^a-zA-Z0-9]/, { message: "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل" }),
+    
+  })
+  .refine((data) => data.password === data.confirmPassword, {
     message: "كلمتا المرور غير متطابقتين",
     path: ["confirmPassword"],
   });

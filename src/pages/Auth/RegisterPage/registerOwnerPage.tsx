@@ -17,7 +17,12 @@ const RegisterOwnerPage = () => {
     firstname: z.string().min(1, { message: "ادخل الاسم الاول" }),
     lastname: z.string().min(1, { message: "ادخل الاسم الاخير" }),
     email: z.string().min(1, "مطلوب").email("ادخل بريد الكتروني صحيح"),
-    password: z.string().min(8, "يجب أن تكون كلمة المرور أطول من 8 أحرف"),
+   password: z
+  .string()
+  .min(8, { message: "يجب أن تكون كلمة المرور أطول من 8 أحرف" })
+  .regex(/[A-Z]/, { message: "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل" })
+  .regex(/[a-z]/, { message: "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل" })
+  .regex(/[^a-zA-Z0-9]/, { message: "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل" }),
     phone: z
       .string()
       .min(10, "يجب أن يتكون رقم الهاتف من 10 أرقام على الأقل")
