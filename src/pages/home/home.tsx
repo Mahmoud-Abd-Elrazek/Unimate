@@ -13,6 +13,7 @@ import axios from "axios";
 import CreatPostButton from "../../components/navbar/Button"
 // import { useEffect } from 'react';
 import useAuthStore from "../../Store/Auth/Auth.store";
+import { Slide, ToastContainer } from "react-toastify";
 
 // Extend the Window interface to include chatbase
 declare global {
@@ -44,7 +45,7 @@ export default function Home() {
     }
   }
   
-
+ 
   // useEffect(()=>{
   //    FetchData()
   //  },[])
@@ -193,7 +194,7 @@ export default function Home() {
           </div>
         </div>
       )}
-      {/* <PropertyManagement/> */}
+      <ToastContainer position="top-center" autoClose={3000} transition={Slide} />
     </div>
   )
 }
