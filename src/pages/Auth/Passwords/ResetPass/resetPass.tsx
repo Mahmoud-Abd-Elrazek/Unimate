@@ -35,14 +35,14 @@ export default function Resetpass() {
   });
 
   const onSubmit = async (data: ResetPassForm) => {
-    console.log("this is the otp and email"+otp+" and this is the email "+ email);
-    // if (!otp || !email) {
-    //   setMessage("الرابط غير صالح أو مفقود.");
-    //   return;
-    // }
+    // console.log("this is the otp and email"+otp+" and this is the email "+ email);
+    if (!otp || !email) {
+      setMessage("الرابط غير صالح أو مفقود.");
+      return;
+    }
 
-    console.log("New Password:", data.password);
-    console.log("OTP:", otp);
+    // console.log("New Password:", data.password);
+    // console.log("OTP:", otp);
 
     // await api.resetPassword(token, data.password)
     if (email && otp) {
