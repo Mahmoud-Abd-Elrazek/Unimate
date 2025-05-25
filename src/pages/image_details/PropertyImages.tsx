@@ -42,7 +42,7 @@ const PropertyImages: React.FC = () => {
                <div className="flex flex-row-reverse items-center justify-between gap-4 mb-8">
                   <button
                      onClick={() => navigate(-1)}
-                     className="flex items-center flex-row-reverse gap-2 text-blue-500 hover:text-blue-600"
+                     className="items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-[#ece3fc] h-9 rounded-md px-3 flex gap-2"
                   >
                      <ArrowLeft size={20} />
                      العودة للتفاصيل

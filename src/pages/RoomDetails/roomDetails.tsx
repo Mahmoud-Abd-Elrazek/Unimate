@@ -4,7 +4,6 @@ import { FaHeart } from "react-icons/fa";
 import { IoWifi } from "react-icons/io5";
 import { TbToolsKitchen2, TbAirConditioning } from "react-icons/tb";
 import RoomCard from "../../components/RoomCard/roomCard";
-import Room_Photo from "../../assets/room_photo.jpg";
 import { FaBath, FaStar } from "react-icons/fa";
 import { BsDisplay } from "react-icons/bs"; // Monitor/Display icon (from Bootstrap Icons)
 import { FaPaperPlane } from "react-icons/fa";
@@ -29,6 +28,7 @@ import CommentSection from "./CommentSection";
 import CommentCard from "./CommentCard";
 import { MdModeComment } from "react-icons/md";
 import "./scrollBar.css";
+import HostInfoCard from "./HostInfoCard"
 const features = [
   { label: "واي فاي", icon: <IoWifi className="IconSize" /> },
   { label: "ماء سخن", icon: <MdOutlineFireplace className="IconSize" /> },
@@ -159,7 +159,7 @@ export default function RoomDetails() {
           className="items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-[#ece3fc] h-9 rounded-md px-3 flex gap-2"
         >
           <ArrowLeft size={20} />
-          العودة للتفاصيل
+          رجوع
         </button>
         <h3 className="text-md md:text-lg lg:text-xl font-semibold text-right">
           جوله تصوير
@@ -357,49 +357,34 @@ export default function RoomDetails() {
         </div>
       </div>
 
-      {/* the owner of house */}
-      <div className="bg-gray-200 px-5 py-4 flex items-center gap-4 dark:bg-[#1E1E1E]" dir="rtl">
-        <div>
-          <img
-            src={Room_Photo}
-            alt="img"
-            className="rounded-full w-16 h-16 md:w-20 md:h-20 object-cover"
-          />
+      <div className="border-t px-[50px]">
+        <div dir="rtl" className="mt-4">
+          <h3 className="mb-3">تعرف علي المالك</h3>
+          <HostInfoCard />
         </div>
-        <div>
-          <h1 className="text-lg md:text-xl font-semibold">محمود محمد عرفه</h1>
-          <p className="text-sm md:text-base text-gray-700 dark:text-[#D9D9D9]">صاحب العقار</p>
-          <div className="flex items-center gap-1 mt-1">
-            <FaStar className="text-yellow-400" size={14} />
-            <FaStar className="text-yellow-400" size={14} />
-            <FaStar className="text-yellow-400" size={14} />
-            {/* Add more stars if needed */}
-          </div>
-        </div>
-      </div>
+        {/* قسم التعليقات */}
+        <div dir="rtl" className="w-full">
+          <h2 className="flex items-center gap-2 text-lg py-3 font-semibold mt-5 mb-2">
+            <MdModeComment />
+            التعليقات (5)
+          </h2>
 
-      {/* قسم التعليقات */}
-      <div dir="rtl" className="w-full">
-        <h2 className="flex items-center gap-2 text-lg py-3 font-semibold mt-5 mb-2">
-          <MdModeComment />
-          التعليقات (5)
-        </h2>
-
-        {/* No comments yet */}
-        {/* <div className="bg-gray-100 text-right p-3 rounded-md text-gray-600 mb-6 dark:bg-[#1E1E1E]">
+          {/* No comments yet */}
+          {/* <div className="bg-gray-100 text-right p-3 rounded-md text-gray-600 mb-6 dark:bg-[#1E1E1E]">
           لا توجد تعليقات حتي الان، كن اول المتفاعلين علي هذا العقار
         </div> */}
-        {/* Comment Box */}
-        <div className="pb-3 max-w-4xl" dir="rtl">
-          <CommentSection />
-        </div>
-        <div className="py-4 border-b border-t max-w-4xl overflow-y-auto max-h-96 custom-scrollbar" dir="ltr">
-          <div dir="rtl" className="flex flex-col gap-2">
-            <CommentCard />
-            <CommentCard />
-            <CommentCard />
-            <CommentCard />
-            <CommentCard />
+          {/* Comment Box */}
+          <div className="pb-3 max-w-4xl" dir="rtl">
+            <CommentSection />
+          </div>
+          <div className="py-4 border-b border-t max-w-4xl overflow-y-auto max-h-96 custom-scrollbar" dir="ltr">
+            <div dir="rtl" className="flex flex-col gap-2">
+              <CommentCard />
+              <CommentCard />
+              <CommentCard />
+              <CommentCard />
+              <CommentCard />
+            </div>
           </div>
         </div>
       </div>

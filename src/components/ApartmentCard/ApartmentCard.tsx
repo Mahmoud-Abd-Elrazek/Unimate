@@ -113,8 +113,8 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
   const type = data?.gender === "Male" ? "أولاد" : "بنات";
   let numofRooms = (data?.numberOfRooms ?? 3) > 4 ? 4 : data?.numberOfRooms;
   numofRooms = numofRooms == 0 ? 3 : numofRooms
-  useEffect(()=>{
-    console.log("data form card not room details"+data)
+  useEffect(() => {
+    console.log("data form card not room details" + data)
   })
 
   return (
@@ -188,9 +188,16 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
 
 
 
-        <div onClick={() => AddtoFav(String(id ?? ""))} title="Add to Favourites" className="absolute top-3 left-3 p-2 rounded-full shadow-md cursor-pointer z-10 bg-[#f8fafc]">
-          <FaHeart className="text-[#00000080] hover:text-red-500 hover:scale-110 transition duration-300" />
-        </div>
+        {!edit && (
+          <div
+            onClick={() => AddtoFav(String(id ?? ""))}
+            title="Add to Favourites"
+            className="absolute top-3 left-3 p-2 rounded-full shadow-md cursor-pointer z-10 bg-[#f8fafc]"
+          >
+            <FaHeart className="text-[#00000080] hover:text-red-500 hover:scale-110 transition duration-300" />
+          </div>
+        )}
+
       </div>
 
       <Link to={`/roomdetails?id=${id}`} state={{ data: data, ownerName: data?.ownerName }}>
@@ -262,7 +269,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
         <div className="absolute top-3 right-3 z-10">
           <button
             type="button"
-            className="bg-green-500 text-white px-8 py-2 rounded-[10px] text-base shadow-md cursor-pointer"
+            className="text-[#f8fafc] bg-[#495057] hover:bg-[#f8fafc] hover:text-[#0f1729] px-4 py-1 rounded-[10px] text-base shadow-md cursor-pointer"
             onClick={() => navigate('/manage_property', { state: { mode: 'eidt' } })}
           >
             edit

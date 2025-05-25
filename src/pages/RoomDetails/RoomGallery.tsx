@@ -18,11 +18,11 @@ const RoomGallery = () => {
             <img
                src={mainImage}
                alt="Main Room"
-               className="w-full h-full max-h-[300px] lg:max-h-[380px] object-cover rounded-md "
+               className="w-full h-full max-h-[300px] lg:max-h-[400px] object-cover rounded-md "
             />
          </div>
 
-         <div className="flex flex-wrap lg:flex-col gap-1 md:gap-2 lg:gap-1 lg:w-[30%] lg:w-[25%] relative lg:h-[380px] overflow-hidden">
+         <div className="flex flex-wrap lg:flex-col gap-1 md:gap-2 lg:gap-1 lg:w-[30%] lg:w-[25%] relative lg:h-[400px] overflow-hidden">
             {images.map((img, idx) => (
                <img
                   key={idx}
