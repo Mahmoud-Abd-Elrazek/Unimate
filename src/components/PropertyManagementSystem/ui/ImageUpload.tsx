@@ -81,9 +81,9 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({ imageUrl, onChange, in
           </div>
         </div>
       ) : (
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400 p-4">
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400 p-4 dark:bg-primary_BGD">
           <Upload size={24} className="mb-2" />
-          <p className="text-sm text-center">
+          <p className="text-sm text-center dark:text-secondary_TXD">
             انقر لرفع الصورة {index}
           </p>
         </div>

@@ -47,12 +47,12 @@ export const ImageSection: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">صور العقار</h2>
-      <p className="text-gray-600 mb-6">
+      <h2 className="text-xl font-semibold text-gray-800 mb-4 dark:text-primary_TXD">صور العقار</h2>
+      <p className="text-gray-600 mb-6 dark:text-secondary_TXD">
         قم برفع صور لكل منطقة في العقار. انقر على مربعات الصور لرفع صور جديدة.
       </p>
 
-      <div className="space-y-4">
+      <div className="space-y-4 dark:bg-secondary_BGD ">
         {[
           { key: 'kitchen', label: 'صور المطبخ', desc: 'قم برفع حتى 3 صور للمطبخ' },
           { key: 'bathroom', label: 'صور الحمام', desc: 'قم برفع حتى 3 صور للحمام' },
@@ -62,10 +62,10 @@ export const ImageSection: React.FC = () => {
         ].map((section) => (
           <div key={section.key} className="border border-gray-200 rounded-lg overflow-hidden">
             <div 
-              className="bg-gray-50 px-4 py-3 flex justify-between items-center cursor-pointer hover:bg-gray-100 transition-colors"
+              className="bg-gray-50 px-4 py-3 flex justify-between items-center cursor-pointer hover:bg-gray-100 transition-colors dark:bg-primary_BGD dark:hover:bg-secondary_BGD"
               onClick={() => toggleSection(section.key as keyof SectionState)}
             >
-              <h3 className="font-medium text-gray-800">{section.label}</h3>
+              <h3 className="font-medium text-gray-800 dark:text-primary_TXD">{section.label}</h3>
               {expandedSections[section.key as keyof SectionState] ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
             </div>
             {expandedSections[section.key as keyof SectionState] && (
