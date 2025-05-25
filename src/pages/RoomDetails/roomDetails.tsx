@@ -25,6 +25,10 @@ import { useApartmentStore } from "../../Store/Data/useApartment.store";
 import { useNavigate } from 'react-router-dom';
 import RoomGallery from "./RoomGallery";
 import ShareButton from "./ShareButton";
+import CommentSection from "./CommentSection";
+import CommentCard from "./CommentCard";
+import { MdModeComment } from "react-icons/md";
+import "./scrollBar.css";
 const features = [
   { label: "واي فاي", icon: <IoWifi className="IconSize" /> },
   { label: "ماء سخن", icon: <MdOutlineFireplace className="IconSize" /> },
@@ -293,7 +297,8 @@ export default function RoomDetails() {
           <div>
             {Array.isArray(data.categoryWithFacilities.Services) && data.categoryWithFacilities.Services.filter(Boolean).length >= 2 ? (
               <div
-                className="grid grid-cols-3 grid-rows-3 
+                className="
+                grid grid-cols-3 grid-rows-3 
                 gap-y-4 gap-x-4
                 md:gap-x-3 md:gap-y-2 
                 lg:gap-x-5 lg:gap-y-4 
@@ -302,7 +307,7 @@ export default function RoomDetails() {
                 {[...new Set(data.categoryWithFacilities.Services)].map((serviceName: string, index) => {
                   const service = servicesMap[serviceName as keyof typeof servicesMap];
                   return service ? (
-                    <div key={index} className="flex items-center justify-end gap-2 text-right">
+                    <div key={index} className="flex items-center justify-end gap-1 text-right">
                       {service.icon}
                       <span className="text-sm md:text-base">{service.label}</span>
                     </div>
@@ -318,7 +323,7 @@ export default function RoomDetails() {
                 sm:gap-x-10 sm:gap-y-10 items-center"
               >
                 {features.map((item, idx) => (
-                  <div key={idx} className="flex items-center justify-start gap-2 text-right">
+                  <div key={idx} className="flex items-center justify-start w-fit gap-1 text-right">
                     {item.icon}
                     <h3 className="text-sm md:text-base">{item.label}</h3>
                   </div>
@@ -372,46 +377,33 @@ export default function RoomDetails() {
           </div>
         </div>
       </div>
+
       {/* قسم التعليقات */}
-      <div dir="rtl" className="container mx-auto w-full p-4">
-        <h2 className="text-center text-xl font-bold mb-4">
-          المراجعه والتعليقات
+      <div dir="rtl" className="w-full">
+        <h2 className="flex items-center gap-2 text-lg py-3 font-semibold mt-5 mb-2">
+          <MdModeComment />
+          التعليقات (5)
         </h2>
 
         {/* No comments yet */}
-        <div className="bg-gray-100 text-right p-3 rounded-md text-gray-600 mb-6 dark:bg-[#1E1E1E]">
+        {/* <div className="bg-gray-100 text-right p-3 rounded-md text-gray-600 mb-6 dark:bg-[#1E1E1E]">
           لا توجد تعليقات حتي الان، كن اول المتفاعلين علي هذا العقار
-        </div>
-
+        </div> */}
         {/* Comment Box */}
-        <div className="flex flex-col items-end gap-2 w-full md:w-3/4 lg:w-1/2 ml-auto">
-          <div className="w-full border rounded-md bg-gray-100 p-2 dark:bg-[#1E1E1E]">
-            <input
-              type="text"
-              placeholder="اكتب تعليقك هنا"
-              className="w-full bg-transparent outline-none text-sm text-right placeholder-gray-500"
-            />
-          </div>
-          <div dir="rtl" className="w-full flex items-center justify-center">
-            <div className=" flex items-center  p-2">
-              {/* Send Icon */}
-              <button className="text-red-600 text-xl transform -scale-x-100">
-                <FaPaperPlane />
-              </button>
-
-              {/* Rating */}
-              <div className="flex items-center gap-2 text-sm">
-                <span>قيم الحساب</span>
-                <div className="text-black flex">
-                  {[...Array(5)].map((_, i) => (
-                    <FaStar key={i} className="text-yellow-300" size={14} />
-                  ))}
-                </div>
-              </div>
-            </div>
+        <div className="pb-3 max-w-4xl" dir="rtl">
+          <CommentSection />
+        </div>
+        <div className="py-4 border-b border-t max-w-4xl overflow-y-auto max-h-96 custom-scrollbar" dir="ltr">
+          <div dir="rtl" className="flex flex-col gap-2">
+            <CommentCard />
+            <CommentCard />
+            <CommentCard />
+            <CommentCard />
+            <CommentCard />
           </div>
         </div>
       </div>
+
       {/* Booking Section (moved out of the fixed height div) */}
       {/* <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 py-3 px-5 md:hidden">
         <div className="flex justify-between items-center">
