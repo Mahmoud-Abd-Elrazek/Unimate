@@ -298,9 +298,9 @@ export default function RoomDetails() {
               <div
                 className="grid grid-cols-3 grid-rows-3 
                 gap-y-4 gap-x-4
-                lg:gap-x-5 lg:gap-y-4 
                 md:gap-x-3 md:gap-y-2 
-                sm:gap-x-5 sm:gap-y-4"
+                lg:gap-x-5 lg:gap-y-4 
+                "
               >
                 {[...new Set(data.categoryWithFacilities.Services)].map((serviceName: string, index) => {
                   const service = servicesMap[serviceName as keyof typeof servicesMap];
@@ -321,7 +321,7 @@ export default function RoomDetails() {
                 sm:gap-x-10 sm:gap-y-10 items-center"
               >
                 {features.map((item, idx) => (
-                  <div key={idx} className="flex items-center justify-end gap-2 text-right">
+                  <div key={idx} className="flex items-center justify-start gap-2 text-right">
                     {item.icon}
                     <h3 className="text-sm md:text-base">{item.label}</h3>
                   </div>
