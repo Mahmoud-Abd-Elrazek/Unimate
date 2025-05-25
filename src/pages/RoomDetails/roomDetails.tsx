@@ -1,7 +1,7 @@
 // import React from 'react'
 import axios from "axios";
-import { IoShareOutline } from "react-icons/io5";
-import { FcLike } from "react-icons/fc";
+import { FaHeart } from "react-icons/fa";
+import { IoShareSocial } from "react-icons/io5";
 import { IoWifi } from "react-icons/io5";
 import { TbToolsKitchen2, TbAirConditioning } from "react-icons/tb";
 import RoomCard from "../../components/RoomCard/roomCard";
@@ -15,7 +15,7 @@ import { ArrowLeft } from 'lucide-react';
 import { LuWashingMachine } from "react-icons/lu";
 import { MdOutlineFireplace } from "react-icons/md";
 import { GiFireplace } from "react-icons/gi";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa6";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { TbElevator } from "react-icons/tb";
@@ -24,6 +24,7 @@ import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useApartmentStore } from "../../Store/Data/useApartment.store";
 import { useNavigate } from 'react-router-dom';
+import RoomGallery from "./RoomGallery";
 const features = [
   { label: "واي فاي", icon: <IoWifi className="IconSize" /> },
   { label: "ماء سخن", icon: <MdOutlineFireplace className="IconSize" /> },
@@ -147,97 +148,50 @@ export default function RoomDetails() {
   };
 
   return (
-    <div className="min-h-screen Page slide-in pt-[80px]">
-      <button
-        onClick={() => navigate(-1)}
-        className="flex flex-row-reverse gap-1 text-blue-500 hover:text-blue-600 p-3"
-      >
-        <ArrowLeft size={20} />
-        العودة للتفاصيل
-      </button>
-      {/* the first section */}
-      <div className="flex justify-between items-center px-5">
-        <div className="flex gap-4">
-          <div className="flex items-center gap-1 cursor-pointer">
-            <IoShareOutline className="IconSize" />
-            <h2 className="underline text-sm md:text-base">مشاركه</h2>
-          </div>
-          <div
-            onClick={() => {
-              if (id) AddtoFav(id);
-            }}
-            className="flex items-center gap-1 cursor-pointer"
-          >
-            <FcLike className="IconSize" />
-            <h2 className="underline text-sm md:text-base">حفظ</h2>
-          </div>
-        </div>
-        <h1 className="text-xl md:text-2xl font-semibold text-right">
+    <div className="min-h-screen Page slide-in pt-[100px] px-[24px]">
+      <div className="flex items center justify-between mb-[40px]">
+        <button
+          onClick={() => navigate(-1)}
+          className="flex text-base items-center flex-row-reverse gap-2 text-blue-500 hover:text-blue-600"
+        >
+          العودة للتفاصيل
+          <ArrowLeft size={20} />
+        </button>
+        <h3 className="text-md md:text-lg lg:text-xl font-semibold text-right">
           جوله تصوير
-        </h1>
+        </h3>
+      </div>
+      {/* the first section */}
+      <div className="flex gap-4 items-center mb-[14px] justify-end">
+        <button
+          className="flex items-center text-base flex-row-reverse gap-1 text-blue-500 hover:text-blue-600 ">
+          <IoShareSocial size={18}/>
+          مشاركه
+        </button>
+        <button
+          onClick={() => {
+            if (id) AddtoFav(id);
+          }}
+          className="flex items-center flex-row-reverse gap-1 text-[#212529] hover:text-red-600 dark:text-[#D9D9D9] hover:dark:text-white">
+          <FaHeart size={15} />
+          حفظ
+        </button>
       </div>
       {/* Imgs Section */}
-      <div className="mt-4  rounded-xl shadow-md overflow-hidden">
-        {/* الصور */}
-        <div className="flex flex-col lg:flex-row-reverse gap-2 p-3">
-          {/* الصورة الكبيرة */}
-          <div className="w-full lg:flex-1">
-            <img
-              src="https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp"
-              alt="Main Room"
-              className="w-full h-full max-h-[400px] object-cover rounded-lg"
-            />
-          </div>
-
-          {/* الصور الجانبية + زر اظهار كل الصور */}
-          <div className="w-full lg:w-[30%] flex flex-col lg:gap-2 gap-3 mt-2 lg:mt-0">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
-              alt="Thumb 1"
-              className="w-full h-[120px] object-cover rounded-md"
-            />
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
-              alt="Thumb 2"
-              className="w-full h-[120px] object-cover rounded-md"
-            />
-            <div className="relative w-full h-[120px]">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
-                alt="Thumb 3"
-                className="w-full h-full object-cover rounded-md"
-              />
-              {/* زر اظهار كل الصور */}
-              <Link
-                to="/img_details"
-                className="absolute bottom-3 left-3 bg-red-600/90 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-full flex items-center gap-2 shadow-md transition"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M3 3h2v2H3V3zm3 0h2v2H6V3zm3 0h2v2H9V3zm3 0h2v2h-2V3zm3 0h2v2h-2V3zM3 6h2v2H3V6zm3 0h2v2H6V6zm3 0h2v2H9V6zm3 0h2v2h-2V6zm3 0h2v2h-2V6zM3 9h2v2H3V9zm3 0h2v2H6V9zm3 0h2v2H9V9zm3 0h2v2h-2V9zm3 0h2v2h-2V9z" />
-                </svg>
-                اظهار كل الصور
-              </Link>
-            </div>
-          </div>
-        </div>
-
+      <div className="rounded-sm shadow-sm">
+        <RoomGallery />
 
         {/* الوصف */}
-        <div className="px-5 py-4 text-right dark:bg-[#171515]">
+        <div className="py-4 px-2 text-right dark:bg-[#171515]">
           <p className="text-[#212529] leading-6 font-medium dark:text-[white]">
             {/* {data.apartmentDTO.descripeLocation} */}
           </p>
-          <p className="text-sm text-[#6C757D] mt-2 dark:text-[#D9D9D9]">
+          <p className="text-base text-[#6C757D] mt-3 dark:text-[#D9D9D9]">
             ضيف · {bedroomcount}غرف · {type} · {addressMap[data?.apartmentDTO.location ?? ""] ?? data?.apartmentDTO.location} · الدور {translatedFloor}
           </p>
-          <p className="text-sm mt-1 font-semibold dark:text-[white]">
-            وصف الموقع:{" "}
-            <span className="text-[#6C757D] dark:text-[#D9D9D9]">قنا - {addressMap[data?.apartmentDTO.location ?? ""] ?? ""} - شارع أبو علاء</span>
+          <p className="text-base mt-2 font-medium dark:text-[white]">
+            وصف الموقع :{" "}
+            <span className="text-[#6C757D] dark:text-[#D9D9D9]">قنا / {addressMap[data?.apartmentDTO.location ?? ""] ?? ""} / شارع أبو علاء</span>
           </p>
         </div>
       </div>
