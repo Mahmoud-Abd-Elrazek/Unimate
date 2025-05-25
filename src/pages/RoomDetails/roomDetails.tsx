@@ -1,7 +1,6 @@
 // import React from 'react'
 import axios from "axios";
 import { FaHeart } from "react-icons/fa";
-import { IoShareSocial } from "react-icons/io5";
 import { IoWifi } from "react-icons/io5";
 import { TbToolsKitchen2, TbAirConditioning } from "react-icons/tb";
 import RoomCard from "../../components/RoomCard/roomCard";
@@ -25,6 +24,7 @@ import { useEffect, useState } from "react";
 import { useApartmentStore } from "../../Store/Data/useApartment.store";
 import { useNavigate } from 'react-router-dom';
 import RoomGallery from "./RoomGallery";
+import ShareButton from "./ShareButton";
 const features = [
   { label: "واي فاي", icon: <IoWifi className="IconSize" /> },
   { label: "ماء سخن", icon: <MdOutlineFireplace className="IconSize" /> },
@@ -152,29 +152,25 @@ export default function RoomDetails() {
       <div className="flex items center justify-between mb-[40px]">
         <button
           onClick={() => navigate(-1)}
-          className="flex text-base items-center flex-row-reverse gap-2 text-blue-500 hover:text-blue-600"
+          className="items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-[#ece3fc] h-9 rounded-md px-3 flex gap-2"
         >
-          العودة للتفاصيل
           <ArrowLeft size={20} />
+          العودة للتفاصيل
         </button>
         <h3 className="text-md md:text-lg lg:text-xl font-semibold text-right">
           جوله تصوير
         </h3>
       </div>
       {/* the first section */}
-      <div className="flex gap-4 items-center mb-[14px] justify-end">
-        <button
-          className="flex items-center text-base flex-row-reverse gap-1 text-blue-500 hover:text-blue-600 ">
-          <IoShareSocial size={18}/>
-          مشاركه
-        </button>
+      <div className="flex gap-2 items-center mb-[14px] justify-end">
+        <ShareButton />
         <button
           onClick={() => {
             if (id) AddtoFav(id);
           }}
-          className="flex items-center flex-row-reverse gap-1 text-[#212529] hover:text-red-600 dark:text-[#D9D9D9] hover:dark:text-white">
-          <FaHeart size={15} />
+          className="items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 flex gap-2">
           حفظ
+          <FaHeart size={15} />
         </button>
       </div>
       {/* Imgs Section */}
@@ -270,7 +266,8 @@ export default function RoomDetails() {
                     <p className="font-semibold">{ownerName ?? ""}</p>
                     <p className="text-xs text-gray-500 dark:text-[#D9D9D9]">mahmoudarafa@gmail.com</p>
                     <span className="text-yellow-500 text-sm flex items-center gap-1">
-                      <FaStar size={14} /> 3.5
+                      3.5
+                      <FaStar size={14} />
                     </span>
                   </div>
                   <div className="border-2 border-white outline outline-[#D32F2F] rounded-full w-14 h-14">
@@ -280,7 +277,7 @@ export default function RoomDetails() {
               </div>
             </div>
 
-            <button className="w-full bg-[#D32F2F] hover:bg-red-800 text-white py-[10px] rounded-lg flex justify-center items-center gap-2">
+            <button className="w-full bg-[#D32F2F] hover:bg-red-800 text-white py-[10px] rounded-lg flex justify-center items-center gap-2 text-[14px] md:text-[16px]">
               <FaPaperPlane />
               حجز المسكن بالكامل
             </button>
