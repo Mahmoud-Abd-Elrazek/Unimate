@@ -75,7 +75,7 @@ const UserProfile = () => {
                   <h2 className=" text-[black] mb-2 dark:text-[white] font-bold text-sm sm:text-base">وسائل التواصل</h2>
                   <ul className="space-y-2 sm:space-y-3 text-gray-600 text-xs sm:text-sm dark:text-[#BDBDBD]">
                     <li className="flex items-center justify-end gap-2">
-                      <span>رقم الهاتف: 01234567890</span>
+                      <span>رقم الهاتف : 01234567890</span>
                       <Phone className="text-base sm:text-lg" />
                     </li>
                     <li className="flex items-center justify-end gap-2">
@@ -89,11 +89,11 @@ const UserProfile = () => {
                   <h2 className=" text-[black] mb-2 dark:text-[white] font-bold text-sm sm:text-base">البيانات الأساسية</h2>
                   <ul className="space-y-2 sm:space-y-3 text-gray-600 text-xs sm:text-sm dark:text-[#BDBDBD]">
                     <li className="flex items-center justify-end gap-2">
-                      <span>الرقم القومى : {nationalId}</span>
+                      <span>: الرقم القومى {nationalId}</span>
                       <GraduationCap className="text-base sm:text-lg" />
                     </li>
                     <li className="flex items-center justify-end gap-2">
-                      <span >العنوان : {governorate} - {address} </span>
+                      <span >: العنوان {governorate} {address} </span>
                       <MapPin className="text-base sm:text-lg" />
                     </li>
                   </ul>
