@@ -262,7 +262,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
         <div className="absolute top-3 right-3 z-10">
           <button
             type="button"
-            className="bg-green-500 text-white px-8 py-2 rounded-[10px] text-base shadow-md cursor-pointer"
+            className="text-[#f8fafc] bg-[#495057] hover:bg-[#f8fafc] hover:text-[#0f1729] px-4 py-1 rounded-[10px] text-base shadow-md cursor-pointer"
             onClick={() => navigate('/manage_property', { state: { mode: 'eidt' } })}
           >
             edit
