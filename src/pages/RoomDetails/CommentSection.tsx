@@ -30,7 +30,6 @@ export default function CommentSection() {
           rounded-md
           border
           border-gray-300
-          bg-white
           px-3
           py-2
           text-sm
@@ -42,6 +41,7 @@ export default function CommentSection() {
           focus:ring-offset-white
           disabled:cursor-not-allowed
           disabled:opacity-50
+          dark:bg-secondary_BGD
           mb-2
         "
         disabled={isSubmitting}
