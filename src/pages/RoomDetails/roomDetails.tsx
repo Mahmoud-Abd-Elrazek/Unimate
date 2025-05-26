@@ -30,6 +30,7 @@ import { MdModeComment } from "react-icons/md";
 import "./scrollBar.css";
 import { GrServicePlay } from "react-icons/gr";
 import HostInfoCard from "./HostInfoCard"
+
 const features = [
   { label: "واي فاي", icon: <IoWifi className="IconSize" /> },
   { label: "ماء سخن", icon: <MdOutlineFireplace className="IconSize" /> },
@@ -198,7 +199,7 @@ export default function RoomDetails() {
       </div>
 
       {/* ما يقدمه السكن */}
-      <div className="pt-5 px-3 flex flex-col-reverse gap-y-10 justify-end flex-wrap 
+      <div className="pt-3 md:pt-5 px-0 md:px-3 flex flex-col-reverse gap-y-10 justify-end flex-wrap 
         lg:gap-[60px] lg:flex-row lg:items-start lg:px-8 
         md:flex-row md:items-start md:px-3 
         sm:px-8 items-end">
@@ -345,12 +346,12 @@ export default function RoomDetails() {
       </div>
 
       {/* a place for sleeping */}
-      <div className="container mx-auto px-5 py-6 border-t mt-4">
-        <h1 className="text-xl md:text-2xl text-right p-2 font-bold mb-4">
+      <div className="mx-auto py-6 border-t mt-4">
+        <h1 className="text-lg md:text-xl text-right font-semibold mb-3">
           مكان النوم
         </h1>
         <div className="flex gap-4 overflow-x-auto pb-2 scroll-hide" dir="rtl">
-          {[...Array(10)].map((_, i) => (
+          {[...Array(4)].map((_, i) => (
             <div key={i} className="min-w-[250px] flex-shrink-0">
               <RoomCard />
             </div>
@@ -358,7 +359,7 @@ export default function RoomDetails() {
         </div>
       </div>
 
-      <div className="border-t px-[50px]">
+      <div className="border-t md:px-[50px]">
         <div dir="rtl" className="mt-4">
           <h3 className="mb-3 font-semibold text-[18px] flex items-center gap-2">
             <FaRegUser className="text-[16px]" />

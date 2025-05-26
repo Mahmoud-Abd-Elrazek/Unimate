@@ -36,9 +36,18 @@ const RoomGallery = () => {
             {/* زر إظهار كل الصور */}
             <Link
                to="/img_details"
-               className="absolute bottom-3 left-3 bg-red-600/90 hover:bg-red-700/100 text-white text-sm px-4 py-2 rounded-full flex items-center gap-1 shadow-md transition"
+               className="
+               inline-flex items-center justify-center gap-2 
+               whitespace-nowrap 
+               text-sm font-medium 
+               ring-offset-white 
+               transition-colors 
+               focus-visible:outline-none focus-visible:ring-2 
+               focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:pointer-events-none 
+               disabled:opacity-50 
+               text-white h-9 rounded-md px-3 bg-red-600/70 backdrop-blur-sm hover:bg-red-600/90 
+               absolute bottom-3 left-3 py-2 shadow-md transition"
             >
-
                <RiGalleryView2 className="text-sm md:text-base" />
                اظهار كل الصور
             </Link>
