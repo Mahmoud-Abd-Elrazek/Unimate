@@ -28,6 +28,7 @@ import CommentSection from "./CommentSection";
 import CommentCard from "./CommentCard";
 import { MdModeComment } from "react-icons/md";
 import "./scrollBar.css";
+import { GrServicePlay } from "react-icons/gr";
 import HostInfoCard from "./HostInfoCard"
 const features = [
   { label: "واي فاي", icon: <IoWifi className="IconSize" /> },
@@ -152,7 +153,7 @@ export default function RoomDetails() {
   };
 
   return (
-    <div className="min-h-screen Page slide-in pt-[100px] px-[24px]">
+    <div className="min-h-screen Page slide-in pt-[100px]  px-[24px]">
       <div className="flex items center justify-between mb-[40px]">
         <button
           onClick={() => navigate(-1)}
@@ -290,7 +291,8 @@ export default function RoomDetails() {
 
         {/* Right section */}
         <div className="right flex-1 md:w-[50%] sm:w-full flex flex-col gap-4  [align-items:revert]" dir="rtl">
-          <h2 className="text-xl md:text-2xl text-right font-semibold">
+          <h2 className="flex gap-2 items-center text-lg md:text-xl text-right font-semibold">
+            <GrServicePlay className="text-[16px]"/>
             ما يقدمه السكن
           </h2>
 
@@ -342,9 +344,8 @@ export default function RoomDetails() {
 
       </div>
 
-      <hr className="border-t border-gray-300 w-5/6 mx-auto my-8" />
       {/* a place for sleeping */}
-      <div className="container mx-auto px-5 py-6">
+      <div className="container mx-auto px-5 py-6 border-t mt-4">
         <h1 className="text-xl md:text-2xl text-right p-2 font-bold mb-4">
           مكان النوم
         </h1>
@@ -359,7 +360,10 @@ export default function RoomDetails() {
 
       <div className="border-t px-[50px]">
         <div dir="rtl" className="mt-4">
-          <h3 className="mb-3">تعرف علي المالك</h3>
+          <h3 className="mb-3 font-semibold text-[18px] flex items-center gap-2">
+            <FaRegUser className="text-[16px]" />
+            تعرف علي المالك
+          </h3>
           <HostInfoCard />
         </div>
         {/* قسم التعليقات */}
@@ -400,6 +404,7 @@ export default function RoomDetails() {
           </button>
         </div>
       </div> */}
+      <p className="text-sm text-center py-4 text-gray-600 border-t">يمكنك التواصل مع المالك عبر وسائل التوصل الاجتماعي اذا كان هناك تفاصيل غير واضحه</p>
     </div>
   );
 }
