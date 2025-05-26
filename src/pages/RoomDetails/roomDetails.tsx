@@ -3,7 +3,7 @@ import axios from "axios";
 import { FaHeart } from "react-icons/fa";
 import { IoWifi } from "react-icons/io5";
 import { TbToolsKitchen2, TbAirConditioning } from "react-icons/tb";
-import RoomCard from "../../components/RoomCard/roomCard";
+// import RoomCard from "../../components/RoomCard/roomCard";
 import { FaBath, FaStar } from "react-icons/fa";
 import { BsDisplay } from "react-icons/bs"; // Monitor/Display icon (from Bootstrap Icons)
 import { FaPaperPlane } from "react-icons/fa";
@@ -30,6 +30,7 @@ import { MdModeComment } from "react-icons/md";
 import "./scrollBar.css";
 import { GrServicePlay } from "react-icons/gr";
 import HostInfoCard from "./HostInfoCard"
+import RoomsSlider from "./RoomsSlider";
 
 const features = [
   { label: "واي فاي", icon: <IoWifi className="IconSize" /> },
@@ -293,7 +294,7 @@ export default function RoomDetails() {
         {/* Right section */}
         <div className="right flex-1 md:w-[50%] sm:w-full flex flex-col gap-4  [align-items:revert]" dir="rtl">
           <h2 className="flex gap-2 items-center text-lg md:text-xl text-right font-semibold">
-            <GrServicePlay className="text-[16px]"/>
+            <GrServicePlay className="text-[16px]" />
             ما يقدمه السكن
           </h2>
 
@@ -347,19 +348,13 @@ export default function RoomDetails() {
 
       {/* a place for sleeping */}
       <div className="mx-auto py-6 border-t mt-4">
-        <h1 className="text-lg md:text-xl text-right font-semibold mb-3">
+        {/* <h1 className="text-lg md:text-xl text-right font-semibold mb-3">
           مكان النوم
-        </h1>
-        <div className="flex gap-4 overflow-x-auto pb-2 scroll-hide" dir="rtl">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="min-w-[250px] flex-shrink-0">
-              <RoomCard />
-            </div>
-          ))}
-        </div>
+        </h1> */}
+        <RoomsSlider />
       </div>
 
-      <div className="border-t md:px-[50px]">
+      <div className="border-t mt-5 md:px-[50px]">
         <div dir="rtl" className="mt-4">
           <h3 className="mb-3 font-semibold text-[18px] flex items-center gap-2">
             <FaRegUser className="text-[16px]" />
