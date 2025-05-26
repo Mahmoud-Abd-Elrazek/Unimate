@@ -400,7 +400,7 @@ export default function RoomDetails() {
           </button>
         </div>
       </div> */}
-      <p className="text-sm text-center py-4 text-gray-600 border-t">يمكنك التواصل مع المالك عبر وسائل التوصل الاجتماعي اذا كان هناك تفاصيل غير واضحه</p>
+      <p className="text-sm text-center py-4 text-gray-600 border-t dark:text-secondary_TXD">يمكنك التواصل مع المالك عبر وسائل التوصل الاجتماعي اذا كان هناك تفاصيل غير واضحه</p>
     </div>
   );
 }

@@ -5,14 +5,14 @@ import { useNavigate } from "react-router-dom";
 export default function HostInfoCard() {
    const navigate = useNavigate();
    return (
-      <div className="flex justify-between items-center border bg-white shadow-md rounded-2xl p-6 max-w-sm" dir="ltr">
+      <div className="flex justify-between items-center border dark:bg-secondary_BGD shadow-md rounded-2xl p-6 max-w-sm" dir="ltr">
          {/* معلومات التقييمات */}
          <div className="flex flex-col text-center gap-4 text-sm text-gray-700">
-            <div>
+            <div className="dark:text-secondary_TXD">
                <div className="text-xl font-bold">8</div>
                <div>التقييمات</div>
             </div>
-            <div>
+            <div className="dark:text-secondary_TXD">
                <div className="text-xl font-bold flex items-center justify-center gap-1">
                   5.0
                   <Star className="w-4 h-4 fill-gray text-gray" />
