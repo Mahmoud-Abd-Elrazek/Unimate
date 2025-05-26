@@ -1,5 +1,5 @@
 export default function CommentCard({
-  name = "كوكو أحمد خالد",
+  name = "عمرو محمد عبده",
   date = "Aug 10, 2023",
   role = "طالب",
   comment = "بصراحه الشقه فخمه يزعيم",
