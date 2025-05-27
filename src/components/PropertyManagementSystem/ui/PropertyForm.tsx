@@ -113,12 +113,12 @@ export const PropertyForm: React.FC = () => {
 
   return (
     <div className="rtl">
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">تفاصيل العقار</h2>
-      <p className="text-gray-600 mb-6">أدخل المعلومات التفصيلية عن العقار</p>
+      <h2 className="text-xl font-semibold text-gray-800 mb-4 dark:text-primary_TXD">تفاصيل العقار</h2>
+      <p className="text-gray-600 mb-6 dark:text-secondary_TXD">أدخل المعلومات التفصيلية عن العقار</p>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1 dark:text-primary_TXD">
             وصف العقار
           </label>
           <textarea
@@ -128,12 +128,12 @@ export const PropertyForm: React.FC = () => {
             value={formData.description}
             onChange={handleChange}
             placeholder="قم بتقديم وصف مفصل للعقار..."
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-secondary_BGD"
           />
         </div>
 
         <div>
-          <label htmlFor="locationDescription" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="locationDescription" className="block text-sm font-medium text-gray-700 mb-1 dark:text-primary_TXD">
             وصف الموقع
           </label>
           <textarea
@@ -143,13 +143,13 @@ export const PropertyForm: React.FC = () => {
             value={formData.locationDescription}
             onChange={handleChange}
             placeholder="صف الموقع والمرافق القريبة..."
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-secondary_BGD"
           />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="area" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="area" className="block text-sm font-medium text-gray-700 mb-1 dark:text-primary_TXD">
               المنطقة
             </label>
             <select
@@ -157,7 +157,7 @@ export const PropertyForm: React.FC = () => {
               name="area"
               value={formData.area}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-secondary_BGD"
             >
               <option value="">اختر منطقة</option>
               {areas.map(area => (
@@ -169,7 +169,7 @@ export const PropertyForm: React.FC = () => {
           </div>
 
           <div>
-            <label htmlFor="floor" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="floor" className="block text-sm font-medium text-gray-700 mb-1 dark:text-primary_TXD">
               الطابق/الدور
             </label>
             <input
@@ -179,14 +179,14 @@ export const PropertyForm: React.FC = () => {
               min={0}
               value={formData.floor}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-secondary_BGD"
             />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label htmlFor="capacity" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="capacity" className="block text-sm font-medium text-gray-700 mb-1 dark:text-primary_TXD">
               عدد الأفراد
             </label>
             <input
@@ -196,12 +196,12 @@ export const PropertyForm: React.FC = () => {
               min={1}
               value={formData.capacity}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-secondary_BGD"
             />
           </div>
 
           <div>
-            <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-1 dark:text-primary_TXD">
               السعر
             </label>
             <div className="relative">
@@ -212,19 +212,19 @@ export const PropertyForm: React.FC = () => {
                 min={0}
                 value={formData.price}
                 onChange={handleChange}
-                className="w-full px-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-right"
+                className="w-full px-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-right dark:bg-secondary_BGD"
               />
-              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                <span className="text-gray-500">ر.س</span>
+              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none ">
+                <span className="text-gray-500 dark:text-primary_TXD">ر.س</span>
               </div>
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">نوع السكن</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-primary_TXD">نوع السكن</label>
             <div className="flex space-x-4 gap-2 rtl:space-x-reverse">
               {['male', 'female', 'any'].map(type => (
-                <label key={type} className="inline-flex items-center cursor-pointer">
+                <label key={type} className="inline-flex items-center cursor-pointer ">
                   <input
                     type="radio"
                     name="type"
@@ -233,7 +233,7 @@ export const PropertyForm: React.FC = () => {
                     onChange={handleChange}
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500"
                   />
-                  <span className="mr-2 text-sm text-gray-700">
+                  <span className="mr-2 text-sm text-gray-700 dark:text-primary_TXD">
                     {type === 'male' ? 'رجال' : type === 'female' ? 'نساء' : 'أي'}
                   </span>
                 </label>
@@ -243,8 +243,9 @@ export const PropertyForm: React.FC = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">الخدمات الإضافية</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-primary_TXD">الخدمات الإضافية</label>
           <ServiceSelector selectedServices={formData.services} onChange={handleServiceChange} />
+          
         </div>
 
         <div>

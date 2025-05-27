@@ -1,11 +1,9 @@
 // import React from 'react'
 import axios from "axios";
-import { IoShareOutline } from "react-icons/io5";
-import { FcLike } from "react-icons/fc";
+import { FaHeart } from "react-icons/fa";
 import { IoWifi } from "react-icons/io5";
 import { TbToolsKitchen2, TbAirConditioning } from "react-icons/tb";
-import RoomCard from "../../components/RoomCard/roomCard";
-import Room_Photo from "../../assets/room_photo.jpg";
+// import RoomCard from "../../components/RoomCard/roomCard";
 import { FaBath, FaStar } from "react-icons/fa";
 import { BsDisplay } from "react-icons/bs"; // Monitor/Display icon (from Bootstrap Icons)
 import { FaPaperPlane } from "react-icons/fa";
@@ -15,7 +13,7 @@ import { ArrowLeft } from 'lucide-react';
 import { LuWashingMachine } from "react-icons/lu";
 import { MdOutlineFireplace } from "react-icons/md";
 import { GiFireplace } from "react-icons/gi";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa6";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { TbElevator } from "react-icons/tb";
@@ -24,6 +22,16 @@ import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useApartmentStore } from "../../Store/Data/useApartment.store";
 import { useNavigate } from 'react-router-dom';
+import RoomGallery from "./RoomGallery";
+import ShareButton from "./ShareButton";
+import CommentSection from "./CommentSection";
+import CommentCard from "./CommentCard";
+import { MdModeComment } from "react-icons/md";
+import "./scrollBar.css";
+import { GrServicePlay } from "react-icons/gr";
+import HostInfoCard from "./HostInfoCard"
+import RoomsSlider from "./RoomsSlider";
+
 const features = [
   { label: "واي فاي", icon: <IoWifi className="IconSize" /> },
   { label: "ماء سخن", icon: <MdOutlineFireplace className="IconSize" /> },
@@ -147,103 +155,52 @@ export default function RoomDetails() {
   };
 
   return (
-    <div className="min-h-screen Page slide-in pt-[80px]">
-      <button
-        onClick={() => navigate(-1)}
-        className="flex flex-row-reverse gap-1 text-blue-500 hover:text-blue-600 p-3"
-      >
-        <ArrowLeft size={20} />
-        العودة للتفاصيل
-      </button>
-      {/* the first section */}
-      <div className="flex justify-between items-center px-5">
-        <div className="flex gap-4">
-          <div className="flex items-center gap-1 cursor-pointer">
-            <IoShareOutline className="IconSize" />
-            <h2 className="underline text-sm md:text-base">مشاركه</h2>
-          </div>
-          <div
-            onClick={() => {
-              if (id) AddtoFav(id);
-            }}
-            className="flex items-center gap-1 cursor-pointer"
-          >
-            <FcLike className="IconSize" />
-            <h2 className="underline text-sm md:text-base">حفظ</h2>
-          </div>
-        </div>
-        <h1 className="text-xl md:text-2xl font-semibold text-right">
+    <div className="min-h-screen Page slide-in pt-[100px]  px-[24px]">
+      <div className="flex items center justify-between mb-[40px]">
+        <button
+          onClick={() => navigate(-1)}
+          className="items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-[#ece3fc] h-9 rounded-md px-3 flex gap-2"
+        >
+          <ArrowLeft size={20} />
+          رجوع
+        </button>
+        <h3 className="text-md md:text-lg lg:text-xl font-semibold text-right">
           جوله تصوير
-        </h1>
+        </h3>
+      </div>
+      {/* the first section */}
+      <div className="flex gap-2 items-center mb-[14px] justify-end">
+        <ShareButton />
+        <button
+          onClick={() => {
+            if (id) AddtoFav(id);
+          }}
+          className="items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 flex gap-2">
+          حفظ
+          <FaHeart size={15} />
+        </button>
       </div>
       {/* Imgs Section */}
-      <div className="mt-4  rounded-xl shadow-md overflow-hidden">
-        {/* الصور */}
-        <div className="flex flex-col lg:flex-row-reverse gap-2 p-3">
-          {/* الصورة الكبيرة */}
-          <div className="w-full lg:flex-1">
-            <img
-              src="https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp"
-              alt="Main Room"
-              className="w-full h-full max-h-[400px] object-cover rounded-lg"
-            />
-          </div>
-
-          {/* الصور الجانبية + زر اظهار كل الصور */}
-          <div className="w-full lg:w-[30%] flex flex-col lg:gap-2 gap-3 mt-2 lg:mt-0">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
-              alt="Thumb 1"
-              className="w-full h-[120px] object-cover rounded-md"
-            />
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
-              alt="Thumb 2"
-              className="w-full h-[120px] object-cover rounded-md"
-            />
-            <div className="relative w-full h-[120px]">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg"
-                alt="Thumb 3"
-                className="w-full h-full object-cover rounded-md"
-              />
-              {/* زر اظهار كل الصور */}
-              <Link
-                to="/img_details"
-                className="absolute bottom-3 left-3 bg-red-600/90 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-full flex items-center gap-2 shadow-md transition"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M3 3h2v2H3V3zm3 0h2v2H6V3zm3 0h2v2H9V3zm3 0h2v2h-2V3zm3 0h2v2h-2V3zM3 6h2v2H3V6zm3 0h2v2H6V6zm3 0h2v2H9V6zm3 0h2v2h-2V6zm3 0h2v2h-2V6zM3 9h2v2H3V9zm3 0h2v2H6V9zm3 0h2v2H9V9zm3 0h2v2h-2V9zm3 0h2v2h-2V9z" />
-                </svg>
-                اظهار كل الصور
-              </Link>
-            </div>
-          </div>
-        </div>
-
+      <div className="rounded-sm shadow-sm">
+        <RoomGallery />
 
         {/* الوصف */}
-        <div className="px-5 py-4 text-right dark:bg-[#171515]">
+        <div className="py-4 px-2 text-right dark:bg-[#171515]">
           <p className="text-[#212529] leading-6 font-medium dark:text-[white]">
             {/* {data.apartmentDTO.descripeLocation} */}
           </p>
-          <p className="text-sm text-[#6C757D] mt-2 dark:text-[#D9D9D9]">
+          <p className="text-base text-[#6C757D] mt-3 dark:text-[#D9D9D9]">
             ضيف · {bedroomcount}غرف · {type} · {addressMap[data?.apartmentDTO.location ?? ""] ?? data?.apartmentDTO.location} · الدور {translatedFloor}
           </p>
-          <p className="text-sm mt-1 font-semibold dark:text-[white]">
-            وصف الموقع:{" "}
-            <span className="text-[#6C757D] dark:text-[#D9D9D9]">قنا - {addressMap[data?.apartmentDTO.location ?? ""] ?? ""} - شارع أبو علاء</span>
+          <p className="text-base mt-2 font-medium dark:text-[white]">
+            وصف الموقع :{" "}
+            <span className="text-[#6C757D] dark:text-[#D9D9D9]">قنا / {addressMap[data?.apartmentDTO.location ?? ""] ?? ""} / شارع أبو علاء</span>
           </p>
         </div>
       </div>
 
       {/* ما يقدمه السكن */}
-      <div className="pt-5 px-3 flex flex-col-reverse gap-y-10 justify-end flex-wrap 
+      <div className="pt-3 md:pt-5 px-0 md:px-3 flex flex-col-reverse gap-y-10 justify-end flex-wrap 
         lg:gap-[60px] lg:flex-row lg:items-start lg:px-8 
         md:flex-row md:items-start md:px-3 
         sm:px-8 items-end">
@@ -316,7 +273,8 @@ export default function RoomDetails() {
                     <p className="font-semibold">{ownerName ?? ""}</p>
                     <p className="text-xs text-gray-500 dark:text-[#D9D9D9]">mahmoudarafa@gmail.com</p>
                     <span className="text-yellow-500 text-sm flex items-center gap-1">
-                      <FaStar size={14} /> 3.5
+                      3.5
+                      <FaStar size={14} />
                     </span>
                   </div>
                   <div className="border-2 border-white outline outline-[#D32F2F] rounded-full w-14 h-14">
@@ -326,7 +284,7 @@ export default function RoomDetails() {
               </div>
             </div>
 
-            <button className="w-full bg-[#D32F2F] hover:bg-red-800 text-white py-[10px] rounded-lg flex justify-center items-center gap-2">
+            <button className="w-full bg-[#D32F2F] hover:bg-red-800 text-white py-[10px] rounded-lg flex justify-center items-center gap-2 text-[14px] md:text-[16px]">
               <FaPaperPlane />
               حجز المسكن بالكامل
             </button>
@@ -335,23 +293,25 @@ export default function RoomDetails() {
 
         {/* Right section */}
         <div className="right flex-1 md:w-[50%] sm:w-full flex flex-col gap-4  [align-items:revert]" dir="rtl">
-          <h2 className="text-xl md:text-2xl text-right font-semibold">
+          <h2 className="flex gap-2 items-center text-lg md:text-xl text-right font-semibold">
+            <GrServicePlay className="text-[16px]" />
             ما يقدمه السكن
           </h2>
 
           <div>
             {Array.isArray(data.categoryWithFacilities.Services) && data.categoryWithFacilities.Services.filter(Boolean).length >= 2 ? (
               <div
-                className="grid grid-cols-3 grid-rows-3 
+                className="
+                grid grid-cols-3 grid-rows-3 
                 gap-y-4 gap-x-4
-                lg:gap-x-5 lg:gap-y-4 
                 md:gap-x-3 md:gap-y-2 
-                sm:gap-x-5 sm:gap-y-4"
+                lg:gap-x-5 lg:gap-y-4 
+                "
               >
                 {[...new Set(data.categoryWithFacilities.Services)].map((serviceName: string, index) => {
                   const service = servicesMap[serviceName as keyof typeof servicesMap];
                   return service ? (
-                    <div key={index} className="flex items-center justify-end gap-2 text-right">
+                    <div key={index} className="flex items-center justify-end gap-1 text-right">
                       {service.icon}
                       <span className="text-sm md:text-base">{service.label}</span>
                     </div>
@@ -367,7 +327,7 @@ export default function RoomDetails() {
                 sm:gap-x-10 sm:gap-y-10 items-center"
               >
                 {features.map((item, idx) => (
-                  <div key={idx} className="flex items-center justify-end gap-2 text-right">
+                  <div key={idx} className="flex items-center justify-start w-fit gap-1 text-right">
                     {item.icon}
                     <h3 className="text-sm md:text-base">{item.label}</h3>
                   </div>
@@ -386,81 +346,49 @@ export default function RoomDetails() {
 
       </div>
 
-      <hr className="border-t border-gray-300 w-5/6 mx-auto my-8" />
       {/* a place for sleeping */}
-      <div className="container mx-auto px-5 py-6">
-        <h1 className="text-xl md:text-2xl text-right p-2 font-bold mb-4">
+      <div className="mx-auto py-6 border-t mt-4">
+        {/* <h1 className="text-lg md:text-xl text-right font-semibold mb-3">
           مكان النوم
-        </h1>
-        <div className="flex gap-4 overflow-x-auto pb-2 scroll-hide" dir="rtl">
-          {[...Array(10)].map((_, i) => (
-            <div key={i} className="min-w-[250px] flex-shrink-0">
-              <RoomCard />
-            </div>
-          ))}
-        </div>
+        </h1> */}
+        <RoomsSlider />
       </div>
 
-      {/* the owner of house */}
-      <div className="bg-gray-200 px-5 py-4 flex items-center gap-4 dark:bg-[#1E1E1E]" dir="rtl">
-        <div>
-          <img
-            src={Room_Photo}
-            alt="img"
-            className="rounded-full w-16 h-16 md:w-20 md:h-20 object-cover"
-          />
+      <div className="border-t mt-5 md:px-[50px]">
+        <div dir="rtl" className="mt-4">
+          <h3 className="mb-3 font-semibold text-[18px] flex items-center gap-2">
+            <FaRegUser className="text-[16px]" />
+            تعرف علي المالك
+          </h3>
+          <HostInfoCard />
         </div>
-        <div>
-          <h1 className="text-lg md:text-xl font-semibold">محمود محمد عرفه</h1>
-          <p className="text-sm md:text-base text-gray-700 dark:text-[#D9D9D9]">صاحب العقار</p>
-          <div className="flex items-center gap-1 mt-1">
-            <FaStar className="text-yellow-400" size={14} />
-            <FaStar className="text-yellow-400" size={14} />
-            <FaStar className="text-yellow-400" size={14} />
-            {/* Add more stars if needed */}
-          </div>
-        </div>
-      </div>
-      {/* قسم التعليقات */}
-      <div dir="rtl" className="container mx-auto w-full p-4">
-        <h2 className="text-center text-xl font-bold mb-4">
-          المراجعه والتعليقات
-        </h2>
+        {/* قسم التعليقات */}
+        <div dir="rtl" className="w-full">
+          <h2 className="flex items-center gap-2 text-lg py-3 font-semibold mt-5 mb-2">
+            <MdModeComment />
+            التعليقات (5)
+          </h2>
 
-        {/* No comments yet */}
-        <div className="bg-gray-100 text-right p-3 rounded-md text-gray-600 mb-6 dark:bg-[#1E1E1E]">
+          {/* No comments yet */}
+          {/* <div className="bg-gray-100 text-right p-3 rounded-md text-gray-600 mb-6 dark:bg-[#1E1E1E]">
           لا توجد تعليقات حتي الان، كن اول المتفاعلين علي هذا العقار
-        </div>
-
-        {/* Comment Box */}
-        <div className="flex flex-col items-end gap-2 w-full md:w-3/4 lg:w-1/2 ml-auto">
-          <div className="w-full border rounded-md bg-gray-100 p-2 dark:bg-[#1E1E1E]">
-            <input
-              type="text"
-              placeholder="اكتب تعليقك هنا"
-              className="w-full bg-transparent outline-none text-sm text-right placeholder-gray-500"
-            />
+        </div> */}
+          {/* Comment Box */}
+          <div className="pb-3 max-w-4xl" dir="rtl">
+            <CommentSection />
           </div>
-          <div dir="rtl" className="w-full flex items-center justify-center">
-            <div className=" flex items-center  p-2">
-              {/* Send Icon */}
-              <button className="text-red-600 text-xl transform -scale-x-100">
-                <FaPaperPlane />
-              </button>
-
-              {/* Rating */}
-              <div className="flex items-center gap-2 text-sm">
-                <span>قيم الحساب</span>
-                <div className="text-black flex">
-                  {[...Array(5)].map((_, i) => (
-                    <FaStar key={i} className="text-yellow-300" size={14} />
-                  ))}
-                </div>
-              </div>
+          <div className="py-4 border-b border-t max-w-4xl overflow-y-auto max-h-96 custom-scrollbar" dir="ltr">
+            <div dir="rtl" className="flex flex-col gap-2">
+              <CommentCard />
+              <CommentCard />
+              <CommentCard />
+              <CommentCard />
+              <CommentCard />
             </div>
           </div>
         </div>
       </div>
+
       {/* Booking Section (moved out of the fixed height div) */}
       {/* <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 py-3 px-5 md:hidden">
         <div className="flex justify-between items-center">
@@ -472,6 +400,7 @@ export default function RoomDetails() {
           </button>
         </div>
       </div> */}
+      <p className="text-sm text-center py-4 text-gray-600 border-t dark:text-secondary_TXD">يمكنك التواصل مع المالك عبر وسائل التوصل الاجتماعي اذا كان هناك تفاصيل غير واضحه</p>
     </div>
   );
 }

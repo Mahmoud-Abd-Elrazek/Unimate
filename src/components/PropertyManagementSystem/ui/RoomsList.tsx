@@ -62,8 +62,8 @@ export const RoomsList: React.FC = () => {
     <div>
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h2 className="text-xl font-semibold text-gray-800">إدارة الغرف</h2>
-          <p className="text-gray-600">إدارة الغرف الفردية في العقار</p>
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-primary_TXD">إدارة الغرف</h2>
+          <p className="text-gray-600 dark:text-secondary_TXD">إدارة الغرف الفردية في العقار</p>
         </div>
         <button
           onClick={addRoom}

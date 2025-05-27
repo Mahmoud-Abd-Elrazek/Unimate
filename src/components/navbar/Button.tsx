@@ -19,13 +19,15 @@ const Button = () => {
             bg-[#f8fafc]
             border-[#f8fafc]
             text-darkColor
+            border border-input bg-background 
 
-            hover:shadow-md
+            hover:shadow-lg
             hover:bg-[#f8fafc] 
             hover:border-[#f8fafc] 
             hover:text-mainColor
             hover:scale-110
             
+         
             rounded-full
             w-[55px]
             h-[55px]

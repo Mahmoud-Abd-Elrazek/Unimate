@@ -3,7 +3,7 @@ import { IoPersonCircleOutline } from "react-icons/io5";
 
 export default function Roomate() {
     return (
-        <div className="flex items-center justify-between bg-gray-100 rounded-lg  p-1 shadow-sm w-full my-3 dark:bg-[#1D1D1D]">
+        <div className="flex items-center justify-between bg-gray-100 p-1 w-full my-1 dark:bg-[#1D1D1D]">
             <div className="text-gray-500">
                 <IoPersonCircleOutline className="w-10 h-10 text-gray-700 dark:text-[white] " />
             </div>

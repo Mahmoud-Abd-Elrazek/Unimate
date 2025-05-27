@@ -34,10 +34,10 @@ function PropertyManagement() {
     <Layout>
       <div className="max-w-6xl mx-auto px-4 pt-[100px] py-8 slide-in" dir="rtl">
         <header className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
+          <h1 className="text-3xl font-bold text-gray-800 mb-2 dark:text-primary_TXD">
             {mode === 'add' ? 'إضافة عقار جديد' : 'تعديل العقار'}
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-secondary_TXD">
             {mode === 'add' ? 'أدخل معلومات العقار الجديد' : 'تعديل تفاصيل وصور العقار'}
           </p>
         </header>
@@ -48,7 +48,7 @@ function PropertyManagement() {
           onChange={setActiveTab}
         />
 
-        <div className="bg-white rounded-lg shadow-md p-6 mt-6">
+        <div className="rounded-lg shadow-md p-6 mt-6">
           {activeTab === 'details' && <PropertyForm />}
           {activeTab === 'rooms' && <RoomsList />}
           {activeTab === 'images' && <ImageSection />}

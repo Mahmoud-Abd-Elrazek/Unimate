@@ -79,7 +79,8 @@ export default function App() {
     '/auther/editprofile/editAcademicinfo',
     '/auther/editprofile/editcontactinfo',
     '/manage_property',
-    '/img_details'
+    '/img_details',
+    '/roomdetails',
   ];
   const hideNavbarRoutes = [
     '/SignIn',
