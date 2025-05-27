@@ -1,19 +1,15 @@
-import "./home.css"
-import Filter_bar from '../../components/Filter_Bar/filter_bar'
+import "./home.css";
+import Filter_bar from '../../components/Filter_Bar/filter_bar';
 import { FaRegStar } from "react-icons/fa";
 import ApartmentCard from '../../components/ApartmentCard/ApartmentCard';
 import HeroSection from '../../components/HeroSection/HeroSection';
 import SearchBar from '../../components/SearchBar/SearchBarWithFilters';
-
-// import animation file
 import "../../../public/animations.css";
-// import useAuthStore from '../../Store/Auth/Auth.store';
 import { useEffect, useState } from "react";
-import axios from "axios";
-import CreatPostButton from "../../components/navbar/Button"
-// import { useEffect } from 'react';
+import CreatPostButton from "../../components/navbar/Button";
 import useAuthStore from "../../Store/Auth/Auth.store";
 import { Slide, ToastContainer } from "react-toastify";
+import useApartmentData from "../../Store/DataApartment/useApartmentData.store";
 
 // Extend the Window interface to include chatbase
 declare global {
@@ -23,55 +19,24 @@ declare global {
 }
 
 export default function Home() {
-  const Role = useAuthStore((state) => state.role)
-  // console.log("this is role", role)
+  const Role = useAuthStore((state) => state.role);
+  const [pageSize, setPageSize] = useState(6);
+  const {
+    fetchTopRated,
+    fetchNew,
+    topRated,
+    newApartments,
+    apartments,
+    totalCount,
+    isLoading,
+    isSearching,
+  } = useApartmentData();
 
-  const [pagesize, setpagesize] = useState(6);
-  // اضيف حدثيا
-  const [newapartments, setnewapartments] = useState([]);
-  // الاعلى تقييما
-  const [apartments, setapartments] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [totalCount, setTotalCount] = useState(0);
-  // الاعلى تقييما
-  const FetchData = async () => {
-    try {
-      setIsLoading(true);
-      const res = await axios.get(`https://darkteam.runasp.net/GetApartmentEndpoint/GetApartment?PageNumber=1&PageSize=6`);
-      setapartments(res.data.data.apartments);
-    }
-    catch (error) {
-      console.log("failed to fetch the data!!!!!!!!!!!" + error)
-    } finally {
-      setIsLoading(false);
-    }
-  }
-  // اضيف حديثا
-  const FetchNewData = async () => {
-    try {
-      setIsLoading(true);
-      const res = await axios.get(`https://darkteam.runasp.net/GetApartmentEndpoint/GetApartment?PageNumber=1&PageSize=${pagesize}`);
-      setnewapartments(res.data.data.apartments);
-      setTotalCount(res.data.data.totalCount);
-      console.log(res.data.data)
-    } catch (error) {
-      console.log("failed to fetch the data!!!" + error)
-    } finally {
-      setIsLoading(false);
-    }
-  }
-  
- 
-  // useEffect(()=>{
-  //    FetchData()
-  //  },[])
   useEffect(() => {
-    FetchData()
-FetchNewData();
-console.log("this is role", Role)
-  }, [pagesize])
-  // Unimate chatbase script: This script is used to load the chatbase script and initialize it
-  // ================== Start ================== 
+    fetchTopRated();
+    fetchNew(pageSize);
+  }, [pageSize]);
+
   useEffect(() => {
     if (!window.chatbase) {
       window.chatbase = (...args: unknown[]) => {
@@ -113,21 +78,17 @@ console.log("this is role", Role)
       }
     };
   }, []);
-  // ================== End ================== 
 
   return (
     <div className='min-h-lvh Page fade-in pt-[80px]'>
-
-      {/* Create post - only on medium and up */}
       {Role === "Owner" && (
         <div className="block md:hidden">
           <CreatPostButton />
         </div>
       )}
-      {/* hero section */}
+
       <HeroSection />
 
-      {/* filter_bar section */}
       <section
         id='filter-bar-section'
         className='mt-10 flex flex-col items-center gap-y-12 px-4 sm:px-8 md:px-12 lg:px-20'
@@ -147,52 +108,48 @@ console.log("this is role", Role)
           </div>
         </div>
       </section>
-      {isLoading && apartments.length === 0 ? (
+
+      {isSearching ? (
+        <div id="RoomSection">
+          <h1 className="text-center text-xl font-semibold my-4">نتائج البحث</h1>
+          <ApartmentGrid apartments={apartments} />
+        </div>
+      ) : isLoading && topRated.length === 0 ? (
         <div className="flex justify-center items-center py-10 h-[50vh]">
           <div className="loading"></div>
         </div>
       ) : (
         <div id="RoomSection" className="pl-[24px] pr-[24px]">
-          {/* الاعلى تقييما */}
           <div>
             <h1 className="flex justify-end items-center mt-5 mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl">
               الاعلى تقييما
               <FaRegStar className="ml-2 text-[#FFA500] dark:text-[#FFCC00]" />
             </h1>
-
-            <div>
-              <ApartmentGrid apartments={apartments} />
-            </div>
+            <ApartmentGrid apartments={topRated} />
           </div>
 
-          {/* اضيف حديثا */}
           <div>
             <h1 className="flex justify-end items-center mt-5 mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl">
               اضيف حديثا <FaRegStar className="ml-2 dark:text-[#5bc0de] text-[#0d6efd]" />
             </h1>
-            <div>
-              <ApartmentGrid apartments={newapartments} />
-            </div>
+            <ApartmentGrid apartments={newApartments} />
 
             <div className='flex items-center justify-center mt-10'>
-              {newapartments.length < totalCount ? (
+              {newApartments.length < totalCount ? (
                 <button
-                  onClick={() => setpagesize(prev => prev + 12)}
+                  onClick={() => setPageSize(prev => prev + 12)}
                   disabled={isLoading}
                   className={`
-                text-center rounded-full
-                w-[300px] h-[3rem]
-                text-[#f8fafc]
-                ${isLoading ? 'bg-gray-400 border-[gray-400] cursor-not-allowed' : 'bg-mainColor'}
-                mb-[50px]
-                text-[16px]
-                py-[10px] px-0
-                md:mb-[50px] md:text-[16px] md:py-[10px] md:px-0 md:h-auto
-                border-1 border-mainColor
-                
-                transition duration-300 ease-in-out transform
-                hover:bg-transparent hover:text-mainColor
-              `}
+                    text-center rounded-full
+                    w-[300px] h-[3rem]
+                    text-[#f8fafc]
+                    ${isLoading ? 'bg-gray-400 border-[gray-400] cursor-not-allowed' : 'bg-mainColor'}
+                    mb-[50px] text-[16px] py-[10px] px-0
+                    md:mb-[50px] md:text-[16px] md:py-[10px] md:px-0 md:h-auto
+                    border-1 border-mainColor
+                    transition duration-300 ease-in-out transform
+                    hover:bg-transparent hover:text-mainColor
+                  `}
                 >
                   {isLoading ? (
                     <span className="flex items-center justify-center gap-2">
@@ -205,33 +162,28 @@ console.log("this is role", Role)
               ) : (
                 <p className="text-center mb-[50px] text-gray-500 text-lg">لا يوجد المزيد من العقارات</p>
               )}
-
             </div>
           </div>
         </div>
       )}
       <ToastContainer position="top-center" autoClose={3000} transition={Slide} />
     </div>
-  )
+  );
 }
+
 interface ApartmentGridProps {
-  // count: number; 
   apartments: object[];
 }
+
 const ApartmentGrid: React.FC<ApartmentGridProps> = ({ apartments }) => {
   return (
-    <div className="
-      grid grid-cols-1 
-      gap-y-3 gap-x-2
-      md:grid-cols-2 
-      lg:grid-cols-3 
-      xl:grid-cols-3
-      2xl:grid-cols-5
-      3xl:grid-cols-6"
-      dir="rtl">
+    <div
+      className="grid grid-cols-1 gap-y-3 gap-x-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-5 3xl:grid-cols-6"
+      dir="rtl"
+    >
       {apartments.map((apartment, i) => (
         <div key={i} dir="ltr">
-          <ApartmentCard data={apartment} id={i+3} />
+          <ApartmentCard data={apartment} id={i + 3} />
         </div>
       ))}
     </div>

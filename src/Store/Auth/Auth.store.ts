@@ -139,7 +139,7 @@ const useAuthStore = create<AuthState>()(
             user: res.data.user,
           });
           console.log("Owner registered successfully.");
-          console.log(" فاث يشفش", res.data.data);
+          console.log(" فاث يشفش", res.data);
         } catch (error) {
           console.error('Owner registration failed:', error);
         }

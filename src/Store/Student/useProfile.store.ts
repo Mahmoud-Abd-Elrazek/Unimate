@@ -89,7 +89,7 @@ const useProfileStore = create<ProfileState>()(
           });
       },
       UPdateStudentProfile: async (
-        firstname,
+      Firstname,
         lastname,
         Governorate,
         Address,
@@ -97,10 +97,10 @@ const useProfileStore = create<ProfileState>()(
       ) => {
         const token = useAuthStore.getState().token;
         try {
-          await axios.post(
+         const res= await axios.post(
             "https://darkteam.runasp.net/UpdateProfileSaveEndpoint/UpdateProfileSave",
             {
-              firstName: firstname,
+              firstName: Firstname,
               lastName: lastname,
               governorate: Governorate,
               address: Address,
@@ -113,13 +113,13 @@ const useProfileStore = create<ProfileState>()(
             }
           );
           set({
-            fname: firstname,
+            fname: Firstname,
             lname: lastname,
             governorate: Governorate,
             address: Address,
             briefOverView: BriefOverView,
           });
-          console.log("updated successfully !!");
+          console.log("updated successfully !!", res);
         } catch (error) {
           console.log("update failed", error);
         }

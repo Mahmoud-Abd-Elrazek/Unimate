@@ -54,7 +54,7 @@ input {
 }
 
 .input-field {
-   flex: 1;
+   flex: 2;
    text-align: start;
    color: var(--primary-text-color);
    transition: color var(--transition-duration) var(--transition-timing);
