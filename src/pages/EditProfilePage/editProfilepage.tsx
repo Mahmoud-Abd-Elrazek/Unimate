@@ -28,7 +28,7 @@ const EditProfilePage = () => {
       </aside>
 
       {/* ✅ محتوى الصفحة */}
-      <main className="w-full flex-1 px-4 py-6">
+      <main className="w-full flex-1 md:px-4 ">
         {/* ✅ زر إظهار الـ Sidebar في الشاشات الصغيرة */}
         {!sidebarOpen && (
           <div className='flex justify-end w-full'>
@@ -62,7 +62,7 @@ const EditProfilePage = () => {
           إعدادات الحساب
         </h1>
 
-        <div className="rounded-2xl p-6 shadow-md">
+        <div className="rounded-2xl shadow-md">
           <Outlet />
         </div>
       </main>

@@ -54,7 +54,7 @@ export default function AccountSettings() {
   };
 
   return (
-    <div dir="rtl" className="container mx-auto px-4 py-6 fade-in">
+    <div dir="rtl" className="mx-auto py-6 fade-in">
       <div className="max-w-4xl mx-auto">
 
         {/* Header */}
@@ -74,7 +74,7 @@ export default function AccountSettings() {
         </div>
 
         {/* Form */}
-        <div className="rounded-lg p-6 shadow-sm">
+        <div className="rounded-lg shadow-sm">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div>

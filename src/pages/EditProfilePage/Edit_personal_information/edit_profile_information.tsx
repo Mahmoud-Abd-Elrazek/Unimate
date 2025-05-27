@@ -54,7 +54,7 @@ export default function Edit_profile_information() {
         </div>
 
         {/* Form */}
-        <div className="rounded-lg p-4 sm:p-6 shadow-sm  ">
+        <div className="rounded-lg  sm:p-6 shadow-sm  ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* First Column */}
             <div className="space-y-4">
