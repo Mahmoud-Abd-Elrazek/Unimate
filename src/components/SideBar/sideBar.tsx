@@ -11,6 +11,7 @@ import { GoHistory } from "react-icons/go";
 import { TbHomeCheck } from 'react-icons/tb';
 import { FaRegCalendarCheck } from 'react-icons/fa';
 import useAuthStore from '../../Store/Auth/Auth.store';
+import useProfileStore from '../../Store/Student/useProfile.store';
 type SideBarProps = {
   onLinkClick?: () => void;
 };
@@ -38,11 +39,11 @@ export default function SideBar({ onLinkClick }: SideBarProps) {
         { to: '/auther/help', label: 'المساعدة', icon: MdHelpOutline },
         { to: '/logout', label: 'تسجيل الخروج', icon: CiLogout },
       ];
-
+      const username=useProfileStore((state) => state.userName);
   return (
     <div className="w-full max-w-sm  rounded-2xl  text-right ">
       <div className="flex flex-col items-end py-6">
-         <h2 className="text-lg font-bold px-[24px] pb-[30px] py-[10px] border-b border-gray-300 dark:border-gray-700">محمود عبدالرزاق حمدالله</h2>
+         <h2 className="text-lg font-bold px-[24px] pb-[30px] py-[10px] border-b border-gray-300 dark:border-gray-700"> {username}</h2>
       </div>
 
       <ul className="space-y-1">

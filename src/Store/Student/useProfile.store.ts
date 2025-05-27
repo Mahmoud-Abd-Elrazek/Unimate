@@ -23,7 +23,7 @@ interface ProfileState {
   phones: string;
   img: File | undefined;
   GetStudentInfo: () => void;
-  DisplayUpdatedStudentinfo:()=>void;
+  DisplayUpdatedStudentinfo: () => void;
   DisplayAcadmic: () => void;
   UPdateStudentProfile: (
     fname: string,
@@ -73,12 +73,18 @@ const useProfileStore = create<ProfileState>()(
           })
           .then((response) => {
             const res = response.data.data;
-            console.log(res+"this is the res of getstudent info")
+            console.log(res + "this is the res of getstudent info")
             // You can update the state here as needed
             set({
-              // fname: res.firstName,
-              // lname: res.lastName,
-              // ...other fields
+              userName: res.fullName,
+              // "image": null,
+              nationalId: res.national_Id,
+              university: res.university,
+              faculty: res.faculty,
+              // "phones": [],
+              briefOverView: res.briefOverView,
+              address: res.address,
+              email: res.email
             });
           });
       },
@@ -118,10 +124,10 @@ const useProfileStore = create<ProfileState>()(
           console.log("update failed", error);
         }
       },
-      DisplayUpdatedStudentinfo:async()=>{
-        const token=useAuthStore.getState().token;
-        axios.get("https://darkteam.runasp.net/UpdateProfileDisplayEndpoint/UpdateProfileDisplay",{
-          headers:{
+      DisplayUpdatedStudentinfo: async () => {
+        const token = useAuthStore.getState().token;
+        axios.get("https://darkteam.runasp.net/UpdateProfileDisplayEndpoint/UpdateProfileDisplay", {
+          headers: {
             'Authorization': `Bearer ${token}`
           }
         })
@@ -206,7 +212,7 @@ const useProfileStore = create<ProfileState>()(
           karnihImage,
           country,
           phones,
-           img, // File is not serializable, so you may want to exclude it
+          img, // File is not serializable, so you may want to exclude it
         } = state;
         return {
           fname,

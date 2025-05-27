@@ -121,7 +121,7 @@ const UserProfile = () => {
 
               <div className="text-center space-y-1 sm:space-y-2">
                 <div className="flex items-center justify-center gap-2 text-[black] font-bold dark:text-[white] text-sm sm:text-base">
-                  <span> طالب في كلية  {faculty}</span>
+                  <span> طالب في كلية  {faculty ?? " حاسبات ومعلومات"}</span>
                 </div>
                 <div className="flex items-center justify-center gap-2 text-[black] font-bold dark:text-[white] text-sm sm:text-base">
                   <span> الفرقة {academicYear}</span>
