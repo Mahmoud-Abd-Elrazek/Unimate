@@ -19,6 +19,7 @@ interface AuthState {
   user: User | null;
   token: string | null;
   role: string | null;
+  
   phone: string;
   otp: string | null;
   photo1: File | null;
@@ -31,7 +32,7 @@ interface AuthState {
   login: (email: string, password: string) => Promise<boolean>;
   // registerStudent: (formData:FormData) => Promise<void>;
   registerOwner: (firstname: string, lastname: string, email: string, password: string, phone: string) => Promise<void>;
-  forgetpassword:(email:string)=>Promise<boolean>;
+  forgetpassword: (email: string) => Promise<boolean>;
   changePassword: (OldPassword: string, NewPassword: string, ConfirmPassword: string) => Promise<void>;
   resetpassword: (email: string, password: string, confrimPassword: string, token: string) => Promise<void>;
   logout: () => void;
@@ -61,32 +62,45 @@ const useAuthStore = create<AuthState>()(
             'https://darkteam.runasp.net/LogInUserEndpoint/LogInUser',
             { email, password }
           );
-
+          console.log("Login response:", res.data);
           if (!res.data.isSuccess) {
-            // toast.error(res.data.message);
-            console.log("the is success not true!!!!!!!!!!!")
+            console.log("Login failed");
             set({ role: null });
             return false;
-          } else {
-            const token = res?.data?.data?.token;
-            if (token) {
-              set({ isAuthenticated: true, token });
-              localStorage.setItem("token", token);
-              return true;
-            } else {
-              toast.error("Login failed. Please try again.");
-              return false;
-            }
-            return true;
           }
+
+          const token = res?.data?.data?.token;
+          const role = res?.data?.data?.role;
+          const roleString =
+          role === 1 ? "Owner" :
+          role === 2 ? "Student" :
+          role === 0 ? "Admin" : "";
+              
+              set({
+                isAuthenticated: true,
+                token,
+                role: roleString
+              });
+              console.log("this is the role form login function"+role+" and the role string is "+roleString)
+
+            localStorage.setItem("token", token);
+            localStorage.setItem("role", roleString);
+            console.log("Login successful:", roleString);
+            toast.success(`Logged in as ${roleString}`);
+            return true;
+          // else {
+          //   toast.error("Login failed: missing token or role");
+          //   return false;
+          // }
         } catch (error) {
-          toast.error("Network error. Please try again." + error);
+          toast.error("Network error: " + error);
           return false;
         }
       },
+
       // registerStudent: async (formData:FormData) => {
       //   try {
-         
+
       //     const res = await axios.post(
       //       'https://darkteam.runasp.net/RegisterStudentEndPoint/RegisterStudent',{formData},
       //       {
@@ -99,7 +113,7 @@ const useAuthStore = create<AuthState>()(
       //       isAuthenticated: false,
       //       token: res.data.data.token,
       //       user: res.data.data.user,
-           
+
       //     });
       //       console.log("Student registered successfully.");
       //   } catch (error) {
@@ -130,10 +144,10 @@ const useAuthStore = create<AuthState>()(
           console.error('Owner registration failed:', error);
         }
       },
-      forgetpassword:async(email:string)=>{
-        try{
-          const res= await axios.post("https://darkteam.runasp.net/ForgotPasswordEndpoint/ForgotPassword",{
-            email:email
+      forgetpassword: async (email: string) => {
+        try {
+          const res = await axios.post("https://darkteam.runasp.net/ForgotPasswordEndpoint/ForgotPassword", {
+            email: email
           })
           console.log(res)
           if (!res.data.isSuccess) {
@@ -142,16 +156,16 @@ const useAuthStore = create<AuthState>()(
           } else {
             return true;
           }
-        }catch(error){
-          console.log("forgetpadd failed!!"+error)
+        } catch (error) {
+          console.log("forgetpadd failed!!" + error)
           return false;
         }
       },
-      resetpassword: async (email:string, otp:string, password:string, confirmPassword:string) => {
+      resetpassword: async (email: string, otp: string, password: string, confirmPassword: string) => {
         try {
           const res = await axios.post("https://darkteam.runasp.net/ResetPasswordWithOutIdentityEndpoint/ResetPassword", {
             email,
-            token:otp,
+            token: otp,
             password,
             confirmPassword
           });
@@ -173,11 +187,11 @@ const useAuthStore = create<AuthState>()(
             NewPassword,
             ConfirmPassword,
           },
-        {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-        });
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            });
           set({
             isAuthenticated: true,
             user: res.data.user,
@@ -204,7 +218,7 @@ const useAuthStore = create<AuthState>()(
           console.error("Email confirmation failed:", error);
         }
       },
-      
+
 
       logout: () => {
         set({

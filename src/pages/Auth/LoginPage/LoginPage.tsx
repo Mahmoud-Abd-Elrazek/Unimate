@@ -5,15 +5,15 @@ import { z } from "zod";
 import { useState } from "react";
 import { FiEye, FiEyeOff, FiLogIn } from "react-icons/fi";
 import useAuthStore from "../../../Store/Auth/Auth.store";
-import {  Slide, toast, ToastContainer } from "react-toastify";
+import { Slide, toast, ToastContainer } from "react-toastify";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [accountType, setAccountType] = useState("طالب");
-  // let Role= useAuthStore((state) => state.role);
-  const login = useAuthStore((state) => state.login)
-  const setRole = useAuthStore((state) => state.setRole);
+
+  const login = useAuthStore((state) => state.login);
+
   const SignInSchema = z.object({
     email: z.string().min(1, "مطلوب").email("ادخل بريد الكتروني صحيح"),
     password: z.string().min(8, "يجب أن تكون كلمة المرور أطول من 8 أحرف"),
@@ -29,30 +29,26 @@ const LoginPage = () => {
     resolver: zodResolver(SignInSchema),
     mode: "onChange",
   });
-
+  // const role=useAuthStore((state) => state.role);
   const OnSubmit: SubmitHandler<SignT> = async (data) => {
-    const Role = accountType === "طالب" ? "Student" : "Owner";
-    console.log({ ...data, Role });
-    setRole(Role);
-    
+    // const role = accountType === "طالب" ? "Student" : "Owner"; // ممكن تضيف "Admin" لو في
     const success = await login(data.email, data.password);
-    
-    if (success) {
-      localStorage.setItem("role", Role);
-      toast.success("Welcome back! 🎉");
-      navigate("/", { replace: true });
-  } else {
-    toast.error("Invalid email or password ❌");
-  }
-  };
 
+    if (success) {
+      const savedRole = localStorage.getItem("role");
+      toast.success(`تم تسجيل الدخول كـ ${savedRole}!`);
+      navigate("/", { replace: true });
+    } else {
+      toast.error("البريد الإلكتروني أو كلمة المرور غير صحيحة ❌");
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-md rounded-xl p-8 shadow-md text-right">
         <h2 className="text-2xl font-semibold mb-2">تسجيل الدخول</h2>
 
-        {/* Account Type */}
+        {/* اختيار نوع الحساب */}
         <div className="flex justify-end gap-6 mb-4 text-right">
           <label className="flex items-center gap-2">
             <input
@@ -76,12 +72,10 @@ const LoginPage = () => {
           </label>
         </div>
 
+        {/* نموذج تسجيل الدخول */}
         <form onSubmit={handleSubmit(OnSubmit)} className="space-y-4">
-          {/* Email */}
           <div className="text-right">
-            <label htmlFor="email" className="block mb-1 font-medium">
-              البريد الالكترونى
-            </label>
+            <label htmlFor="email" className="block mb-1 font-medium">البريد الالكترونى</label>
             <input
               dir="rtl"
               type="email"
@@ -89,16 +83,12 @@ const LoginPage = () => {
               className="InputStyle w-full"
               placeholder="البريد الالكترونى"
               {...register("email")}
-
             />
             {errors.email && <p className="ErrorMessage">{errors.email.message}</p>}
           </div>
 
-          {/* Password */}
           <div className="text-right relative">
-            <label htmlFor="password" className="block mb-1 font-medium">
-              كلمة المرور
-            </label>
+            <label htmlFor="password" className="block mb-1 font-medium">كلمة المرور</label>
             <input
               dir="rtl"
               type={showPassword ? "text" : "password"}
@@ -106,7 +96,6 @@ const LoginPage = () => {
               className="InputStyle w-full pr-10"
               placeholder="كلمة المرور"
               {...register("password")}
-
             />
             <button
               type="button"
@@ -118,14 +107,12 @@ const LoginPage = () => {
             {errors.password && <p className="ErrorMessage">{errors.password.message}</p>}
           </div>
 
-          {/* Remember + Forgot */}
           <div className="flex justify-between items-end text-sm">
             <Link to="/forgetpassword" className="text-blue-500 underline">
               نسيت كلمة المرور؟
             </Link>
           </div>
 
-          {/* Submit */}
           <button
             type="submit"
             disabled={isSubmitting}

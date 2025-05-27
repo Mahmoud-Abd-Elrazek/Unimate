@@ -68,6 +68,7 @@ export default function Home() {
   useEffect(() => {
     FetchData()
 FetchNewData();
+console.log("this is role", Role)
   }, [pagesize])
   // Unimate chatbase script: This script is used to load the chatbase script and initialize it
   // ================== Start ================== 
