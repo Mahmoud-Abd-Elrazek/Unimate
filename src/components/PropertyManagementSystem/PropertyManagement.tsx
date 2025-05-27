@@ -27,7 +27,7 @@ function PropertyManagement() {
   const handleSave = () => {
     alert('تم حفظ معلومات العقار بنجاح!');
     setMode('list');
-    navigate('/properties'); // ارجع لقائمة العقارات مثلاً
+    navigate('/');
   };
 
   return (
