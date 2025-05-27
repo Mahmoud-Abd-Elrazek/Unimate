@@ -13,9 +13,9 @@ const SearchBarWithFilters = () => {
       <SearchBar />
 
       {/* Filter Button */}
-      <Button variant="outline" className="flex gap-2 h-full">
+      <Button variant="outline" className="flex gap-2 h-full bg-[#ef4444] text-white">
         <SlidersHorizontal className="" />
-        <span className="hidden sm:inline">فلتر نتائجك</span>
+        <span className="hidden sm:inline"> ابحث</span>
       </Button>
 
     </div>
