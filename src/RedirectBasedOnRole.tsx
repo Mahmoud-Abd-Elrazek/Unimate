@@ -14,9 +14,9 @@ const RedirectBasedOnRole = () => {
   if (!resolvedRole) return null;
 
   if (resolvedRole === "Student") {
-    return <Navigate to="studentProfile" replace />;
+    return <Navigate to="studentprofile" replace />;
   } else if (resolvedRole === "Owner") {
-    return <Navigate to="ownerProfile" replace />;
+    return <Navigate to="ownerprofile" replace />;
   } else {
     return <div>نوع المستخدم غير معروف ❌</div>;
   }

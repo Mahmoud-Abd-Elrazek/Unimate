@@ -124,12 +124,25 @@ const useProfileStore = create<ProfileState>()(
         }
       },
       DisplayUpdatedStudentinfo: async () => {
-        const token = useAuthStore.getState().token;
-        axios.get("https://darkteam.runasp.net/UpdateProfileDisplayEndpoint/UpdateProfileDisplay", {
+      
+        try {        const token = useAuthStore.getState().token;
+       const res= axios.get("https://darkteam.runasp.net/UpdateProfileDisplayEndpoint/UpdateProfileDisplay", {
           headers: {
             'Authorization': `Bearer ${token}`
           }
         })
+        const data= (await res).data.data;
+      set({
+        fname: data.firstName,
+        lname: data.lastName,
+        governorate: data.governorate,
+        address: data.address,
+        briefOverView: data.briefOverView,
+      })
+        console.log("display updated student info", data);
+      } catch (error) {
+          console.log("failed to display updated student info", error);
+        }
       },
       AddAcadmicInfo: async (
         University,
@@ -190,9 +203,9 @@ const useProfileStore = create<ProfileState>()(
       },
     }),
     {
-      name: "profile-storage", // unique name in localStorage
+      name: "profile-storage",
       partialize: (state) => {
-        // Exclude functions and non-serializable fields if needed
+        
         const {
           fname,
           lname,
@@ -211,7 +224,7 @@ const useProfileStore = create<ProfileState>()(
           karnihImage,
           country,
           phones,
-          img, // File is not serializable, so you may want to exclude it
+          img, 
         } = state;
         return {
           fname,

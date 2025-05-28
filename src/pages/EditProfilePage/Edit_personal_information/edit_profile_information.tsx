@@ -1,8 +1,12 @@
 import "../../../../public/animations.css";
 import { useEffect, useState } from 'react';
 import useProfileStore from '../../../Store/Student/useProfile.store';
-
+// import { GrLinkNext } from "react-icons/gr";
+import { Link } from 'react-router-dom';
+import useAuthStore from "../../../Store/Auth/Auth.store";
+// import { useprofileOwnerStore } from "../../../Store/Owner/useprofileOwner.store";
 export default function EditProfileInformation() {
+  //student profile information
   const { governorate, address, fname, lname, briefOverView } = useProfileStore();
   const [firstname, setFirstname] = useState(fname || "");
   const [lastname, setLastname] = useState(lname || "");
@@ -10,8 +14,9 @@ export default function EditProfileInformation() {
   const [add, setAdd] = useState(address || "");
   const [brief, setBrief] = useState(briefOverView || "");
   const UPdateStudentProfile = useProfileStore(state => state.UPdateStudentProfile);
+  // owner profile information
+  // const {}=useprofileOwnerStore()
 
-  
   const validate = () => {
     const errors: { gov?: string; brief?: string } = {};
     if (gov.length < 2 || gov.length > 20) {
@@ -24,7 +29,7 @@ export default function EditProfileInformation() {
   };
 
   const [errors, setErrors] = useState<{ gov?: string; brief?: string }>({});
-
+  const Role=useAuthStore((state) => state.role);
   useEffect(() => {
     setFirstname(fname || "");
     setLastname(lname || "");
@@ -34,7 +39,7 @@ export default function EditProfileInformation() {
   }, [fname, lname, governorate, address, briefOverView]);
 
   const handleSave = (e: React.FormEvent) => {
-    e.preventDefault(); 
+    e.preventDefault();
     const validationErrors = validate();
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
@@ -127,6 +132,27 @@ export default function EditProfileInformation() {
             {errors.brief && <p className="text-red-500 text-xs mt-1">{errors.brief}</p>}
           </div>
         </form>
+         <div className="my-6 flex justify-end">
+          {Role === "Owner" ? (
+            <Link to="/auther/ownerprofile">
+              <button className="flex items-center gap-2 bg-[#4F4F4F] text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+                <svg className="w-5 h-5 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>الرجوع إلى الصفحه الرئيسة</span>
+              </button>
+            </Link>):
+            (
+              <Link to="/auther/studentprofile">
+              <button className="flex items-center gap-2 bg-[#4F4F4F] text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+                <svg className="w-5 h-5 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>الرجوع إلى الصفحه الرئيسة</span>
+              </button>
+            </Link>
+            )}
+          </div>
       </div>
     </div>
   );

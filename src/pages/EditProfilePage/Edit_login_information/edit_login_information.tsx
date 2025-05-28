@@ -34,6 +34,7 @@ export default function AccountSettings() {
   const [showOld, setShowOld] = useState(false);
   const [showNew, setShowNew] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const Role = useAuthStore((state) => state.role);
 
   const changePassword = useAuthStore((state) => state.changePassword);
 
@@ -54,7 +55,7 @@ export default function AccountSettings() {
   };
 
   return (
-    <div dir="rtl" className="mx-auto py-6 fade-in">
+    <div dir="rtl" className="mx-auto p-6 fade-in">
       <div className="max-w-4xl mx-auto">
 
         {/* Header */}
@@ -170,15 +171,26 @@ export default function AccountSettings() {
           </form>
 
           {/* Back Button */}
-          <div className="mt-6 flex justify-end">
-            <Link to="/auther/profile">
+         <div className="my-6 flex justify-end">
+          {Role === "Owner" ? (
+            <Link to="/auther/ownerprofile">
               <button className="flex items-center gap-2 bg-[#4F4F4F] text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
                 <svg className="w-5 h-5 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
-                <span>الرجوع إلى المتصفح الرئيسة</span>
+                <span>الرجوع إلى الصفحه الرئيسة</span>
+              </button>
+            </Link>):
+            (
+              <Link to="/auther/studentprofile">
+              <button className="flex items-center gap-2 bg-[#4F4F4F] text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+                <svg className="w-5 h-5 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>الرجوع إلى الصفحه الرئيسة</span>
               </button>
             </Link>
+            )}
           </div>
         </div>
       </div>

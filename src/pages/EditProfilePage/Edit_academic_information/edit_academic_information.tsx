@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useProfileStore from '../../../Store/Student/useProfile.store';
 import "../../../../public/animations.css";
+import useAuthStore from '../../../Store/Auth/Auth.store';
 
 export default function AccountSettings() {
   const { AddAcadmicInfo, DisplayAcadmic } = useProfileStore();
@@ -47,6 +48,7 @@ export default function AccountSettings() {
   useEffect(() => {
     DisplayAcadmic();
   }, []);
+  const Role=useAuthStore((state) => state.role);
 
   return (
     <div dir="rtl" className="container mx-auto px-4 py-6 fade-in">
@@ -139,15 +141,26 @@ export default function AccountSettings() {
           </div>
 
           {/* Back Button */}
-          <div className="mt-6 flex justify-center sm:justify-end">
-            <Link to="/auther/profile">
-              <button className="flex items-center gap-2 bg-[#4F4F4F] text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors w-full sm:w-auto justify-center">
+          <div className="my-6 flex justify-end">
+          {Role === "Owner" ? (
+            <Link to="/auther/ownerprofile">
+              <button className="flex items-center gap-2 bg-[#4F4F4F] text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
                 <svg className="w-5 h-5 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
-                <span>الرجوع إلى الصفحة الرئيسية</span>
+                <span>الرجوع إلى الصفحه الرئيسة</span>
+              </button>
+            </Link>):
+            (
+              <Link to="/auther/studentprofile">
+              <button className="flex items-center gap-2 bg-[#4F4F4F] text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+                <svg className="w-5 h-5 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>الرجوع إلى الصفحه الرئيسة</span>
               </button>
             </Link>
+            )}
           </div>
         </div>
       </div>

@@ -19,7 +19,13 @@ interface AuthState {
   user: User | null;
   token: string | null;
   role: string | null;
-  
+  fname: string;
+  lname: string;
+  userName: string;
+  password: string;
+  email: string;
+  confrimPassword: string;
+  nationalId: string;
   phone: string;
   otp: string | null;
   photo1: File | null;
@@ -51,6 +57,14 @@ const useAuthStore = create<AuthState>()(
       photo1: null,
       photo2: null,
       iSSuccess: false,
+      fname: '',
+      lname: '',
+      userName: '',
+      password: '',
+      email: '',
+      confrimPassword: '',
+      nationalId: '',
+      
       setPhoto1: (file: File) => set({ photo1: file }),
       setPhoto2: (file: File) => set({ photo1: file }),
       setRole: (role: string) => set({ role }),

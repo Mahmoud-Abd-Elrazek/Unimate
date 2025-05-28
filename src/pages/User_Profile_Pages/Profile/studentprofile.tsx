@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 // import { useStudentStore } from '../../../Store/Student/Profile.store';
 
 const StudentProfile = () => {
-  const { GetStudentInfo, fname, lname, email, nationalId, briefOverView, faculty, address, academicYear, governorate, img } = useProfileStore();
+  const { GetStudentInfo, userName, email, nationalId, briefOverView, faculty, address, academicYear, governorate, img } = useProfileStore();
 
   useEffect(() => {    
         GetStudentInfo();
@@ -23,7 +23,7 @@ const StudentProfile = () => {
 
             {/* Student Information Content */}
             <div className="md:col-span-2 text-right ">
-              <h1 className="text-xl sm:text-xl font-bold mb-4 sm:mb-6">{fname} {lname}</h1>
+              <h1 className="text-xl sm:text-xl font-bold mb-4 sm:mb-6">{userName}</h1>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-3 sm:space-y-4">
