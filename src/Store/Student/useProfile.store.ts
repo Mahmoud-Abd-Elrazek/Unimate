@@ -74,7 +74,6 @@ const useProfileStore = create<ProfileState>()(
           .then((response) => {
             const res = response.data.data;
             console.log(res + "this is the res of getstudent info")
-            // You can update the state here as needed
             set({
               userName: res.fullName,
               // "image": null,

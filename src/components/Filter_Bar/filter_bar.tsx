@@ -86,7 +86,7 @@ const FilterBar: React.FC = () => {
             <Dropdown key={index}>
               <Dropdown.Toggle
                 variant="light"
-                className="text-[#0f1729] dark:text-BTN_TXD 
+                className="text-[#0f1729] 
                 px-3 py-2 outline-none focus:outline-none
                 border-1 border-gray-200 
                 rounded-md text-sm shadow-sm 

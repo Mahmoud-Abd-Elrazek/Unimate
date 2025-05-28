@@ -21,7 +21,7 @@ export default function SideBar({ onLinkClick }: SideBarProps) {
 
   const links = Role !== 'Owner'
     ? [
-        { to: '/auther/profile', label: 'عرض الملف الشخصى', icon: IoPersonOutline },
+        { to: '/auther/studentprofile', label: 'عرض الملف الشخصى', icon: IoPersonOutline },
         { to: '/auther/editprofile', label: 'الإعدادات والخصوصية', icon: MdOutlinePrivacyTip },
         { to: '/auther/favorites', label: 'المفضلة', icon: MdFavoriteBorder },
         { to: '/auther/myreservations', label: 'سجل الحجوزات', icon: GoHistory},
@@ -29,7 +29,7 @@ export default function SideBar({ onLinkClick }: SideBarProps) {
         { to: '/logout', label: 'تسجيل الخروج', icon: CiLogout },
       ]
     : [
-        { to: '/auther/profile', label: 'عرض الملف الشخصى', icon: IoPersonOutline },
+        { to: '/auther/ownerprofile', label: 'عرض الملف الشخصى', icon: IoPersonOutline },
         { to: '/auther/editprofile', label: 'الإعدادات والخصوصية', icon: MdOutlinePrivacyTip },
         { to: '/auther/my_real_estate', label: 'عقاراتي', icon: TbHomeCheck },
         { to: '/auther/reservation_requests_Owner', label: 'طلبات الحجز', icon: FaRegCalendarCheck },

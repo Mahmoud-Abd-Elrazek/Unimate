@@ -13,7 +13,6 @@ import SignOutCard from './components/SignOutCard/signoutCard';
 import Help from './pages/Help/help';
 import RoomDetails from './pages/RoomDetails/roomDetails';
 import ApartmentCard from './components/ApartmentCard/ApartmentCard';
-import Profile from './pages/User_Profile_Pages/Profile/profile';
 import AuthorLayout from './pages/User_Profile_Pages/AuthorLayout/authorLayout';
 import EditProfilepage from './pages/EditProfilePage/editProfilepage';
 import My_reservations from './pages/User_Profile_Pages/My_reservations/My_reservations';
@@ -49,6 +48,9 @@ import ConfirmEmail from './pages/Auth/Emails/confirmemail';
 import LogOut from './pages/Auth/LogOut/logout';
 import ConfirmEmail12 from './pages/Auth/Emails/confirmemail12';
 import PropertyManagement from './components/PropertyManagementSystem/PropertyManagement';
+import StudentProfile from './pages/User_Profile_Pages/Profile/studentprofile';
+import OwnerProfile from './pages/User_Profile_Pages/Profile/onwerProfile';
+import RedirectBasedOnRole from './RedirectBasedOnRole';
 export default function App() {
   const location = useLocation();
   const hideFooterRoutes = [
@@ -126,8 +128,9 @@ export default function App() {
 
         {/* Author Pages */}
         <Route path="/auther/*" element={<AuthorLayout />}>
-          <Route index element={<Navigate to="profile" replace />} />
-          <Route path="profile" element={<Profile />} />
+         <Route index element={<RedirectBasedOnRole />} />
+          <Route path="studentProfile" element={<StudentProfile />} />
+          <Route path="ownerProfile" element={<OwnerProfile />} />
           <Route path="favorites" element={<Favorites />} />
           <Route path="help" element={<Help />} />
           <Route path="editprofile" element={<EditProfilepage />} >
