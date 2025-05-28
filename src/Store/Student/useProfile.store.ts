@@ -22,6 +22,9 @@ interface ProfileState {
   country: string;
   phones: string;
   img: File | undefined;
+  anthorphone: string;
+  whatsappurl: string;
+  facebookurl: string;
   GetStudentInfo: () => void;
   DisplayUpdatedStudentinfo: () => void;
   DisplayAcadmic: () => void;
@@ -39,6 +42,13 @@ interface ProfileState {
     academicYear: string,
     karnihImage: string
   ) => Promise<void>;
+  UPdateStudentSocialInfo:
+    (
+      Phones: string,
+      AnthorPhone: string,
+      Whatsappurl: string,
+      Facebookurl: string
+    ) => Promise<void>;
 }
 
 const useProfileStore = create<ProfileState>()(
@@ -62,7 +72,9 @@ const useProfileStore = create<ProfileState>()(
       country: "",
       phones: "",
       img: undefined,
-
+      anthorphone: "",
+      whatsappurl: "",
+      facebookurl: "",
       GetStudentInfo: () => {
         const token = useAuthStore.getState().token;
         axios
@@ -201,6 +213,38 @@ const useProfileStore = create<ProfileState>()(
           console.log("this is an error in get acadmic info", error);
         }
       },
+       // update the social info of student
+            UPdateStudentSocialInfo: async (
+                Phones: string,
+                AnthorPhone: string,
+                Whatsappurl:string,
+                Facebookurl:string,
+            ) => {
+                try {
+                    const token = useAuthStore.getState().token;
+                  
+                    const response = await axios.post(
+                        "https://darkteam.runasp.net/ConnectionInfoSaveEndpoint/ConnectionSave",
+                        {
+                            phoneNum: Phones,
+                            anotherPhoneNum: AnthorPhone,
+                            whatAppLink:Whatsappurl,
+                            faceBookLink:Facebookurl
+                        },
+                        {
+                            headers: {
+                                Authorization: `Bearer ${token}`
+                            }
+                        }
+                    );
+                    console.log("Social info updated successfully:", response.data);
+                    // toast.success("Social info updated successfully");
+                } catch (error) {
+                    console.error("Error updating owner social info:", error);
+                    // toast.error("Failed to update social info");
+                }
+            },
+            //get the social info of student
     }),
     {
       name: "profile-storage",

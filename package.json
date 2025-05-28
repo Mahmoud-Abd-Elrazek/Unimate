@@ -29,6 +29,7 @@
     "class-variance-authority": "^0.7.1",
     "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.487.0",
+    "middleware": "^1.0.0",
     "rc-slider": "^11.1.8",
     "react": "19.1.0",
     "react-bootstrap": "^2.10.9",
@@ -44,7 +45,7 @@
     "tailwind-merge": "^3.2.0",
     "tailwind-scrollbar-hide": "^2.0.0",
     "zod": "^3.24.2",
-    "zustand": "^5.0.3"
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

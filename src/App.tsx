@@ -51,6 +51,7 @@ import PropertyManagement from './components/PropertyManagementSystem/PropertyMa
 import StudentProfile from './pages/User_Profile_Pages/Profile/studentprofile';
 import OwnerProfile from './pages/User_Profile_Pages/Profile/onwerProfile';
 import RedirectBasedOnRole from './RedirectBasedOnRole';
+import MainLayout from './mainLayout';
 export default function App() {
   const location = useLocation();
   const hideFooterRoutes = [
@@ -100,7 +101,8 @@ export default function App() {
     <>
       {!shouldHideNavbar && <NavBar />}
       <Routes>
-        <Route path="/" element={<Home />} />
+       <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
 
 
         {/* Auth */}
@@ -161,6 +163,7 @@ export default function App() {
 
         <Route path="/help" element={<Help />} />
         <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
 
       {!shouldHideFooter && <Footer />}

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import {  useEffect,useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../../../../public/animations.css";
 import z from 'zod';
@@ -53,7 +53,12 @@ export default function AccountSettings() {
     console.log(data);
     changePassword(data.oldPassword, data.newPassword, data.confirmPassword);
   };
-
+  const [email,setemail]=useState("")
+  // const email = useAuthStore((state) => state.email);
+  useEffect(()=>{
+    const email = useAuthStore.getState().email;
+    setemail(email)
+  }, [])
   return (
     <div dir="rtl" className="mx-auto p-6 fade-in">
       <div className="max-w-4xl mx-auto">
@@ -83,14 +88,14 @@ export default function AccountSettings() {
                 <input
                   disabled
                   type="email"
-                  defaultValue="mahmoudzanitty@gmail.com"
+                  defaultValue={email}
                   readOnly
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-400"
                 />
               </div>
             </div>
 
-            <div className="space-y-4">
+            {/* <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-1">الرقم القومي</label>
                 <input
@@ -102,7 +107,7 @@ export default function AccountSettings() {
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-400"
                 />
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Password Form */}
