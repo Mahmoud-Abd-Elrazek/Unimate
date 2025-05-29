@@ -133,7 +133,7 @@ export default function Edit_profile_information() {
                   placeholder="+20 1000000000"
                   defaultValue={phone}
                   onChange={(e) => setphone(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg  focus:outline-none focus:ring-2"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg  focus:outline-none focus:ring-2 dark:bg-secondary_BGD"
                 />
                 {errors.phone && (
                   <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
@@ -147,7 +147,7 @@ export default function Edit_profile_information() {
                   placeholder="+20 100000000000"
                   defaultValue={whatsappurl}
                   onChange={(e) => setwhatsappurl(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg  focus:outline-none focus:ring-2"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg  focus:outline-none focus:ring-2 dark:bg-secondary_BGD"
                 />
                 {errors.whatsappurl && (
                   <p className="text-red-500 text-xs mt-1">{errors.whatsappurl}</p>
@@ -167,7 +167,7 @@ export default function Edit_profile_information() {
                   placeholder="+20 1000000000"
                   defaultValue={anthorphone}
                   onChange={(e) => setanthorphone(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg  focus:outline-none focus:ring-2"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg  focus:outline-none focus:ring-2 dark:bg-secondary_BGD"
                 />
                 {errors.anthorphone && (
                   <p className="text-red-500 text-xs mt-1">{errors.anthorphone}</p>
@@ -181,7 +181,7 @@ export default function Edit_profile_information() {
                   placeholder="+20: 100000000000"
                   defaultValue={facebookurl}
                   onChange={(e) => setfacebookurl(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg  focus:outline-none focus:ring-2"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg  focus:outline-none focus:ring-2 dark:bg-secondary_BGD"
                 />
                 {errors.facebookurl && (
                   <p className="text-red-500 text-xs mt-1">{errors.facebookurl}</p>
