@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ImageUploadSection } from './ImageUploadSection';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { usePostsStore } from '../../../Store/Owner/posts.store';
 
 interface SectionState {
   kitchen: boolean;
@@ -19,19 +20,16 @@ export const ImageSection: React.FC = () => {
     additional: false,
   });
 
-  const [imagesBySection, setImagesBySection] = useState<{
-    kitchen: File[];
-    bathroom: File[];
-    livingRoom: File[];
-    entrance: File[];
-    additional: File[];
-  }>({
-    kitchen: [],
-    bathroom: [],
-    livingRoom: [],
-    entrance: [],
-    additional: [],
-  });
+  const {
+    setKitchenImage,
+    setBathroomImage,
+    setLivingRoomImage,
+    setOutsideImage,
+    kitchenImage,
+    bathroomImage,
+    livingRoomImage,
+    outsideImage
+  } = usePostsStore();
 
   const toggleSection = (section: keyof SectionState) => {
     setExpandedSections((prev) => ({
@@ -41,8 +39,11 @@ export const ImageSection: React.FC = () => {
   };
 
   const handleSave = () => {
-    console.log('كل الصور:', imagesBySection);
-    // تقدر تبعتهم لـ API هنا أو تستخدمهم في فورم أكبر
+    console.log("Kitchen Image:", kitchenImage);
+    console.log("Bathroom Image:", bathroomImage);
+    console.log("LivingRoom Image:", livingRoomImage);
+    console.log("Outside Image:", outsideImage);
+    alert("تم حفظ الصور في الستيت بنجاح!");
   };
 
   return (
@@ -53,15 +54,17 @@ export const ImageSection: React.FC = () => {
       </p>
 
       <div className="space-y-4 dark:bg-secondary_BGD ">
-        {[
-          { key: 'kitchen', label: 'صور المطبخ', desc: 'قم برفع حتى 3 صور للمطبخ' },
-          { key: 'bathroom', label: 'صور الحمام', desc: 'قم برفع حتى 3 صور للحمام' },
-          { key: 'livingRoom', label: 'صور الصالة', desc: 'قم برفع حتى 3 صور للصالة' },
-          { key: 'entrance', label: 'صور المدخل/الشارع الرئيسي', desc: 'قم برفع حتى 3 صور لمدخل العقار أو منظر الشارع' },
-          { key: 'additional', label: 'صور إضافية', desc: 'قم برفع حتى 3 صور إضافية للعقار' }
-        ].map((section) => (
+        {[{
+          key: 'kitchen', label: 'صور المطبخ', desc: 'قم برفع حتى 3 صور للمطبخ', setter: setKitchenImage
+        }, {
+          key: 'bathroom', label: 'صور الحمام', desc: 'قم برفع حتى 3 صور للحمام', setter: setBathroomImage
+        }, {
+          key: 'livingRoom', label: 'صور الصالة', desc: 'قم برفع حتى 3 صور للصالة', setter: setLivingRoomImage
+        }, {
+          key: 'entrance', label: 'صور المدخل/الشارع الرئيسي', desc: 'قم برفع حتى 3 صور لمدخل العقار أو منظر الشارع', setter: setOutsideImage
+        }].map((section) => (
           <div key={section.key} className="border border-gray-200 rounded-lg overflow-hidden">
-            <div 
+            <div
               className="bg-gray-50 px-4 py-3 flex justify-between items-center cursor-pointer hover:bg-gray-100 transition-colors dark:bg-primary_BGD dark:hover:bg-secondary_BGD"
               onClick={() => toggleSection(section.key as keyof SectionState)}
             >
@@ -70,16 +73,14 @@ export const ImageSection: React.FC = () => {
             </div>
             {expandedSections[section.key as keyof SectionState] && (
               <div className="p-4">
-                <ImageUploadSection 
+                <ImageUploadSection
                   title={section.label}
                   description={section.desc}
-                  maxImages={3}
-                  onImagesChange={(images) =>
-                    setImagesBySection((prev) => ({
-                      ...prev,
-                      [section.key]: images
-                    }))
-                  }
+                  maxImages={1} // use one image for backend compatibility
+                  onImagesChange={(images) => {
+                    const image = images[0] || null;
+                    section.setter(image);
+                  }}
                 />
               </div>
             )}

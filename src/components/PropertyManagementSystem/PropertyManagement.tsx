@@ -1,18 +1,20 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Layout } from './ui/Layout';
 import { PropertyForm } from './ui/PropertyForm';
 import { ImageSection } from './ui/ImageSection';
 import { RoomsList } from './ui/RoomsList';
 import { TabNavigation } from './ui/TabNavigation';
 import { ArrowLeft, ArrowRight, Save } from 'lucide-react';
+import { usePostsStore } from '../../Store/Owner/posts.store';
 
 type Mode = 'list' | 'add' | 'edit';
 
 function PropertyManagement() {
   const location = useLocation();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
+  const AddPost = usePostsStore((state) => state.AddPost);
   // استقبل القيمة من navigate
   const initialMode: Mode = location.state?.mode || 'list';
   const [mode, setMode] = useState<Mode>(initialMode);
@@ -25,9 +27,10 @@ function PropertyManagement() {
   ];
 
   const handleSave = () => {
+    AddPost();
     alert('تم حفظ معلومات العقار بنجاح!');
     setMode('list');
-    navigate('/');
+    // navigate('/');
   };
 
   return (
@@ -56,12 +59,12 @@ function PropertyManagement() {
 
         <div className="flex justify-between mt-8">
           <div className="flex gap-3">
-            <button
+            {/* <button
               onClick={() => navigate('/properties')} // رجوع لقائمة العقارات
               className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors"
             >
               إلغاء
-            </button>
+            </button> */}
             <button
               onClick={() => {
                 const currentIndex = tabs.findIndex(tab => tab.id === activeTab);
@@ -72,7 +75,7 @@ function PropertyManagement() {
               disabled={tabs.findIndex(tab => tab.id === activeTab) === 0}
               className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              <ArrowLeft size={16} />
+              <ArrowRight size={16} />
               السابق
             </button>
           </div>
@@ -80,6 +83,7 @@ function PropertyManagement() {
           <div className="flex gap-3">
             <button
               onClick={handleSave}
+              disabled={mode === 'list'}
               className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors"
             >
               <Save size={16} />
@@ -97,7 +101,7 @@ function PropertyManagement() {
               className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               التالي
-              <ArrowRight size={16} />
+              <ArrowLeft size={16} />
             </button>
           </div>
         </div>

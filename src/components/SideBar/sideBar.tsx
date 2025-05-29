@@ -1,9 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
 import { IoPersonOutline } from 'react-icons/io5';
 import { CiLogout } from 'react-icons/ci';
-import { BiCommentDetail } from 'react-icons/bi';
+// import { BiCommentDetail } from 'react-icons/bi';
 import {
-  MdAttachMoney,
+  // MdAttachMoney,
   MdFavoriteBorder,
   MdHelpOutline,
   MdManageAccounts,
@@ -29,7 +29,7 @@ export default function SideBar({ onLinkClick }: SideBarProps) {
       { to: '/auther/editprofile', label: 'الإعدادات والخصوصية', icon: MdOutlinePrivacyTip },
       { to: '/auther/favorites', label: 'المفضلة', icon: MdFavoriteBorder },
       { to: '/auther/myreservations', label: 'سجل الحجوزات', icon: GoHistory },
-      { to: '/auther/personalreviews', label: 'المراجعات والتقييمات', icon: BiCommentDetail },
+      // { to: '/auther/personalreviews', label: 'المراجعات والتقييمات', icon: BiCommentDetail },
       { to: '/logout', label: 'تسجيل الخروج', icon: CiLogout },
     ]
     : [
@@ -38,8 +38,8 @@ export default function SideBar({ onLinkClick }: SideBarProps) {
       { to: '/auther/my_real_estate', label: 'عقاراتي', icon: TbHomeCheck },
       { to: '/auther/reservation_requests_Owner', label: 'طلبات الحجز', icon: FaRegCalendarCheck },
       { to: '/auther/myreservations', label: 'إدارة الحجوزات', icon: MdManageAccounts },
-      { to: '/auther/my_money_transactions', label: 'المعاملات المالية', icon: MdAttachMoney },
-      { to: '/auther/personalreviews', label: 'المراجعات والتقييمات', icon: BiCommentDetail },
+      // { to: '/auther/my_money_transactions', label: 'المعاملات المالية', icon: MdAttachMoney },
+      // { to: '/auther/personalreviews', label: 'المراجعات والتقييمات', icon: BiCommentDetail },
       { to: '/auther/help', label: 'المساعدة', icon: MdHelpOutline },
       { to: '/logout', label: 'تسجيل الخروج', icon: CiLogout },
     ];

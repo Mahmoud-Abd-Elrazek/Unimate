@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
-import { Room } from './RoomsList';
+// Define Room interface here if not exported from './RoomsList'
+export interface Room {
+  id: string;
+  description: string;
+  capacity: number;
+  bedPrice: number;
+  hasAC: boolean;
+  imageUrl?: string;
+}
+// import { Room } from './RoomsList'; // Uncomment this and remove the above if Room is exported from './RoomsList'
 import { Pencil, Trash2, X, Check } from 'lucide-react';
-import { ImageUpload } from './ImageUpload'; // تأكد من مسار الاستيراد الصحيح
+import { ImageUpload } from './ImageUpload';
 
 interface RoomCardProps {
   room: Room;
@@ -51,7 +60,7 @@ export const RoomCard: React.FC<RoomCardProps> = ({ room, onUpdate, onDelete }) 
       <div className="relative">
         {isEditing ? (
           <ImageUpload
-            imageUrl={editedRoom.imageUrl}
+            imageUrl={editedRoom.imageUrl ?? ""}
             onChange={handleImageChange}
             index={1}
           />
