@@ -6,6 +6,7 @@ import { LuFilter } from "react-icons/lu";
 import Dropdown from 'react-bootstrap/Dropdown';
 import Modal from 'react-bootstrap/Modal';
 import useApartmentData from "../../Store/DataApartment/useApartmentData.store";
+import { Trash2 } from 'lucide-react';
 
 const filterOptions: { [key: string]: string[] } = {
   "عدد الأفراد": ["1 فرد", "2 فردين", "3 أفراد", "4 أفراد أو أكثر"],
@@ -55,7 +56,7 @@ const FilterBar: React.FC = () => {
   const handleSelect = (filterName: string, value: string) => {
     setSelectedFilters(prev => ({ ...prev, [filterName]: value }));
   };
-
+  const setIsSearching = useApartmentData(state => state.setIsSearching)
   useEffect(() => {
     // const value = selectedFilters["المنطقة"];
     // console.log("selectedFilters['المنطقة']:", value); // Debug
@@ -70,17 +71,17 @@ const FilterBar: React.FC = () => {
     if (selectedFilters["النوع"]) {
       setGender(selectedFilters["النوع"] === "ولاد" ? 1 : 2);
     }
- const rawValue = selectedFilters["المنطقة"];
-  // console.log("Selected location value:", rawValue);
+    const rawValue = selectedFilters["المنطقة"];
+    // console.log("Selected location value:", rawValue);
 
-  if (typeof rawValue === "string") {
-    const selectedLocation = locations.find(
-      loc => loc.value.trim() === rawValue.trim()
-    );
-    setLocation(selectedLocation ? selectedLocation.id : null);
-  } else {
-    setLocation(null);
-  }
+    if (typeof rawValue === "string") {
+      const selectedLocation = locations.find(
+        loc => loc.value.trim() === rawValue.trim()
+      );
+      setLocation(selectedLocation ? selectedLocation.id : null);
+    } else {
+      setLocation(null);
+    }
   }, [selectedFilters]);
 
   const applyFilters = () => {
@@ -95,7 +96,7 @@ const FilterBar: React.FC = () => {
       location,
       gender
     });
-    fetchByEveryThing(fromprice, toprice, capacity, location??0 , gender);
+    fetchByEveryThing(fromprice, toprice, capacity, location ?? 0, gender);
 
     setShowModal(false);
   };
@@ -103,7 +104,7 @@ const FilterBar: React.FC = () => {
   return (
     <>
       {/* زر الفلتر للموبايل */}
-      <div className="md:hidden flex flex-col justify-end mb-4 items-center gap-1">
+      <div className="md:hidden flex  justify-end mb-4 items-center gap-1" dir='rtl'>
         <button
           onClick={() => setShowModal(true)}
           className="px-4 py-2 bg-red-500 text-white rounded-full flex items-center justify-center shadow-md"
@@ -111,12 +112,38 @@ const FilterBar: React.FC = () => {
           <p>فلتر نتائجك</p>
           <LuFilter className="text-lg ml-2" />
         </button>
-        <span className='text-[12px] text-[#777]'>اضغط للبدأ</span>
+        <button
+          onClick={() => {
+            setSelectedFilters({});
+            setIsSearching(false);
+          }}
+          className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-black rounded hover:bg-gray-300 transition-all"
+        >
+          {/* Desktop text */}
+          <span className="">Clear Filters</span>
+
+          {/* Mobile icon */}
+          <Trash2 className="sm:hidden w-5 h-5" />
+        </button>
+        {/* <span className='text-[12px] text-[#777]'>اضغط للبدأ</span> */}
       </div>
 
       {/* الفلاتر لسطح المكتب */}
       <div className="hidden md:flex w-full rounded-xl p-4 shadow-sm flex-col md:flex-col-reverse md:items-center md:justify-between gap-4 lg:flex-row dark:bg-secondary_BGD">
         <div className="w-full md:w-auto flex justify-center md:justify-start">
+          <button
+            onClick={() => {
+              setSelectedFilters({});
+              setIsSearching(false);
+            }}
+            className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-black rounded hover:bg-gray-300 transition-all"
+          >
+            {/* Desktop text */}
+            <span className="hidden sm:inline">Clear Filters</span>
+
+            {/* Mobile icon */}
+            <Trash2 className="sm:hidden w-5 h-5" />
+          </button>
           <div className="rounded-full w-10 h-10 bg-red-500 flex items-center justify-center" onClick={applyFilters}>
             <IoIosSearch className="text-white text-xl" />
           </div>
@@ -269,6 +296,7 @@ const FilterBar: React.FC = () => {
           >
             فلتر نتائجك الآن
           </button>
+
         </div>
       </Modal>
     </>
