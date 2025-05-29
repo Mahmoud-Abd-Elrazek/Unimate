@@ -100,7 +100,7 @@ export default function AccountSettings() {
                   type="email"
                   defaultValue={email}
                   readOnly
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-400"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-400 dark:bg-secondary_BGD dark:text-secondary_TXD" 
                 />
               </div>
             </div>
@@ -130,7 +130,7 @@ export default function AccountSettings() {
                 dir="rtl"
                 type={showOld ? "text" : "password"}
                 id="oldPassword"
-                className="InputStyle w-full pr-10"
+                className="InputStyle w-full pr-10 dark:bg-secondary_BGD"
                 placeholder="كلمة المرور القديمة"
                 {...register("oldPassword")}
               />
@@ -150,7 +150,7 @@ export default function AccountSettings() {
                 dir="rtl"
                 type={showNew ? "text" : "password"}
                 id="newPassword"
-                className="InputStyle w-full pr-10"
+                className="InputStyle w-full pr-10 dark:bg-secondary_BGD"
                 placeholder="كلمة المرور الجديدة"
                 {...register("newPassword")}
               />
@@ -170,7 +170,7 @@ export default function AccountSettings() {
                 dir="rtl"
                 type={showConfirm ? "text" : "password"}
                 id="confirmPassword"
-                className="InputStyle pr-10"
+                className="InputStyle pr-10 dark:bg-secondary_BGD"
                 placeholder="تأكيد كلمة المرور"
                 {...register("confirmPassword")}
               />
