@@ -11,7 +11,7 @@ const ChatbotIframe = () => {
       {/* زر التحكم */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 right-4 z-[99] w-14 h-14 rounded-full text-2xl flex items-center justify-center shadow-2xl bg-white border transition duration-300 hover:scale-110"
+        className="fixed bottom-4 right-4 z-[99] w-14 h-14 rounded-full text-2xl flex items-center justify-center shadow-lg bg-[#f8fafc] border transition duration-300 hover:scale-110 hover:bg-white"
         aria-label="Toggle Chatbot"
       >
         {isOpen ? <IoIosArrowDown size={30} className="text-[#e2606d]"/> : <TbMessageChatbot className="text-[#e2606d]" size={30}/>}

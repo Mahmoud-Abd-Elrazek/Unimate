@@ -43,14 +43,13 @@ function HeroSection() {
             </p>
 
             {/* Search & button */}
-            <div className=" p-4 rounded-lg max-w-3xl flex flex-col md:flex-row gap-4">
-              {/* button show more */}
+            {/* <div className=" p-4 rounded-lg max-w-3xl flex flex-col md:flex-row gap-4">
               <div className='flex items-center justify-center mt-10'>
                 <a href="#RoomSection" className='text-center flex justify-center items-center flex-col MainColorBG rounded-full w-[300px] h-[3rem] text-white'> 
                   تصفح الان
                 </a>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

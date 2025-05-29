@@ -45,11 +45,11 @@ export default function Home() {
           <CreatPostButton />
         </div>
       )}
-        <div className="block md:hidden">
-          <ChatBot />
-        </div>
 
       <HeroSection />
+      <div className="block">
+        <ChatBot />
+      </div>
 
       <section
         id='filter-bar-section'
