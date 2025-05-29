@@ -4,6 +4,7 @@ import useProfileStore from '../../../Store/Student/useProfile.store';
 import { Link } from 'react-router-dom';
 import useAuthStore from "../../../Store/Auth/Auth.store";
 import { useprofileOwnerStore } from "../../../Store/Owner/useprofileOwner.store";
+import { FaUser } from "react-icons/fa";
 
 export default function EditProfileInformation() {
   const Role = useAuthStore((state) => state.role);
@@ -16,32 +17,35 @@ export default function EditProfileInformation() {
   const [gov, setGov] = useState("");
   const [add, setAdd] = useState("");
   const [brief, setBrief] = useState("");
+  const [, setImage] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+
 
   const [errors, setErrors] = useState<{ gov?: string; brief?: string; firstname?: string; lastname?: string }>({});
 
- useEffect(() => {
-  const loadData = async () => {
-    if (Role === "Owner") {
-      await ownerStore.DisplayUpdatedOwnerInfo();
-      const { fname, lname, governomet, address, briefOverView } = useprofileOwnerStore.getState();
-      setFirstname(fname || "");
-      setLastname(lname || "");
-      setGov(governomet || "");
-      setAdd(address || "");
-      setBrief(briefOverView || "");
-    } else {
-      await studentStore.DisplayUpdatedStudentinfo();
-      const { fname, lname, governorate, address, briefOverView } = useProfileStore.getState();
-      setFirstname(fname || "");
-      setLastname(lname || "");
-      setGov(governorate || "");
-      setAdd(address || "");
-      setBrief(briefOverView || "");
-    }
-  };
+  useEffect(() => {
+    const loadData = async () => {
+      if (Role === "Owner") {
+        await ownerStore.DisplayUpdatedOwnerInfo();
+        const { fname, lname, governomet, address, briefOverView } = useprofileOwnerStore.getState();
+        setFirstname(fname || "");
+        setLastname(lname || "");
+        setGov(governomet || "");
+        setAdd(address || "");
+        setBrief(briefOverView || "");
+      } else {
+        await studentStore.DisplayUpdatedStudentinfo();
+        const { fname, lname, governorate, address, briefOverView } = useProfileStore.getState();
+        setFirstname(fname || "");
+        setLastname(lname || "");
+        setGov(governorate || "");
+        setAdd(address || "");
+        setBrief(briefOverView || "");
+      }
+    };
 
-  loadData();
-}, [Role]);
+    loadData();
+  }, [Role]);
 
 
 
@@ -96,6 +100,53 @@ export default function EditProfileInformation() {
           </button>
         </div>
 
+        <div className="flex flex-col items-center mb-6">
+          <div
+            className="relative w-32 h-32 cursor-pointer"
+            onClick={() => document.getElementById("image-upload")?.click()}
+          >
+            {preview ? (
+              <>
+                <img
+                  src={preview}
+                  className="w-full h-full object-cover rounded-full border-4 border-gray-300 dark:border-gray-600"
+                />
+                {/* زر الحذف */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // يمنع فتح نافذة اختيار الصورة عند الضغط على الحذف
+                    setImage(null);
+                    setPreview(null);
+                  }}
+                  className="absolute top-0 left-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center shadow-md hover:bg-red-600"
+                  title="حذف الصورة"
+                >
+                  &times;
+                </button>
+              </>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 rounded-full border-4 border-gray-300 dark:border-gray-600">
+                <FaUser className="text-gray-500 dark:text-gray-300 text-4xl" />
+              </div>
+            )}
+
+            <input
+              id="image-upload"
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  setImage(file);
+                  setPreview(URL.createObjectURL(file));
+                }
+              }}
+            />
+          </div>
+        </div>
+
+
         <form onSubmit={handleSave} className="rounded-lg sm:p-6 shadow-sm">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
@@ -105,7 +156,7 @@ export default function EditProfileInformation() {
                   type="text"
                   value={firstname}
                   onChange={(e) => setFirstname(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 dark:bg-secondary_BGD"
                 />
                 {errors.firstname && <p className="text-red-500 text-xs mt-1">{errors.firstname}</p>}
               </div>
@@ -116,7 +167,7 @@ export default function EditProfileInformation() {
                   placeholder="الوشاش / الدرب"
                   value={add}
                   onChange={(e) => setAdd(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 dark:bg-secondary_BGD"
                 />
               </div>
             </div>
@@ -128,7 +179,7 @@ export default function EditProfileInformation() {
                   type="text"
                   value={lastname}
                   onChange={(e) => setLastname(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 dark:bg-secondary_BGD"
                 />
                 {errors.lastname && <p className="text-red-500 text-xs mt-1">{errors.lastname}</p>}
               </div>
@@ -138,7 +189,7 @@ export default function EditProfileInformation() {
                   type="text"
                   value={gov}
                   onChange={(e) => setGov(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 dark:bg-secondary_BGD"
                 />
                 {errors.gov && <p className="text-red-500 text-xs mt-1">{errors.gov}</p>}
               </div>
@@ -148,7 +199,7 @@ export default function EditProfileInformation() {
           <div className="mt-6">
             <label className="block text-sm font-medium mb-1">نبذة مختصرة</label>
             <textarea
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg dark:bg-[#171515] focus:outline-none focus:ring-2"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg dark:bg-secondary_BGD focus:outline-none focus:ring-2"
               rows={4}
               placeholder="نبذة مختصرة عنك (مثلاً: اهتماماتك، المهارات)"
               value={brief}
