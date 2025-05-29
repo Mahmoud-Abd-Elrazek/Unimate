@@ -1,5 +1,5 @@
 import "../../../../public/animations.css";
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useProfileStore from '../../../Store/Student/useProfile.store';
 import { Link } from 'react-router-dom';
 import useAuthStore from "../../../Store/Auth/Auth.store";
@@ -19,7 +19,7 @@ export default function EditProfileInformation() {
   const [brief, setBrief] = useState("");
   const [, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
-
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [errors, setErrors] = useState<{ gov?: string; brief?: string; firstname?: string; lastname?: string }>({});
 
@@ -46,8 +46,6 @@ export default function EditProfileInformation() {
 
     loadData();
   }, [Role]);
-
-
 
   const validate = () => {
     const errors: { gov?: string; brief?: string; firstname?: string; lastname?: string } = {};
@@ -103,7 +101,7 @@ export default function EditProfileInformation() {
         <div className="flex flex-col items-center mb-6">
           <div
             className="relative w-32 h-32 cursor-pointer"
-            onClick={() => document.getElementById("image-upload")?.click()}
+            onClick={() => inputRef.current?.click()}
           >
             {preview ? (
               <>
@@ -111,12 +109,12 @@ export default function EditProfileInformation() {
                   src={preview}
                   className="w-full h-full object-cover rounded-full border-4 border-gray-300 dark:border-gray-600"
                 />
-                {/* زر الحذف */}
                 <button
                   onClick={(e) => {
-                    e.stopPropagation(); // يمنع فتح نافذة اختيار الصورة عند الضغط على الحذف
+                    e.stopPropagation();
                     setImage(null);
                     setPreview(null);
+                    if (inputRef.current) inputRef.current.value = ""; // تفريغ input
                   }}
                   className="absolute top-0 left-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center shadow-md hover:bg-red-600"
                   title="حذف الصورة"
@@ -131,6 +129,7 @@ export default function EditProfileInformation() {
             )}
 
             <input
+              ref={inputRef}
               id="image-upload"
               type="file"
               accept="image/*"
@@ -145,7 +144,6 @@ export default function EditProfileInformation() {
             />
           </div>
         </div>
-
 
         <form onSubmit={handleSave} className="rounded-lg sm:p-6 shadow-sm">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
