@@ -6,15 +6,34 @@ import useAuthStore from '../../../Store/Auth/Auth.store';
 
 export default function AccountSettings() {
   const { AddAcadmicInfo, DisplayAcadmic } = useProfileStore();
-  const { university, department, faculty, academicYear } = useProfileStore();
+  const Role = useAuthStore((state) => state.role);
 
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
-  const [uni, setuni] = useState(university || "");
-  const [dep, setdep] = useState(department || "");
-  const [facul, setfacul] = useState(faculty || "");
-  const [acYear, setacYear] = useState(academicYear || "");
+  const [uni, setuni] = useState("");
+  const [dep, setdep] = useState("");
+  const [facul, setfacul] = useState("");
+  const [acYear, setacYear] = useState("");
+
+  useEffect(() => {
+    const loadData = async () => {
+      await DisplayAcadmic();
+      const {
+        university,
+        department,
+        faculty,
+        academicYear,
+      } = useProfileStore.getState();
+
+      setuni(university || "");
+      setdep(department || "");
+      setfacul(faculty || "");
+      setacYear(academicYear || "");
+    };
+
+    loadData();
+  }, []);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -39,16 +58,7 @@ export default function AccountSettings() {
       karnihImage = await convertToBase64(selectedImage);
     }
     AddAcadmicInfo(uni, dep, facul, acYear, karnihImage);
-    setuni(uni);
-    setdep(dep);
-    setfacul(facul);
-    setacYear(acYear);
   };
-
-  useEffect(() => {
-    DisplayAcadmic();
-  }, []);
-  const Role=useAuthStore((state) => state.role);
 
   return (
     <div dir="rtl" className="container mx-auto px-4 py-6 fade-in">
@@ -70,7 +80,7 @@ export default function AccountSettings() {
         </div>
 
         {/* Form */}
-        <div className="rounded-lg p-4 md:p-6 shadow-sm  ">
+        <div className="rounded-lg p-4 md:p-6 shadow-sm">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* First Column */}
             <div className="space-y-4">
@@ -142,24 +152,24 @@ export default function AccountSettings() {
 
           {/* Back Button */}
           <div className="my-6 flex justify-end">
-          {Role === "Owner" ? (
-            <Link to="/auther/ownerprofile">
-              <button className="flex items-center gap-2 bg-[#4F4F4F] text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
-                <svg className="w-5 h-5 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-                <span>الرجوع إلى الصفحه الرئيسة</span>
-              </button>
-            </Link>):
-            (
+            {Role === "Owner" ? (
+              <Link to="/auther/ownerprofile">
+                <button className="flex items-center gap-2 bg-[#4F4F4F] text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+                  <svg className="w-5 h-5 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  <span>الرجوع إلى الصفحه الرئيسة</span>
+                </button>
+              </Link>
+            ) : (
               <Link to="/auther/studentprofile">
-              <button className="flex items-center gap-2 bg-[#4F4F4F] text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
-                <svg className="w-5 h-5 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-                <span>الرجوع إلى الصفحه الرئيسة</span>
-              </button>
-            </Link>
+                <button className="flex items-center gap-2 bg-[#4F4F4F] text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+                  <svg className="w-5 h-5 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  <span>الرجوع إلى الصفحه الرئيسة</span>
+                </button>
+              </Link>
             )}
           </div>
         </div>

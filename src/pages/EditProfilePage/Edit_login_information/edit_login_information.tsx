@@ -6,6 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import useAuthStore from '../../../Store/Auth/Auth.store';
+import useProfileStore from '../../../Store/Student/useProfile.store';
+import { useprofileOwnerStore } from '../../../Store/Owner/useprofileOwner.store';
 
 const passwordSchema = z.object({
   oldPassword: z.string()
@@ -54,11 +56,19 @@ export default function AccountSettings() {
     changePassword(data.oldPassword, data.newPassword, data.confirmPassword);
   };
   const [email,setemail]=useState("")
-  // const email = useAuthStore((state) => state.email);
-  useEffect(()=>{
-    const email = useAuthStore.getState().email;
-    setemail(email)
-  }, [])
+  const {email:studentemail, GetStudentInfo} =useProfileStore()
+  const {email:owneremail,getOwnerInfo} = useprofileOwnerStore();
+  
+
+  useEffect(() => {
+    if (Role === "Owner") {
+      getOwnerInfo();
+      setemail(owneremail);
+    } else {
+      GetStudentInfo();
+      setemail(studentemail);
+    }
+  },[Role]);
   return (
     <div dir="rtl" className="mx-auto p-6 fade-in">
       <div className="max-w-4xl mx-auto">
@@ -183,7 +193,7 @@ export default function AccountSettings() {
                 <svg className="w-5 h-5 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
-                <span>الرجوع إلى الصفحه الرئيسة</span>
+                <span>الرجوع إلى الصفحة الرئيسية</span>
               </button>
             </Link>):
             (
@@ -192,7 +202,7 @@ export default function AccountSettings() {
                 <svg className="w-5 h-5 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
-                <span>الرجوع إلى الصفحه الرئيسة</span>
+                <span>الرجوع إلى الصفحة الرئيسية</span>
               </button>
             </Link>
             )}
