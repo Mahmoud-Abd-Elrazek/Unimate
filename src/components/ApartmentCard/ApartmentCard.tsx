@@ -64,7 +64,6 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
 
     const trimmed = floorRaw.trim();
 
-    // هل محاطة بعلامات اقتباس مزدوجة؟ مثال: "\"2nd\""
     const isProbablyJSON = trimmed.startsWith('"') && trimmed.endsWith('"');
 
     if (isProbablyJSON) {
@@ -83,6 +82,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
     const map: Record<string, string> = {
       "1st": "الأول",
       "2nd": "الثاني",
+      "second": "الثاني",
       "3rd": "الثالث",
       "4th": "الرابع",
       "5th": "الخامس",
@@ -116,7 +116,6 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
   useEffect(() => {
     console.log("data form card not room details" + data)
   })
-
   return (
     <div
       className={`

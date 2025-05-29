@@ -132,7 +132,7 @@ export const PropertyForm: React.FC = () => {
                     type="radio"
                     name="gender"
                     value={gender.key}
-                    checked={GenderAcceptance === gender.key}
+                    // checked={GenderAcceptance === gender.key}
                     onChange={(e) => setGenderAcceptance(e.target.value)}
                   />
                   {gender.value}
