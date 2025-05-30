@@ -1,20 +1,62 @@
-import { useState} from "react";
+import { useState, useEffect } from "react";
 import { LuSend } from "react-icons/lu";
+// import ApartmentCard from "../../components/ApartmentCard/ApartmentCard";
 
-export default function CommentSection() {
+interface CommentSectionProps {
+  apartmentId: number; // or number, depending on your data model
+}
+
+export default function CommentSection({ apartmentId }: CommentSectionProps) {
   const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleAddComment = () => {
-    if (!comment.trim()) return;
-    setIsSubmitting(true);
-    // هنا ممكن تضيف منطق إرسال التعليق للخادم أو أي حاجة
-    setTimeout(() => {
-      alert(`تم إضافة التعليق: ${comment}`);
-      setComment("");
-      setIsSubmitting(false);
-    }, 1000);
+  const fetchComments = async (apartmentId: number) => {
+    const response = await fetch(`https://darkteam.runasp.net/GetCommentsEndpoint/GetComments?apartmentId=${apartmentId}`);
+    const data = await response.json();
+    setComments(data);
+    console.log(comments)
   };
+
+  useEffect(() => {
+    fetchComments(apartmentId);
+  }, [apartmentId]);
+
+  const handleAddComment = async (apartmentId: number) => {
+    if (!comment.trim()) return;
+
+    const token = localStorage.getItem('token');
+
+    try {
+      setIsSubmitting(true);
+      const response = await fetch('https://darkteam.runasp.net/AddCommentEndpoint/AddComment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          "message": comment,
+          "apartmentId": apartmentId
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('فشل في إرسال التعليق');
+      }
+      // const result = await response.json();
+      // console.log('تم إضافة التعليق:', result);
+      setComment('');
+      await fetchComments(apartmentId);
+
+    } catch (error) {
+      console.error('حدث خطأ أثناء إرسال التعليق:', error);
+    }
+    finally {
+      setIsSubmitting(false);
+    }
+  };
+
 
   return (
     <div className="mb-6">
@@ -47,7 +89,8 @@ export default function CommentSection() {
         disabled={isSubmitting}
       />
       <button
-        onClick={handleAddComment}
+        // onClick={handleAddComment}
+        onClick={() => handleAddComment(apartmentId)}
         disabled={isSubmitting || !comment.trim()}
         className="
           inline-flex

@@ -23,8 +23,8 @@ export const RoomsList: React.FC = () => {
       </div>
 
       {Rooms.length === 0 ? (
-        <div className="text-center py-10 bg-gray-50 rounded-lg border border-dashed border-gray-300">
-          <p className="text-gray-500">لم يتم إضافة غرف بعد. أضف أول غرفة!</p>
+        <div className="text-center py-10 bg-gray-50 rounded-lg border border-dashed border-gray-300 dark:bg-secondary_BGD">
+          <p className="text-gray-500 dark:text-secondary_TXD">لم يتم إضافة غرف بعد. أضف أول غرفة!</p>
           <button
             onClick={addRoom}
             className="mt-4 flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-md transition-colors mx-auto"

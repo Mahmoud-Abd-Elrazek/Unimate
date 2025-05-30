@@ -482,7 +482,7 @@ export default function RoomDetails() {
         </div> */}
           {/* Comment Box */}
           <div className="pb-3 max-w-4xl" dir="rtl">
-            <CommentSection />
+            <CommentSection apartmentId={data.apartmentDTO.id}/>
           </div>
           <div className="py-4 border-b border-t max-w-4xl overflow-y-auto max-h-96 custom-scrollbar" dir="ltr">
             <div dir="rtl" className="flex flex-col gap-2">
