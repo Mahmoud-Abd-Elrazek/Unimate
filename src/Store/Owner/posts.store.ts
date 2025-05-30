@@ -162,8 +162,8 @@ export const usePostsStore = create<PostsState>()(
 
           // 🟦 إرسال الخدمات باستخدام selectedServiceIds
           selectedServiceIds.forEach((id, index) => {
-            formData.append(`CategoryFacilities[${index}].FacilityId`, id.toString());
             formData.append(`CategoryFacilities[${index}].IsSelected`, 'true');
+            formData.append(`CategoryFacilities[${index}].FacilityId`, id.toString());
           });
 
           // 🟨 الصور العامة
@@ -177,8 +177,9 @@ export const usePostsStore = create<PostsState>()(
             formData,
             {
               headers: {
-                'Content-Type': 'multipart/form-data',
+                // 'Content-Type': 'multipart/form-data',
                 Authorization: `Bearer ${useAuthStore.getState().token}`,
+                Accept: 'application/json',
               },
             }
           );
