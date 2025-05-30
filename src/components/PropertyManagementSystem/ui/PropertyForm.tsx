@@ -74,7 +74,7 @@ useEffect(()=>{
           <textarea
             value={Description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full p-2 border rounded-md"
+            className="w-full p-2 border rounded-md dark:bg-secondary_BGD dark:text-secondary_TXD"
           />
         </div>
 
@@ -83,7 +83,7 @@ useEffect(()=>{
           <textarea
             value={DescribeLocation}
             onChange={(e) => setDescribeLocation(e.target.value)}
-            className="w-full p-2 border rounded-md"
+            className="w-full p-2 border rounded-md dark:bg-secondary_BGD dark:text-secondary_TXD"
           />
         </div>
 
@@ -92,8 +92,13 @@ useEffect(()=>{
             <label className="block mb-1">المنطقة</label>
             <select
               value={Location}
+<<<<<<< HEAD
               onChange={(e) => setLocation(Number(e.target.value))}
               className="w-full p-2 border rounded-md"
+=======
+              onChange={(e) => setLocation(e.target.value)}
+              className="w-full p-2 border rounded-md dark:bg-secondary_BGD dark:text-secondary_TXD"
+>>>>>>> 226863831a852d48edd32ddf593de0952788db40
             >
               <option value="">اختر منطقة</option>
               {areas.map((area) => (
@@ -111,7 +116,7 @@ useEffect(()=>{
               min={0}
               value={Floor || ''}
               onChange={(e) => setFloor(e.target.value)}
-              className="w-full p-2 border rounded-md"
+              className="w-full p-2 border rounded-md dark:bg-secondary_BGD dark:text-secondary_TXD"
             />
           </div>
         </div>
@@ -124,7 +129,7 @@ useEffect(()=>{
               min={1}
               value={Capecity || ''}
               onChange={(e) => setCapecity(Number(e.target.value))}
-              className="w-full p-2 border rounded-md"
+              className="w-full p-2 border rounded-md dark:bg-secondary_BGD dark:text-secondary_TXD"
             />
           </div>
 

@@ -71,7 +71,7 @@ export default function Home() {
         </div>
       </section>
 
-      {isSearching ? (
+      {/* {isSearching ? (
         <div id="RoomSection">
           <h1 className="text-center text-xl font-semibold my-4">نتائج البحث</h1>
           <ApartmentGrid apartments={apartments} />
@@ -80,7 +80,7 @@ export default function Home() {
         <div className="flex justify-center items-center py-10 h-[50vh]">
           <div className="loading"></div>
         </div>
-      ) : (
+      ) : () */}
         <div id="RoomSection" className="pl-[24px] pr-[24px]">
           <div>
             <h1 className="flex justify-end items-center mt-5 mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl">
@@ -99,7 +99,7 @@ export default function Home() {
             <div className='flex items-center justify-center mt-10'>
               {newApartments.length < totalCount ? (
                 <button
-                  onClick={() => setPageSize(prev => prev + 12)}
+                  onClick={() => setPageSize(prev => prev + 3)}
                   disabled={isLoading}
                   className={`
                     text-center rounded-full
@@ -127,7 +127,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      )}
+      
       <ToastContainer position="top-center" autoClose={3000} transition={Slide} />
     </div>
   );

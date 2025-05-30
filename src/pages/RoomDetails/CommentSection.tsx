@@ -1,28 +1,72 @@
-import { useState} from "react";
+import { useState } from "react";
+// import { useEffect } from "react";
 import { LuSend } from "react-icons/lu";
+// import ApartmentCard from "../../components/ApartmentCard/ApartmentCard";
+import { MdModeComment } from "react-icons/md";
+import { toast } from 'react-toastify';
+import { ToastContainer, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function CommentSection() {
+interface CommentSectionProps {
+  apartmentId: number; // or number, depending on your data model
+}
+
+export default function CommentSection({ apartmentId }: CommentSectionProps) {
   const [comment, setComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleAddComment = () => {
+  const handleAddComment = async (apartmentId: number) => {
     if (!comment.trim()) return;
-    setIsSubmitting(true);
-    // هنا ممكن تضيف منطق إرسال التعليق للخادم أو أي حاجة
-    setTimeout(() => {
-      alert(`تم إضافة التعليق: ${comment}`);
-      setComment("");
+    const token = localStorage.getItem('token');
+    try {
+      setIsSubmitting(true);
+      const response = await fetch('https://darkteam.runasp.net/AddCommentEndpoint/AddComment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          "message": comment,
+          "apartmentId": apartmentId
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('فشل في إرسال التعليق');
+      }
+      const result = await response.json();
+      console.log('تم إضافة التعليق:', result);
+      toast.success('تم إضافة تعليقك بنجاح!');
+      setComment('');
+      // await fetchComments(apartmentId);
+      // window.location.reload();
+
+    } catch (error) {
+      toast.error('حدث خطأ أثناء إرسال التعليق');
+      console.error('حدث خطأ أثناء إرسال التعليق:', error);
+    }
+    finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
+  if (!localStorage.getItem('token')) {
+    return null;
+  }
+
   return (
-    <div className="mb-6">
-      <textarea
-        placeholder="اكتب تعليق عن هذا العقار"
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-        className="
+    <div dir="rtl" className="w-full">
+      <h2 className="flex items-center gap-2 text-lg py-3 font-semibold mt-5 mb-2">
+        <MdModeComment />
+        التعليقات 
+      </h2>
+      <div className="mb-6">
+        <textarea
+          placeholder="اكتب تعليق عن هذا العقار"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          className="
           text-right
           flex
           min-h-[80px]
@@ -44,12 +88,13 @@ export default function CommentSection() {
           dark:bg-secondary_BGD
           mb-2
         "
-        disabled={isSubmitting}
-      />
-      <button
-        onClick={handleAddComment}
-        disabled={isSubmitting || !comment.trim()}
-        className="
+          disabled={isSubmitting}
+        />
+        <button
+          // onClick={handleAddComment}
+          onClick={() => handleAddComment(apartmentId)}
+          disabled={isSubmitting || !comment.trim()}
+          className="
           inline-flex
           items-center
           justify-center
@@ -73,10 +118,18 @@ export default function CommentSection() {
           px-4
           py-2
         "
-      >
-        <LuSend size={18} />
-        اضافه تعليق
-      </button>
+        >
+          <LuSend size={18} />
+          اضافه تعليق
+        </button>
+      </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={3000}
+        transition={Slide}
+        style={{ bottom: '250px' }}
+        rtl={true}
+      />
     </div>
   );
 }
