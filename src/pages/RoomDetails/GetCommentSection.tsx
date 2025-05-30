@@ -64,7 +64,6 @@ const CommentsPage: React.FC<CommentSectionProps> = ({ apartmentId }) => {
    const [commentsData, setCommentsData] = useState<ApiResponse | null>(null);
    const [loading, setLoading] = useState<boolean>(true);
    const [error, setError] = useState<string | null>(null);
-
    useEffect(() => {
       const fetchData = async () => {
          try {

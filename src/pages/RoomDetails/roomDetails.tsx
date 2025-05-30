@@ -28,7 +28,6 @@ import RoomGallery from "./RoomGallery";
 import ShareButton from "./ShareButton";
 import CommentSection from "./CommentSection";
 // import CommentCard from "./CommentCard";
-import { MdModeComment } from "react-icons/md";
 import "./scrollBar.css";
 import { GrServicePlay } from "react-icons/gr";
 import HostInfoCard from "./HostInfoCard"
@@ -469,20 +468,10 @@ export default function RoomDetails() {
           </h3>
           <HostInfoCard />
         </div>
-        {/* قسم التعليقات */}
-        <div dir="rtl" className="w-full">
-          <h2 className="flex items-center gap-2 text-lg py-3 font-semibold mt-5 mb-2">
-            <MdModeComment />
-            التعليقات (5)
-          </h2>
 
-          {/* No comments yet */}
-          {/* <div className="bg-gray-100 text-right p-3 rounded-md text-gray-600 mb-6 dark:bg-[#1E1E1E]">
-          لا توجد تعليقات حتي الان، كن اول المتفاعلين علي هذا العقار
-        </div> */}
-          {/* Comment Box */}
+        <div dir="rtl" className="w-full">
           <div className="pb-3 max-w-4xl" dir="rtl">
-            <CommentSection apartmentId={data.apartmentDTO.id}/>
+            <CommentSection apartmentId={data.apartmentDTO.id} />
           </div>
           <div className="py-4 border-b border-t max-w-4xl overflow-y-auto max-h-96 custom-scrollbar" dir="ltr">
             <div dir="rtl" className="flex flex-col gap-2">
