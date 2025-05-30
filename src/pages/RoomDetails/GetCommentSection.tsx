@@ -115,7 +115,7 @@ const CommentsPage: React.FC<CommentSectionProps> = ({ apartmentId }) => {
                            {getTimeAgo(comment.createdDate)}
                         </span>
                      </div>
-                     <p className="text-gray-600 my-3">{comment.message}</p>
+                     <p className="text-gray-600 my-3 break-words whitespace-normal">{comment.message}</p>
                      <div className="flex justify-end">
                         <span className="text-xs text-gray-500 font-semibold italic">
                            طالب
