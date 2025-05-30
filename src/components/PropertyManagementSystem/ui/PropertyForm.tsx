@@ -69,7 +69,7 @@ export const PropertyForm: React.FC = () => {
           <textarea
             value={Description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full p-2 border rounded-md"
+            className="w-full p-2 border rounded-md dark:bg-secondary_BGD dark:text-secondary_TXD"
           />
         </div>
 
@@ -78,7 +78,7 @@ export const PropertyForm: React.FC = () => {
           <textarea
             value={DescribeLocation}
             onChange={(e) => setDescribeLocation(e.target.value)}
-            className="w-full p-2 border rounded-md"
+            className="w-full p-2 border rounded-md dark:bg-secondary_BGD dark:text-secondary_TXD"
           />
         </div>
 
@@ -88,7 +88,7 @@ export const PropertyForm: React.FC = () => {
             <select
               value={Location}
               onChange={(e) => setLocation(e.target.value)}
-              className="w-full p-2 border rounded-md"
+              className="w-full p-2 border rounded-md dark:bg-secondary_BGD dark:text-secondary_TXD"
             >
               <option value="">اختر منطقة</option>
               {areas.map((area) => (
@@ -106,7 +106,7 @@ export const PropertyForm: React.FC = () => {
               min={0}
               value={Floor || ''}
               onChange={(e) => setFloor(e.target.value)}
-              className="w-full p-2 border rounded-md"
+              className="w-full p-2 border rounded-md dark:bg-secondary_BGD dark:text-secondary_TXD"
             />
           </div>
         </div>
@@ -119,7 +119,7 @@ export const PropertyForm: React.FC = () => {
               min={1}
               value={Capecity || ''}
               onChange={(e) => setCapecity(Number(e.target.value))}
-              className="w-full p-2 border rounded-md"
+              className="w-full p-2 border rounded-md dark:bg-secondary_BGD dark:text-secondary_TXD"
             />
           </div>
 
