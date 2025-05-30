@@ -4,7 +4,9 @@ import { FaHeart } from "react-icons/fa";
 import { IoWifi } from "react-icons/io5";
 import { TbToolsKitchen2, TbAirConditioning } from "react-icons/tb";
 // import RoomCard from "../../components/RoomCard/roomCard";
-import { FaBath, FaStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+import { PiBed } from "react-icons/pi";
+
 import { BsDisplay } from "react-icons/bs"; // Monitor/Display icon (from Bootstrap Icons)
 import { FaPaperPlane } from "react-icons/fa";
 import { MdMeetingRoom } from "react-icons/md";
@@ -25,12 +27,15 @@ import { useNavigate } from 'react-router-dom';
 import RoomGallery from "./RoomGallery";
 import ShareButton from "./ShareButton";
 import CommentSection from "./CommentSection";
-import CommentCard from "./CommentCard";
+// import CommentCard from "./CommentCard";
 import { MdModeComment } from "react-icons/md";
 import "./scrollBar.css";
 import { GrServicePlay } from "react-icons/gr";
 import HostInfoCard from "./HostInfoCard"
 import RoomsSlider from "./RoomsSlider";
+import useAuthStore from "../../Store/Auth/Auth.store";
+import GetCommentSection from "./GetCommentSection"
+import ErrorBoundary from "./ErrorBoundary"
 
 const features = [
   { label: "واي فاي", icon: <IoWifi className="IconSize" /> },
@@ -53,6 +58,8 @@ const servicesMap = {
 
 export default function RoomDetails() {
   const [searchparams] = useSearchParams()
+  const role = useAuthStore((state) => state.role);
+
   const id = searchparams.get("id");
   const location = useLocation();
   const { ownerName } = location.state
@@ -60,22 +67,50 @@ export default function RoomDetails() {
   const AddtoFav = (id: string) => {
     AddFavorite(id);
   }
-  type ApartmentData = {
+  type data = {
     apartmentDTO: {
       price: number;
       kind: string;
       bedRoomCount: number;
       roomCount: number;
-      floor: number;
+      floor: string;
       location: string;
       isAvailable: boolean;
+      bookEntireApartment: boolean; // if all room and all bed not booked
+      description: string;
+      descripeLocation: string;
+      id: number;
+      isFavorite: boolean;
+      gender: string;
+      capecity: number;
     };
     categoryWithFacilities: {
       Services: string[];
     };
+    images?: { // أضفنا حقل الصور كاختياري
+      id: number;
+      imageUrl: string;
+      kind: string;
+    }[];
+    sleepPlaces?: Array<{
+      bedRequestAvailable: boolean;
+      imageRoomUrl: string;
+      isFull: boolean;
+      numBedNotBooked: number;
+      numOfBeds: number;
+      pricePerBed: number;
+      roomId: number;
+      roomRequestAvailable: boolean;
+      studentDTOs: {
+        collage: string;
+        level: string;
+        location: string;
+      }[];
+    }>;
   };
+
   const navigate = useNavigate();
-  const [data, setdata] = useState<ApartmentData | null>(null);
+  const [data, setdata] = useState<data | null>(null);
   const Fetchdata = async (id: string) => {
     try {
       const res = await axios.get(
@@ -83,7 +118,9 @@ export default function RoomDetails() {
       );
       const Data = await res.data.data;
       setdata(Data);
-      console.log(Data)
+      console.log(Data);
+      // Data.apartmentDTO.descripeLocation;
+      // console.log(Data.data.descripeLocation)
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -97,62 +134,81 @@ export default function RoomDetails() {
       //  console.log( data?.categoryWithFacilities.Services)
     }
   }, [id])
-  if (!data) return <p>Loading...</p>;
-  // نوع السكن
-  const type = data?.apartmentDTO.kind === "Male" ? "أولاد" : "بنات";
-  // عدد الغرف
-  const bedroomcount = (data?.apartmentDTO.roomCount > 4 || data?.apartmentDTO.roomCount == 0) ? 4 : data?.apartmentDTO.roomCount
-  // الطابق
-  // Helper function
-  const parseFloor = (floorRaw: unknown): string => {
-    if (typeof floorRaw !== "string") return "?";
 
-    const trimmed = floorRaw.trim();
+  if (!data)
+    return <p>Loading...</p>;
 
-    // هل محاطة بعلامات اقتباس مزدوجة؟ مثال: "\"2nd\""
-    const isProbablyJSON = trimmed.startsWith('"') && trimmed.endsWith('"');
-
-    if (isProbablyJSON) {
-      try {
-        const parsed = JSON.parse(trimmed);
-        if (typeof parsed === "string") return parsed;
-      } catch (e) {
-        console.log(e)
-        return trimmed;
-      }
-    }
-
-    return trimmed;
-  };
+  // ========================== Helper functions ==========================
   const translateFloor = (floor: string): string => {
     const map: Record<string, string> = {
-      "1st": "الأول",
-      "2nd": "الثاني",
-      "3rd": "الثالث",
-      "4th": "الرابع",
-      "5th": "الخامس",
-      "6th": "السادس",
-      "7th": "السابع",
-      "8th": "الثامن",
-      "9th": "التاسع",
-      "10th": "العاشر",
+      "first": "الأول",
+      "second": "الثاني",
+      "third": "الثالث",
+      "fourth": "الرابع",
+      "fifth": "الخامس",
+      "sixth": "السادس",
+      "seventh": "السابع",
+      "eighth": "الثامن",
+      "ninth": "التاسع",
+      "tenth": "العاشر",
+
+      "ground": "الأرضي",
     };
 
     return map[floor] || floor;
   };
-  const rawFloor = data?.apartmentDTO.floor;
-  const floorValue = parseFloor(rawFloor);
-  const translatedFloor = translateFloor(floorValue);
-  //   العنوان
-  const addressMap: { [key: string]: string } = {
-    "\"at Giza\"": "دردشة",
-    "at Giza": "عمر افندى",
-    "123 Main St, Downtown": "قنا الجديدة",
-    "456 College Ave": "المساكن",
-    "789 Park Lane": "الشئون",
-    "321 Arts District": "مدينة العمال",
 
+  // function to remove double qoutes form string like this ( "hello" => hello )
+  const cleanDescription = (str: string) => {
+    return str.replace(/^"+|"+$/g, '').replace(/\\/g, '');
   };
+  // ========================== Helper functions ==========================
+
+  // init apratment data
+  // =========================== START =======================================
+  const apartmentDescription = data.apartmentDTO.description ? cleanDescription(data.apartmentDTO.description) : "لا يوجد وصف"
+  const apartmentDescriptionLoction = cleanDescription(data.apartmentDTO.descripeLocation);
+  const type = data?.apartmentDTO.kind === "Male" ? "أولاد" : "بنات";
+  const floor = translateFloor(cleanDescription(data.apartmentDTO.floor));
+  const bedroomcount = (data?.apartmentDTO.roomCount > 4 || data?.apartmentDTO.roomCount == 0) ? 4 : data?.apartmentDTO.roomCount
+  const numberOfBeds = data.apartmentDTO.bedRoomCount;
+  const price = data.apartmentDTO.price;
+  const capecity = data.apartmentDTO.capecity;
+  const apartmentLocationArea = data.apartmentDTO.location !== "Location" ? data.apartmentDTO.location : "عند الجامعه";
+  const isAvailable = data.apartmentDTO.isAvailable;
+  const canBookEntireApartment = data.apartmentDTO.bookEntireApartment;
+  const apartmentImages = data.images;
+  const rooms = data.sleepPlaces;
+
+  // const apartmentId = data.apartmentDTO.id;
+  // =========================== END =======================================
+
+  // ====================== Handel Booking ======================
+  const handleBookApartment = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.error("No token found");
+        return;
+      }
+
+      const response = await axios.post(
+        "https://darkteam.runasp.net/BookApartmentEndpoint/BookApartment",
+        { apartmentId: data?.apartmentDTO.id },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Booking successful:", response.data);
+    }
+    catch (error) {
+      console.error("Booking failed:", error);
+    }
+  };
+  // ====================== Handel Booking ======================
 
   return (
     <div className="min-h-screen Page slide-in pt-[100px]  px-[24px]">
@@ -180,22 +236,56 @@ export default function RoomDetails() {
           <FaHeart size={15} />
         </button>
       </div>
+
       {/* Imgs Section */}
       <div className="rounded-sm shadow-sm">
-        <RoomGallery />
-
-        {/* الوصف */}
+        <RoomGallery images={apartmentImages || []} />
         <div className="py-4 px-2 text-right dark:bg-[#171515]">
           <p className="text-[#212529] leading-6 font-medium dark:text-[white]">
-            {/* {data.apartmentDTO.descripeLocation} */}
+            {apartmentDescription}
           </p>
-          <p className="text-base text-[#6C757D] mt-3 dark:text-[#D9D9D9]">
-            ضيف · {bedroomcount}غرف · {type} · {addressMap[data?.apartmentDTO.location ?? ""] ?? data?.apartmentDTO.location} · الدور {translatedFloor}
-          </p>
-          <p className="text-base mt-2 font-medium dark:text-[white]">
-            وصف الموقع :{" "}
-            <span className="text-[#6C757D] dark:text-[#D9D9D9]">قنا / {addressMap[data?.apartmentDTO.location ?? ""] ?? ""} / شارع أبو علاء</span>
-          </p>
+          <div className="text-base text-[#6C757D] mt-3 dark:text-[#D9D9D9] flex justify-end items-center gap-2 flex-wrap">
+            <p>. {type}</p>
+            <p className="flex justify-end gap-1">
+              <span>. </span>
+              <p>{floor} </p>
+              <span>الدور </span>
+            </p>
+            <p className="flex justify-end gap-1">
+              <span>. </span>
+              <p>{apartmentLocationArea} </p>
+            </p>
+            <p className="flex justify-end gap-1">
+              <span>. </span>
+              <span>غرفه </span>
+              <span>{bedroomcount} </span>
+            </p>
+            <p className="flex justify-end gap-1">
+              <span>. </span>
+              <span>طلاب </span>
+              <span>{capecity} </span>
+            </p>
+            <p className="flex justify-end gap-1">
+              <span>. </span>
+              <span>سرير </span>
+              <span>{numberOfBeds} </span>
+            </p>
+            <p className="flex justify-end gap-1">
+              <span>. </span>
+              <span>طالب </span>
+              <span>{bedroomcount} </span>
+            </p>
+          </div>
+          <div className="text-base mt-2 font-medium dark:text-[white]">
+            <div className="flex justify-start gap-1 flex-row-reverse">
+              <span className="font-semibold">
+                | وصف الموقع
+              </span>
+              <span>
+                {apartmentDescriptionLoction}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -214,24 +304,36 @@ export default function RoomDetails() {
         xl:max-w-[30%]">
           {/* the card */}
           <div className="rounded-xl border p-4 shadow-md space-y-3">
-            {data.apartmentDTO.isAvailable ?
+            {isAvailable ?
               <div className="flex justify-between items-center">
                 <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 rounded p-2">
                   متاحة للسكان
                 </span>
-                <span className="text-[#D32F2F] font-bold text-lg">{data.apartmentDTO.price} ج.م / mo</span>
+                <div className="text-[#D32F2F] font-bold text-lg flex justify-end gap-1">
+                  <span>شهر</span>
+                  <span>/ج.م</span>
+                  <span>{price}</span>
+                </div>
               </div>
               :
               <div className="flex justify-between items-center">
                 <span className="bg-red-100 text-red-800 text-xs font-semibold px-2.5 rounded p-2">
                   غير متاحة للسكان
                 </span>
-                <span className="text-[#D32F2F] font-bold text-lg">{data.apartmentDTO.price} ج.م / mo</span>
+                <div className="text-[#D32F2F] font-bold text-lg flex justify-end gap-1">
+                  <span>شهر</span>
+                  <span>/ج.م</span>
+                  <span>{price}</span>
+                </div>
               </div>
             }
             <div className="text-right text-sm text-gray-700 dark:text-[#D9D9D9]">
               <div className="flex items-center justify-end gap-2 text-right">
-                <p> {addressMap[data?.apartmentDTO.location ?? ""] ?? data?.apartmentDTO.location} - شارع أبو علاء</p>
+                <p>
+                  {apartmentLocationArea}
+                  <span> / </span>
+                  {apartmentDescriptionLoction}
+                </p>
                 <MdOutlineLocationOn className="text-[16px]" />
               </div>
               <div className="flex items-center justify-end gap-2 text-right">
@@ -239,16 +341,16 @@ export default function RoomDetails() {
                 <FaRegUser className="text-[15px]" />
               </div>
               <div className="flex items-center justify-end gap-2 text-right">
-                <p>الدور {translatedFloor}</p>
+                <p>الدور {floor}</p>
                 <TbElevator className="text-[16px]" />
               </div>
             </div>
 
             <div className="border-t pt-[12px] text-center font-semibold rounded-md text-sm mt-4 flex gap-3 flex-wrap justify-end items-center">
               <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 pl-8 pr-8 py-3">
-                <FaBath className="text-[#D32F2F] text-[18px]" />
-                <p className="font-bold text-lg">2</p>
-                <p className="flex">حمام</p>
+                <PiBed className="text-[#D32F2F] text-[18px]" />
+                <p className="font-bold text-lg">{numberOfBeds}</p>
+                <p className="flex">سرير</p>
               </div>
               <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 pl-8 pr-8 py-3">
                 <MdMeetingRoom className="text-[#D32F2F] text-[18px]" />
@@ -257,7 +359,7 @@ export default function RoomDetails() {
               </div>
               <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 pl-8 pr-8 py-3">
                 <PiStudentBold className="text-[#D32F2F] text-[18px]" />
-                <p className="font-bold text-lg">12</p>
+                <p className="font-bold text-lg">{capecity}</p>
                 <p>طالب</p>
               </div>
             </div>
@@ -284,10 +386,15 @@ export default function RoomDetails() {
               </div>
             </div>
 
-            <button className="w-full bg-[#D32F2F] hover:bg-red-800 text-white py-[10px] rounded-lg flex justify-center items-center gap-2 text-[14px] md:text-[16px]">
-              <FaPaperPlane />
-              حجز المسكن بالكامل
-            </button>
+            {role === "Student" && canBookEntireApartment && isAvailable ? (
+              <button
+                onClick={handleBookApartment}
+                className="w-full bg-[#D32F2F] hover:bg-red-800 text-white py-[10px] rounded-lg flex justify-center items-center gap-2 text-[14px] md:text-[16px]">
+                <FaPaperPlane />
+                حجز المسكن بالكامل
+              </button>
+            ) : null}
+
           </div>
         </div>
 
@@ -348,10 +455,10 @@ export default function RoomDetails() {
 
       {/* a place for sleeping */}
       <div className="mx-auto py-6 border-t mt-4">
-        {/* <h1 className="text-lg md:text-xl text-right font-semibold mb-3">
-          مكان النوم
-        </h1> */}
-        <RoomsSlider />
+        <RoomsSlider rooms={(rooms || []).map(room => ({
+          ...room,
+          isAvailable: isAvailable
+        }))} />
       </div>
 
       <div className="border-t mt-5 md:px-[50px]">
@@ -379,27 +486,14 @@ export default function RoomDetails() {
           </div>
           <div className="py-4 border-b border-t max-w-4xl overflow-y-auto max-h-96 custom-scrollbar" dir="ltr">
             <div dir="rtl" className="flex flex-col gap-2">
-              <CommentCard />
-              <CommentCard />
-              <CommentCard />
-              <CommentCard />
-              <CommentCard />
+              <ErrorBoundary>
+                <GetCommentSection apartmentId={data.apartmentDTO.id} />
+              </ErrorBoundary>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Booking Section (moved out of the fixed height div) */}
-      {/* <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 py-3 px-5 md:hidden">
-        <div className="flex justify-between items-center">
-          <div className="text-green-500 font-semibold text-lg">
-            6,600 <span className="text-gray-600 text-sm">/ شهر</span>
-          </div>
-          <button className="MainColorBG text-white rounded-3xl h-10 px-6 font-semibold">
-            احجز الان
-          </button>
-        </div>
-      </div> */}
       <p className="text-sm text-center py-4 text-gray-600 border-t dark:text-secondary_TXD">يمكنك التواصل مع المالك عبر وسائل التوصل الاجتماعي اذا كان هناك تفاصيل غير واضحه</p>
     </div>
   );
