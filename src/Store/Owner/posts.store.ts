@@ -99,15 +99,15 @@ export const usePostsStore = create<PostsState>()(
       setLivingRoomImage: (livingRoomImage) => set({ livingRoomImage }),
 
       addRoom: () => {
-        const newRoom: Room = {
-          id: `room-${Date.now()}`,
-          description: description,
-          capacity: capacity,
-          bedPrice: bedPrice,
-          hasAC: hasAC,
-          imageUrl: imageUrl,
-        };
-        set((state) => ({ Rooms: [...state.Rooms, newRoom] }));
+        // const newRoom: Room = {
+        //   id: `room-${Date.now()}`,
+        //   description: description,
+        //   capacity: capacity,
+        //   bedPrice: bedPrice,
+        //   hasAC: hasAC,
+        //   imageUrl: imageUrl,
+        // };
+        // set((state) => ({ Rooms: [...state.Rooms, newRoom] }));
       },
 
       updateRoom: (updatedRoom) => {
