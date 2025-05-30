@@ -76,7 +76,7 @@ export const ImageSection: React.FC = () => {
                 <ImageUploadSection
                   title={section.label}
                   description={section.desc}
-                  maxImages={1} // use one image for backend compatibility
+                  maxImages={3} // use one image for backend compatibility
                   onImagesChange={(images) => {
                     const image = images[0] || null;
                     section.setter(image);

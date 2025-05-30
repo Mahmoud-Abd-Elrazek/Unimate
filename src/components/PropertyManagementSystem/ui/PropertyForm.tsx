@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { usePostsStore } from '../../../Store/Owner/posts.store';
+import ServiceSelector from './ServiceSelector';
 
 export const PropertyForm: React.FC = () => {
   const {
@@ -9,6 +10,8 @@ export const PropertyForm: React.FC = () => {
     Capecity,
     Location,
     GenderAcceptance,
+    services,
+    setServices,
     setCapecity,
     setDescription,
     setLocation,
@@ -46,17 +49,19 @@ export const PropertyForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // await AddPost();
-    console.log('تم حفظ بيانات العقار:', {
-      Description,
-      DescribeLocation,
-      Floor,
-      Capecity,
-      Location,
-      GenderAcceptance,
-    });
-    alert('تم حفظ بيانات العقار!');
+    alert('تم رفع بيانات العقار!');
+    console.log('Description:', Description);
+    console.log('DescribeLocation:', DescribeLocation);
+    console.log('Floor:', Floor);
+    console.log('Capecity:', Capecity);
+    console.log('Location:', Location);
+    console.log('GenderAcceptance:', GenderAcceptance);
+    console.log('services:', services);
+    // setServices([])
   };
-
+useEffect(()=>{
+  setServices([])
+},[])
   return (
     <div className="rtl">
       <h2 className="text-xl font-semibold text-gray-800 mb-4 dark:text-primary_TXD">
@@ -87,12 +92,12 @@ export const PropertyForm: React.FC = () => {
             <label className="block mb-1">المنطقة</label>
             <select
               value={Location}
-              onChange={(e) => setLocation(e.target.value)}
+              onChange={(e) => setLocation(Number(e.target.value))}
               className="w-full p-2 border rounded-md"
             >
               <option value="">اختر منطقة</option>
               {areas.map((area) => (
-                <option key={area.id} value={area.key}>
+                <option key={area.id} value={area.id}>
                   {area.value}
                 </option>
               ))}
@@ -131,9 +136,9 @@ export const PropertyForm: React.FC = () => {
                   <input
                     type="radio"
                     name="gender"
-                    value={gender.key}
-                    // checked={GenderAcceptance === gender.key}
-                    onChange={(e) => setGenderAcceptance(e.target.value)}
+                    value={gender.id}
+                    checked={GenderAcceptance === gender.id}
+                    onChange={(e) => setGenderAcceptance(Number(e.target.value))}
                   />
                   {gender.value}
                 </label>
@@ -141,12 +146,20 @@ export const PropertyForm: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* <div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-primary_TXD">
+            الخدمات الإضافية
+          </label>
+          <ServiceSelector
+            selectedServices={services}
+            onChange={setServices}
+          />
+        </div>
+        <div>
           <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded-md">
             حفظ العقار
           </button>
-        </div> */}
+        </div>
       </form>
     </div>
   );

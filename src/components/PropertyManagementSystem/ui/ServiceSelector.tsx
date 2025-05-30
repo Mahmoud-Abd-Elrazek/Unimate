@@ -1,57 +1,85 @@
-import React from 'react';
-import { Plus, Minus, Wifi, Car, UtilityPole, Coffee, UtensilsCrossed, Droplets, Fan, Tv } from 'lucide-react';
+import React, { JSX } from 'react';
+import {
+  Car,
+  Coffee,
+  Droplets,
+  Fan,
+  Plus,
+  UtensilsCrossed,
+  UtilityPole,
+  Wifi,
+  Tv,
+  BedIcon,
+  Minus,
+} from 'lucide-react';
 
-interface ServiceSelectorProps {
-  selectedServices: string[];
-  onChange: (services: string[]) => void;
+interface Service {
+  id: number;
+  name: string;
+  icon: JSX.Element;
 }
 
-export const ServiceSelector: React.FC<ServiceSelectorProps> = ({ selectedServices, onChange }) => {
-  const availableServices = [
-    { id: 'wifi', name: 'واي فاي', icon: <Wifi size={18} /> },
-    { id: 'parking', name: 'موقف سيارات', icon: <Car size={18} /> },
-    { id: 'electricity', name: 'كهرباء', icon: <UtilityPole size={18} /> },
-    { id: 'breakfast', name: 'إفطار', icon: <Coffee size={18} /> },
-    { id: 'kitchen', name: 'مطبخ', icon: <UtensilsCrossed size={18} /> },
-    { id: 'water', name: 'مياه', icon: <Droplets size={18} /> },
-    { id: 'ac', name: 'تكييف', icon: <Fan size={18} /> },
-    { id: 'tv', name: 'تلفاز', icon: <Tv size={18} /> },
+interface ServiceSelectorProps {
+  selectedServices: { id: number; isSelected: boolean }[];
+  onChange: (services: { id: number; isSelected: boolean }[]) => void;
+}
+
+const ServiceSelector: React.FC<ServiceSelectorProps> = ({
+  selectedServices,
+  onChange,
+}) => {
+  const availableServices: Service[] = [
+    { id: 3, name: 'واي فاي', icon: <Wifi size={18} /> },
+    { id: 4, name: 'ديب فريزر', icon: <Car size={18} /> },
+    { id: 5, name: 'مايكرويف', icon: <UtilityPole size={18} /> },
+    { id: 6, name: 'بانيو', icon: <Coffee size={18} /> },
+    { id: 7, name: 'سخان غاز', icon: <UtensilsCrossed size={18} /> },
+    { id: 8, name: 'سخان كهرباء', icon: <Droplets size={18} /> },
+    { id: 9, name: 'بوتجاز خمس شغل', icon: <Fan size={18} /> },
+    { id: 10, name: 'مراتب قطن', icon: <Tv size={18} /> },
+    { id: 11, name: 'سراير حديد', icon: <BedIcon size={18} /> },
+    { id: 12, name: 'سراير خشب', icon: <BedIcon size={18} /> },
   ];
 
-  const toggleService = (serviceId: string) => {
-    if (selectedServices.includes(serviceId)) {
-      onChange(selectedServices.filter(id => id !== serviceId));
-    } else {
-      onChange([...selectedServices, serviceId]);
-    }
-  };
+const handleToggleService = (serviceId: number) => {
+  const existing = selectedServices.find((s) => s.id === serviceId);
+
+  if (existing) {
+    const updated = selectedServices.map((s) =>
+      s.id === serviceId ? { ...s, isSelected: !s.isSelected } : s
+    );
+    onChange([...updated]); // ✨ نسخة جديدة
+  } else {
+    onChange([...selectedServices, { id: serviceId, isSelected: true }]); // ✨ نسخة جديدة
+  }
+};
+
+
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 rtl">
       {availableServices.map((service) => {
-        const isSelected = selectedServices.includes(service.id);
+        const isSelected = selectedServices.find((s) => s.id === service.id)?.isSelected;
+
         return (
           <div
             key={service.id}
-            onClick={() => toggleService(service.id)}
-            className={`
-              border rounded-lg p-3 flex items-center cursor-pointer transition-all
-              ${isSelected 
-                ? 'border-blue-500 bg-blue-50 text-blue-700' 
-                : 'border-gray-300 hover:border-gray-400 text-gray-700'
-              }
-            `}
+            className="flex items-center gap-2 border p-2 rounded shadow-sm bg-white dark:bg-gray-800"
           >
-            <div className="ml-2">{service.icon}</div>
-            <span className="flex-1">{service.name}</span>
-            {isSelected ? (
-              <Minus size={16} className="text-blue-500" />
-            ) : (
-              <Plus size={16} className="text-gray-400" />
-            )}
+            {service.icon}
+            <span className="text-sm">{service.name}</span>
+            <button
+              type="button"
+              onClick={() => handleToggleService(service.id)}
+              className="text-primary_BG hover:scale-110 transition"
+            >
+              {isSelected ? <Minus size={16} /> : <Plus size={16} />}
+            </button>
           </div>
         );
       })}
     </div>
   );
 };
+
+export default ServiceSelector;
