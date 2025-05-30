@@ -3,6 +3,9 @@ import { useState } from "react";
 import { LuSend } from "react-icons/lu";
 // import ApartmentCard from "../../components/ApartmentCard/ApartmentCard";
 import { MdModeComment } from "react-icons/md";
+import { toast } from 'react-toastify';
+import { ToastContainer, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface CommentSectionProps {
   apartmentId: number; // or number, depending on your data model
@@ -10,19 +13,7 @@ interface CommentSectionProps {
 
 export default function CommentSection({ apartmentId }: CommentSectionProps) {
   const [comment, setComment] = useState("");
-  // const [comments, setComments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // const fetchComments = async (apartmentId: number) => {
-  //   const response = await fetch(`https://darkteam.runasp.net/GetCommentsEndpoint/GetComments?apartmentId=${apartmentId}`);
-  //   const data = await response.json();
-  //   setComments(data);
-  //   console.log(comments)
-  // };
-
-  // useEffect(() => {
-  //   fetchComments(apartmentId);
-  // }, [apartmentId]);
 
   const handleAddComment = async (apartmentId: number) => {
     if (!comment.trim()) return;
@@ -46,10 +37,13 @@ export default function CommentSection({ apartmentId }: CommentSectionProps) {
       }
       const result = await response.json();
       console.log('تم إضافة التعليق:', result);
+      toast.success('تم إضافة تعليقك بنجاح!');
       setComment('');
       // await fetchComments(apartmentId);
+      // window.location.reload();
 
     } catch (error) {
+      toast.error('حدث خطأ أثناء إرسال التعليق');
       console.error('حدث خطأ أثناء إرسال التعليق:', error);
     }
     finally {
@@ -129,6 +123,13 @@ export default function CommentSection({ apartmentId }: CommentSectionProps) {
           اضافه تعليق
         </button>
       </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={3000}
+        transition={Slide}
+        style={{ bottom: '250px' }}
+        rtl={true}
+      />
     </div>
   );
 }
