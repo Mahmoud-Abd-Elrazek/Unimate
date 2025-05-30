@@ -59,7 +59,7 @@ export default function CommentSection({ apartmentId }: CommentSectionProps) {
     <div dir="rtl" className="w-full">
       <h2 className="flex items-center gap-2 text-lg py-3 font-semibold mt-5 mb-2">
         <MdModeComment />
-        التعليقات (5)
+        التعليقات 
       </h2>
       <div className="mb-6">
         <textarea

@@ -99,7 +99,7 @@ export default function Home() {
             <div className='flex items-center justify-center mt-10'>
               {newApartments.length < totalCount ? (
                 <button
-                  onClick={() => setPageSize(prev => prev + 12)}
+                  onClick={() => setPageSize(prev => prev + 3)}
                   disabled={isLoading}
                   className={`
                     text-center rounded-full

@@ -25,7 +25,7 @@ export default function HostInfoCard() {
          {/* صورة واسم المضيف */}
          <div className="flex flex-col items-center text-center gap-1 cursor-pointer hover:opacity-90"
             title="open account"
-            onClick={() => navigate("/auther/profile")} >
+            onClick={() => navigate("/auther/ownerprofile")} >
             <div className="relative">
                <img
                   src="https://scontent.fcai20-1.fna.fbcdn.net/v/t39.30808-6/477087917_552077724531641_8310418652078223006_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=2uUol99WkMEQ7kNvwHjWXPM&_nc_oc=AdmeVNF93gXOu5azGolZ4iuPYxAFciM4Ir9s3ZjMaOVRFHZFVvpXQhrd-NVmfKaXuqM&_nc_zt=23&_nc_ht=scontent.fcai20-1.fna&_nc_gid=DzJbcrittJ7Y35CAd-Iclw&oh=00_AfLWWJEY5ItHx94a45M0K5kikl6jUGphHOBti4Q8T7ON8g&oe=68390498"
