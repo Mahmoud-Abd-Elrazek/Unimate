@@ -461,7 +461,7 @@ export default function RoomDetails() {
       </div>
 
       <div className="border-t mt-5 md:px-[50px]">
-        <div dir="rtl" className="mt-4">
+        <div dir="rtl" className="mt-4 pb-3">
           <h3 className="mb-3 font-semibold text-[18px] flex items-center gap-2">
             <FaRegUser className="text-[16px]" />
             تعرف علي المالك
@@ -470,9 +470,11 @@ export default function RoomDetails() {
         </div>
 
         <div dir="rtl" className="w-full">
-          <div className="pb-3 max-w-4xl" dir="rtl">
-            <CommentSection apartmentId={data.apartmentDTO.id} />
-          </div>
+          {(role === "Student") ? (
+            <div className="pb-3 max-w-4xl" dir="rtl">
+              <CommentSection apartmentId={data.apartmentDTO.id} />
+            </div>
+          ) : null}
           <div className="py-4 border-b border-t max-w-4xl overflow-y-auto max-h-96 custom-scrollbar" dir="ltr">
             <div dir="rtl" className="flex flex-col gap-2">
               <ErrorBoundary>
