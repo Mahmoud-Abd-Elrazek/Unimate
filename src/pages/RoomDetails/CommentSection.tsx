@@ -11,6 +11,7 @@ export default function CommentSection({ apartmentId }: CommentSectionProps) {
   const [comments, setComments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const token = localStorage.getItem('token');
   const fetchComments = async (apartmentId: number) => {
     const response = await fetch(`https://darkteam.runasp.net/GetCommentsEndpoint/GetComments?apartmentId=${apartmentId}`);
     const data = await response.json();
@@ -25,7 +26,6 @@ export default function CommentSection({ apartmentId }: CommentSectionProps) {
   const handleAddComment = async (apartmentId: number) => {
     if (!comment.trim()) return;
 
-    const token = localStorage.getItem('token');
 
     try {
       setIsSubmitting(true);
@@ -57,6 +57,9 @@ export default function CommentSection({ apartmentId }: CommentSectionProps) {
     }
   };
 
+  if (!token) {
+    return null;
+  }
 
   return (
     <div className="mb-6">
