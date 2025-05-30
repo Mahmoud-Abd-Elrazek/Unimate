@@ -29,7 +29,6 @@ interface RoomGalleryProps {
 // };
 const RoomGallery = ({ images }: RoomGalleryProps) => {
    const [mainImage, setMainImage] = useState(images[0]);
-
    if (!images || images.length === 0) {
       return (
          <div className="flex justify-center items-center h-64 bg-gray-100 rounded-lg">
@@ -39,6 +38,7 @@ const RoomGallery = ({ images }: RoomGalleryProps) => {
          </div>
       );
    }
+
 
    return (
       <div className="flex flex-col lg:flex-row-reverse gap-1 lg:gap-1">
@@ -52,7 +52,7 @@ const RoomGallery = ({ images }: RoomGalleryProps) => {
          </div>
 
          <div className="flex flex-wrap lg:flex-col gap-1 md:gap-2 lg:gap-1 lg:w-[30%] lg:w-[25%] relative lg:h-[400px] overflow-hidden">
-            {images.map((img, idx) => (
+            {images.slice(0, 3).map((img, idx) => (
                <img
                   key={idx}
                   src={img.imageUrl}
@@ -62,7 +62,7 @@ const RoomGallery = ({ images }: RoomGalleryProps) => {
                   onClick={() => setMainImage(img)}
                />
             ))}
-            {/* زر إظهار كل الصور */}
+
             <Link
                to="/img_details"
                state={{ images }}
