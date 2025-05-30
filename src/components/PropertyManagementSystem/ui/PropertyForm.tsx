@@ -92,13 +92,9 @@ useEffect(()=>{
             <label className="block mb-1">المنطقة</label>
             <select
               value={Location}
-<<<<<<< HEAD
               onChange={(e) => setLocation(Number(e.target.value))}
-              className="w-full p-2 border rounded-md"
-=======
-              onChange={(e) => setLocation(e.target.value)}
-              className="w-full p-2 border rounded-md dark:bg-secondary_BGD dark:text-secondary_TXD"
->>>>>>> 226863831a852d48edd32ddf593de0952788db40
+              className="w-full p-2 border rounded-md  dark:bg-secondary_BGD dark:text-secondary_TXD"
+
             >
               <option value="">اختر منطقة</option>
               {areas.map((area) => (
