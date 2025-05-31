@@ -308,20 +308,6 @@ const RoomsSlider: React.FC<RoomsSliderProps> = ({ rooms = [] }) => {
         <CarouselPrevious className="left-4" />
         <CarouselNext className="right-4" />
       </Carousel>
-
-     {/* <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        rtl={true}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        style={{ zIndex: 9999 }} 
-       /> */}
-        {/* <Toaster position="bottom-center" richColors /> */}
     </div>
   );
 };
