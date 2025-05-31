@@ -58,7 +58,7 @@ const RegisterOwnerPage = () => {
               <input
                 type="text"
                 dir="rtl"
-                className="InputStyle w-full"
+                className="InputStyle w-full dark:bg-secondary_BGD dark:text-secondary_TXD"
                 placeholder="ادخل الاسم الاول"
                 {...register("firstname")}
               />
@@ -69,7 +69,7 @@ const RegisterOwnerPage = () => {
               <input
                 type="text"
                 dir="rtl"
-                className="InputStyle w-full"
+                className="InputStyle w-full dark:bg-secondary_BGD dark:text-secondary_TXD"
                 placeholder="ادخل الاسم الاخير"
                 {...register("lastname")}
               />
@@ -83,7 +83,7 @@ const RegisterOwnerPage = () => {
               dir="rtl"
               type="email"
               id="email"
-              className="InputStyle w-full"
+              className="InputStyle w-full dark:bg-secondary_BGD dark:text-secondary_TXD"
               placeholder="البريد الالكترونى"
               {...register("email")}
             />
@@ -96,7 +96,7 @@ const RegisterOwnerPage = () => {
               dir="rtl"
               type={showPassword ? "text" : "password"}
               id="password"
-              className="InputStyle w-full pr-10"
+              className="InputStyle w-full pr-10 dark:bg-secondary_BGD dark:text-secondary_TXD"
               placeholder="كلمة المرور"
               {...register("password")}
             />
@@ -116,7 +116,7 @@ const RegisterOwnerPage = () => {
               dir="rtl"
               type="text"
               id="phone"
-              className="InputStyle w-full"
+              className="InputStyle w-full dark:bg-secondary_BGD dark:text-secondary_TXD" 
               placeholder="رقم التليفون"
               {...register("phone")}
             />
