@@ -5,11 +5,10 @@ import {
    FaWhatsapp,
    FaXTwitter,
    FaLink,
-} 
-from "react-icons/fa6";
+}
+   from "react-icons/fa6";
 import "react-toastify/dist/ReactToastify.css";
-import { toast, ToastContainer, Slide } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "sonner";
 
 export default function ShareButton() {
    const [isOpen, setIsOpen] = useState(false);
@@ -18,9 +17,9 @@ export default function ShareButton() {
    const copyLink = async () => {
       try {
          await navigator.clipboard.writeText(shareUrl);
-         // toast.success("تمت إضافة الشقة إلى المفضلة بنجاح");
+         toast.success("تم نسخ الرابط");
       } catch {
-         toast.error("❌ فشل في نسخ الرابط");
+         toast.error("فشل في النسخ");
       }
    };
 
@@ -78,19 +77,7 @@ export default function ShareButton() {
                </a>
             </div>
          )}
-         <ToastContainer
-            toastClassName={() =>
-               "relative flex p-3 rounded bg-white text-black shadow-lg justify-center items-center transition-all duration-300"
-            }
-            style={{
-               top: "5%",
-               left: "50%",
-               transform: "translate(-50%, 0)",
-               position: "fixed",
-               zIndex: 9999,
-            }}
-            transition={Slide}
-         />
+
 
       </div>
    );

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 import useAuthStore from "../Auth/Auth.store";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 
 interface Apartment {
@@ -39,7 +39,8 @@ export const useApartmentStore = create<ApartmentState>((set) => ({
             console.log(res + " you add this apatment to favroutesssss")
             toast.success("تمت إضافة الشقة إلى المفضلة بنجاح");
         } catch (error) {
-            console.log("the add fav failed!!!!!!!!!!!!!!!!!!!!!!!1" + error)
+            toast.error("the add fav failed!!!!!!!!!!!!!!!!!!!!!!!1" + error);
+            // console.log("the add fav failed!!!!!!!!!!!!!!!!!!!!!!!1" + error)
         }
 
     },
