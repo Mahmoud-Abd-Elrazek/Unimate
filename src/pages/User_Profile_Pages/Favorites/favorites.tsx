@@ -2,8 +2,9 @@
 
 import { useEffect } from "react"
 import { useApartmentStore } from "../../../Store/Data/useApartment.store"
-// import { Link } from "react-router"
 import ApartmentCard from "../../../components/ApartmentCard/ApartmentCard"
+// import { Link } from "react-router"
+// import FavApartmentCard from "../../../components/ApartmentCard/FavApartmentCard"
 export default function Favorites() {
   // const [data] = useState([])
   const { GetFavApartment, issuccess,aparments } = useApartmentStore()
@@ -43,7 +44,8 @@ const ApartmentGrid: React.FC<ApartmentGridProps> = ({ apartments }) => {
     >
       {apartments.map((apartment, i) => (
         <div key={i} dir="ltr">
-          <ApartmentCard data={apartment} id={i + 4} />
+          <ApartmentCard data={apartment} id={i+4} />
+          {/* <FavApartmentCard data={apartment} id={i + 4} /> */}
         </div>
       ))}
     </div>
