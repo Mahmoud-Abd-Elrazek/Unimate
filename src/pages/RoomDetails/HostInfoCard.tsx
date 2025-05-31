@@ -22,7 +22,7 @@ const HostInfoCard: React.FC<HostInfoCardProps> = ({ data }) => {
    const navigate = useNavigate();
 
    // Safely extract owner data with default values
-   const ownerId = data?.ownerDTO?.id || '';
+   // const ownerId = data?.ownerDTO?.id || '';
    const firstName = data?.ownerDTO?.fName || 'Unknown';
    const lastName = data?.ownerDTO?.lName || 'Host';
    const imageUrl = data?.ownerDTO?.image;
@@ -64,7 +64,7 @@ const HostInfoCard: React.FC<HostInfoCardProps> = ({ data }) => {
             onClick={() => {
                const token = localStorage.getItem("token");
                if (token) {
-                  navigate("/auther/ownerprofile");
+                  navigate(`/auther/ownerprofile`);
                } else {
                   // alert("You must be logged in first.");
                   navigate("/SignIn");
@@ -77,7 +77,7 @@ const HostInfoCard: React.FC<HostInfoCardProps> = ({ data }) => {
                      }`}>
                   {imageUrl ? (
                      <img
-                        src={"https://scontent.fcai20-1.fna.fbcdn.net/v/t39.30808-6/477087917_552077724531641_8310418652078223006_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=2uUol99WkMEQ7kNvwHjWXPM&_nc_oc=AdmeVNF93gXOu5azGolZ4iuPYxAFciM4Ir9s3ZjMaOVRFHZFVvpXQhrd-NVmfKaXuqM&_nc_zt=23&_nc_ht=scontent.fcai20-1.fna&_nc_gid=DzJbcrittJ7Y35CAd-Iclw&oh=00_AfLWWJEY5ItHx94a45M0K5kikl6jUGphHOBti4Q8T7ON8g&oe=68390498"}
+                        src={imageUrl}
                         alt="Host"
                         className="w-24 h-24 rounded-full"
                      />

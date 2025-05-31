@@ -91,6 +91,7 @@ export default function App() {
     '/admain_dashBord',
     '/requests',
     '/register/owner',
+    '/auther/ownerprofile',
   ];
   const hideNavbarRoutes = [
     '/register',
