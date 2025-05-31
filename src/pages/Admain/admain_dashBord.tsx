@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="min-h-screen pt-[80px] px-4 flex flex-col items-center justify-start bg-gray-50 dark:bg-primary_BGD">
+    <div className="min-h-screen pt-[100px] px-4 flex flex-col items-center justify-start bg-gray-50 dark:bg-primary_BGD ">
       {/* Header */}
       <div className="w-full max-w-7xl mb-6 flex justify-between items-center">
         <h1 className="text-2xl font-semibold text-gray-800 dark:text-primary_TXD">Dashboard</h1>

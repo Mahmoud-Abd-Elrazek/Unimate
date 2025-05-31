@@ -7,6 +7,8 @@ import { FiEye, FiEyeOff, FiUserPlus } from "react-icons/fi";
 import useAuthStore from "../../../Store/Auth/Auth.store";
 import "./register.css";
 
+import "../../../../public/animations.css"
+
 const RegisterOwnerPage = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -48,9 +50,9 @@ const RegisterOwnerPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center pt-[80px] slide-in">
       <div className="w-full max-w-md rounded-xl p-8 shadow-md text-right">
-        <h2 className="text-2xl font-semibold mb-2">تسجيل الدخول</h2>
+        <h2 className="text-2xl font-semibold mb-2 pb-2 border-b"> إنشاء حساب</h2>
         <form onSubmit={handleSubmit(OnSubmit)} className="space-y-4">
           <div className="flex gap-4" dir="rtl">
             <div className="flex-1">
