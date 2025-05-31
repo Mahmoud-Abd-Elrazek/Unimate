@@ -80,17 +80,36 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
   };
   const translateFloor = (floor: string): string => {
     const map: Record<string, string> = {
+      "1": "الأول",
       "1st": "الأول",
+      "first": "الأول",
+      "2": "الثاني",
       "2nd": "الثاني",
       "second": "الثاني",
+      "3": "الثالث",
       "3rd": "الثالث",
+      "third": "الثالث",
+      "4": "الرابع",
       "4th": "الرابع",
+      "fourth": "الرابع",
+      "5": "الخامس",
       "5th": "الخامس",
+      "fifth": "الخامس",
+      "6": "السادس",
       "6th": "السادس",
+      "sixth": "السادس",
+      "7": "السابع",
       "7th": "السابع",
+      "seventh": "السابع",
+      "8": "الثامن",
       "8th": "الثامن",
+      "eighth": "الثامن",
+      "9": "التاسع",
       "9th": "التاسع",
+      "ninth": "التاسع",
+      "10": "العاشر",
       "10th": "العاشر",
+      "tenth": "العاشر",
     };
 
     return map[floor] || floor;
