@@ -49,7 +49,6 @@ const RoomCard = ({ room, onJoinRoom, onBookFullRoom }: {
   onJoinRoom: (roomId: number, apartment: number) => void;
   onBookFullRoom: (roomId: number, apartmentId: number) => void;
 }) => {
-  const navigate = useNavigate();
   const availableSpots = room.numBedNotBooked;
   const imageUrl = room.imageRoomUrl;
   const hasAC = true; //room.hasAC; static todoes 
@@ -156,15 +155,7 @@ const RoomCard = ({ room, onJoinRoom, onBookFullRoom }: {
               <Button
                 variant="outline"
                 className="w-full"
-                // onClick={() => onBookFullRoom(room.roomId, room.apartmentId)}
-                onClick={() => {
-                  const token = localStorage.getItem("token");
-                  if (token) {
-                    onBookFullRoom(room.roomId, room.apartmentId)
-                  } else {
-                    navigate("/SignIn");
-                  }
-                }}
+                onClick={() => onBookFullRoom(room.roomId, room.apartmentId)}
               >
                 احجز الغرفة كاملة ({room.numOfBeds * room.pricePerBed} ج.م)
               </Button>
@@ -190,17 +181,12 @@ const RoomsSlider: React.FC<RoomsSliderProps> = ({ rooms = [] }) => {
   if (rooms.length === 0) {
     return <EmptyState />;
   }
-  // console.log(rooms)
   const handleJoinRoom = (roomId: number, apartmentId: number) => {
-    // console.log("Join room:", roomId);
-    // console.log("Join room in apartment id is:", apartmentId);
-    // Add your logic here
+    const token = localStorage.getItem('token');
 
-    const token = localStorage.getItem('token'); // Replace 'authToken' with your actual key
-
+    // Handle case where user isn't logged in
     if (!token) {
       console.error('No token found in localStorage');
-      // Handle case where user isn't logged in
       toast.error("سجل دخولك اولا");
       navigate("/SignIn");
       return;
@@ -228,32 +214,27 @@ const RoomsSlider: React.FC<RoomsSliderProps> = ({ rooms = [] }) => {
         return response.json();
       })
       .then(data => {
-        // console.log('Booking successful for bed:', data);
         // Handle successful booking
         toast.success(data.message);
       })
       .catch(error => {
         console.error('Booking failed:', error.message);
         // Handle errors (e.g., token expired, invalid data)
-
         // Optional: Clear token if unauthorized
         if (error.message.includes('401')) {
           localStorage.removeItem('token');
-          // Redirect to login or show login prompt
+          navigate("/SignIn");
         }
       });
   };
 
   const handleBookFullRoom = (roomId: number, apartmentId: number) => {
-    // console.log("Book full room:", roomId);
-    // console.log("Book full room in apatment of id:", apartmentId);
-    // Add your logic here
-    // Get token from localStorage
-    const token = localStorage.getItem('token'); // Replace 'authToken' with your actual key
+    const token = localStorage.getItem('token');
 
+
+    // Handle case where user isn't logged in
     if (!token) {
       console.error('No token found in localStorage');
-      // Handle case where user isn't logged in
       toast.error("سجل دخولك اولا");
       navigate("/SignIn");
       return;
@@ -281,18 +262,14 @@ const RoomsSlider: React.FC<RoomsSliderProps> = ({ rooms = [] }) => {
         return response.json();
       })
       .then(data => {
-        // console.log('Booking successful for all room:', data);
         // Handle successful booking
         toast.success(data.message);
       })
       .catch(error => {
-        // console.error('Booking failed:', error.message);
-        // Handle errors (e.g., token expired, invalid data)
-
         // Optional: Clear token if unauthorized
         if (error.message.includes('401')) {
           localStorage.removeItem('token');
-          // Redirect to login or show login prompt
+          navigate("/SignIn");
         }
       });
   };

@@ -178,6 +178,7 @@ export default function RoomDetails() {
   const canBookEntireApartment = data.apartmentDTO.bookEntireApartment;
   const apartmentImages = data.images;
   const rooms = data.sleepPlaces;
+  const roomCount = data?.apartmentDTO.roomCount;
 
   // const apartmentId = data.apartmentDTO.id;
   // =========================== END =======================================
@@ -188,7 +189,8 @@ export default function RoomDetails() {
       const token = localStorage.getItem("token");
 
       if (!token) {
-        console.error("No token found");
+        toast.error("سجل الدخول اولا");
+        navigate("/SignIn");
         return;
       }
 
@@ -265,7 +267,7 @@ export default function RoomDetails() {
             <p className="flex justify-end gap-1">
               <span>. </span>
               <span>غرفه </span>
-              <span>{bedroomcount} </span>
+              <span>{roomCount} </span>
             </p>
             <p className="flex justify-end gap-1">
               <span>. </span>
@@ -371,7 +373,7 @@ export default function RoomDetails() {
               </div>
             </div>
 
-            {role === "Student" && canBookEntireApartment && isAvailable ? (
+            {!localStorage.getItem("token") || (role === "Student" && canBookEntireApartment && isAvailable) ? (
               <button
                 onClick={handleBookApartment}
                 className="w-full bg-[#D32F2F] hover:bg-red-800 text-white py-[10px] rounded-lg flex justify-center items-center gap-2 text-[14px] md:text-[13px]">
