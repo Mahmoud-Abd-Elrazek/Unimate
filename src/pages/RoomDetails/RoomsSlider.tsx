@@ -9,6 +9,8 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import EmptyState from "./EmptyRooms"
 import useAuthStore from "../../Store/Auth/Auth.store";
 import { toast } from 'sonner';
+import { useNavigate } from "react-router-dom";
+
 // import { toast } from 'react-toastify';
 // import { ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
@@ -136,7 +138,7 @@ const RoomCard = ({ room, onJoinRoom, onBookFullRoom }: {
         </div>
 
         {/* Action Buttons */}
-        {role === "Student" ? (
+        {!localStorage.getItem('token') || role === "Student" ? (
           <div className="space-y-2 pt-2">
             {isApartmentAvailable && room.bedRequestAvailable && (
               <Button
@@ -173,22 +175,20 @@ const RoomCard = ({ room, onJoinRoom, onBookFullRoom }: {
     </Card>
   );
 };
-
 const RoomsSlider: React.FC<RoomsSliderProps> = ({ rooms = [] }) => {
+  const navigate = useNavigate();
+
   if (rooms.length === 0) {
     return <EmptyState />;
   }
-  // console.log(rooms)
   const handleJoinRoom = (roomId: number, apartmentId: number) => {
-    // console.log("Join room:", roomId);
-    // console.log("Join room in apartment id is:", apartmentId);
-    // Add your logic here
+    const token = localStorage.getItem('token');
 
-    const token = localStorage.getItem('token'); // Replace 'authToken' with your actual key
-
+    // Handle case where user isn't logged in
     if (!token) {
       console.error('No token found in localStorage');
-      // Handle case where user isn't logged in
+      toast.error("سجل دخولك اولا");
+      navigate("/SignIn");
       return;
     }
 
@@ -214,32 +214,29 @@ const RoomsSlider: React.FC<RoomsSliderProps> = ({ rooms = [] }) => {
         return response.json();
       })
       .then(data => {
-        // console.log('Booking successful for bed:', data);
         // Handle successful booking
         toast.success(data.message);
       })
       .catch(error => {
         console.error('Booking failed:', error.message);
         // Handle errors (e.g., token expired, invalid data)
-
         // Optional: Clear token if unauthorized
         if (error.message.includes('401')) {
           localStorage.removeItem('token');
-          // Redirect to login or show login prompt
+          navigate("/SignIn");
         }
       });
   };
 
   const handleBookFullRoom = (roomId: number, apartmentId: number) => {
-    // console.log("Book full room:", roomId);
-    // console.log("Book full room in apatment of id:", apartmentId);
-    // Add your logic here
-    // Get token from localStorage
-    const token = localStorage.getItem('token'); // Replace 'authToken' with your actual key
+    const token = localStorage.getItem('token');
 
+
+    // Handle case where user isn't logged in
     if (!token) {
       console.error('No token found in localStorage');
-      // Handle case where user isn't logged in
+      toast.error("سجل دخولك اولا");
+      navigate("/SignIn");
       return;
     }
 
@@ -265,18 +262,14 @@ const RoomsSlider: React.FC<RoomsSliderProps> = ({ rooms = [] }) => {
         return response.json();
       })
       .then(data => {
-        // console.log('Booking successful for all room:', data);
         // Handle successful booking
         toast.success(data.message);
       })
       .catch(error => {
-        // console.error('Booking failed:', error.message);
-        // Handle errors (e.g., token expired, invalid data)
-
         // Optional: Clear token if unauthorized
         if (error.message.includes('401')) {
           localStorage.removeItem('token');
-          // Redirect to login or show login prompt
+          navigate("/SignIn");
         }
       });
   };
@@ -308,20 +301,6 @@ const RoomsSlider: React.FC<RoomsSliderProps> = ({ rooms = [] }) => {
         <CarouselPrevious className="left-4" />
         <CarouselNext className="right-4" />
       </Carousel>
-
-     {/* <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        rtl={true}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        style={{ zIndex: 9999 }} 
-       /> */}
-        {/* <Toaster position="bottom-center" richColors /> */}
     </div>
   );
 };

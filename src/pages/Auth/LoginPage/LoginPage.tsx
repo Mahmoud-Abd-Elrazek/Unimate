@@ -10,7 +10,7 @@ import { toast } from "sonner";
 const LoginPage = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [accountType, setAccountType] = useState("طالب");
+  // const [accountType, setAccountType] = useState("طالب");
 
   const login = useAuthStore((state) => state.login);
 
@@ -49,7 +49,7 @@ const LoginPage = () => {
         <h2 className="text-2xl font-semibold mb-2">تسجيل الدخول</h2>
 
         {/* اختيار نوع الحساب */}
-        <div className="flex justify-end gap-6 mb-4 text-right">
+        {/* <div className="flex justify-end gap-6 mb-4 text-right">
           <label className="flex items-center gap-2">
             <input
               type="radio"
@@ -70,7 +70,7 @@ const LoginPage = () => {
             />
             صاحب عقار
           </label>
-        </div>
+        </div> */}
 
         {/* نموذج تسجيل الدخول */}
         <form onSubmit={handleSubmit(OnSubmit)} className="space-y-4">

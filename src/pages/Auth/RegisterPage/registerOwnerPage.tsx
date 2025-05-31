@@ -7,6 +7,8 @@ import { FiEye, FiEyeOff, FiUserPlus } from "react-icons/fi";
 import useAuthStore from "../../../Store/Auth/Auth.store";
 import "./register.css";
 
+import "../../../../public/animations.css"
+
 const RegisterOwnerPage = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -48,9 +50,9 @@ const RegisterOwnerPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center pt-[80px] slide-in">
       <div className="w-full max-w-md rounded-xl p-8 shadow-md text-right">
-        <h2 className="text-2xl font-semibold mb-2">تسجيل الدخول</h2>
+        <h2 className="text-2xl font-semibold mb-2 pb-2 border-b"> إنشاء حساب</h2>
         <form onSubmit={handleSubmit(OnSubmit)} className="space-y-4">
           <div className="flex gap-4" dir="rtl">
             <div className="flex-1">
@@ -58,7 +60,7 @@ const RegisterOwnerPage = () => {
               <input
                 type="text"
                 dir="rtl"
-                className="InputStyle w-full"
+                className="InputStyle w-full dark:bg-secondary_BGD dark:text-secondary_TXD"
                 placeholder="ادخل الاسم الاول"
                 {...register("firstname")}
               />
@@ -69,7 +71,7 @@ const RegisterOwnerPage = () => {
               <input
                 type="text"
                 dir="rtl"
-                className="InputStyle w-full"
+                className="InputStyle w-full dark:bg-secondary_BGD dark:text-secondary_TXD"
                 placeholder="ادخل الاسم الاخير"
                 {...register("lastname")}
               />
@@ -83,7 +85,7 @@ const RegisterOwnerPage = () => {
               dir="rtl"
               type="email"
               id="email"
-              className="InputStyle w-full"
+              className="InputStyle w-full dark:bg-secondary_BGD dark:text-secondary_TXD"
               placeholder="البريد الالكترونى"
               {...register("email")}
             />
@@ -96,7 +98,7 @@ const RegisterOwnerPage = () => {
               dir="rtl"
               type={showPassword ? "text" : "password"}
               id="password"
-              className="InputStyle w-full pr-10"
+              className="InputStyle w-full pr-10 dark:bg-secondary_BGD dark:text-secondary_TXD"
               placeholder="كلمة المرور"
               {...register("password")}
             />
@@ -116,7 +118,7 @@ const RegisterOwnerPage = () => {
               dir="rtl"
               type="text"
               id="phone"
-              className="InputStyle w-full"
+              className="InputStyle w-full dark:bg-secondary_BGD dark:text-secondary_TXD" 
               placeholder="رقم التليفون"
               {...register("phone")}
             />

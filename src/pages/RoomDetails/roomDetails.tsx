@@ -4,7 +4,6 @@ import { FaHeart } from "react-icons/fa";
 import { IoWifi } from "react-icons/io5";
 import { TbToolsKitchen2, TbAirConditioning } from "react-icons/tb";
 // import RoomCard from "../../components/RoomCard/roomCard";
-import { FaStar } from "react-icons/fa";
 import { PiBed } from "react-icons/pi";
 
 import { BsDisplay } from "react-icons/bs"; // Monitor/Display icon (from Bootstrap Icons)
@@ -35,6 +34,7 @@ import RoomsSlider from "./RoomsSlider";
 import useAuthStore from "../../Store/Auth/Auth.store";
 import GetCommentSection from "./GetCommentSection"
 import ErrorBoundary from "./ErrorBoundary"
+import { toast } from 'sonner';
 
 const features = [
   { label: "واي فاي", icon: <IoWifi className="IconSize" /> },
@@ -178,6 +178,7 @@ export default function RoomDetails() {
   const canBookEntireApartment = data.apartmentDTO.bookEntireApartment;
   const apartmentImages = data.images;
   const rooms = data.sleepPlaces;
+  const roomCount = data?.apartmentDTO.roomCount;
 
   // const apartmentId = data.apartmentDTO.id;
   // =========================== END =======================================
@@ -188,7 +189,8 @@ export default function RoomDetails() {
       const token = localStorage.getItem("token");
 
       if (!token) {
-        console.error("No token found");
+        toast.error("سجل الدخول اولا");
+        navigate("/SignIn");
         return;
       }
 
@@ -202,6 +204,7 @@ export default function RoomDetails() {
         }
       );
       console.log("Booking successful:", response.data);
+      toast.success(response.data.message);
     }
     catch (error) {
       console.error("Booking failed:", error);
@@ -228,7 +231,14 @@ export default function RoomDetails() {
         <ShareButton />
         <button
           onClick={() => {
-            if (id) AddtoFav(id);
+            const token = localStorage.getItem("token");
+            if (token) {
+              if (id) {
+                AddtoFav(id)
+              }
+            } else {
+              navigate("/SignIn");
+            }
           }}
           className="items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 flex gap-2">
           حفظ
@@ -257,7 +267,7 @@ export default function RoomDetails() {
             <p className="flex justify-end gap-1">
               <span>. </span>
               <span>غرفه </span>
-              <span>{bedroomcount} </span>
+              <span>{roomCount} </span>
             </p>
             <p className="flex justify-end gap-1">
               <span>. </span>
@@ -362,34 +372,11 @@ export default function RoomDetails() {
                 <p>طالب</p>
               </div>
             </div>
-            
 
-            <div className="border-t border-b pt-2 text-right rounded-md">
-              <div className="flex items-center justify-end gap-2 text-right mb-2 mt-2">
-                <p className="text-sm text-gray-500 dark:text-[#D9D9D9]">مالك العقار</p>
-                <FaRegUser className="text-[14px]" />
-              </div>
-              <div className="flex items-center justify-end mt-4 mb-4">
-                <div className="flex items-center gap-2">
-                  <div className="text-sm flex flex-col text-right items-end">
-                    {/* <p className="font-semibold">{ownerName ?? ""}</p> */}
-                    <p className="text-xs text-gray-500 dark:text-[#D9D9D9]">mahmoudarafa@gmail.com</p>
-                    <span className="text-yellow-500 text-sm flex items-center gap-1">
-                      3.5
-                      <FaStar size={14} />
-                    </span>
-                  </div>
-                  <div className="border-2 border-white outline outline-[#D32F2F] rounded-full w-14 h-14">
-                    {/* here is the img of the owner */}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {role === "Student" && canBookEntireApartment && isAvailable ? (
+            {!localStorage.getItem("token") || (role === "Student" && canBookEntireApartment && isAvailable) ? (
               <button
                 onClick={handleBookApartment}
-                className="w-full bg-[#D32F2F] hover:bg-red-800 text-white py-[10px] rounded-lg flex justify-center items-center gap-2 text-[14px] md:text-[16px]">
+                className="w-full bg-[#D32F2F] hover:bg-red-800 text-white py-[10px] rounded-lg flex justify-center items-center gap-2 text-[14px] md:text-[13px]">
                 <FaPaperPlane />
                 حجز المسكن بالكامل
               </button>
@@ -488,6 +475,6 @@ export default function RoomDetails() {
       </div>
 
       <p className="text-sm text-center py-4 text-gray-600 border-t dark:text-secondary_TXD">يمكنك التواصل مع المالك عبر وسائل التوصل الاجتماعي اذا كان هناك تفاصيل غير واضحه</p>
-    </div>
+    </div >
   );
 }
