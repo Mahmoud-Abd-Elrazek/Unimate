@@ -15,7 +15,7 @@ import { ArrowLeft } from 'lucide-react';
 import { LuWashingMachine } from "react-icons/lu";
 import { MdOutlineFireplace } from "react-icons/md";
 import { GiFireplace } from "react-icons/gi";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa6";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { TbElevator } from "react-icons/tb";
@@ -60,8 +60,8 @@ export default function RoomDetails() {
   const role = useAuthStore((state) => state.role);
 
   const id = searchparams.get("id");
-  const location = useLocation();
-  const { ownerName } = location.state
+  // const location = useLocation();
+  // const { ownerName } = location.state
   const AddFavorite = useApartmentStore(state => state.AddFavorite)
   const AddtoFav = (id: string) => {
     AddFavorite(id);
@@ -129,7 +129,7 @@ export default function RoomDetails() {
     if (id) {
       Fetchdata(id);
       console.log("this is the room details page of room with id " + id);
-      console.log(ownerName)
+      // console.log(ownerName)
       //  console.log( data?.categoryWithFacilities.Services)
     }
   }, [id])
@@ -291,7 +291,7 @@ export default function RoomDetails() {
       {/* ما يقدمه السكن */}
       <div className="pt-3 md:pt-5 px-0 md:px-3 flex flex-col-reverse gap-y-10 justify-end flex-wrap 
         lg:gap-[60px] lg:flex-row lg:items-start lg:px-8 
-        md:flex-row md:items-start md:px-3 
+        md:flex-row md:items-start
         sm:px-8 items-end">
         {/* Left section */}
         <div className="left dark:bg-[#1D1D1D]
@@ -362,6 +362,7 @@ export default function RoomDetails() {
                 <p>طالب</p>
               </div>
             </div>
+            
 
             <div className="border-t border-b pt-2 text-right rounded-md">
               <div className="flex items-center justify-end gap-2 text-right mb-2 mt-2">
@@ -371,7 +372,7 @@ export default function RoomDetails() {
               <div className="flex items-center justify-end mt-4 mb-4">
                 <div className="flex items-center gap-2">
                   <div className="text-sm flex flex-col text-right items-end">
-                    <p className="font-semibold">{ownerName ?? ""}</p>
+                    {/* <p className="font-semibold">{ownerName ?? ""}</p> */}
                     <p className="text-xs text-gray-500 dark:text-[#D9D9D9]">mahmoudarafa@gmail.com</p>
                     <span className="text-yellow-500 text-sm flex items-center gap-1">
                       3.5
@@ -456,7 +457,8 @@ export default function RoomDetails() {
       <div className="mx-auto py-6 border-t mt-4">
         <RoomsSlider rooms={(rooms || []).map(room => ({
           ...room,
-          isAvailable: isAvailable
+          isAvailable: isAvailable,
+          apartmentId: data?.apartmentDTO.id
         }))} />
       </div>
 

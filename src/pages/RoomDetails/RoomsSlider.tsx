@@ -8,6 +8,10 @@ import { PiBed } from "react-icons/pi";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import EmptyState from "./EmptyRooms"
 import useAuthStore from "../../Store/Auth/Auth.store";
+import { toast } from 'sonner';
+// import { toast } from 'react-toastify';
+// import { ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 // import { AvatarFallback } from "./ui/avatar";
 // import { number } from "zod";
@@ -29,6 +33,7 @@ interface Room {
   roomId: number;
   roomRequestAvailable: boolean;
   isAvailable: boolean; // معنها ان في شخص حجز السكن كله واتقبل
+  apartmentId: number;
   studentDTOs: Student[];
 }
 
@@ -36,129 +41,18 @@ interface RoomsSliderProps {
   rooms?: Room[];
 }
 
-// const mockRooms: Room[] = [
-//   {
-//     id: "room1",
-//     roomNumber: "1",
-//     capacity: 4,
-//     pricePerBed: 800,
-//     hasAC: true,
-//     isFull: false,
-//     currentStudents: [
-//       {
-//         id: "student1",
-//         name: "",
-//         college: "كلية الهندسة",
-//         year: "الفرقة الثالثة",
-//         origin: "القاهرة",
-//         profilePic: ""
-//       },
-//       {
-//         id: "student2",
-//         name: "",
-//         college: "كلية الطب",
-//         year: "الفرقة الثانية",
-//         origin: "الإسكندرية",
-//         profilePic: "https://scontent.fcai20-3.fna.fbcdn.net/v/t39.30808-6/495742108_10171304864005440_8161025723431854082_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=127cfc&_nc_ohc=X8ppLwEXs-YQ7kNvwGUmFsQ&_nc_oc=AdnpvIkxs1tF3PPVdhix1_ybKHPgHzkTVcpsJgsYk91iu60EakkzpmjS6_wb5XD1dhk&_nc_zt=23&_nc_ht=scontent.fcai20-3.fna&_nc_gid=BSW6pj8Wo3_e5s4VsHXqlw&oh=00_AfJlQbgaOKZ2yqlddbDCO9pZHMMI_cU_j2juOV4xmOaXcA&oe=683A0398",
-//       }
-//     ]
-//   },
-//   {
-//     id: "room2",
-//     roomNumber: "2",
-//     capacity: 2,
-//     pricePerBed: 1000,
-//     hasAC: true,
-//     isFull: true,
-//     currentStudents: [
-//       {
-//         id: "student3",
-//         name: "",
-//         college: "كلية التجارة",
-//         year: "الفرقة الأولى",
-//         origin: "الجيزة",
-//         profilePic: ""
-//       },
-//       {
-//         id: "student3",
-//         name: "",
-//         college: "كلية التجارة",
-//         year: "الفرقة الأولى",
-//         origin: "الجيزة",
-//         profilePic: ""
-//       },
-//       {
-//         id: "student3",
-//         name: "",
-//         college: "كلية التجارة",
-//         year: "الفرقة الأولى",
-//         origin: "الجيزة",
-//         profilePic: ""
-//       },
-//       {
-//         id: "student3",
-//         name: "",
-//         college: "كلية التجارة",
-//         year: "الفرقة الأولى",
-//         origin: "الجيزة",
-//         profilePic: ""
-//       },
-//       {
-//         id: "student4",
-//         name: "",
-//         college: "كلية الحقوق",
-//         year: "الفرقة الرابعة",
-//         origin: "المنصورة",
-//         profilePic: ""
-//       }
-//     ]
-//   },
-//   {
-//     id: "room3",
-//     roomNumber: "3",
-//     capacity: 3,
-//     pricePerBed: 750,
-//     hasAC: false,
-//     isFull: false,
-//     currentStudents: []
-//   },
-//   {
-//     id: "room4",
-//     roomNumber: "4",
-//     capacity: 4,
-//     pricePerBed: 900,
-//     hasAC: true,
-//     isFull: false,
-//     currentStudents: [
-//       {
-//         id: "student5",
-//         name: "",
-//         college: "كلية الصيدلة",
-//         year: "الفرقة الثالثة",
-//         origin: "أسوان",
-//         profilePic: ""
-//       }
-//     ]
-//   }
-// ];
-
 
 const RoomCard = ({ room, onJoinRoom, onBookFullRoom }: {
   room: Room;
-  onJoinRoom: (roomId: number) => void;
-  onBookFullRoom: (roomId: number) => void;
+  onJoinRoom: (roomId: number, apartment: number) => void;
+  onBookFullRoom: (roomId: number, apartmentId: number) => void;
 }) => {
   const availableSpots = room.numBedNotBooked;
   const imageUrl = room.imageRoomUrl;
   const hasAC = true; //room.hasAC; static todoes 
   const role = useAuthStore((state) => state.role);
-  const isApartmentAvailable = room.isAvailable; 
-  
-  console.log("==========================================================")
-  console.log("room.bedRequestAvailable ", room.bedRequestAvailable)
-  console.log("room.isAvailable- ", room.isAvailable)
-  console.log("==========================================================")
-
+  const isApartmentAvailable = room.isAvailable;
+  // console.log(room.apartmentId)
   return (
     <Card className="w-full max-w-md mx-auto shadow-md" dir="rtl">
       <CardHeader className="pb-3">
@@ -208,7 +102,7 @@ const RoomCard = ({ room, onJoinRoom, onBookFullRoom }: {
           <h4 className="font-semibold mb-3 text-sm border-b pb-1">الطلاب الحاليين:</h4>
           <div className="max-h-[160px] overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]">
 
-            {room.studentDTOs.length > 0 ? (
+            {room.numBedNotBooked !== 0 ? (
               room.studentDTOs.map((student, index) => (
                 <div key={index} className="flex items-center gap-3 py-2 border-b bg-muted rounded-lg">
                   <div
@@ -247,28 +141,31 @@ const RoomCard = ({ room, onJoinRoom, onBookFullRoom }: {
             {isApartmentAvailable && room.bedRequestAvailable && (
               <Button
                 className="w-full bg-[#d32f2f] text-white hover:bg-[#b71c1c]"
-                onClick={() => onJoinRoom(room.roomId)}
+                onClick={() => onJoinRoom(room.roomId, room.apartmentId)}
               >
                 <UserPlus className="h-4 w-4 mr-2" />
                 انضم للغرفة ({room.pricePerBed} ج.م)
               </Button>
             )}
 
+
             {isApartmentAvailable && room.roomRequestAvailable && (
               <Button
                 variant="outline"
                 className="w-full"
-                onClick={() => onBookFullRoom(room.roomId)}
+                onClick={() => onBookFullRoom(room.roomId, room.apartmentId)}
               >
                 احجز الغرفة كاملة ({room.numOfBeds * room.pricePerBed} ج.م)
               </Button>
             )}
+
             {/* todoes */}
             {!isApartmentAvailable || room.isFull && (
               <Button disabled className="w-full bg-[#d32f2f] text-white hover:bg-[#b71c1c]">
                 الغرفة مكتملة
               </Button>
             )}
+
           </div>
         ) : null}
       </CardContent>
@@ -281,15 +178,107 @@ const RoomsSlider: React.FC<RoomsSliderProps> = ({ rooms = [] }) => {
   if (rooms.length === 0) {
     return <EmptyState />;
   }
-  console.log(rooms)
-  const handleJoinRoom = (roomId: number) => {
-    console.log("Join room:", roomId);
+  // console.log(rooms)
+  const handleJoinRoom = (roomId: number, apartmentId: number) => {
+    // console.log("Join room:", roomId);
+    // console.log("Join room in apartment id is:", apartmentId);
     // Add your logic here
+
+    const token = localStorage.getItem('token'); // Replace 'authToken' with your actual key
+
+    if (!token) {
+      console.error('No token found in localStorage');
+      // Handle case where user isn't logged in
+      return;
+    }
+
+    const url = 'https://darkteam.runasp.net/BookBedEndpoint/BookBed';
+    const data = {
+      "apartmentId": apartmentId,
+      "roomId": roomId
+    };
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(data)
+    })
+      .then(async response => {
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Request failed');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // console.log('Booking successful for bed:', data);
+        // Handle successful booking
+        toast.success(data.message);
+      })
+      .catch(error => {
+        console.error('Booking failed:', error.message);
+        // Handle errors (e.g., token expired, invalid data)
+
+        // Optional: Clear token if unauthorized
+        if (error.message.includes('401')) {
+          localStorage.removeItem('token');
+          // Redirect to login or show login prompt
+        }
+      });
   };
 
-  const handleBookFullRoom = (roomId: number) => {
-    console.log("Book full room:", roomId);
+  const handleBookFullRoom = (roomId: number, apartmentId: number) => {
+    // console.log("Book full room:", roomId);
+    // console.log("Book full room in apatment of id:", apartmentId);
     // Add your logic here
+    // Get token from localStorage
+    const token = localStorage.getItem('token'); // Replace 'authToken' with your actual key
+
+    if (!token) {
+      console.error('No token found in localStorage');
+      // Handle case where user isn't logged in
+      return;
+    }
+
+    const url = 'https://darkteam.runasp.net/BookApartmentEndpoint/BookApartment';
+    const data = {
+      "apartmentId": apartmentId,
+      "roomId": roomId
+    };
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(data)
+    })
+      .then(async response => {
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Request failed');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // console.log('Booking successful for all room:', data);
+        // Handle successful booking
+        toast.success(data.message);
+      })
+      .catch(error => {
+        // console.error('Booking failed:', error.message);
+        // Handle errors (e.g., token expired, invalid data)
+
+        // Optional: Clear token if unauthorized
+        if (error.message.includes('401')) {
+          localStorage.removeItem('token');
+          // Redirect to login or show login prompt
+        }
+      });
   };
 
   return (
@@ -319,6 +308,20 @@ const RoomsSlider: React.FC<RoomsSliderProps> = ({ rooms = [] }) => {
         <CarouselPrevious className="left-4" />
         <CarouselNext className="right-4" />
       </Carousel>
+
+     {/* <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        style={{ zIndex: 9999 }} 
+       /> */}
+        {/* <Toaster position="bottom-center" richColors /> */}
     </div>
   );
 };

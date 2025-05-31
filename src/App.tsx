@@ -52,6 +52,7 @@ import PropertyManagement from './components/PropertyManagementSystem/PropertyMa
 import StudentProfile from './pages/User_Profile_Pages/Profile/studentprofile';
 import OwnerProfile from './pages/User_Profile_Pages/Profile/onwerProfile';
 import RedirectBasedOnRole from './RedirectBasedOnRole';
+import { Toaster } from 'sonner';
 // import MainLayout from './mainLayout';
 export default function App() {
   const location = useLocation();
@@ -101,6 +102,7 @@ export default function App() {
   const shouldHideFooter = hideFooterRoutes.includes(location.pathname);
   return (
     <>
+    <Toaster position="top-center" richColors />
       {!shouldHideNavbar && <NavBar />}
       <Routes>
        {/* <Route path="/" element={<MainLayout />}> */}

@@ -135,6 +135,12 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
   useEffect(() => {
     console.log("data form card not room details" + data)
   })
+  const [isFavorited, setIsFavorited] = useState(false);
+  
+  const handleClick = () => {
+    AddtoFav(String(id ?? ""));
+    setIsFavorited((prev) => !prev);
+  }
   return (
     <div
       className={`
@@ -208,95 +214,96 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
 
         {!edit && (
           <div
-            onClick={() => AddtoFav(String(id ?? ""))}
+            onClick={handleClick}
             title="Add to Favourites"
             className="absolute top-3 left-3 p-2 rounded-full shadow-md cursor-pointer z-10 bg-[#f8fafc]"
           >
-            <FaHeart className="text-[#00000080] hover:text-red-500 hover:scale-110 transition duration-300" />
-          </div>
-        )}
+            <FaHeart
+              className={`transition duration-300 text-xl ${isFavorited ? 'text-red-500' : 'text-[#00000080]'
+                } hover:scale-110`}
+            />
+          </div>)}
 
-      </div>
-
-      <Link to={`/roomdetails?id=${id}`} state={{ data: data, ownerName: data?.ownerName }}>
-        <div className="p-3 text-right">
-          <div className="flex items-start justify-between mb-2">
-            <span className="text-[13px] font-bold text-[#DC3545] dark:text-[#ff6170] sm:text-[16px] lg:text-[14px]">
-              {data?.price == 0 ? 200 : data?.price}/mo
-            </span>
-            <h3 className="text-[14px] font-semibold text-[#212529] dark:text-primary_TXD sm:text-[16px] lg:text-[15px]">
-              {addressMap[data?.address ?? ""] ?? data?.address} · {type} · {numofRooms} غرف · 6 ضيف · الدور {translatedFloor}
-            </h3>
-          </div>
-
-          <div className="flex items-center justify-end mb-2">
-            <span className="text-[14px] text-[#515151] mr-2 dark:text-primary_TXD">{addressMap[data?.address ?? ""] ?? data?.address} / شارع ابو علاء</span>
-            <IoLocationOutline className="text-[#515151] dark:text-[#8492a7]" />
-          </div>
-
-          <p className="text-[14px] text-[#515151] dark:text-secondary_TXD sm:text-[14px] lg:text-[14px]">
-            سكن مناسب للطلبه و العائلات · قريب من المواصلات العامة · قريب من المحلات التجارية · قريب من المطاعم · قريب من الجامعه
-          </p>
-
-          <div className="flex items-center justify-end mb-2 mt-2 gap-x-2 pb-2 border-b border-[#e0e0e0] dark:border-[#1f2630]">
-            <div className="flex items-center justify-end">
-              <span className="text-[#111111] mr-2 dark:text-BTN_BGD text-[14px] sm:text-[14px] lg:text-[12px] xl:text-[14px]">12 سرير</span>
-              <LuBed className="lg:text-[14px] text-[#111111] dark:text-BTN_BGD" />
+        <Link to={`/roomdetails?id=${id}`} state={{ data: data, ownerName: data?.ownerName }}>
+          <div className="p-3 text-right">
+            <div className="flex items-start justify-between mb-2">
+              <span className="text-[13px] font-bold text-[#DC3545] dark:text-[#ff6170] sm:text-[16px] lg:text-[14px]">
+                {data?.price == 0 ? 200 : data?.price}/mo
+              </span>
+              <h3 className="text-[14px] font-semibold text-[#212529] dark:text-primary_TXD sm:text-[16px] lg:text-[15px]">
+                {addressMap[data?.address ?? ""] ?? data?.address} · {type} · {numofRooms} غرف ·  الدور {translatedFloor}
+              </h3>
             </div>
-            <div className="flex items-center justify-end">
-              <span className="text-[14px] text-[#111111] mr-2 dark:text-BTN_BGD sm:text-[14px] lg:text-[12px] xl:text-[14px]">4 غرفه</span>
-              <MdOutlineMeetingRoom className="lg:text-[14px] text-[#111111] dark:text-BTN_BGD" />
-            </div>
-            <div className="flex items-center justify-end">
-              <span className="text-[14px] text-[#111111] mr-2 dark:text-BTN_BGD sm:text-[14px] lg:text-[12px] xl:text-[14px]">1 حمام</span>
-              <BiBath className="lg:text-[14px] text-[#111111] dark:text-BTN_BGD" />
-            </div>
-          </div>
 
-          <div className="flex items-center justify-end gap-x-2 mt-2 mb-3 lg:gap-x-1">
-            {["+10 اخري", "WiFi", "غاز طبيعي", "مكيف"].map((feature, i) => (
-              <span key={i} className="bg-[#F1F5F9] text-[#111111] rounded-full dark:text-BTN_TXD dark:bg-darkBg 
+            <div className="flex items-center justify-end mb-2">
+              <span className="text-[14px] text-[#515151] mr-2 dark:text-primary_TXD">{addressMap[data?.address ?? ""] ?? data?.address} / شارع ابو علاء</span>
+              <IoLocationOutline className="text-[#515151] dark:text-[#8492a7]" />
+            </div>
+
+            <p className="text-[14px] text-[#515151] dark:text-secondary_TXD sm:text-[14px] lg:text-[14px]">
+              سكن مناسب للطلبه و العائلات · قريب من المواصلات العامة · قريب من المحلات التجارية · قريب من المطاعم · قريب من الجامعه
+            </p>
+
+            <div className="flex items-center justify-end mb-2 mt-2 gap-x-2 pb-2 border-b border-[#e0e0e0] dark:border-[#1f2630]">
+              <div className="flex items-center justify-end">
+                <span className="text-[#111111] mr-2 dark:text-BTN_BGD text-[14px] sm:text-[14px] lg:text-[12px] xl:text-[14px]">12 سرير</span>
+                <LuBed className="lg:text-[14px] text-[#111111] dark:text-BTN_BGD" />
+              </div>
+              <div className="flex items-center justify-end">
+                <span className="text-[14px] text-[#111111] mr-2 dark:text-BTN_BGD sm:text-[14px] lg:text-[12px] xl:text-[14px]">4 غرفه</span>
+                <MdOutlineMeetingRoom className="lg:text-[14px] text-[#111111] dark:text-BTN_BGD" />
+              </div>
+              <div className="flex items-center justify-end">
+                <span className="text-[14px] text-[#111111] mr-2 dark:text-BTN_BGD sm:text-[14px] lg:text-[12px] xl:text-[14px]">1 حمام</span>
+                <BiBath className="lg:text-[14px] text-[#111111] dark:text-BTN_BGD" />
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end gap-x-2 mt-2 mb-3 lg:gap-x-1">
+              {["+10 اخري", "WiFi", "غاز طبيعي", "مكيف"].map((feature, i) => (
+                <span key={i} className="bg-[#F1F5F9] text-[#111111] rounded-full dark:text-BTN_TXD dark:bg-darkBg 
               sm:text-sm
               text-[12px] p-1
               
               sm:px-3 sm:py-1 
               md:px-2 md:text-[12px]
               lg:px-3 lg:py-3 lg:text-[13px]">
-                {feature}
-              </span>
-            ))}
-          </div>
-
-          <div className="flex items-center justify-between mt-2">
-            <div className="flex items-center justify-end">
-              <span className="text-[13px] text-[#515151] mr-2 dark:text-BTN_BGD sm:text-[14px] lg:text-[12px] xl:text-[14px]">قبل يوم</span>
-              <MdOutlineAccessTime className="text-[14px] text-[#515151] dark:text-BTN_BGD" />
+                  {feature}
+                </span>
+              ))}
             </div>
-            <div className="flex items-center justify-end">
-              <span className="text-[14px] text-[#515151] mr-2 dark:text-BTN_BGD sm:text-[14px] lg:text-[12px] xl:text-[14px]">+10 تعليقات</span>
-              <div className="flex items-center">
-                <span className="text-[13px] text-[#515151] mr-2 dark:text-BTN_BGD">4.5</span>
-                <MdOutlineStar className="text-[14px] text-[#FFA500] dark:text-[#FFCC00] sm:text-[14px] lg:text-[12px] xl:text-[14px]" />
+
+            <div className="flex items-center justify-between mt-2">
+              <div className="flex items-center justify-end">
+                <span className="text-[13px] text-[#515151] mr-2 dark:text-BTN_BGD sm:text-[14px] lg:text-[12px] xl:text-[14px]">قبل يوم</span>
+                <MdOutlineAccessTime className="text-[14px] text-[#515151] dark:text-BTN_BGD" />
+              </div>
+              <div className="flex items-center justify-end">
+                <span className="text-[14px] text-[#515151] mr-2 dark:text-BTN_BGD sm:text-[14px] lg:text-[12px] xl:text-[14px]">+10 تعليقات</span>
+                <div className="flex items-center">
+                  <span className="text-[13px] text-[#515151] mr-2 dark:text-BTN_BGD">4.5</span>
+                  <MdOutlineStar className="text-[14px] text-[#FFA500] dark:text-[#FFCC00] sm:text-[14px] lg:text-[12px] xl:text-[14px]" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </Link>
+        </Link>
 
-      {edit && (
-        <div className="absolute top-3 right-3 z-10">
-          <button
-            type="button"
-            className="text-[#f8fafc] bg-[#495057] hover:bg-[#f8fafc] hover:text-[#0f1729] px-4 py-1 rounded-[10px] text-base shadow-md cursor-pointer"
-            onClick={() => navigate('/manage_property', { state: { mode: 'eidt' } })}
-          >
-            edit
-          </button>
-        </div>
+        {edit && (
+          <div className="absolute top-3 right-3 z-10">
+            <button
+              type="button"
+              className="text-[#f8fafc] bg-[#495057] hover:bg-[#f8fafc] hover:text-[#0f1729] px-4 py-1 rounded-[10px] text-base shadow-md cursor-pointer"
+              onClick={() => navigate('/manage_property', { state: { mode: 'eidt' } })}
+            >
+              edit
+            </button>
+          </div>
 
-      )}
-    </div>
-  );
+        )}
+      </div>
+      </div>
+      );
 };
 
-export default ApartmentCard;
+      export default ApartmentCard;
