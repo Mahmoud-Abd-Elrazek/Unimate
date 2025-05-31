@@ -225,7 +225,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
               {data?.price == 0 ? 200 : data?.price}/mo
             </span>
             <h3 className="text-[14px] font-semibold text-[#212529] dark:text-primary_TXD sm:text-[16px] lg:text-[15px]">
-              {addressMap[data?.address ?? ""] ?? data?.address} · {type} · {numofRooms} غرف · 6 ضيف · الدور {translatedFloor}
+              {addressMap[data?.address ?? ""] ?? data?.address} · {type} · {numofRooms} غرف ·  الدور {translatedFloor}
             </h3>
           </div>
 
