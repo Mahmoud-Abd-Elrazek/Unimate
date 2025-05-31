@@ -1,7 +1,6 @@
 import { Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-
 export default function HostInfoCard() {
    const navigate = useNavigate();
    return (
@@ -9,8 +8,8 @@ export default function HostInfoCard() {
          {/* معلومات التقييمات */}
          <div className="flex flex-col text-center gap-4 text-sm text-gray-700">
             <div className="dark:text-secondary_TXD">
-               <div className="text-xl font-bold">8</div>
-               <div>التقييمات</div>
+               <div className="text-xl font-bold">+8</div>
+               <div>عقارات</div>
             </div>
             <div className="dark:text-secondary_TXD">
                <div className="text-xl font-bold flex items-center justify-center gap-1">
@@ -23,9 +22,18 @@ export default function HostInfoCard() {
          </div>
 
          {/* صورة واسم المضيف */}
-         <div className="flex flex-col items-center text-center gap-1 cursor-pointer hover:opacity-90"
+         <button className="flex flex-col items-center text-center gap-1 cursor-pointer hover:opacity-90"
             title="open account"
-            onClick={() => navigate("/auther/ownerprofile")} >
+            onClick={() => {
+               const token = localStorage.getItem("token");
+               if (token) {
+                  navigate("/auther/ownerprofile");
+               } else {
+                  // alert("You must be logged in first.");
+                  navigate("/SignIn");
+               }
+            }}
+         >
             <div className="relative">
                <img
                   src="https://scontent.fcai20-1.fna.fbcdn.net/v/t39.30808-6/477087917_552077724531641_8310418652078223006_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=2uUol99WkMEQ7kNvwHjWXPM&_nc_oc=AdmeVNF93gXOu5azGolZ4iuPYxAFciM4Ir9s3ZjMaOVRFHZFVvpXQhrd-NVmfKaXuqM&_nc_zt=23&_nc_ht=scontent.fcai20-1.fna&_nc_gid=DzJbcrittJ7Y35CAd-Iclw&oh=00_AfLWWJEY5ItHx94a45M0K5kikl6jUGphHOBti4Q8T7ON8g&oe=68390498"
@@ -44,7 +52,7 @@ export default function HostInfoCard() {
             </div>
             <div className="text-lg font-bold">Mahmoud</div>
             <div className="text-sm text-muted-foreground">مالك العقار</div>
-         </div>
+         </button>
       </div>
    );
 }

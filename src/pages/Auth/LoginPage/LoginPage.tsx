@@ -7,6 +7,8 @@ import { FiEye, FiEyeOff, FiLogIn } from "react-icons/fi";
 import useAuthStore from "../../../Store/Auth/Auth.store";
 import { Slide, toast, ToastContainer } from "react-toastify";
 
+import "../../../../public/animations.css"
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -39,12 +41,12 @@ const LoginPage = () => {
       toast.success(`تم تسجيل الدخول كـ ${savedRole}!`);
       navigate("/", { replace: true });
     } else {
-      toast.error("البريد الإلكتروني أو كلمة المرور غير صحيحة ❌");
+      toast.error("البريد الإلكتروني أو كلمة المرور غير صحيحة");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4 slide-in">
       <div className="w-full max-w-md rounded-xl p-8 shadow-md text-right">
         <h2 className="text-2xl font-semibold mb-2">تسجيل الدخول</h2>
 
