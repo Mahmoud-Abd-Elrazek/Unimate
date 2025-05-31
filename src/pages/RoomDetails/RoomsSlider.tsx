@@ -9,6 +9,8 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import EmptyState from "./EmptyRooms"
 import useAuthStore from "../../Store/Auth/Auth.store";
 import { toast } from 'sonner';
+import { useNavigate } from "react-router-dom";
+
 // import { toast } from 'react-toastify';
 // import { ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
@@ -47,6 +49,7 @@ const RoomCard = ({ room, onJoinRoom, onBookFullRoom }: {
   onJoinRoom: (roomId: number, apartment: number) => void;
   onBookFullRoom: (roomId: number, apartmentId: number) => void;
 }) => {
+  const navigate = useNavigate();
   const availableSpots = room.numBedNotBooked;
   const imageUrl = room.imageRoomUrl;
   const hasAC = true; //room.hasAC; static todoes 
@@ -136,7 +139,7 @@ const RoomCard = ({ room, onJoinRoom, onBookFullRoom }: {
         </div>
 
         {/* Action Buttons */}
-        {role === "Student" ? (
+        {!localStorage.getItem('token') || role === "Student" ? (
           <div className="space-y-2 pt-2">
             {isApartmentAvailable && room.bedRequestAvailable && (
               <Button
@@ -153,7 +156,15 @@ const RoomCard = ({ room, onJoinRoom, onBookFullRoom }: {
               <Button
                 variant="outline"
                 className="w-full"
-                onClick={() => onBookFullRoom(room.roomId, room.apartmentId)}
+                // onClick={() => onBookFullRoom(room.roomId, room.apartmentId)}
+                onClick={() => {
+                  const token = localStorage.getItem("token");
+                  if (token) {
+                    onBookFullRoom(room.roomId, room.apartmentId)
+                  } else {
+                    navigate("/SignIn");
+                  }
+                }}
               >
                 احجز الغرفة كاملة ({room.numOfBeds * room.pricePerBed} ج.م)
               </Button>
@@ -173,8 +184,9 @@ const RoomCard = ({ room, onJoinRoom, onBookFullRoom }: {
     </Card>
   );
 };
-
 const RoomsSlider: React.FC<RoomsSliderProps> = ({ rooms = [] }) => {
+  const navigate = useNavigate();
+
   if (rooms.length === 0) {
     return <EmptyState />;
   }
@@ -189,6 +201,8 @@ const RoomsSlider: React.FC<RoomsSliderProps> = ({ rooms = [] }) => {
     if (!token) {
       console.error('No token found in localStorage');
       // Handle case where user isn't logged in
+      toast.error("سجل دخولك اولا");
+      navigate("/SignIn");
       return;
     }
 
@@ -240,6 +254,8 @@ const RoomsSlider: React.FC<RoomsSliderProps> = ({ rooms = [] }) => {
     if (!token) {
       console.error('No token found in localStorage');
       // Handle case where user isn't logged in
+      toast.error("سجل دخولك اولا");
+      navigate("/SignIn");
       return;
     }
 

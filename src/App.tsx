@@ -87,9 +87,9 @@ export default function App() {
     '/img_details',
     '/roomdetails',
     '/admain_dashBord',
+    '/register/owner'
   ];
   const hideNavbarRoutes = [
-    '/SignIn',
     '/register',
     '/signout',
     '/unauthorized',
