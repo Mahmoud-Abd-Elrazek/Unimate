@@ -27,6 +27,7 @@
     "bootstrap": "^5.3.4",
     "chart.js": "^4.4.9",
     "class-variance-authority": "^0.7.1",
+    "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.487.0",
     "middleware": "^1.0.0",
