@@ -12,7 +12,8 @@ import 'swiper/swiper-bundle.css';
 import { Swiper as SwiperClass } from "swiper";
 import { useApartmentStore } from "../../Store/Data/useApartment.store";
 import { useNavigate } from 'react-router-dom';
-
+// import { boolean } from "zod";
+// import { toast } from "sonner";
 interface ApartmentData {
   address?: string;
   gender?: string;
@@ -54,18 +55,17 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
   const handleNextClick = () => {
     swiperRef.current?.slideNext();
   };
-  const AddFavorite = useApartmentStore(state => state.AddFavorite)
-  const AddtoFav = (id: string) => {
-    AddFavorite(id);
-  }
+  // const AddtoFav = (id: string) => {
+    //   AddFavorite(id);
+    // }
   // Helper function
   const parseFloor = (floorRaw: unknown): string => {
     if (typeof floorRaw !== "string") return "?";
-
+    
     const trimmed = floorRaw.trim();
-
+    
     const isProbablyJSON = trimmed.startsWith('"') && trimmed.endsWith('"');
-
+    
     if (isProbablyJSON) {
       try {
         const parsed = JSON.parse(trimmed);
@@ -111,7 +111,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
       "10th": "العاشر",
       "tenth": "العاشر",
     };
-
+    
     return map[floor] || floor;
   };
   const rawFloor = data?.floor;
@@ -125,21 +125,25 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
     "456 College Ave": "المساكن",
     "789 Park Lane": "الشئون",
     "321 Arts District": "مدينة العمال",
-
+    
   };
 
-
+  
   const type = data?.gender === "Male" ? "أولاد" : "بنات";
   let numofRooms = (data?.numberOfRooms ?? 3) > 4 ? 4 : data?.numberOfRooms;
   numofRooms = numofRooms == 0 ? 3 : numofRooms
   useEffect(() => {
-    console.log("data form card not room details" + data)
+    console.log("data form card not room details" , typeof id)
   })
-  const [isFavorited, setIsFavorited] = useState(false);
-  
+  const {ToggelFav,flag} = useApartmentStore()
+  const [isFavorited,setisFavrited]=useState(flag)
   const handleClick = () => {
-    AddtoFav(String(id ?? ""));
-    setIsFavorited((prev) => !prev);
+    if (id !== undefined) {
+      ToggelFav(id);
+      setisFavrited(pre=>!pre)
+      // setflag(!flag)
+      
+    }
   }
   return (
     <div
@@ -259,7 +263,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
               </div>
             </div>
 
-            <div className="flex items-center justify-end gap-x-2 mt-2 mb-3 lg:gap-x-1">
+            {/* <div className="flex items-center justify-end gap-x-2 mt-2 mb-3 lg:gap-x-1">
               {["+10 اخري", "WiFi", "غاز طبيعي", "مكيف"].map((feature, i) => (
                 <span key={i} className="bg-[#F1F5F9] text-[#111111] rounded-full dark:text-BTN_TXD dark:bg-darkBg 
               sm:text-sm
@@ -271,7 +275,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
                   {feature}
                 </span>
               ))}
-            </div>
+            </div> */}
 
             <div className="flex items-center justify-between mt-2">
               <div className="flex items-center justify-end">

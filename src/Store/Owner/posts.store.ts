@@ -2,6 +2,7 @@ import axios from 'axios';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import useAuthStore from '../Auth/Auth.store';
+import { toast } from 'sonner';
 
 interface Room {
   id: string;
@@ -13,7 +14,6 @@ interface Room {
 }
 
 interface PostsState {
-  Num: number;
   Location: number;
   DescribeLocation: string;
   NumberOfRooms: string;
@@ -31,7 +31,6 @@ interface PostsState {
   services: { id: number; isSelected: boolean }[];
   Rooms: Room[];
 
-  setNum: (Num: number) => void;
   setLocation: (Location: number) => void;
   setDescribeLocation: (DescribeLocation: string) => void;
   setNumberOfRooms: (NumberOfRooms: string) => void;
@@ -57,7 +56,6 @@ interface PostsState {
 export const usePostsStore = create<PostsState>()(
   persist(
     (set, get) => ({
-      Num: Math.floor(Math.random() * 1000),
       Location: 0,
       Description: '',
       Floor: '',
@@ -73,10 +71,8 @@ export const usePostsStore = create<PostsState>()(
       livingRoomImage: undefined,
 
       services: [],
-
       Rooms: [],
 
-      setNum: (Num) => set({ Num }),
       setLocation: (Location) => set({ Location }),
       setDescription: (Description) => set({ Description }),
       setFloor: (Floor) => set({ Floor }),
@@ -98,7 +94,6 @@ export const usePostsStore = create<PostsState>()(
             isSelected: s.isSelected,
           }))],
         }),
-
 
       addRoom: (description, price, hasAC, bednumber, image) => {
         const newRoom: Room = {
@@ -140,15 +135,12 @@ export const usePostsStore = create<PostsState>()(
             )
           );
 
-
-          formData.append('Num', state.Num.toString());
           formData.append('Location', state.Location.toString());
           formData.append('Description', state.Description);
           formData.append('Capecity', state.Capecity.toString());
           formData.append('DescribeLocation', state.DescribeLocation);
           formData.append('Floor', state.Floor);
           formData.append('GenderAcceptance', state.GenderAcceptance.toString());
-
 
           state.Rooms.forEach((room, index) => {
             formData.append(`Rooms[${index}].Description`, room.description);
@@ -160,55 +152,57 @@ export const usePostsStore = create<PostsState>()(
             formData.append(`Rooms[${index}].bedsNumber`, room.bednumber.toString());
           });
 
-
           selectedServiceIds.forEach((id, index) => {
             formData.append(`CategoryFacilities[${index}].IsSelected`, 'true');
             formData.append(`CategoryFacilities[${index}].FacilityId`, id.toString());
           });
 
-
           if (state.kitchenImage) formData.append('Images.Kitchen', state.kitchenImage);
           if (state.bathroomImage) formData.append('Images.Bathroom', state.bathroomImage);
           if (state.outsideImage) formData.append('Images.Outside', state.outsideImage);
           if (state.livingRoomImage) formData.append('Images.LivingRoom', state.livingRoomImage);
-         
+
           for (const [key, value] of formData.entries()) {
             console.log(`${key}:`, value);
           }
+
           const res = await axios.post(
             'https://darkteam.runasp.net/SubmitPostEndPoint/SubmitPost',
             formData,
             {
               headers: {
-                // 'Content-Type': 'multipart/form-data',
                 Authorization: `Bearer ${useAuthStore.getState().token}`,
                 Accept: 'application/json',
               },
             }
           );
 
-
-          // set({
-          //   Location: 0,
-          //   DescribeLocation: '',
-          //   services: [],
-          //   Rooms: [],
-          //   Description: '',
-          //   Floor: '',
-          //   GenderAcceptance: 0,
-          //   DurationType: 0,
-          //   kitchenImage: undefined,
-          //   bathroomImage: undefined,
-          //   outsideImage: undefined,
-          //   livingRoomImage: undefined,
-          // });
-
-          console.log('Post added successfully:', res);
+          if (res.status === 200 && res.data?.success !== false) {
+            console.log('✅ Post added successfully:', res.data);
+            set({
+              Location: 0,
+              DescribeLocation: '',
+              NumberOfRooms: '',
+              Floor: '',
+              Capecity: 0,
+              Description: '',
+              GenderAcceptance: 0,
+              DurationType: 0,
+              kitchenImage: undefined,
+              bathroomImage: undefined,
+              outsideImage: undefined,
+              livingRoomImage: undefined,
+              services: [],
+              Rooms: [],
+            });
+            toast.success("تم  ارسال البوست  بنجاح")
+          } else {
+            console.warn('⚠️ Server responded with status 200 but error in body:', res.data);
+          }
         } catch (error) {
-          console.error('Failed to add post:', error);
+          console.error('❌ Failed to add post:', error);
         }
       },
-
     }),
     {
       name: 'posts-storage',

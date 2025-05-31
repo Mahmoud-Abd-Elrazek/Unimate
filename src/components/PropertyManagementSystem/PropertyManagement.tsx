@@ -19,7 +19,7 @@ function PropertyManagement() {
   const initialMode: Mode = location.state?.mode || 'list';
   const [mode, setMode] = useState<Mode>(initialMode);
   const [activeTab, setActiveTab] = useState('details');
-
+  
   const tabs = [
     { id: 'details', label: 'تفاصيل العقار' },
     { id: 'rooms', label: 'إدارة الغرف' },
@@ -29,6 +29,7 @@ function PropertyManagement() {
   const handleSave = () => {
     AddPost();
     alert('تم حفظ معلومات العقار بنجاح!');
+    
     setMode('list');
     // navigate('/');
   };
@@ -104,7 +105,6 @@ function PropertyManagement() {
               <ArrowLeft size={16} />
             </button>
           </div>
-           <button onClick={AddPost}>Test FormData</button>;
         </div>
       </div>
     </Layout>

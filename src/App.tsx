@@ -45,7 +45,7 @@ import Edit_login_information from './pages/EditProfilePage/Edit_login_informati
 import Edit_profile_information from './pages/EditProfilePage/Edit_personal_information/edit_profile_information';
 import RegisterStudentPage from './pages/Auth/RegisterPage/registerStudentPage';
 import RegisterOwnerPage from './pages/Auth/RegisterPage/registerOwnerPage';
-import RegisterPage from './pages/Auth/RegisterPage/registe';
+// import RegisterPage from './pages/Auth/RegisterPage/registe';
 import ChangePass from './pages/Auth/Passwords/ChangePass/changepass';
 import ConfirmEmail from './pages/Auth/Emails/confirmemail';
 import LogOut from './pages/Auth/LogOut/logout';
@@ -116,10 +116,10 @@ export default function App() {
         <Route path="/SignIn" element={<LoginPage />} />
         <Route path='/logout' element={<LogOut/>} />
 
-        <Route path='/register' element={<RegisterPage />} >
-          <Route path="student" element={<RegisterStudentPage />} />
-          <Route path="owner" element={<RegisterOwnerPage />} />
-        </Route>
+        {/* <Route path='/register' element={<RegisterPage />} > */}
+          <Route path="/register_student" element={<RegisterStudentPage />} />
+        {/* </Route> */}
+          <Route path="/register_owner" element={<RegisterOwnerPage />} />
         <Route path="/signout" element={<SignOutCard />} />
         <Route path='/forgetpassword' element={<ForgetPassword />} />
         <Route path='/resetpassword' element={<ResetPass />} />

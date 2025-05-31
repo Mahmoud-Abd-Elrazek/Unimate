@@ -106,6 +106,13 @@ export default function RoomDetails() {
         location: string;
       }[];
     }>;
+    ownerDTO?: {
+      id: string,
+      fName: string,
+      lName: string,
+      image: string,
+      apartmentsOwned: number
+    }
   };
 
   const navigate = useNavigate();
@@ -180,7 +187,6 @@ export default function RoomDetails() {
   const rooms = data.sleepPlaces;
   const roomCount = data?.apartmentDTO.roomCount;
 
-  // const apartmentId = data.apartmentDTO.id;
   // =========================== END =======================================
 
   // ====================== Handel Booking ======================
@@ -455,7 +461,7 @@ export default function RoomDetails() {
             <FaRegUser className="text-[16px]" />
             تعرف علي المالك
           </h3>
-          <HostInfoCard />
+          <HostInfoCard data={data?.ownerDTO ? { ownerDTO: data.ownerDTO } : undefined}/>
         </div>
 
         <div dir="rtl" className="w-full">
