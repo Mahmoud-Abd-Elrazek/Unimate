@@ -57,17 +57,17 @@ const handleToggleService = (serviceId: number) => {
 
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 rtl">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 rtl ">
       {availableServices.map((service) => {
         const isSelected = selectedServices.find((s) => s.id === service.id)?.isSelected;
 
         return (
           <div
             key={service.id}
-            className="flex items-center gap-2 border p-2 rounded shadow-sm bg-white dark:bg-gray-800"
+            className="flex items-center gap-2 border p-2 rounded shadow-sm dark:bg-secondary_BGD"
           >
             {service.icon}
-            <span className="text-sm">{service.name}</span>
+            <span className="text-s">{service.name}</span>
             <button
               type="button"
               onClick={() => handleToggleService(service.id)}
