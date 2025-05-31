@@ -29,7 +29,9 @@ import Step3 from './pages/CreatePost/step3';
 import Step4 from './pages/CreatePost/step4';
 import LoginPage from './pages/Auth/LoginPage/LoginPage';
 import Housing_Services from './pages/Housing_Services/housing_services';
-import Admain from './pages/Admain/admain_dashBord';
+import DashBord from './pages/Admain/admain_dashBord';
+import Requests from './pages/Admain/requests';
+
 // import edit_property from '../../components/PropertyManagementSystem/PropertyManagement'
 
 // Components
@@ -87,6 +89,7 @@ export default function App() {
     '/img_details',
     '/roomdetails',
     '/admain_dashBord',
+    '/requests',
   ];
   const hideNavbarRoutes = [
     '/SignIn',
@@ -169,7 +172,9 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
         
         {/* Admin Dashboard */}
-        <Route path="/admain_dashBord" element={<Admain />} />
+        <Route path="/admain_dashBord" element={<DashBord />} />
+        <Route path="/requests" element={<Requests />} />
+
         {/* </Route> */}
       </Routes>
 
