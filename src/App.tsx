@@ -90,9 +90,9 @@ export default function App() {
     '/roomdetails',
     '/admain_dashBord',
     '/requests',
+    '/register/owner',
   ];
   const hideNavbarRoutes = [
-    '/SignIn',
     '/register',
     '/signout',
     '/unauthorized',
