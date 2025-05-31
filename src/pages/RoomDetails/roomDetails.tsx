@@ -228,7 +228,14 @@ export default function RoomDetails() {
         <ShareButton />
         <button
           onClick={() => {
-            if (id) AddtoFav(id);
+            const token = localStorage.getItem("token");
+            if (token) {
+              if (id) {
+                AddtoFav(id)
+              }
+            } else {
+              navigate("/SignIn");
+            }
           }}
           className="items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 flex gap-2">
           حفظ
@@ -362,7 +369,7 @@ export default function RoomDetails() {
                 <p>طالب</p>
               </div>
             </div>
-            
+
 
             <div className="border-t border-b pt-2 text-right rounded-md">
               <div className="flex items-center justify-end gap-2 text-right mb-2 mt-2">
@@ -488,6 +495,6 @@ export default function RoomDetails() {
       </div>
 
       <p className="text-sm text-center py-4 text-gray-600 border-t dark:text-secondary_TXD">يمكنك التواصل مع المالك عبر وسائل التوصل الاجتماعي اذا كان هناك تفاصيل غير واضحه</p>
-    </div>
+    </div >
   );
 }
