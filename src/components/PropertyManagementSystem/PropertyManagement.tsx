@@ -104,6 +104,7 @@ function PropertyManagement() {
               <ArrowLeft size={16} />
             </button>
           </div>
+           <button onClick={AddPost}>Test FormData</button>;
         </div>
       </div>
     </Layout>

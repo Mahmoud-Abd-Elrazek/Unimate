@@ -149,29 +149,32 @@ export const usePostsStore = create<PostsState>()(
           formData.append('Floor', state.Floor);
           formData.append('GenderAcceptance', state.GenderAcceptance.toString());
 
-          // 🟩 إرسال الغرف
+
           state.Rooms.forEach((room, index) => {
             formData.append(`Rooms[${index}].Description`, room.description);
             formData.append(`Rooms[${index}].Price`, room.price.toString());
             formData.append(`Rooms[${index}].hasAC`, room.hasAC.toString());
-            formData.append(`Rooms[${index}].bedsNumber`, room.bednumber.toString());
             if (room.image) {
               formData.append(`Rooms[${index}].Image`, room.image);
             }
+            formData.append(`Rooms[${index}].bedsNumber`, room.bednumber.toString());
           });
 
-          // 🟦 إرسال الخدمات باستخدام selectedServiceIds
+
           selectedServiceIds.forEach((id, index) => {
             formData.append(`CategoryFacilities[${index}].IsSelected`, 'true');
             formData.append(`CategoryFacilities[${index}].FacilityId`, id.toString());
           });
 
-          // 🟨 الصور العامة
+
           if (state.kitchenImage) formData.append('Images.Kitchen', state.kitchenImage);
           if (state.bathroomImage) formData.append('Images.Bathroom', state.bathroomImage);
           if (state.outsideImage) formData.append('Images.Outside', state.outsideImage);
           if (state.livingRoomImage) formData.append('Images.LivingRoom', state.livingRoomImage);
-
+         
+          for (const [key, value] of formData.entries()) {
+            console.log(`${key}:`, value);
+          }
           const res = await axios.post(
             'https://darkteam.runasp.net/SubmitPostEndPoint/SubmitPost',
             formData,
@@ -184,21 +187,21 @@ export const usePostsStore = create<PostsState>()(
             }
           );
 
-          // ✅ Clear selected fields after successful post
-          set({
-            Location: 0,
-            DescribeLocation: '',
-            services: [],
-            Rooms: [],
-            Description: '',
-            Floor: '',
-            GenderAcceptance: 0,
-            DurationType: 0,
-            kitchenImage: undefined,
-            bathroomImage: undefined,
-            outsideImage: undefined,
-            livingRoomImage: undefined,
-          });
+
+          // set({
+          //   Location: 0,
+          //   DescribeLocation: '',
+          //   services: [],
+          //   Rooms: [],
+          //   Description: '',
+          //   Floor: '',
+          //   GenderAcceptance: 0,
+          //   DurationType: 0,
+          //   kitchenImage: undefined,
+          //   bathroomImage: undefined,
+          //   outsideImage: undefined,
+          //   livingRoomImage: undefined,
+          // });
 
           console.log('Post added successfully:', res);
         } catch (error) {
