@@ -456,7 +456,8 @@ export default function RoomDetails() {
       <div className="mx-auto py-6 border-t mt-4">
         <RoomsSlider rooms={(rooms || []).map(room => ({
           ...room,
-          isAvailable: isAvailable
+          isAvailable: isAvailable,
+          apartmentId: data?.apartmentDTO.id
         }))} />
       </div>
 
