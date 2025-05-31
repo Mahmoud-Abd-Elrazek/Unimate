@@ -8,9 +8,10 @@ import { PiBed } from "react-icons/pi";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import EmptyState from "./EmptyRooms"
 import useAuthStore from "../../Store/Auth/Auth.store";
-import { toast } from 'react-toastify';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'sonner';
+// import { toast } from 'react-toastify';
+// import { ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 // import { AvatarFallback } from "./ui/avatar";
 // import { number } from "zod";
@@ -308,24 +309,19 @@ const RoomsSlider: React.FC<RoomsSliderProps> = ({ rooms = [] }) => {
         <CarouselNext className="right-4" />
       </Carousel>
 
-      <ToastContainer
+     {/* <ToastContainer
         position="top-center"
         autoClose={3000}
         hideProgressBar={false}
-        newestOnTop={false}
+        newestOnTop
         closeOnClick
-        rtl={false}
+        rtl={true}
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="colored"
-        style={{
-          top: '1.5rem', // يعادل تقريباً top-6 في تيلويند
-          left: '50%',
-          transform: 'translateX(-50%)',
-        }}
-        className="mt-4" // Tailwind class for additional top margin
-      />
+        style={{ zIndex: 9999 }} 
+       /> */}
+        {/* <Toaster position="bottom-center" richColors /> */}
     </div>
   );
 };

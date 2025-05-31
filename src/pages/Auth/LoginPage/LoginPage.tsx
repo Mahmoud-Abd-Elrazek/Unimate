@@ -5,8 +5,8 @@ import { z } from "zod";
 import { useState } from "react";
 import { FiEye, FiEyeOff, FiLogIn } from "react-icons/fi";
 import useAuthStore from "../../../Store/Auth/Auth.store";
-import { Slide, toast, ToastContainer } from "react-toastify";
-
+// import { Slide, toast, ToastContainer } from "react-toastify";
+import { toast } from "sonner";
 const LoginPage = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -130,7 +130,7 @@ const LoginPage = () => {
           </Link>
         </p>
       </div>
-      <ToastContainer position="top-center" autoClose={3000} transition={Slide} />
+      {/* <ToastContainer position="top-center" autoClose={3000} transition={Slide} /> */}
     </div>
   );
 };
