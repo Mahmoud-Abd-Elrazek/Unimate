@@ -1,27 +1,36 @@
 import { useEffect } from 'react';
 import { useprofileOwnerStore } from '../../../Store/Owner/useprofileOwner.store';
+import useAuthStore from "../../../Store/Auth/Auth.store";
 import { Phone, Mail, FileText } from 'lucide-react';
 import { FaUserCircle } from 'react-icons/fa';
 import "../../../../public/animations.css"
 // import { useSearchParams } from 'react-router-dom';
 // import { useLocation } from "react-router-dom";
-
+import { useSearchParams } from "react-router-dom";
+import AuthorLayout from '../AuthorLayout/authorLayout';
 export default function OwnerProfile() {
+
+  const authUserRole = useAuthStore((state) => state.role);
+  const [searchparams] = useSearchParams();
+  console.log(authUserRole);
+
+  const gustId = searchparams.get("id");
+  const authUserId = localStorage.getItem("authUserId");
+  const isAuthorized = (!gustId || (authUserId === gustId));
+ 
+  // ======================================== user data ========================================
   const { getOwnerInfo, userName, phones, email: ownerEmail, briefOverView: ownerBriefOverview } = useprofileOwnerStore();
-
-  // const location = useLocation();
-  // const id = location.state?.id;
-  
-  // alert(id);
-
   useEffect(() => {
     getOwnerInfo();
     console.log("Owner Profile Data:");
     // console.log(phones)
   }, [getOwnerInfo]);
+  // ======================================== user data ========================================
+  // if Authorized get owner data
+  // else get owner data by using gustId
 
   return (
-    <div>
+    <AuthorLayout isAuthorized={isAuthorized} >
       <div className="min-h-screen flex items-center justify-center p-2 sm:p-4 md:p-10 slide-in">
         <div className="shadow-md rounded-2xl w-full max-w-6xl flex flex-col-reverse md:grid md:grid-cols-3 gap-4 sm:gap-6 p-4 sm:p-6 md:p-40 h-auto md:h-[430px]">
 
@@ -60,6 +69,6 @@ export default function OwnerProfile() {
           </div>
         </div>
       </div>
-    </div>
+    </AuthorLayout>
   )
 }

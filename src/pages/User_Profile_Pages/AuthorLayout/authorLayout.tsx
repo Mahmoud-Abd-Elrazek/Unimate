@@ -5,7 +5,14 @@ import { IoMdMenu } from 'react-icons/io';
 import { IoMdClose } from 'react-icons/io';
 import './authorLayout.css';
 
-const AuthorLayout = () => {
+import "../../../../public/animations.css"
+
+type LayoutProps = {
+  isAuthorized: boolean;
+  children?: React.ReactNode;
+};
+
+export default function AuthorLayout({ isAuthorized, children }: LayoutProps) {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -17,17 +24,15 @@ const AuthorLayout = () => {
     }, 300); // نفس مدة fade-out animation بالـ CSS
   };
 
-
-
   const hideSidebarRoutes =
     location.pathname.startsWith('/auther/editprofile') ||
     location.pathname === '/auther/help';
 
   return (
-    <div className="flex flex-col lg:flex-row-reverse min-h-[80vh] relative pt-[80px]">
+    <div className="flex flex-col lg:flex-row-reverse  relative pt-[30px]">
 
       {/* ✅ Sidebar في الشاشات الكبيرة */}
-      {!hideSidebarRoutes && (
+      {!hideSidebarRoutes && isAuthorized && (
         <aside className="hidden lg:block lg:w-[280px] p-2 lg:p-4 lg:mt-12">
           <div className="rounded-2xl border border-gray-200 dark:border-gray-700 bg-[#FAFAFA] dark:bg-[#121111] shadow-md">
             <SideBar />
@@ -35,10 +40,8 @@ const AuthorLayout = () => {
         </aside>
       )}
 
-      {/* ✅ محتوى الصفحة */}
       <main className="w-full flex-1 px-4 py-6 lg:w-0">
-        {/* ✅ زر إظهار الـ Sidebar في الموبايل */}
-        {!hideSidebarRoutes && !sidebarOpen && (
+        {!hideSidebarRoutes && !sidebarOpen && isAuthorized && (
           <div className='flex justify-end w-full '>
             <button
               onClick={() => setSidebarOpen(true)}
@@ -48,8 +51,7 @@ const AuthorLayout = () => {
             </button>
           </div>
         )}
-        {/* ✅ Sidebar Overlay في الموبايل */}
-        {sidebarOpen && (
+        {sidebarOpen && isAuthorized && (
           <div className="lg:hidden fixed inset-0 bg-black bg-opacity-25 flex justify-end items-start z-50">
             <div className={`sm:w-[50%] md:w-[25%] max-w-sm bg-[#FAFAFA] dark:bg-[#121111] p-4 shadow-lg h-full relative ${isClosing ? "fade-out-right" : "fade-in-right"}`}>
               <button
@@ -58,17 +60,17 @@ const AuthorLayout = () => {
               >
                 <IoMdClose />
               </button>
-              <SideBar onLinkClick={handleClose} /> {/* ✅ هنا التعديل */}
+              <SideBar onLinkClick={handleClose} />
             </div>
           </div>
         )}
 
+        {children}
 
         <Outlet />
       </main>
 
+
     </div>
   );
 };
-
-export default AuthorLayout;

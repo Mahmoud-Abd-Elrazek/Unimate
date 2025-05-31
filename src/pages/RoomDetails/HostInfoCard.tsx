@@ -22,7 +22,7 @@ const HostInfoCard: React.FC<HostInfoCardProps> = ({ data }) => {
    const navigate = useNavigate();
 
    // Safely extract owner data with default values
-   // const ownerId = data?.ownerDTO?.id || '';
+   const apartmentOwnerId = data?.ownerDTO?.id || '';
    const firstName = data?.ownerDTO?.fName || 'Unknown';
    const lastName = data?.ownerDTO?.lName || 'Host';
    const imageUrl = data?.ownerDTO?.image;
@@ -64,7 +64,7 @@ const HostInfoCard: React.FC<HostInfoCardProps> = ({ data }) => {
             onClick={() => {
                const token = localStorage.getItem("token");
                if (token) {
-                  navigate(`/auther/ownerprofile`);
+                  navigate(`/auther/ownerprofile?id=${apartmentOwnerId}`)
                } else {
                   // alert("You must be logged in first.");
                   navigate("/SignIn");

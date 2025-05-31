@@ -64,7 +64,7 @@ const useAuthStore = create<AuthState>()(
       email: '',
       confrimPassword: '',
       nationalId: '',
-      
+
       setPhoto1: (file: File) => set({ photo1: file }),
       setPhoto2: (file: File) => set({ photo1: file }),
       setRole: (role: string) => set({ role }),
@@ -86,22 +86,30 @@ const useAuthStore = create<AuthState>()(
           const token = res?.data?.data?.token;
           const role = res?.data?.data?.role;
           const roleString =
-          role === 1 ? "Owner" :
-          role === 2 ? "Student" :
-          role === 0 ? "Admin" : "";
-              
-              set({
-                isAuthenticated: true,
-                token,
-                role: roleString
-              });
-              console.log("this is the role form login function"+role+" and the role string is "+roleString)
+            role === 1 ? "Owner" :
+              role === 2 ? "Student" :
+                role === 0 ? "Admin" : "";
+          const id = res?.data?.data?.id;
 
-            localStorage.setItem("token", token);
-            localStorage.setItem("role", roleString);
-            console.log("Login successful:", roleString);
-            toast.success(`Logged in as ${roleString}`);
-            return true;
+          set({
+            isAuthenticated: true,
+            token,
+            role: roleString
+          });
+          console.log("this is the role form login function" + role + " and the role string is " + roleString)
+
+          localStorage.setItem("token", token);
+          localStorage.setItem("role", roleString);
+          localStorage.setItem("authUserId", id);
+          console.log("Login successful:", roleString);
+          toast.success(`Logged in as ${roleString}`);
+          // console.log("=============================");
+          // const tokenn = localStorage.getItem("token");
+          // const rolee = localStorage.getItem("role");
+          // const idd = localStorage.getItem("authUserId");
+          // console.log({ tokenn, rolee, idd });
+          // console.log("=============================");
+          return true;
           // else {
           //   toast.error("Login failed: missing token or role");
           //   return false;
