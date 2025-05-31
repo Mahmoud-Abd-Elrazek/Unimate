@@ -362,6 +362,7 @@ export default function RoomDetails() {
                 <p>طالب</p>
               </div>
             </div>
+            
 
             <div className="border-t border-b pt-2 text-right rounded-md">
               <div className="flex items-center justify-end gap-2 text-right mb-2 mt-2">
