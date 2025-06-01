@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useCommentsStore } from './Store/comments.store';
 
 interface Comment {
    id: number;
@@ -67,12 +68,15 @@ const CommentsPage: React.FC<CommentSectionProps> = ({ apartmentId }) => {
    const [commentsData, setCommentsData] = useState<ApiResponse | null>(null);
    const [loading, setLoading] = useState<boolean>(true);
    const [error, setError] = useState<string | null>(null);
+   const {show}=useCommentsStore()
    useEffect(() => {
       const fetchData = async () => {
          try {
             setLoading(true);
             const data = await getComments(apartmentId);
             setCommentsData(data);
+            // setShow(!show)
+            console.log("this is show val",show)
             if (!data.isSuccess) {
                setError(data.message || 'حدث خطأ غير متوقع');
             }
@@ -85,7 +89,7 @@ const CommentsPage: React.FC<CommentSectionProps> = ({ apartmentId }) => {
       };
 
       fetchData();
-   }, [apartmentId]);
+   }, [show]);
 
    if (loading) {
       return (

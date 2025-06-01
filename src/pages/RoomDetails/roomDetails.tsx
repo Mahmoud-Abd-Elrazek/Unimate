@@ -263,7 +263,7 @@ export default function RoomDetails() {
             <p>. {type}</p>
             <p className="flex justify-end gap-1">
               <span>. </span>
-              <p>{floor} </p>
+              <span>{floor} </span>
               <span>الدور </span>
             </p>
             <p className="flex justify-end gap-1">
