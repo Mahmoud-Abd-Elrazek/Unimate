@@ -140,7 +140,7 @@ const RoomCard = ({ room, onJoinRoom, onBookFullRoom }: {
         {/* Action Buttons */}
         {!localStorage.getItem('token') || role === "Student" ? (
           <div className="space-y-2 pt-2">
-            {isApartmentAvailable && room.bedRequestAvailable && (
+            {/* {isApartmentAvailable && room.bedRequestAvailable && ()} */}
               <Button
                 className="w-full bg-[#d32f2f] text-white hover:bg-[#b71c1c]"
                 onClick={() => onJoinRoom(room.roomId, room.apartmentId)}
@@ -148,10 +148,10 @@ const RoomCard = ({ room, onJoinRoom, onBookFullRoom }: {
                 <UserPlus className="h-4 w-4 mr-2" />
                 انضم للغرفة ({room.pricePerBed} ج.م)
               </Button>
-            )}
+            
 
 
-            {isApartmentAvailable && room.roomRequestAvailable && (
+            {/* {isApartmentAvailable && room.roomRequestAvailable && ()} */}
               <Button
                 variant="outline"
                 className="w-full"
@@ -159,7 +159,7 @@ const RoomCard = ({ room, onJoinRoom, onBookFullRoom }: {
               >
                 احجز الغرفة كاملة ({room.numOfBeds * room.pricePerBed} ج.م)
               </Button>
-            )}
+            
 
             {/* todoes */}
             {!isApartmentAvailable || room.isFull && (
@@ -287,7 +287,7 @@ const RoomsSlider: React.FC<RoomsSliderProps> = ({ rooms = [] }) => {
       </div>
 
       <Carousel className="w-full max-w-6xl mx-auto text-right">
-        <CarouselContent className="-ml-2 md:-ml-4 justify-end">
+        <CarouselContent className="-ml-2 md:-ml-4" dir="rtl">
           {rooms.map((room) => (
             <CarouselItem key={room.roomId} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 ">
               <RoomCard
@@ -298,8 +298,8 @@ const RoomsSlider: React.FC<RoomsSliderProps> = ({ rooms = [] }) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="left-4" />
-        <CarouselNext className="right-4" />
+        <CarouselNext className="left-4" />
+        <CarouselPrevious className="right-4" />
       </Carousel>
     </div>
   );
