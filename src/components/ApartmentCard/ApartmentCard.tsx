@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import 'swiper/swiper-bundle.css';
 import { Swiper as SwiperClass } from "swiper";
 import { useApartmentStore } from "../../Store/Data/useApartment.store";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 // import { boolean } from "zod";
 // import { toast } from "sonner";
 interface ApartmentData {
@@ -35,7 +35,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
   const nextRef = useRef(null);
   const swiperRef = useRef<SwiperClass | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const images = [
     "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
@@ -295,13 +295,11 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
 
         {edit && (
           <div className="absolute top-3 right-3 z-10">
-            <button
-              type="button"
+            <Link to={`/manage_property_edit?id=${id}`}
               className="text-[#f8fafc] bg-[#495057] hover:bg-[#f8fafc] hover:text-[#0f1729] px-4 py-1 rounded-[10px] text-base shadow-md cursor-pointer"
-              onClick={() => navigate('/manage_property_edit', { state: { mode: 'eidt' } })}
             >
               edit
-            </button>
+            </Link>
           </div>
 
         )}

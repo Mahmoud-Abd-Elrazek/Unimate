@@ -139,7 +139,7 @@ export default function App() {
         <Route path="/manage_property_edit" element={<PropertyManagementEdit />} />
 
         {/* Author Pages */}
-        <Route path="/auther/*" element={<AuthorLayout />}>
+        <Route path="/auther/*" element={<AuthorLayout isAuthorized={false} />}>
          <Route index element={<RedirectBasedOnRole />} />
           <Route path="studentProfile" element={<StudentProfile />} />
           <Route path="ownerProfile" element={<OwnerProfile />} />

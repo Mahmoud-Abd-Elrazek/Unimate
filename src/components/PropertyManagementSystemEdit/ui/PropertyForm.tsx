@@ -1,67 +1,96 @@
-import React, { useEffect } from 'react';
-import { usePostsStore } from '../../../Store/Owner/posts.store';
-import ServiceSelector from './ServiceSelector';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useSearchParams } from "react-router-dom";
+import useAuthStore from "../../../Store/Auth/Auth.store";
+
+// Helper to safely parse JSON strings like "\"text\"" into "text"
+const safeParse = (str: string): string => {
+  try {
+    return JSON.parse(str);
+  } catch {
+    return str;
+  }
+};
 
 export const PropertyForm: React.FC = () => {
-  const {
-    Description,
-    DescribeLocation,
-    Floor,
-    Capecity,
-    Location,
-    GenderAcceptance,
-    services,
-    setServices,
-    setCapecity,
-    setDescription,
-    setLocation,
-    setDescribeLocation,
-    setFloor,
-    setGenderAcceptance,
-    // AddPost,
-  } = usePostsStore();
+  const [searchParams] = useSearchParams();
+  const idParam = searchParams.get("id");
+  const Id = idParam ? Number(idParam) : null;
 
-  const areas = [
-    { id: 0, key: 'AlMasaken', value: 'المساكن' },
-    { id: 1, key: 'Darda', value: 'دردشه' },
-    { id: 2, key: 'Shooun', value: 'الشؤون' },
-    { id: 3, key: 'WastElBalad', value: 'وسط البلد' },
-    { id: 4, key: 'ALKnooz', value: 'الكنوز' },
-    { id: 5, key: 'ALMoataqal', value: 'المعتقل' },
-    { id: 6, key: 'ALBank', value: 'البنك' },
-    { id: 7, key: 'ALTameen', value: 'التأمين' },
-    { id: 8, key: 'ALMahatta', value: 'المحطه' },
-    { id: 9, key: 'ALSayyedaAisha', value: 'السيدة عايشة' },
-    { id: 10, key: 'ALShahba', value: 'الشهباء' },
-    { id: 11, key: 'ALKods', value: 'القدس' },
-    { id: 12, key: 'ALMana', value: 'المعنا' },
-    { id: 13, key: 'ALRamla', value: 'الرملة' },
-    { id: 14, key: 'Dandara', value: 'دندرة' },
-    { id: 15, key: 'QenaUniversity', value: 'جامعة جنوب الوادي' },
-  ];
+  const [description, setdescription] = useState("");
+  const [descripeLocation, setdescripeLocation] = useState("");
+  const [gender, setgender] = useState<string>("");
+
 
   const GenderOptions = [
     { id: 0, key: "None", value: "أى نوع" },
     { id: 1, key: "Male", value: "رجال" },
     { id: 2, key: "Female", value: "نساء" },
   ];
+  const genderObj = GenderOptions.find((g) => g.key === gender);
+  const genderId = genderObj ? genderObj.id : 0; // fallback if not found
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // await AddPost();
-    alert('تم رفع بيانات العقار!');
-    console.log('Description:', Description);
-    console.log('DescribeLocation:', DescribeLocation);
-    console.log('Floor:', Floor);
-    console.log('Capecity:', Capecity);
-    console.log('Location:', Location);
-    console.log('GenderAcceptance:', GenderAcceptance);
-    console.log('services:', services);
-    // setServices([])
+    PostData();
+    alert("تم رفع بيانات العقار!");
+    console.log("Description:", description);
+    console.log("DescribeLocation:", descripeLocation);
+    console.log("GenderAcceptance:", gender);
   };
-useEffect(()=>{
-  setServices([])
-},[])
+
+  const DisplayData = async (id: number) => {
+    try {
+      const res = await axios.get(
+        `https://darkteam.runasp.net/UpdateApartmentInfoDisplayEndpoint/GetApartmentInfoDisplay?id=${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${useAuthStore.getState().token}`,
+          },
+        }
+      );
+
+      const data = res.data.data;
+      setdescription(data.description || "");
+      setdescripeLocation(data.descripeLocation || "");
+      setgender(data.gender || "");
+    } catch (error) {
+      console.error("فشل في جلب بيانات العقار:", error);
+    }
+  };
+  const PostData = async () => {
+    try {
+      const res = await axios.post("https://darkteam.runasp.net/UpdateApartmentInfoSaveEndpoint/UpdateApartmentInfoSave", {
+        apartmentId: Id,
+        price: 0,
+        description: description,
+        descripeLocation: descripeLocation,
+        genderAcceptance: genderId,
+        durationType: 0,
+        apartmentFacilities: {
+          "facilities": [
+            {
+              isSelected: true,
+              facilityId: 0
+            }
+          ],
+        }},
+         {
+          headers: {
+            Authorization: `Bearer ${useAuthStore.getState().token}`
+          }
+        })
+      console.log(res)
+    } catch (error) {
+      console.log("failed to post data", error)
+    }
+  }
+  useEffect(() => {
+    if (Id) {
+      DisplayData(Id);
+    }
+  }, [Id]);
+
   return (
     <div className="rtl">
       <h2 className="text-xl font-semibold text-gray-800 mb-4 dark:text-primary_TXD">
@@ -72,8 +101,8 @@ useEffect(()=>{
         <div>
           <label className="block mb-1">وصف العقار</label>
           <textarea
-            value={Description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={safeParse(description)}
+            onChange={(e) => setdescription(e.target.value)}
             className="w-full p-2 border rounded-md dark:bg-secondary_BGD dark:text-secondary_TXD"
           />
         </div>
@@ -81,83 +110,47 @@ useEffect(()=>{
         <div>
           <label className="block mb-1">وصف الموقع</label>
           <textarea
-            value={DescribeLocation}
-            onChange={(e) => setDescribeLocation(e.target.value)}
+            value={safeParse(descripeLocation)}
+            onChange={(e) => setdescripeLocation(e.target.value)}
             className="w-full p-2 border rounded-md dark:bg-secondary_BGD dark:text-secondary_TXD"
           />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block mb-1">المنطقة</label>
-            <select
-              value={Location}
-              onChange={(e) => setLocation(Number(e.target.value))}
-              className="w-full p-2 border rounded-md  dark:bg-secondary_BGD dark:text-secondary_TXD"
-
-            >
-              <option value="">اختر منطقة</option>
-              {areas.map((area) => (
-                <option key={area.id} value={area.id}>
-                  {area.value}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block mb-1">الطابق</label>
-            <input
-              type="text"
-              min={0}
-              value={Floor || ''}
-              onChange={(e) => setFloor(e.target.value)}
-              className="w-full p-2 border rounded-md dark:bg-secondary_BGD dark:text-secondary_TXD"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block mb-1">عدد الأفراد</label>
-            <input
-              type="number"
-              min={1}
-              value={Capecity || ''}
-              onChange={(e) => setCapecity(Number(e.target.value))}
-              className="w-full p-2 border rounded-md dark:bg-secondary_BGD dark:text-secondary_TXD"
-            />
-          </div>
-
-          <div>
             <label className="block mb-1">نوع السكن</label>
             <div className="flex gap-4">
-              {GenderOptions.map((gender) => (
-                <label key={gender.id} className="flex items-center gap-2">
+              {GenderOptions.map((option) => (
+                <label key={option.id} className="flex items-center gap-2">
                   <input
                     type="radio"
                     name="gender"
-                    value={gender.id}
-                    checked={GenderAcceptance === gender.id}
-                    onChange={(e) => setGenderAcceptance(Number(e.target.value))}
+                    value={option.key}
+                    checked={gender === option.key}
+                    onChange={(e) => setgender(e.target.value)}
                   />
-                  {gender.value}
+                  {option.value}
                 </label>
               ))}
             </div>
           </div>
         </div>
+
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-primary_TXD">
             الخدمات الإضافية
           </label>
-          <ServiceSelector
+          {/* <ServiceSelector
             selectedServices={services}
             onChange={setServices}
-          />
+          /> */}
         </div>
+
         <div>
-          <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded-md">
+          <button
+            type="submit"
+            className="bg-blue-600 text-white px-6 py-2 rounded-md"
+          >
             حفظ العقار
           </button>
         </div>

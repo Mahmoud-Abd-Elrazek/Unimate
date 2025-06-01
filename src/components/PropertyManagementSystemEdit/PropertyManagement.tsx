@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Layout } from './ui/Layout';
 import { PropertyForm } from './ui/PropertyForm';
 import { ImageSection } from './ui/ImageSection';
-import { RoomsList } from './ui/RoomsList';
+// import { RoomsList } from './ui/RoomsList';
 import { TabNavigation } from './ui/TabNavigation';
 
 function PropertyManagementEdit() {
@@ -10,10 +10,10 @@ function PropertyManagementEdit() {
 
   const tabs = [
     { id: 'details', label: 'تفاصيل العقار' },
-    { id: 'rooms', label: 'إدارة الغرف' },
+    // { id: 'rooms', label: 'إدارة الغرف' },
     { id: 'images', label: 'صور العقار' },
   ];
-
+ 
   return (
     <Layout>
       <div className="max-w-6xl mx-auto px-4 pt-[100px] py-8 slide-in" dir="rtl">
@@ -34,7 +34,7 @@ function PropertyManagementEdit() {
 
         <div className="rounded-lg shadow-md p-6 mt-6">
           {activeTab === 'details' && <PropertyForm />}
-          {activeTab === 'rooms' && <RoomsList />}
+          {/* {activeTab === 'rooms' && <RoomsList />} */}
           {activeTab === 'images' && <ImageSection />}
         </div>
       </div>

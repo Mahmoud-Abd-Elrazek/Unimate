@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Layout } from '../../components/PropertyManagementSystem/ui/Layout';
-import { ImageModal } from '../../components/PropertyManagementSystem/ui/ImageModal';
+import { Layout } from '../../components/PropertyManagementSystemAdd/ui/Layout';
+import { ImageModal } from '../../components/PropertyManagementSystemAdd/ui/ImageModal';
 import { ArrowLeft } from 'lucide-react';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
