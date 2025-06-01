@@ -1,9 +1,12 @@
-// import React from 'react'
+
+
 
 import { useEffect } from "react"
 import { useApartmentStore } from "../../../Store/Data/useApartment.store"
 import ApartmentCard from "../../../components/ApartmentCard/ApartmentCard"
 // import { Link } from "react-router"
+import { ApartmentData } from "../../../components/ApartmentCard/ApartmentCard"; // تأكد من المسار الصحيح
+
 // import FavApartmentCard from "../../../components/ApartmentCard/FavApartmentCard"
 export default function Favorites() {
   // const [data] = useState([])
@@ -27,13 +30,17 @@ export default function Favorites() {
       </div>
     }
     <div>
-       <ApartmentGrid apartments={aparments} />
+       <ApartmentGrid apartments={aparments.map((apartment:any) => ({
+         ...apartment,
+         detailedAddress: apartment.detailedAddress ?? "",
+         location: apartment.location ?? { lat: 0, lng: 0 }
+       }))} />
     </div>
     </div>
   )
 }
 interface ApartmentGridProps {
-  apartments: object[];
+  apartments: ApartmentData[];
 }
 
 const ApartmentGrid: React.FC<ApartmentGridProps> = ({ apartments }) => {
