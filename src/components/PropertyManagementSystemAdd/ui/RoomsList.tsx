@@ -46,16 +46,27 @@ export const RoomsList: React.FC = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {Rooms.map((room) => (
-              <RoomCard
-                key={room.id}
-                room={room}
-                onUpdate={(updatedRoom) => {
-                  updateRoom(updatedRoom);
-                }}
-                onDelete={deleteRoom}
-              />
-            ))}
+            {Rooms.map((room) => {
+              // Convert File image to string (URL) if needed
+              const image =
+                room.image instanceof File
+                  ? URL.createObjectURL(room.image)
+                  : room.image;
+                return (
+                  <RoomCard
+                  key={room.id}
+                  room={{ ...room, image }}
+                  onUpdate={(updatedRoom) => {
+                    // Convert image back to File if original was File, otherwise keep as is
+                    updateRoom({
+                    ...updatedRoom,
+                    image: room.image, // keep the original File object
+                    });
+                  }}
+                  onDelete={deleteRoom}
+                  />
+                );
+            })}
           </div>
         </div>
       )}
