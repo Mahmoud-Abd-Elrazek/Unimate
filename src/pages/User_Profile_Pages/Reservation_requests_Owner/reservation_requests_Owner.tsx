@@ -2,6 +2,8 @@ import { FaUserCircle } from "react-icons/fa";
 import { Button } from "../../../components/ui/button";
 import { useBookingHistoryStore } from "../../../Store/Owner/BookingHistory.store";
 import { useEffect } from "react";
+import AuthorLayout from '../AuthorLayout/authorLayout';
+
 
 export default function MyProperties() {
   const { GetOwnerRequests, issuccess } = useBookingHistoryStore()
@@ -56,6 +58,7 @@ export default function MyProperties() {
   ];
 
   return (
+    <AuthorLayout isAuthorized={true} >
     <div className="flex flex-col h-full p-4 gap-6">
       {!issuccess ? <div className="flex min-h-screen flex-col justify-center items-center text-2xl font-bold"><h2>لا يوجد طلبات حجز حتى الان</h2></div> :
         <div>
@@ -106,5 +109,6 @@ export default function MyProperties() {
         </div>
       }
     </div>
+    </AuthorLayout>
   );
 }
