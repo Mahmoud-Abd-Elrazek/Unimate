@@ -120,8 +120,9 @@ export default function App() {
 
         {/* <Route path='/register' element={<RegisterPage />} > */}
           <Route path="/register_student" element={<RegisterStudentPage />} />
-        {/* </Route> */}
+          {/* </Route> */}
           <Route path="/register_owner" element={<RegisterOwnerPage />} />
+        {/* </Route> */}
         <Route path="/signout" element={<SignOutCard />} />
         <Route path='/forgetpassword' element={<ForgetPassword />} />
         <Route path='/resetpassword' element={<ResetPass />} />
