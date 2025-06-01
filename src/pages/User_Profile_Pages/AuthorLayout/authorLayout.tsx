@@ -12,7 +12,7 @@ type LayoutProps = {
   children?: React.ReactNode;
 };
 
-export default function AuthorLayout({ isAuthorized, children }: LayoutProps) {
+export default function AuthorLayout({ isAuthorized , children }: LayoutProps) {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);

@@ -176,7 +176,7 @@ export default function RoomDetails() {
   const apartmentDescriptionLoction = cleanDescription(data.apartmentDTO.descripeLocation);
   const type = data?.apartmentDTO.kind === "Male" ? "أولاد" : "بنات";
   const floor = translateFloor(cleanDescription(data.apartmentDTO.floor));
-  const bedroomcount = (data?.apartmentDTO.roomCount > 4 || data?.apartmentDTO.roomCount == 0) ? 4 : data?.apartmentDTO.roomCount
+  const bedroomcount =data?.apartmentDTO.roomCount
   const numberOfBeds = data.apartmentDTO.bedRoomCount;
   const price = data.apartmentDTO.price;
   const capecity = data.apartmentDTO.capecity;
@@ -277,8 +277,8 @@ export default function RoomDetails() {
             </p>
             <p className="flex justify-end gap-1">
               <span>. </span>
-              <span>طلاب </span>
               <span>{capecity} </span>
+              <span>السعه </span>
             </p>
             <p className="flex justify-end gap-1">
               <span>. </span>
@@ -287,7 +287,7 @@ export default function RoomDetails() {
             </p>
             <p className="flex justify-end gap-1">
               <span>. </span>
-              <span>طالب </span>
+              <span>عدد الطلاب الحالي </span>
               <span>{bedroomcount} </span>
             </p>
           </div>
@@ -369,13 +369,13 @@ export default function RoomDetails() {
               </div>
               <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 pl-8 pr-8 py-3">
                 <MdMeetingRoom className="text-[#D32F2F] text-[18px]" />
-                <p className="font-bold text-lg">{bedroomcount}</p>
+                <p className="font-bold text-lg">{roomCount}</p>
                 <p>غرف</p>
               </div>
               <div className="flex flex-col justify-center items-center text-center bg-blue-400 rounded bg-opacity-15 pl-8 pr-8 py-3">
                 <PiStudentBold className="text-[#D32F2F] text-[18px]" />
                 <p className="font-bold text-lg">{capecity}</p>
-                <p>طالب</p>
+                <p>طلاب كاحد اقصي </p>
               </div>
             </div>
 
