@@ -53,7 +53,16 @@ export const RoomCard: React.FC<RoomCardProps> = ({ room, onUpdate, onDelete }) 
   const handleImageChange = (file: File) => {
     setEditedImageFile(file);
   };
-const imageToShow = room.image;
+  const imageToShow = (() => {
+  if (!room.image) return null;
+
+  if (typeof room.image === "string") {
+    return room.image;
+  }
+
+  return null;
+})();
+
   return (
     <div className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow dark:bg-secondary_BGD">
       <div className="relative">
@@ -66,7 +75,7 @@ const imageToShow = room.image;
           <div className="aspect-video bg-gray-100 flex items-center justify-center dark:bg-primary_BGD">
             {room.image ? (
               <img
-                src={imageToShow}
+                src={imageToShow ?? undefined}
                 alt={room.description}
                 className="h-full w-full object-cover"
               />
@@ -121,7 +130,7 @@ const imageToShow = room.image;
                   value={editedRoom.price}
                   onChange={handleChange}
                   min={1}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-secondary_BGD"
                 />
               </div>
 
@@ -135,7 +144,7 @@ const imageToShow = room.image;
                   value={editedRoom.bednumber}
                   onChange={handleChange}
                   min={0}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-secondary_BGD"
                 />
               </div>
             </div>

@@ -89,7 +89,7 @@ function PropertyManagementAdd() {
               className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors"
             >
               <Save size={16} />
-              {mode === 'add' ? 'إضافة العقار' : 'حفظ التغييرات'}
+              {mode === 'add' ? 'إضافة العقار' : 'حفظ '}
             </button>
 
             <button
