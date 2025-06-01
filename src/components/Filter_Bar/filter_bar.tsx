@@ -117,13 +117,13 @@ const FilterBar: React.FC = () => {
             setSelectedFilters({});
             setIsSearching(false);
           }}
-          className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-black rounded hover:bg-gray-300 transition-all"
+          className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-black rounded hover:bg-gray-300 transition-all dark:bg-BTN_BGD dark:hover:bg-primary_BGD"
         >
           {/* Desktop text */}
-          <span className="">Clear Filters</span>
+          <span className=" hover:dark:text-primary_TXD dark:text-BTN_TXD">Clear Filters</span>
 
           {/* Mobile icon */}
-          <Trash2 className="sm:hidden w-5 h-5" />
+          <Trash2 className="sm:hidden w-5 h-5 hover:dark:text-primary_TXD dark:text-BTN_TXD" />
         </button>
         {/* <span className='text-[12px] text-[#777]'>اضغط للبدأ</span> */}
       </div>
@@ -136,10 +136,10 @@ const FilterBar: React.FC = () => {
               setSelectedFilters({});
               setIsSearching(false);
             }}
-            className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-black rounded hover:bg-gray-300 transition-all"
+            className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-black rounded hover:bg-gray-300 transition-all dark:bg-BTN_BGD dark:hover:bg-primary_BGD"
           >
             {/* Desktop text */}
-            <span className="hidden sm:inline">Clear Filters</span>
+            <span className="hidden sm:inline hover:dark:text-primary_TXD dark:text-BTN_TXD">Clear Filters</span>
 
             {/* Mobile icon */}
             <Trash2 className="sm:hidden w-5 h-5" />

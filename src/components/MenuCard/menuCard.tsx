@@ -85,7 +85,7 @@ export default function MenuCard({ setIsOpen }: MenuCardProps) {
                     }
 
                     {Role === "Owner" && (
-                        <Link to="/manage_property"
+                        <Link to="/manage_property_add"
                             className='menu-link w-full 
                             flex items-center justify-end 
                             hover:bg-[#F1F3F4] dark:hover:bg-secondary_BGD hover:pr-1 transition-all duration-200 

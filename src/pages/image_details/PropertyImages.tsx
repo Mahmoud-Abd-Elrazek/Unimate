@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0024c8ce107e836f2c991396de621bb7e12ff0ac
 import { Layout } from '../../components/PropertyManagementSystemAdd/ui/Layout';
 import { ImageModal } from '../../components/PropertyManagementSystemAdd/ui/ImageModal';
 import { ArrowLeft } from 'lucide-react';
