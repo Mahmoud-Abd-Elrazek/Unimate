@@ -64,7 +64,9 @@ const HostInfoCard: React.FC<HostInfoCardProps> = ({ data }) => {
             onClick={() => {
                const token = localStorage.getItem("token");
                if (token) {
-                  navigate(`/auther/ownerprofile?id=${apartmentOwnerId}`)
+                  navigate(`/auther/ownerprofile`, {
+                     state: {gustId: apartmentOwnerId}
+                  })
                } else {
                   // alert("You must be logged in first.");
                   navigate("/SignIn");

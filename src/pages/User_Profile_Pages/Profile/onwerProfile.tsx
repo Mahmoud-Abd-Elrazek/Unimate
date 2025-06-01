@@ -1,23 +1,26 @@
 import { useEffect } from 'react';
 import { useprofileOwnerStore } from '../../../Store/Owner/useprofileOwner.store';
-import useAuthStore from "../../../Store/Auth/Auth.store";
+// import useAuthStore from "../../../Store/Auth/Auth.store";
 import { Phone, Mail, FileText } from 'lucide-react';
 import { FaUserCircle } from 'react-icons/fa';
 import "../../../../public/animations.css"
 // import { useSearchParams } from 'react-router-dom';
-// import { useLocation } from "react-router-dom";
-import { useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+// import { useNavigate } from 'react-router-dom';
+// import { useSearchParams } from "react-router-dom";
 import AuthorLayout from '../AuthorLayout/authorLayout';
 export default function OwnerProfile() {
 
-  const authUserRole = useAuthStore((state) => state.role);
-  const [searchparams] = useSearchParams();
-  console.log(authUserRole);
-
-  const gustId = searchparams.get("id");
+  // const authUserRole = useAuthStore((state) => state.role);
+  const { state } = useLocation();
+  const gustId = state?.gustId;
   const authUserId = localStorage.getItem("authUserId");
-  const isAuthorized = (!gustId || (authUserId === gustId));
- 
+  const isAuthorized = (authUserId === gustId);
+
+  // ================================ Start fetchOwnerProfile ================================
+
+  // ================================ End fetchOwnerProfile ================================
+
   // ======================================== user data ========================================
   const { getOwnerInfo, userName, phones, email: ownerEmail, briefOverView: ownerBriefOverview } = useprofileOwnerStore();
   useEffect(() => {
