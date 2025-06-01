@@ -53,8 +53,7 @@ export const RoomCard: React.FC<RoomCardProps> = ({ room, onUpdate, onDelete }) 
   const handleImageChange = (file: File) => {
     setEditedImageFile(file);
   };
-const imageToShow =
-  room.image instanceof File ? URL.createObjectURL(room.image) : room.image;
+const imageToShow = room.image;
   return (
     <div className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow dark:bg-secondary_BGD">
       <div className="relative">
