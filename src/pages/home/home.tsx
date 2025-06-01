@@ -10,7 +10,7 @@ import CreatPostButton from "../../components/navbar/Button";
 import useAuthStore from "../../Store/Auth/Auth.store";
 import { Slide, ToastContainer } from "react-toastify";
 import useApartmentData from "../../Store/DataApartment/useApartmentData.store";
-import ChatBot from "../../components/ChatBot/ChatbotIframe"
+import ChatBot from "../../components/ChatBot/ChatbaseWidget"
 
 // Extend the Window interface to include chatbase
 declare global {
@@ -101,7 +101,7 @@ export default function Home() {
             <div className='flex items-center justify-center mt-10'>
               {newApartments.length < totalCount ? (
                 <button
-                  onClick={() => setPageSize(prev => prev + 3)}
+                  onClick={() => setPageSize(prev => prev + 6)}
                   disabled={isLoading}
                   className={`
                     text-center rounded-full
