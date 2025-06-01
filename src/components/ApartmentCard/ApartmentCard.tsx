@@ -181,7 +181,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
           <button
             ref={prevRef}
             onClick={handlePrevClick}
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-[32px] h-[32px] rounded-full shadow-lg z-10 items-center justify-center cursor-pointer group-hover:opacity-100 transition-opacity duration-300 bg-BTN_TXD hidden lg:flex"
+            className="absolute left-3 top-1/3 -translate-y-1/2 w-[32px] h-[32px] rounded-full shadow-lg z-10 items-center justify-center cursor-pointer group-hover:opacity-100 transition-opacity duration-300 bg-BTN_TXD hidden lg:flex"
           >
             <IoIosArrowBack className="text-[#000]" style={{ width: "100%", height: "20px" }} />
           </button>
@@ -191,7 +191,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
           <button
             ref={nextRef}
             onClick={handleNextClick}
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-[32px] h-[32px] rounded-full shadow-lg z-10 items-center justify-center cursor-pointer group-hover:opacity-100 transition-opacity duration-300 bg-BTN_TXD hidden lg:flex"
+            className="absolute right-3 top-1/3 -translate-y-1/2 w-[32px] h-[32px] rounded-full shadow-lg z-10 items-center justify-center cursor-pointer group-hover:opacity-100 transition-opacity duration-300 bg-BTN_TXD hidden lg:flex"
           >
             <IoIosArrowForward className="text-[#000]" style={{ width: "100%", height: "20px" }} />
           </button>
