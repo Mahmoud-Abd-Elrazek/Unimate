@@ -48,9 +48,9 @@ const handleToggleService = (serviceId: number) => {
     const updated = selectedServices.map((s) =>
       s.id === serviceId ? { ...s, isSelected: !s.isSelected } : s
     );
-    onChange([...updated]); // ✨ نسخة جديدة
+    onChange([...updated]); 
   } else {
-    onChange([...selectedServices, { id: serviceId, isSelected: true }]); // ✨ نسخة جديدة
+    onChange([...selectedServices, { id: serviceId, isSelected: true }]); 
   }
 };
 
