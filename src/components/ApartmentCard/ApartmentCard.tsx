@@ -14,7 +14,7 @@ import { useApartmentStore } from "../../Store/Data/useApartment.store";
 // import { useNavigate } from 'react-router-dom';
 // import { boolean } from "zod";
 // import { toast } from "sonner";
-interface ApartmentData {
+export interface ApartmentData {
   address?: string;
   gender?: string;
   floor?: string;
@@ -30,6 +30,7 @@ interface ApartmentCardProps {
   edit?: boolean;
   data?: ApartmentData;
   id?: number;
+
 }
 
 const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCardProps) => {

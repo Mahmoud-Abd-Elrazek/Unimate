@@ -3,16 +3,17 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import axios from 'axios';
 
-interface Apartment {
+export interface Apartment {
   capecity: number;
   price: number;
   numberOfRooms: number;
   ownerName: string;
-  location: string;
+  // location: string;
   floor: string;
   gender: string;
   images: string[];
-
+  detailedAddress:string;
+  location:number;
 
 }
 

@@ -11,6 +11,7 @@ import useAuthStore from "../../Store/Auth/Auth.store";
 import { Slide, ToastContainer } from "react-toastify";
 import useApartmentData from "../../Store/DataApartment/useApartmentData.store";
 import ChatBot from "../../components/ChatBot/ChatbotIframe"
+import { ApartmentData } from "../../../src/components/ApartmentCard/ApartmentCard"; // تأكد من المسار الصحيح
 
 // Extend the Window interface to include chatbase
 declare global {
@@ -33,11 +34,11 @@ export default function Home() {
     isSearching,
     setIsSearching,
   } = useApartmentData();
- 
+
   useEffect(() => {
     fetchTopRated();
     fetchNew(pageSize);
-   setIsSearching(false)
+    setIsSearching(false)
   }, [pageSize]);
 
   return (
@@ -136,7 +137,7 @@ export default function Home() {
 }
 
 interface ApartmentGridProps {
-  apartments: object[];
+  apartments: ApartmentData[];
 }
 
 const ApartmentGrid: React.FC<ApartmentGridProps> = ({ apartments }) => {
