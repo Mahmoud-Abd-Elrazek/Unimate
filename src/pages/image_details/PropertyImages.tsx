@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 83fe94f10d70c7167cefafe369974960aa4259a7
 import { Layout } from '../../components/PropertyManagementSystemAdd/ui/Layout';
 import { ImageModal } from '../../components/PropertyManagementSystemAdd/ui/ImageModal';
 import { ArrowLeft } from 'lucide-react';
