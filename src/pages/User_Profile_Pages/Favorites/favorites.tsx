@@ -5,6 +5,8 @@ import { useApartmentStore } from "../../../Store/Data/useApartment.store"
 import ApartmentCard from "../../../components/ApartmentCard/ApartmentCard"
 // import { Link } from "react-router"
 // import FavApartmentCard from "../../../components/ApartmentCard/FavApartmentCard"
+import AuthorLayout from '../AuthorLayout/authorLayout';
+
 export default function Favorites() {
   // const [data] = useState([])
   const { GetFavApartment, issuccess,aparments } = useApartmentStore()
@@ -13,6 +15,7 @@ export default function Favorites() {
     console.log(issuccess)
   }, [])
   return (
+    <AuthorLayout isAuthorized={true} >
     <div>
       <h1 className="text-2xl text-gray-500 text-center my-10 dark:text-[white]">تفضيلاتى</h1>
       {issuccess &&
@@ -30,6 +33,7 @@ export default function Favorites() {
        <ApartmentGrid apartments={aparments} />
     </div>
     </div>
+    </AuthorLayout>
   )
 }
 interface ApartmentGridProps {

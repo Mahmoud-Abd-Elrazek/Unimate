@@ -3,6 +3,8 @@ import ApartmentCard from "../../../components/ApartmentCard/ApartmentCard";
 // import "swiper/css";
 // import "swiper/css/navigation";
 // import "swiper/css/pagination";
+import AuthorLayout from '../AuthorLayout/authorLayout';
+
 
 const RealEstateSlider: React.FC = () => {
   // const properties = [
@@ -14,6 +16,7 @@ const RealEstateSlider: React.FC = () => {
   // ];
 
   return (
+    <AuthorLayout isAuthorized={true} >
     <section className="py-10 w-full px-4 sm:px-6 md:px-10 lg:px-20">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-6">
@@ -25,6 +28,7 @@ const RealEstateSlider: React.FC = () => {
         </div>
       </div>
     </section>
+    </AuthorLayout>
   );
 };
 
