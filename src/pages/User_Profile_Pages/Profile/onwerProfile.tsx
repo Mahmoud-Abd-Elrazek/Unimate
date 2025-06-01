@@ -15,7 +15,7 @@ export default function OwnerProfile() {
   const { state } = useLocation();
   const gustId = state?.gustId;
   const authUserId = localStorage.getItem("authUserId");
-  const isAuthorized = (authUserId === gustId);
+  const isAuthorized = (!gustId || (authUserId === gustId));
 
   // ================================ Start fetchOwnerProfile ================================
 

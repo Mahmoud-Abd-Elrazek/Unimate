@@ -4,6 +4,8 @@ import { FaUserCircle } from "react-icons/fa";
 import useProfileStore from '../../../Store/Student/useProfile.store';
 import { useEffect } from 'react';
 // import { useStudentStore } from '../../../Store/Student/Profile.store';
+import AuthorLayout from '../AuthorLayout/authorLayout';
+
 
 const StudentProfile = () => {
   const { GetStudentInfo, userName, email, nationalId, briefOverView, faculty, address, academicYear, governorate, img } = useProfileStore();
@@ -15,9 +17,8 @@ const StudentProfile = () => {
 
   
   return (
+    <AuthorLayout isAuthorized={true} >
     <div>
-
-     
         <div className="min-h-screen flex items-center justify-center p-2 sm:p-4 md:p-10">
           <div className="shadow-md rounded-2xl w-full max-w-6xl flex flex-col-reverse md:grid md:grid-cols-3 gap-4 sm:gap-6 p-4 sm:p-6 md:p-10">
 
@@ -87,6 +88,7 @@ const StudentProfile = () => {
         </div>
       
     </div>
+    </AuthorLayout>
   );
 };
 

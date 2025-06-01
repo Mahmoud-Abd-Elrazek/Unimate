@@ -10,7 +10,7 @@ import CreatPostButton from "../../components/navbar/Button";
 import useAuthStore from "../../Store/Auth/Auth.store";
 import { Slide, ToastContainer } from "react-toastify";
 import useApartmentData from "../../Store/DataApartment/useApartmentData.store";
-import ChatBot from "../../components/ChatBot/ChatbaseWidget"
+import ChatBot from "../../components/ChatBot/ChatbotIframe"
 
 // Extend the Window interface to include chatbase
 declare global {
