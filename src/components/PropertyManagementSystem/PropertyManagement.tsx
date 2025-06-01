@@ -7,12 +7,13 @@ import { RoomsList } from './ui/RoomsList';
 import { TabNavigation } from './ui/TabNavigation';
 import { ArrowLeft, ArrowRight, Save } from 'lucide-react';
 import { usePostsStore } from '../../Store/Owner/posts.store';
+import { useNavigate } from 'react-router-dom';
 
 type Mode = 'list' | 'add' | 'edit';
 
 function PropertyManagement() {
   const location = useLocation();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const AddPost = usePostsStore((state) => state.AddPost);
   // استقبل القيمة من navigate
@@ -31,7 +32,7 @@ function PropertyManagement() {
     alert('تم حفظ معلومات العقار بنجاح!');
     
     setMode('list');
-    // navigate('/');
+    navigate('/');
   };
 
   return (
