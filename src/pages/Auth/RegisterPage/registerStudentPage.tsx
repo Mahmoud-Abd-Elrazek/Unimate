@@ -16,7 +16,11 @@ export default function RegisterStudentPage() {
   const RegisterSchema = z.object({
     firstname: z.string().min(1, { message: "ادخل الاسم الاول" }),
     lastname: z.string().min(1, { message: "ادخل الاسم الاخير" }),
-    username: z.string().min(1, { message: "ادخل اسم المستخدم" }),
+    username: z
+    .string()
+    .min(3, "اسم المستخدم يجب أن يحتوي على 3 أحرف على الأقل")
+    .max(20, "اسم المستخدم يجب ألا يزيد عن 20 حرفًا")
+    .regex(/^[A-Za-z0-9_]+$/, "اسم المستخدم يجب أن يحتوي على حروف إنجليزية وأرقام فقط"),
     email: z.string().email({ message: "ادخل بريد الكتروني صحيح" }),
     nationalID: z
       .string()
