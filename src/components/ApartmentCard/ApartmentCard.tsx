@@ -21,6 +21,8 @@ interface ApartmentData {
   numberOfRooms?: number;
   price?: string | number;
   ownerName?: string;
+  detailedAddress:string;
+  location:number;
 }
 
 interface ApartmentCardProps {
@@ -31,11 +33,10 @@ interface ApartmentCardProps {
 }
 
 const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCardProps) => {
-  const prevRef = useRef(null);
+   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const swiperRef = useRef<SwiperClass | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  // const navigate = useNavigate();
 
   const images = [
     "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
@@ -55,17 +56,11 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
   const handleNextClick = () => {
     swiperRef.current?.slideNext();
   };
-  // const AddtoFav = (id: string) => {
-    //   AddFavorite(id);
-    // }
-  // Helper function
+
   const parseFloor = (floorRaw: unknown): string => {
     if (typeof floorRaw !== "string") return "?";
-    
     const trimmed = floorRaw.trim();
-    
     const isProbablyJSON = trimmed.startsWith('"') && trimmed.endsWith('"');
-    
     if (isProbablyJSON) {
       try {
         const parsed = JSON.parse(trimmed);
@@ -75,76 +70,71 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
         return trimmed;
       }
     }
-
     return trimmed;
   };
+
   const translateFloor = (floor: string): string => {
     const map: Record<string, string> = {
-      "1": "الأول",
-      "1st": "الأول",
-      "first": "الأول",
-      "2": "الثاني",
-      "2nd": "الثاني",
-      "second": "الثاني",
-      "3": "الثالث",
-      "3rd": "الثالث",
-      "third": "الثالث",
-      "4": "الرابع",
-      "4th": "الرابع",
-      "fourth": "الرابع",
-      "5": "الخامس",
-      "5th": "الخامس",
-      "fifth": "الخامس",
-      "6": "السادس",
-      "6th": "السادس",
-      "sixth": "السادس",
-      "7": "السابع",
-      "7th": "السابع",
-      "seventh": "السابع",
-      "8": "الثامن",
-      "8th": "الثامن",
-      "eighth": "الثامن",
-      "9": "التاسع",
-      "9th": "التاسع",
-      "ninth": "التاسع",
-      "10": "العاشر",
-      "10th": "العاشر",
-      "tenth": "العاشر",
+      "1": "الأول", "1st": "الأول", "first": "الأول",
+      "2": "الثاني", "2nd": "الثاني", "second": "الثاني",
+      "3": "الثالث", "3rd": "الثالث", "third": "الثالث",
+      "4": "الرابع", "4th": "الرابع", "fourth": "الرابع",
+      "5": "الخامس", "5th": "الخامس", "fifth": "الخامس",
+      "6": "السادس", "6th": "السادس", "sixth": "السادس",
+      "7": "السابع", "7th": "السابع", "seventh": "السابع",
+      "8": "الثامن", "8th": "الثامن", "eighth": "الثامن",
+      "9": "التاسع", "9th": "التاسع", "ninth": "التاسع",
+      "10": "العاشر", "10th": "العاشر", "tenth": "العاشر",
     };
-    
     return map[floor] || floor;
   };
+
   const rawFloor = data?.floor;
   const floorValue = parseFloor(rawFloor);
   const translatedFloor = translateFloor(floorValue);
-
-  const addressMap: { [key: string]: string } = {
-    "\"at Giza\"": "دردشة",
-    "at Giza": "عمر افندى",
-    "123 Main St, Downtown": "قنا الجديدة",
-    "456 College Ave": "المساكن",
-    "789 Park Lane": "الشئون",
-    "321 Arts District": "مدينة العمال",
-    
-  };
-
-  
   const type = data?.gender === "Male" ? "أولاد" : "بنات";
   let numofRooms = (data?.numberOfRooms ?? 3) > 4 ? 4 : data?.numberOfRooms;
-  numofRooms = numofRooms == 0 ? 3 : numofRooms
+  numofRooms = numofRooms == 0 ? 3 : numofRooms;
+
   useEffect(() => {
-    console.log("data form card not room details" , typeof id)
-  })
-  const {ToggelFav,flag} = useApartmentStore()
-  const [isFavorited,setisFavrited]=useState(flag)
+    console.log("data form card not room details", typeof id);
+  });
+
+  const { ToggelFav, flag } = useApartmentStore();
+  const [isFavorited, setisFavrited] = useState(flag);
   const handleClick = () => {
     if (id !== undefined) {
       ToggelFav(id);
-      setisFavrited(pre=>!pre)
-      // setflag(!flag)
-      
+      setisFavrited(pre => !pre);
     }
   }
+
+  const areas = [
+    { id: 0, key: 'AlMasaken', value: 'المساكن' },
+    { id: 1, key: 'Darda', value: 'دردشه' },
+    { id: 2, key: 'Shooun', value: 'الشؤون' },
+    { id: 3, key: 'WastElBalad', value: 'وسط البلد' },
+    { id: 4, key: 'ALKnooz', value: 'الكنوز' },
+    { id: 5, key: 'ALMoataqal', value: 'المعتقل' },
+    { id: 6, key: 'ALBank', value: 'البنك' },
+    { id: 7, key: 'ALTameen', value: 'التأمين' },
+    { id: 8, key: 'ALMahatta', value: 'المحطه' },
+    { id: 9, key: 'ALSayyedaAisha', value: 'السيدة عايشة' },
+    { id: 10, key: 'ALShahba', value: 'الشهباء' },
+    { id: 11, key: 'ALKods', value: 'القدس' },
+    { id: 12, key: 'ALMana', value: 'المعنا' },
+    { id: 13, key: 'ALRamla', value: 'الرملة' },
+    { id: 14, key: 'Dandara', value: 'دندرة' },
+    { id: 15, key: 'QenaUniversity', value: 'جامعة جنوب الوادي' },
+  ];
+
+  const [locationId, setLocationId] = useState<number | null>(null);
+  useEffect(() => {
+    setLocationId(data?.location ?? null);
+  }, [data?.location]);
+
+  const selectedLocation = areas.find((area) => area.id === locationId);
+
   return (
     <div
       className={`
@@ -235,12 +225,12 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
                 {data?.price == 0 ? 200 : data?.price}/mo
               </span>
               <h3 className="text-[14px] font-semibold text-[#212529] dark:text-primary_TXD sm:text-[16px] lg:text-[15px]">
-                {addressMap[data?.address ?? ""] ?? data?.address} · {type} · {numofRooms} غرف ·  الدور {translatedFloor}
+                {selectedLocation?.value} · {type} · {numofRooms} غرف ·  الدور {translatedFloor}
               </h3>
             </div>
 
             <div className="flex items-center justify-end mb-2">
-              <span className="text-[14px] text-[#515151] mr-2 dark:text-primary_TXD">{addressMap[data?.address ?? ""] ?? data?.address} / شارع ابو علاء</span>
+              <span className="text-[14px] text-[#515151] mr-2 dark:text-primary_TXD">{data?.detailedAddress} /   </span>
               <IoLocationOutline className="text-[#515151] dark:text-[#8492a7]" />
             </div>
 
