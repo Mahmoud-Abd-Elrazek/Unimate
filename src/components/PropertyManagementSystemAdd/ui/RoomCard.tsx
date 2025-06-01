@@ -122,7 +122,7 @@ const imageToShow =
                   value={editedRoom.price}
                   onChange={handleChange}
                   min={1}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-secondary_BGD"
                 />
               </div>
 
@@ -136,7 +136,7 @@ const imageToShow =
                   value={editedRoom.bednumber}
                   onChange={handleChange}
                   min={0}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-secondary_BGD"
                 />
               </div>
             </div>

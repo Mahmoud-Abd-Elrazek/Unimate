@@ -37,8 +37,8 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({ imageFile, onChange })
       {previewUrl ? (
         <img src={previewUrl} alt="Preview" className="w-full aspect-video object-cover rounded" />
       ) : (
-        <div className="w-full aspect-video flex items-center justify-center bg-gray-100 rounded">
-          <span className="text-gray-400">اختر صورة</span>
+        <div className="w-full aspect-video flex items-center justify-center bg-gray-100 rounded dark:bg-BTN_BGD">
+          <span className="text-gray-400 dark:text-BTN_TXD">اختر صورة</span>
         </div>
       )}
       <button
