@@ -50,7 +50,8 @@ import ChangePass from './pages/Auth/Passwords/ChangePass/changepass';
 import ConfirmEmail from './pages/Auth/Emails/confirmemail';
 import LogOut from './pages/Auth/LogOut/logout';
 import ConfirmEmail12 from './pages/Auth/Emails/confirmemail12';
-import PropertyManagement from './components/PropertyManagementSystem/PropertyManagement';
+import PropertyManagementAdd from './components/PropertyManagementSystemAdd/PropertyManagement';
+import PropertyManagementEdit from './components/PropertyManagementSystemEdit/PropertyManagement';
 import StudentProfile from './pages/User_Profile_Pages/Profile/studentprofile';
 import OwnerProfile from './pages/User_Profile_Pages/Profile/onwerProfile';
 import RedirectBasedOnRole from './RedirectBasedOnRole';
@@ -134,7 +135,8 @@ export default function App() {
         <Route path="/img_details" element={<Gallery />} />
         <Route path="/housing_services" element={<Housing_Services />} />
         <Route path="/ApartmentCard" element={<ApartmentCard />} />
-        <Route path="/manage_property" element={<PropertyManagement />} />
+        <Route path="/manage_property_add" element={<PropertyManagementAdd />} />
+        <Route path="/manage_property_edit" element={<PropertyManagementEdit />} />
 
         {/* Author Pages */}
         <Route path="/auther/*" element={<AuthorLayout />}>

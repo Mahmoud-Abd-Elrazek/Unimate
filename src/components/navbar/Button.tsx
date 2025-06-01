@@ -5,7 +5,7 @@ const Button = () => {
    const navigate = useNavigate();
    const location = useLocation();
 
-   if (location.pathname === '/manage_property') return null;
+   if (location.pathname === '/manage_property_add') return null;
 
    return (
       <button

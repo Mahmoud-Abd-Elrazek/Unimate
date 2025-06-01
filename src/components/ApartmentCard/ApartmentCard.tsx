@@ -298,7 +298,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
             <button
               type="button"
               className="text-[#f8fafc] bg-[#495057] hover:bg-[#f8fafc] hover:text-[#0f1729] px-4 py-1 rounded-[10px] text-base shadow-md cursor-pointer"
-              onClick={() => navigate('/manage_property', { state: { mode: 'eidt' } })}
+              onClick={() => navigate('/manage_property_edit', { state: { mode: 'eidt' } })}
             >
               edit
             </button>
