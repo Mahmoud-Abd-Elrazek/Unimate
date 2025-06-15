@@ -36,8 +36,8 @@ export default function CommentSection({ apartmentId }: CommentSectionProps) {
       if (!response.ok) {
         throw new Error('فشل في إرسال التعليق');
       }
-      const result = await response.json();
-      console.log('تم إضافة التعليق:', result);
+      // const result = await response.json();
+      // console.log('تم إضافة التعليق:', result);
       toast.success('تم إضافة تعليقك بنجاح!');
       setShow(!show)
       setComment('');

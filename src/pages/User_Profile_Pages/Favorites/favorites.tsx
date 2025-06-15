@@ -15,7 +15,7 @@ export default function Favorites() {
   const { GetFavApartment, issuccess,aparments } = useApartmentStore()
   useEffect(() => {
     GetFavApartment()
-    console.log(issuccess)
+    // console.log(issuccess)
   }, [])
   return (
     <AuthorLayout isAuthorized={true} >

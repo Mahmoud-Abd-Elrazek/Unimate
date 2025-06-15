@@ -25,7 +25,7 @@ export default function OwnerProfile() {
   const { getOwnerInfo, userName, phones, email: ownerEmail, briefOverView: ownerBriefOverview } = useprofileOwnerStore();
   useEffect(() => {
     getOwnerInfo();
-    console.log("Owner Profile Data:");
+    // console.log("Owner Profile Data:");
     // console.log(phones)
   }, [getOwnerInfo]);
   // ======================================== user data ========================================
