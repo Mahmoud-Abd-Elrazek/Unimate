@@ -75,7 +75,7 @@ export default function RoomDetails() {
       floor: string;
       location: string;
       isAvailable: boolean;
-      bookEntireApartment: boolean; // if all room and all bed not booked
+      bookEntireApartment: boolean; 
       description: string;
       descripeLocation: string;
       id: number;
@@ -86,7 +86,7 @@ export default function RoomDetails() {
     categoryWithFacilities: {
       Services: string[];
     };
-    images?: { // أضفنا حقل الصور كاختياري
+    images?: {
       id: number;
       imageUrl: string;
       kind: string;
@@ -135,7 +135,7 @@ export default function RoomDetails() {
   useEffect(() => {
     if (id) {
       Fetchdata(id);
-      console.log("this is the room details page of room with id " + id);
+   
       // console.log(ownerName)
       //  console.log( data?.categoryWithFacilities.Services)
     }

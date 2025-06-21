@@ -97,9 +97,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
   let numofRooms = (data?.numberOfRooms ?? 3) > 4 ? 4 : data?.numberOfRooms;
   numofRooms = numofRooms == 0 ? 3 : numofRooms;
 
-  useEffect(() => {
-    console.log("data form card not room details", typeof id);
-  });
+
 
   const { ToggelFav, flag } = useApartmentStore();
   const [isFavorited, setisFavrited] = useState(flag);

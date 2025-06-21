@@ -43,6 +43,11 @@ const FilterBar: React.FC = () => {
     setLocation,
     fetchByEveryThing,
     setIsSearching,
+    LOCATION,
+    capecity,
+    Gender,
+    ToPrice,
+    FromPrice,
     Keyword,
   } = useApartmentData();
 
@@ -50,7 +55,7 @@ const FilterBar: React.FC = () => {
     if (Array.isArray(value) && value.length === 2) {
       setFromPrice(value[0]);
       setToPrice(value[1]);
-      setPriceRange(value);
+      setPriceRange(value as [number, number]);
     }
   };
 
@@ -75,27 +80,40 @@ const FilterBar: React.FC = () => {
     } else {
       setLocation(-1);
     }
+     
+
   }, [selectedFilters]);
 
    const Clearfilter=()=>{
-         setSelectedFilters({});
-              setIsSearching(false);
+       setSelectedFilters({});
+        setIsSearching(false);
         setCapacity(0)
         setFromPrice(0)
         setGender(0)
         setLocation(-1)
         setToPrice(0)
+         setPriceRange([400, 800]);
       }
   const applyFilters = () => {
-   if (!Keyword || Keyword.trim() === "") {
-  toast.error("من فضلك أدخل كلمة مفتاحية للبحث.");
-  return;
-  }
-    else{
+    const noFiltersSelected = Gender === 0 && capecity === 0 && LOCATION === -1 && ToPrice === 0 && FromPrice === 0;
+    const noKeyword = !Keyword || Keyword.trim() === "";
 
-      fetchByEveryThing();
-      setShowModal(false);
+    if (noFiltersSelected && noKeyword) {
+      toast.error("من فضلك اختر فلتر و أدخل كلمة مفتاحية للبحث.");
+      return;
     }
+    if (noFiltersSelected) {
+      toast.error("من فضلك اختر على الأقل فلتر واحد قبل البحث.");
+      return;
+    }
+    if (noKeyword) {
+      toast.error("من فضلك أدخل كلمة مفتاحية للبحث.");
+      return;
+    }
+
+    // All correct
+    fetchByEveryThing();
+    setShowModal(false);
   };
 
   const renderFilterDropdowns = () =>

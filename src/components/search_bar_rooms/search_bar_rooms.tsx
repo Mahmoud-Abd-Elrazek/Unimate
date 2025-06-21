@@ -1,6 +1,6 @@
 import { TfiSearch } from "react-icons/tfi";
 import { IoMdClose } from "react-icons/io";
-import { useState } from "react";
+import {  useState } from "react";
 import { useLocation } from "react-router-dom";
 import useApartmentData from "../../Store/DataApartment/useApartmentData.store";
 import {toast} from 'sonner'
@@ -10,37 +10,38 @@ interface Funprop {
 
 export default function SearchBar({ placeholderval }: Funprop) {
 
+  
   // const [isFocused, setIsFocused] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const location = useLocation();
   const showSearchBarPaths = ["/"];
   const shouldShowSearchBar = showSearchBarPaths.includes(location.pathname);
 
-  const { Keyword,setKeyword, setIsSearching,fetchByEveryThing,Gender,capecity,Location,FromPrice,ToPrice } = useApartmentData();
+  const { Keyword,setKeyword, setIsSearching,fetchByEveryThing,Gender,capecity,LOCATION,FromPrice,ToPrice } = useApartmentData();
 
   if (!shouldShowSearchBar) return null;
 
   const handleSearch = async () => {
  
+const noFiltersSelected = Gender === 0 && capecity === 0 && LOCATION === -1 && ToPrice === 0 && FromPrice === 0;
+    const noKeyword = !Keyword || Keyword.trim() === "";
 
-  const noFiltersSelected = Gender === 0 && capecity === 0 && Location === -1 && ToPrice === 0 && FromPrice===0;
+    if (noFiltersSelected && noKeyword) {
+      toast.error("من فضلك اختر فلتر و أدخل كلمة مفتاحية للبحث.");
+      return;
+    }
+    if (noFiltersSelected) {
+      toast.error("من فضلك اختر على الأقل فلتر واحد قبل البحث.");
+      return;
+    }
+    if (noKeyword) {
+      toast.error("من فضلك أدخل كلمة مفتاحية للبحث.");
+      return;
+    }
 
-  if (noFiltersSelected) {
-    toast.error("من فضلك اختر على الأقل فلتر واحد قبل البحث.");
-    return;
-  }else{
-
-    
-    // setKeyword(keyword);
+    // All correct
     setIsSearching(true);
     fetchByEveryThing();
-    console.log(Gender)
-    console.log(capecity)
-    console.log(location)
-    console.log(ToPrice)
-    console.log(FromPrice)
-    console.log("helo from search")
-  }
 };
 
 
@@ -53,7 +54,7 @@ export default function SearchBar({ placeholderval }: Funprop) {
 
   const sharedInputStyles = `flex items-center gap-2 px-4 py-2 h-12 md:h-[50px] w-full max-w-[360px] border border-gray-300 dark:border-gray-600 rounded-full shadow transition-all duration-300 bg-white dark:bg-[#495057] focus-within:ring-2 focus-within:ring-mainColor`;
 
- 
+
   return (
     <>
       {/* Desktop Search Bar */}
@@ -72,7 +73,7 @@ export default function SearchBar({ placeholderval }: Funprop) {
             // onFocus={() => setIsFocused(true)}
             // onBlur={() => setIsFocused(false)}
             onChange={(e) => setKeyword(e.target.value)}
-            value={Keyword}
+            // value={Keyword}
           />
           <button onClick={handleSearch} className="text-white bg-mainColor w-9 h-9 rounded-full flex items-center justify-center hover:opacity-90 transition">
             <TfiSearch className="w-[18px] h-[18px]" />
