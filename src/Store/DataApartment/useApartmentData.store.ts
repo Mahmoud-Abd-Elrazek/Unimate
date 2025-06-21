@@ -128,16 +128,16 @@ const useApartmentData = create<ApartmentDataState>()(
           });
 
         } catch (error) {
-          const state = get();
+          // const state = get();
           console.error("Error fetching by everything:", error);
-          console.log("Request parameters:", {
-            Keyword: state.Keyword,
-            FromPrice: state.FromPrice,
-            ToPrice: state.ToPrice,
-            Capecity: state.capecity,
-            Location: state.LOCATION,
-            Gender: state.Gender,
-          });
+          // console.log("Request parameters:", {
+          //   Keyword: state.Keyword,
+          //   FromPrice: state.FromPrice,
+          //   ToPrice: state.ToPrice,
+          //   Capecity: state.capecity,
+          //   Location: state.LOCATION,
+          //   Gender: state.Gender,
+          // });
         } finally {
           set({ isLoading: false });
         }
