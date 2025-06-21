@@ -1,19 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Layout } from './ui/Layout';
 import { PropertyForm } from './ui/PropertyForm';
 import { ImageSection } from './ui/ImageSection';
 // import { RoomsList } from './ui/RoomsList';
 import { TabNavigation } from './ui/TabNavigation';
+import { usePostsStore } from '../../Store/Owner/posts.store';
 
 function PropertyManagementEdit() {
   const [activeTab, setActiveTab] = useState('details');
-
+  const EditPost=usePostsStore(state=>state.EditPost)
   const tabs = [
     { id: 'details', label: 'تفاصيل العقار' },
     // { id: 'rooms', label: 'إدارة الغرف' },
     { id: 'images', label: 'صور العقار' },
   ];
- 
+//  useEffect(()=>{
+//   EditPost(id);
+//  },[])
   return (
     <Layout>
       <div className="max-w-6xl mx-auto px-4 pt-[100px] py-8 slide-in" dir="rtl">

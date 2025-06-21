@@ -5,19 +5,10 @@ import { IoIosSearch } from "react-icons/io";
 import { LuFilter } from "react-icons/lu";
 import Dropdown from 'react-bootstrap/Dropdown';
 import Modal from 'react-bootstrap/Modal';
-import useApartmentData from "../../Store/DataApartment/useApartmentData.store";
 import { Trash2 } from 'lucide-react';
+import useApartmentData from "../../Store/DataApartment/useApartmentData.store";
+import { toast } from 'sonner';
 
-const filterOptions: { [key: string]: string[] } = {
-  "عدد الأفراد": ["1 فرد", "2 فردين", "3 أفراد", "4 أفراد أو أكثر"],
-  // "عدد الغرف": ["غرفة واحدة", "غرفتين", "3 غرف", "أكثر من 3"],
-  "النوع": ["ولاد", "بنات"],
-  "المنطقة": [
-    "المساكن", "دردشه", "الشؤون", "وسط البلد", "الكنوز",
-    "المعتقل", "البنك", "التامين", "المحطه", "السيدة عائشه",
-    "الشاهبة", "القدس", "المعنا", "الرملة", "دندره", "جامعة جنوب الوادى"
-  ]
-};
 const locations = [
   { id: 0, key: 'AlMasaken', value: 'المساكن' },
   { id: 1, key: 'Darda', value: 'دردشه' },
@@ -36,75 +27,122 @@ const locations = [
   { id: 14, key: 'Dandara', value: 'دندرة' },
   { id: 15, key: 'QenaUniversity', value: 'جامعة جنوب الوادي' },
 ];
+
+const filtersList = ["عدد الأفراد", "النوع", "المنطقة"];
+
 const FilterBar: React.FC = () => {
-  const [priceRange, setPriceRange] = useState<[number, number]>([400, 800]);
+  const [priceRange,setPriceRange] = useState<[number, number]>([400, 800]);
   const [showModal, setShowModal] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState<{ [key: string]: string }>({});
 
-  const [capacity, setCapacity] = useState(0);
-  const [location, setLocation] = useState<number | null>(null);
-  const [gender, setGender] = useState(0);
-
-  const { fetchByEveryThing } = useApartmentData();
+  const {
+    setFromPrice,
+    setToPrice,
+    setGender,
+    setCapacity,
+    setLocation,
+    fetchByEveryThing,
+    setIsSearching,
+    Keyword,
+  } = useApartmentData();
 
   const handlePriceChange = (value: number | number[]) => {
     if (Array.isArray(value) && value.length === 2) {
-      setPriceRange([value[0], value[1]]);
+      setFromPrice(value[0]);
+      setToPrice(value[1]);
+      setPriceRange(value);
     }
   };
 
   const handleSelect = (filterName: string, value: string) => {
     setSelectedFilters(prev => ({ ...prev, [filterName]: value }));
   };
-  const setIsSearching = useApartmentData(state => state.setIsSearching)
+
   useEffect(() => {
-    // const value = selectedFilters["المنطقة"];
-    // console.log("selectedFilters['المنطقة']:", value); // Debug
-    // عدد الأفراد
     if (selectedFilters["عدد الأفراد"]) {
       const match = selectedFilters["عدد الأفراد"].match(/\d+/);
-
       setCapacity(match ? parseInt(match[0]) : 0);
     }
 
-    // النوع
     if (selectedFilters["النوع"]) {
       setGender(selectedFilters["النوع"] === "ولاد" ? 1 : 2);
     }
-    const rawValue = selectedFilters["المنطقة"];
-    // console.log("Selected location value:", rawValue);
 
+    const rawValue = selectedFilters["المنطقة"];
     if (typeof rawValue === "string") {
-      const selectedLocation = locations.find(
-        loc => loc.value.trim() === rawValue.trim()
-      );
-      setLocation(selectedLocation ? selectedLocation.id : null);
+      const selectedLocation = locations.find(loc => loc.value.trim() === rawValue.trim());
+      setLocation(selectedLocation ? selectedLocation.id : -1);
     } else {
-      setLocation(null);
+      setLocation(-1);
     }
   }, [selectedFilters]);
 
+   const Clearfilter=()=>{
+         setSelectedFilters({});
+              setIsSearching(false);
+        setCapacity(0)
+        setFromPrice(0)
+        setGender(0)
+        setLocation(-1)
+        setToPrice(0)
+      }
   const applyFilters = () => {
-    const fromprice = priceRange[0];
-    const toprice = priceRange[1];
+   if (!Keyword || Keyword.trim() === "") {
+  toast.error("من فضلك أدخل كلمة مفتاحية للبحث.");
+  return;
+  }
+    else{
 
-
-    console.log("Filters to send:", {
-      fromprice,
-      toprice,
-      capacity,
-      location,
-      gender
-    });
-    fetchByEveryThing(fromprice, toprice, capacity, location ?? 0, gender);
-
-    setShowModal(false);
+      fetchByEveryThing();
+      setShowModal(false);
+    }
   };
+
+  const renderFilterDropdowns = () =>
+    filtersList.map((label, index) => {
+      let options: string[] = [];
+
+      switch (label) {
+        case "عدد الأفراد":
+          options = ["1 فرد", "2 فردين", "3 أفراد", "4 أفراد أو أكثر"];
+          break;
+        case "النوع":
+          options = ["ولاد", "بنات"];
+          break;
+        case "المنطقة":
+          options = locations.map(loc => loc.value);
+          break;
+      }
+
+     
+      return (
+        <Dropdown key={index}>
+          <Dropdown.Toggle
+            variant="light"
+            className="w-full flex justify-between items-center border border-gray-300 rounded-lg py-3 px-4 text-sm font-medium text-gray-700 shadow-sm 
+            dark:bg-secondary_BGD dark:text-BTN_TXD"
+          >
+            {selectedFilters[label] || label}
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="text-right w-full dark:bg-secondary_BGD">
+            {options.map((option, idx) => (
+              <Dropdown.Item
+                key={idx}
+                onClick={() => handleSelect(label, option)}
+                className="dark:text-secondary_TXD dark:hover:bg-primary_BGD dark:hover:text-BTN_TXD"
+              >
+                {option}
+              </Dropdown.Item>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+      );
+    });
 
   return (
     <>
-      {/* زر الفلتر للموبايل */}
-      <div className="md:hidden flex  justify-end mb-4 items-center gap-1" dir='rtl'>
+      {/* زر الموبايل */}
+      <div className="md:hidden flex justify-end mb-4 items-center gap-1" dir="rtl">
         <button
           onClick={() => setShowModal(true)}
           className="px-4 py-2 bg-red-500 text-white rounded-full flex items-center justify-center shadow-md"
@@ -119,40 +157,32 @@ const FilterBar: React.FC = () => {
           }}
           className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-black rounded hover:bg-gray-300 transition-all dark:bg-BTN_BGD dark:hover:bg-primary_BGD"
         >
-          {/* Desktop text */}
-          <span className=" hover:dark:text-primary_TXD dark:text-BTN_TXD">Clear Filters</span>
-
-          {/* Mobile icon */}
-          <Trash2 className="sm:hidden w-5 h-5 hover:dark:text-primary_TXD dark:text-BTN_TXD" />
+          <span className="hover:dark:text-primary_TXD dark:text-BTN_TXD">Clear Filters</span>
+          <Trash2 className="sm:hidden w-5 h-5" />
         </button>
-        {/* <span className='text-[12px] text-[#777]'>اضغط للبدأ</span> */}
       </div>
 
-      {/* الفلاتر لسطح المكتب */}
+      {/* ديسكتوب */}
       <div className="hidden md:flex w-full rounded-xl p-4 shadow-sm flex-col md:flex-col-reverse md:items-center md:justify-between gap-4 lg:flex-row dark:bg-secondary_BGD">
-        <div className="w-full md:w-auto flex justify-center md:justify-start">
+        <div className="w-full md:w-auto flex justify-center md:justify-start gap-2">
           <button
-            onClick={() => {
-              setSelectedFilters({});
-              setIsSearching(false);
-            }}
+            onClick={Clearfilter}
             className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-black rounded hover:bg-gray-300 transition-all dark:bg-BTN_BGD dark:hover:bg-primary_BGD"
           >
-            {/* Desktop text */}
-            <span className="hidden sm:inline hover:dark:text-primary_TXD dark:text-BTN_TXD">Clear Filters</span>
-
-            {/* Mobile icon */}
+            <span className="hidden sm:inline dark:text-BTN_TXD">Clear Filters</span>
             <Trash2 className="sm:hidden w-5 h-5" />
           </button>
-          <div className="rounded-full w-10 h-10 bg-red-500 flex items-center justify-center" onClick={applyFilters}>
+          <div
+            className="rounded-full w-10 h-10 bg-red-500 flex items-center justify-center cursor-pointer"
+            onClick={applyFilters}
+          >
             <IoIosSearch className="text-white text-xl" />
           </div>
         </div>
 
-        {/* السعر */}
-        <div className="w-full md:w-auto flex flex-col sm:flex-row sm:items-center gap-2 text-right relative">
-          <span className="text-sm text-gray-500 dark:text-gray-300 sm:static absolute right-0 top-0">السعر</span>
-          <div className="relative w-full sm:w-64">
+        <div className="w-full md:w-auto flex flex-col sm:flex-row sm:items-center gap-2 text-right">
+          <span className="text-sm text-gray-500 dark:text-gray-300">السعر</span>
+          <div className="w-full sm:w-64">
             <Slider
               range
               min={0}
@@ -163,17 +193,15 @@ const FilterBar: React.FC = () => {
               allowCross={false}
               trackStyle={[{ backgroundColor: '#DC3545', height: 8 }]}
               handleStyle={[{
-                borderWidth: 4,
                 backgroundColor: '#DC2626',
                 width: 20,
                 height: 20,
-                marginTop: -5,
+                marginTop: -5
               }, {
-                borderWidth: 4,
                 backgroundColor: '#DC2626',
                 width: 20,
                 height: 20,
-                marginTop: -5,
+                marginTop: -5
               }]}
               railStyle={{ backgroundColor: '#FECACA', height: 8 }}
             />
@@ -183,34 +211,12 @@ const FilterBar: React.FC = () => {
           </span>
         </div>
 
-        {/* الفلاتر */}
         <div className="w-full md:w-auto flex flex-wrap justify-end gap-2">
-          {Object.entries(filterOptions).map(([label, options], index) => (
-            <Dropdown key={index}>
-              <Dropdown.Toggle
-                variant="light"
-                className="text-[#0f1729] px-3 py-2 border border-gray-200 rounded-md text-sm shadow-sm 
-                bg-BTN_TXD dark:bg-[#2D2D2D] dark:text-[#F1F1F1]"
-              >
-                {selectedFilters[label] || label}
-              </Dropdown.Toggle>
-              <Dropdown.Menu className="text-right w-40 text-sm dark:bg-secondary_BGD">
-                {options.map((option, idx) => (
-                  <Dropdown.Item
-                    key={idx}
-                    onClick={() => handleSelect(label, option)}
-                    className='dark:text-secondary_TXD dark:hover:bg-primary_BGD dark:hover:text-BTN_TXD'
-                  >
-                    {option}
-                  </Dropdown.Item>
-                ))}
-              </Dropdown.Menu>
-            </Dropdown>
-          ))}
+          {renderFilterDropdowns()}
         </div>
       </div>
 
-      {/* المودال للموبايل */}
+      {/* مودال الموبايل */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Header closeButton className="border-0 dark:bg-secondary_BGD dark:text-BTN_TXD">
           <Modal.Title className="text-right w-full pr-2">
@@ -220,12 +226,9 @@ const FilterBar: React.FC = () => {
             </div>
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body className='dark:bg-secondary_BGD'>
-          {/* السعر */}
+        <Modal.Body className="dark:bg-secondary_BGD">
           <div className="mb-6 text-right">
-            <label className="block mb-2 text-base font-semibold text-gray-800 dark:text-white">
-              نطاق الأسعار
-            </label>
+            <label className="block mb-2 text-base font-semibold text-gray-800 dark:text-white">نطاق الأسعار</label>
             <Slider
               range
               min={0}
@@ -241,51 +244,25 @@ const FilterBar: React.FC = () => {
                 borderWidth: 3,
                 width: 22,
                 height: 22,
-                marginTop: -7,
+                marginTop: -7
               }, {
                 borderColor: '#DC2626',
                 backgroundColor: '#fff',
                 borderWidth: 3,
                 width: 22,
                 height: 22,
-                marginTop: -7,
+                marginTop: -7
               }]}
               railStyle={{ backgroundColor: '#FECACA', height: 8 }}
             />
             <div className="flex justify-between mt-3">
-              <div className="px-3 py-1 border rounded-md text-sm text-gray-800 dark:text-BTN_TXD dark:bg-BTN_BGD">
-                {priceRange[0]} ج.م
-              </div>
-              <div className="px-3 py-1 border rounded-md text-sm text-gray-800 dark:text-BTN_TXD dark:bg-BTN_BGD">
-                {priceRange[1]} ج.م
-              </div>
+              <div className="px-3 py-1 border rounded-md text-sm text-gray-800 dark:text-BTN_TXD dark:bg-BTN_BGD">{priceRange[0]} ج.م</div>
+              <div className="px-3 py-1 border rounded-md text-sm text-gray-800 dark:text-BTN_TXD dark:bg-BTN_BGD">{priceRange[1]} ج.م</div>
             </div>
           </div>
 
-          {/* الفلاتر */}
           <div className="flex flex-col gap-3 text-right">
-            {Object.entries(filterOptions).map(([label, options], index) => (
-              <Dropdown key={index}>
-                <Dropdown.Toggle
-                  variant="light"
-                  className="w-full flex justify-between items-center border border-gray-300 rounded-lg py-3 px-4 text-sm font-medium text-gray-700 shadow-sm 
-                  dark:bg-secondary_BGD dark:text-BTN_TXD"
-                >
-                  {selectedFilters[label] || label}
-                </Dropdown.Toggle>
-                <Dropdown.Menu className="text-right w-full dark:bg-secondary_BGD ">
-                  {options.map((option, idx) => (
-                    <Dropdown.Item
-                      key={idx}
-                      onClick={() => handleSelect(label, option)}
-                      className="dark:text-secondary_TXD dark:hover:bg-primary_BGD dark:hover:text-BTN_TXD"
-                    >
-                      {option}
-                    </Dropdown.Item>
-                  ))}
-                </Dropdown.Menu>
-              </Dropdown>
-            ))}
+            {renderFilterDropdowns()}
           </div>
         </Modal.Body>
 
@@ -296,7 +273,6 @@ const FilterBar: React.FC = () => {
           >
             فلتر نتائجك الآن
           </button>
-
         </div>
       </Modal>
     </>

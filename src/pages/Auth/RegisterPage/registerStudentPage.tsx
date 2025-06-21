@@ -91,7 +91,7 @@ export default function RegisterStudentPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4 mt-20">
       <div className="w-full max-w-md rounded-xl p-8 shadow-md text-right">
         <h2 className="text-2xl font-semibold mb-1">انشاء حساب طالب جديد</h2>
         <form onSubmit={handleSubmit(OnSubmit)} className="space-y-4">

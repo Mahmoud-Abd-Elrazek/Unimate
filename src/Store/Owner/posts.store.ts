@@ -51,6 +51,7 @@ interface PostsState {
   deleteRoom: (roomId: string) => void;
 
   AddPost: () => Promise<void>;
+  EditPost:(id:number)=>Promise<void>;
 }
 
 export const usePostsStore = create<PostsState>()(
@@ -203,6 +204,24 @@ export const usePostsStore = create<PostsState>()(
           console.error('❌ Failed to add post:', error);
         }
       },
+
+      // edit post 
+      EditPost:async(id:number)=>{
+        try{
+          const res= await axios.get(`https://darkteam.runasp.net/UpdateApartmentInfoDisplayEndpoint/GetApartmentInfoDisplay?id=${id}`)
+          const data=res.data.data;
+          set({
+            Description: data.description,
+            DescribeLocation: data.descripeLocation,
+            GenderAcceptance: data.gender,
+
+          })
+       
+        }catch(error)
+        {
+          console.log("failed to load the edit page",error)
+        }
+      }
     }),
     {
       name: 'posts-storage',

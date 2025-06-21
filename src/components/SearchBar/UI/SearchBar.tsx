@@ -9,19 +9,20 @@ type Props = {
 const SearchBar: React.FC<Props> = ({ onSearchChange }) => {
   const { setIsSearching } = useApartmentData();
   const [value, setValue] = useState("");
-  const {fetchByKeyword}=useApartmentData()
+  const {fetchByEveryThing}=useApartmentData()
   const handleSearch = () => {
     if (value.trim()) {
       setIsSearching(true);
       onSearchChange?.(value);
-      fetchByKeyword(value)
+      fetchByEveryThing() 
     }
   };
 
   const clearSearch = () => {
     setValue("");
     setIsSearching(false);
-    onSearchChange?.(""); // Reset parent state
+    onSearchChange?.(""); 
+   
   };
 
   return (
