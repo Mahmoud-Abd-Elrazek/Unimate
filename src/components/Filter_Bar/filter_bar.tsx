@@ -80,20 +80,19 @@ const FilterBar: React.FC = () => {
     } else {
       setLocation(-1);
     }
-     
-
   }, [selectedFilters]);
 
-   const Clearfilter=()=>{
-       setSelectedFilters({});
-        setIsSearching(false);
-        setCapacity(0)
-        setFromPrice(0)
-        setGender(0)
-        setLocation(-1)
-        setToPrice(0)
-         setPriceRange([400, 800]);
-      }
+  const Clearfilter=()=>{
+    setSelectedFilters({});
+    setIsSearching(false);
+    setCapacity(0);
+    setFromPrice(0);
+    setGender(0);
+    setLocation(-1);
+    setToPrice(0);
+    setPriceRange([400, 800]);
+  }
+
   const applyFilters = () => {
     const noFiltersSelected = Gender === 0 && capecity === 0 && LOCATION === -1 && ToPrice === 0 && FromPrice === 0;
     const noKeyword = !Keyword || Keyword.trim() === "";
@@ -111,7 +110,6 @@ const FilterBar: React.FC = () => {
       return;
     }
 
-    // All correct
     fetchByEveryThing();
     setShowModal(false);
   };
@@ -132,7 +130,6 @@ const FilterBar: React.FC = () => {
           break;
       }
 
-     
       return (
         <Dropdown key={index}>
           <Dropdown.Toggle
@@ -169,10 +166,7 @@ const FilterBar: React.FC = () => {
           <LuFilter className="text-lg ml-2" />
         </button>
         <button
-          onClick={() => {
-            setSelectedFilters({});
-            setIsSearching(false);
-          }}
+          onClick={Clearfilter}
           className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-black rounded hover:bg-gray-300 transition-all dark:bg-BTN_BGD dark:hover:bg-primary_BGD"
         >
           <span className="hover:dark:text-primary_TXD dark:text-BTN_TXD">Clear Filters</span>
