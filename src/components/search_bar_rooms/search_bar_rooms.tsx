@@ -48,6 +48,7 @@ const noFiltersSelected = Gender === 0 && capecity === 0 && LOCATION === -1 && T
   const handleClearSearch = () => {
     setIsSearching(false);
     setKeyword("");
+    
     setShowMobileSearch(false);
     // setKeywordState("")
   };
@@ -106,7 +107,7 @@ const noFiltersSelected = Gender === 0 && capecity === 0 && LOCATION === -1 && T
               // onFocus={() => setIsFocused(true)}
               // onBlur={() => setIsFocused(false)}
               onChange={(e) => setKeyword(e.target.value)}
-              value={Keyword}
+              // value={Keyword}
             />
             <button onClick={handleSearch} className="text-white bg-mainColor w-8 h-8 rounded-full flex items-center justify-center hover:opacity-90 transition">
               <TfiSearch className="w-[16px] h-[16px]" />
