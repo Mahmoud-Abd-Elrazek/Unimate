@@ -27,13 +27,13 @@ const noFiltersSelected = Gender === 0 && capecity === 0 && LOCATION === -1 && T
     const noKeyword = !Keyword || Keyword.trim() === "";
 
     if (noFiltersSelected && noKeyword) {
-      toast.error("من فضلك اختر فلتر و أدخل كلمة مفتاحية للبحث.");
+      toast.error("من فضلك اختر فلتر او أدخل كلمة مفتاحية للبحث.");
       return;
     }
-    if (noFiltersSelected) {
-      toast.error("من فضلك اختر على الأقل فلتر واحد قبل البحث.");
-      return;
-    }
+    // if (noFiltersSelected) {
+    //   toast.error("من فضلك اختر على الأقل فلتر واحد قبل البحث.");
+    //   return;
+    // }
     if (noKeyword) {
       toast.error("من فضلك أدخل كلمة مفتاحية للبحث.");
       return;

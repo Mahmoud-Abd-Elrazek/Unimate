@@ -2,7 +2,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import axios from 'axios';
-import { toast } from 'sonner';
+// import { toast } from 'sonner';
 
 export interface Apartment {
   capecity: number;
@@ -73,33 +73,33 @@ const useApartmentData = create<ApartmentDataState>()(
           const state = get();
 
           const queryParams = new URLSearchParams();
-          let optionalFilterCount = 0;
+          // let optionalFilterCount = 0;
 
           if (state.FromPrice > 0) {
             queryParams.append("FromPrice", state.FromPrice.toString());
-            optionalFilterCount++;
+            // optionalFilterCount++;
           }
           if (state.ToPrice > 0) {
             queryParams.append("ToPrice", state.ToPrice.toString());
-            optionalFilterCount++;
+            // optionalFilterCount++;
           }
           if (state.capecity > 0) {
             queryParams.append("Capecity", state.capecity.toString());
-            optionalFilterCount++;
+            // optionalFilterCount++;
           }
           if (state.LOCATION !== -1) {
             queryParams.append("Location", state.LOCATION.toString());
-            optionalFilterCount++;
+            // optionalFilterCount++;
           }
           if (state.Gender > 0) {
             queryParams.append("Gender", state.Gender.toString());
-            optionalFilterCount++;
+            // optionalFilterCount++;
           }
 
-          if (optionalFilterCount === 0) {
-            toast.error("من فضلك اختر على الأقل فلتر واحد بجانب الكلمة المفتاحية.");
-            return;
-          }
+          // if (optionalFilterCount === 0) {
+          //   toast.error("من فضلك اختر على الأقل فلتر واحد بجانب الكلمة المفتاحية.");
+          //   return;
+          // }
 
           const res = await axios.get(
             `https://darkteam.runasp.net/SearchForApartmentEndpoint/SearchForApartment?PageNumber=1&PageSize=22&Keyword=${state.Keyword.trim()}&${queryParams.toString()}`

@@ -1,5 +1,4 @@
 import "./home.css";
-import Filter_bar from '../../components/Filter_Bar/filter_bar';
 import { FaRegStar } from "react-icons/fa";
 import ApartmentCard from '../../components/ApartmentCard/ApartmentCard';
 import HeroSection from '../../components/HeroSection/HeroSection';
@@ -12,6 +11,7 @@ import { Slide, ToastContainer } from "react-toastify";
 import useApartmentData from "../../Store/DataApartment/useApartmentData.store";
 import ChatBot from "../../components/ChatBot/ChatbotIframe"
 import { ApartmentData } from "../../../src/components/ApartmentCard/ApartmentCard"; // تأكد من المسار الصحيح
+import {FilterBar} from "../../components/Filter_Bar/filter_bar";
 
 // Extend the Window interface to include chatbase
 declare global {
@@ -70,7 +70,7 @@ export default function Home() {
             استخدم الفلتره الذكيه لتحديد ما يناسبك
           </h1>
           <div className='w-full max-w-[1050px] mx-auto flex justify-center items-center h-auto sm:h-40'>
-            <Filter_bar />
+          <FilterBar />
           </div>
         </div>
       </section>

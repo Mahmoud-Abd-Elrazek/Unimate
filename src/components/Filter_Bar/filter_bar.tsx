@@ -30,7 +30,7 @@ const locations = [
 
 const filtersList = ["عدد الأفراد", "النوع", "المنطقة"];
 
-const FilterBar: React.FC = () => {
+export const FilterBar: React.FC = () => {
   const [priceRange,setPriceRange] = useState<[number, number]>([400, 800]);
   const [showModal, setShowModal] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState<{ [key: string]: string }>({});
@@ -98,17 +98,17 @@ const FilterBar: React.FC = () => {
     const noKeyword = !Keyword || Keyword.trim() === "";
 
     if (noFiltersSelected && noKeyword) {
-      toast.error("من فضلك اختر فلتر و أدخل كلمة مفتاحية للبحث.");
+      toast.error("من فضلك اختر فلتر او أدخل كلمة مفتاحية للبحث.");
       return;
     }
     if (noFiltersSelected) {
       toast.error("من فضلك اختر على الأقل فلتر واحد قبل البحث.");
       return;
     }
-    if (noKeyword) {
-      toast.error("من فضلك أدخل كلمة مفتاحية للبحث.");
-      return;
-    }
+    // if (noKeyword) {
+    //   toast.error("من فضلك أدخل كلمة مفتاحية للبحث.");
+    //   return;
+    // }
 
     fetchByEveryThing();
     setShowModal(false);
@@ -291,4 +291,4 @@ const FilterBar: React.FC = () => {
   );
 };
 
-export default FilterBar;
+
