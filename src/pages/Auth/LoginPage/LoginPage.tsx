@@ -125,7 +125,7 @@ const LoginPage = () => {
 
         <p className="mt-4 text-center text-sm">
           ليس لديك حساب؟{" "}
-          <Link to="/register" className="text-blue-500 font-medium underline">
+          <Link to="/register_student" className="text-blue-500 font-medium underline">
             سجل الآن
           </Link>
         </p>
