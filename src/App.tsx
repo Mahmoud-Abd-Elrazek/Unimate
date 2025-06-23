@@ -14,7 +14,7 @@ import Help from './pages/Help/help';
 import RoomDetails from './pages/RoomDetails/roomDetails';
 import ApartmentCard from './components/ApartmentCard/ApartmentCard';
 import AuthorLayout from './pages/User_Profile_Pages/AuthorLayout/authorLayout';
-import EditProfilepage from './pages/EditProfilePage/editProfilepage';
+// import EditProfilepage from './pages/EditProfilePage/editProfilepage';
 import My_reservations from './pages/User_Profile_Pages/My_reservations/My_reservations';
 import Personal_Reviews from './pages/User_Profile_Pages/Personal_Reviews/Personal_Reviews';
 import Gallery from './pages/image_details/PropertyImages';
@@ -39,10 +39,10 @@ import NavBar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
 import ForgetPassword from './pages/Auth/Passwords/ForgetPassword/forgetPassword';
 import ResetPass from './pages/Auth/Passwords/ResetPass/resetPass';
-import Edit_academic_information from './pages/EditProfilePage/Edit_academic_information/edit_academic_information';
-import Edit_contact_information from './pages/EditProfilePage/Edit_contact_information/edit_contact_information';
-import Edit_login_information from './pages/EditProfilePage/Edit_login_information/edit_login_information';
-import Edit_profile_information from './pages/EditProfilePage/Edit_personal_information/edit_profile_information';
+import Edit_academic_information from './pages/User_Profile_Pages/EditProfilePage/Edit_personal_information/edit_profile_information';
+import Edit_contact_information from './pages/User_Profile_Pages/EditProfilePage/Edit_contact_information/edit_contact_information';
+import Edit_login_information from './pages/User_Profile_Pages/EditProfilePage/Edit_login_information/edit_login_information';
+import Edit_profile_information from './pages/User_Profile_Pages/EditProfilePage/Edit_personal_information/edit_profile_information';
 import RegisterStudentPage from './pages/Auth/RegisterPage/registerStudentPage';
 import RegisterOwnerPage from './pages/Auth/RegisterPage/registerOwnerPage';
 // import RegisterPage from './pages/Auth/RegisterPage/registe';
@@ -146,13 +146,17 @@ export default function App() {
           <Route path="ownerProfile" element={<OwnerProfile />} />
           <Route path="favorites" element={<Favorites />} />
           <Route path="help" element={<Help />} />
-          <Route path="editprofile" element={<EditProfilepage />} >
+          <Route path="editpersonalinfo" element={<Edit_profile_information />} />
+          <Route path='editcontactinfo' element={<Edit_contact_information />} />
+          <Route path='editAcademicinfo' element={<Edit_academic_information />} />
+          <Route path='editlogininfo' element={<Edit_login_information />} />
+          {/* <Route path="editprofile" element={<EditProfilepage />} >
             <Route index element={<Navigate to="editpersonalinfo" replace />} />
             <Route path='editAcademicinfo' element={<Edit_academic_information />} />
             <Route path='editcontactinfo' element={<Edit_contact_information />} />
             <Route path='editlogininfo' element={<Edit_login_information />} />
             <Route path='editpersonalinfo' element={<Edit_profile_information />} />
-          </Route>
+          </Route> */}
           <Route path="myreservations" element={<My_reservations />} />
           <Route path="personalreviews" element={<Personal_Reviews />} />
           <Route path="my_real_estate" element={<My_real_estate />} />

@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
-import Side_bar_edit_profile from '../../components/Side_bar_edit_Profile/side_bar_edit_profile';
+import SideBar from '../../../components/SideBar/sideBar';
 import { IoMdMenu, IoMdClose } from 'react-icons/io';
 
 // استيراد ملف الأنيميشن
@@ -23,7 +23,7 @@ const EditProfilePage = () => {
       {/* ✅ Sidebar في الشاشات الكبيرة */}
       <aside className="hidden lg:block lg:w-[280px] p-2 lg:p-4 lg:mt-12">
         <div className="h-full rounded-2xl border border-gray-200 dark:border-gray-700 bg-[#FAFAFA] dark:bg-[#121111] shadow-md">
-          <Side_bar_edit_profile />
+          <SideBar />
         </div>
       </aside>
 
@@ -51,7 +51,7 @@ const EditProfilePage = () => {
               >
                 <IoMdClose />
               </button>
-              <Side_bar_edit_profile onLinkClick={handleClose} /> {/* ✅ هنا التعديل */}
+              <SideBar onLinkClick={handleClose} /> {/* ✅ هنا التعديل */}
             </div>
           </div>
         )}

@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
-import "../../../../public/animations.css";
+import "../../../../../public/animations.css";
 // import { useEffect, useState } from 'react';
 // import useProfileStore from '../../../Store/Student/useProfile.store';
-import useAuthStore from '../../../Store/Auth/Auth.store';
-import { useprofileOwnerStore } from '../../../Store/Owner/useprofileOwner.store';
-import useProfileStore from '../../../Store/Student/useProfile.store';
+import useAuthStore from '../../../../Store/Auth/Auth.store';
+import { useprofileOwnerStore } from '../../../../Store/Owner/useprofileOwner.store';
+import useProfileStore from '../../../../Store/Student/useProfile.store';
+import AuthorLayout from '../../AuthorLayout/authorLayout';
 import { useEffect, useState } from 'react';
 export default function Edit_profile_information() {
 
@@ -97,6 +98,7 @@ export default function Edit_profile_information() {
     }
   };
   return (
+    <AuthorLayout isAuthorized={true} >
     <div dir="rtl" className="container mx-auto px-4 py-6 fade-in">
       <div className="w-full max-w-5xl mx-auto">
 
@@ -215,5 +217,6 @@ export default function Edit_profile_information() {
           </div>
       </div>
     </div>
+    </AuthorLayout>
   );
 }

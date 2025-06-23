@@ -1,13 +1,14 @@
 import {  useEffect,useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import "../../../../public/animations.css";
+import "../../../../../public/animations.css";
 import z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-import useAuthStore from '../../../Store/Auth/Auth.store';
-import useProfileStore from '../../../Store/Student/useProfile.store';
-import { useprofileOwnerStore } from '../../../Store/Owner/useprofileOwner.store';
+import AuthorLayout from '../../AuthorLayout/authorLayout';
+import useAuthStore from '../../../../Store/Auth/Auth.store';
+import useProfileStore from '../../../../Store/Student/useProfile.store';
+import { useprofileOwnerStore } from '../../../../Store/Owner/useprofileOwner.store';
 
 const passwordSchema = z.object({
   oldPassword: z.string()
@@ -70,6 +71,7 @@ export default function AccountSettings() {
     }
   },[Role]);
   return (
+    <AuthorLayout isAuthorized={true} >
     <div dir="rtl" className="mx-auto p-6 fade-in">
       <div className="max-w-4xl mx-auto">
 
@@ -210,5 +212,6 @@ export default function AccountSettings() {
         </div>
       </div>
     </div>
+    </AuthorLayout>
   );
 }

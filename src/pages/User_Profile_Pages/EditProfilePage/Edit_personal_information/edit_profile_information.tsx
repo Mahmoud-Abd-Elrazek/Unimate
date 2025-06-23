@@ -1,11 +1,12 @@
-import "../../../../public/animations.css";
+import "../../../../../public/animations.css";
 import { useEffect, useRef, useState } from 'react';
-import useProfileStore from '../../../Store/Student/useProfile.store';
+import useProfileStore from '../../../../Store/Student/useProfile.store';
 import { Link } from 'react-router-dom';
-import useAuthStore from "../../../Store/Auth/Auth.store";
-import { useprofileOwnerStore } from "../../../Store/Owner/useprofileOwner.store";
+import useAuthStore from "../../../../Store/Auth/Auth.store";
+import { useprofileOwnerStore } from "../../../../Store/Owner/useprofileOwner.store";
+import AuthorLayout from '../../AuthorLayout/authorLayout';
 import { FaUser } from "react-icons/fa";
-
+import "../../AuthorLayout/authorLayout"
 export default function EditProfileInformation() {
   const Role = useAuthStore((state) => state.role);
 
@@ -78,6 +79,7 @@ export default function EditProfileInformation() {
   };
 
   return (
+    <AuthorLayout isAuthorized={true} >
     <div dir="rtl" className="container mx-auto px-4 py-6 fade-in">
       <div className="w-full max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
@@ -230,5 +232,6 @@ export default function EditProfileInformation() {
         </div>
       </div>
     </div>
+    </AuthorLayout>
   );
 }

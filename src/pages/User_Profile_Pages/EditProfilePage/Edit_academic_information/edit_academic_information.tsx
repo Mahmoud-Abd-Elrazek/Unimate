@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import useProfileStore from '../../../Store/Student/useProfile.store';
-import "../../../../public/animations.css";
-import useAuthStore from '../../../Store/Auth/Auth.store';
+import useProfileStore from '../../../../Store/Student/useProfile.store';
+import "../../../../../public/animations.css";
+import useAuthStore from '../../../../Store/Auth/Auth.store';
+import AuthorLayout from '../../AuthorLayout/authorLayout';
 
 export default function AccountSettings() {
   const { AddAcadmicInfo, DisplayAcadmic } = useProfileStore();
@@ -61,6 +62,7 @@ export default function AccountSettings() {
   };
 
   return (
+    <AuthorLayout isAuthorized={true} >
     <div dir="rtl" className="container mx-auto px-4 py-6 fade-in">
       <div className="max-w-5xl mx-auto space-y-6">
         {/* Header */}
@@ -175,5 +177,6 @@ export default function AccountSettings() {
         </div>
       </div>
     </div>
+    </AuthorLayout>
   );
 }
