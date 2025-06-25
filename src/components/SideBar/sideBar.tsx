@@ -3,7 +3,7 @@ import { IoPersonOutline } from 'react-icons/io5';
 import { CiLogout } from 'react-icons/ci';
 import {
   MdFavoriteBorder,
-  MdHelpOutline,
+  // MdHelpOutline,
   MdManageAccounts,
   MdOutlineManageHistory,
   MdOutlinePrivacyTip
@@ -77,7 +77,7 @@ export default function SideBar({ onLinkClick }: SideBarProps) {
     { to: '/auther/my_real_estate', label: 'عقاراتي', icon: TbHomeCheck },
     { to: '/auther/reservation_requests_Owner', label: 'طلبات الحجز', icon: FaRegCalendarCheck },
     { to: '/auther/myreservations', label: 'إدارة الحجوزات', icon: MdManageAccounts },
-    { to: '/auther/help', label: 'المساعدة', icon: MdHelpOutline },
+    // { to: '/auther/help', label: 'المساعدة', icon: MdHelpOutline },
     { to: '/logout', label: 'تسجيل الخروج', icon: CiLogout },
   ];
 
