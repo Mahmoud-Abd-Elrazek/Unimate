@@ -45,16 +45,25 @@ export default function OwnerProfile() {
               <h2 className=" text-[black] font-bold mb-2 dark:text-[white]">وسائل التواصل</h2>
               <ul className="space-y-2 text-gray-600 text-sm dark:text-[#BDBDBD]">
                 <li className="flex items-center justify-end gap-2 dark:text-[#BDBDBD]">
-                  <span>{phones}: رقم الهاتف </span>
+                  <span>{phones} : رقم الهاتف </span>
                   <Phone className="text-lg" />
                 </li>
                 <li className="flex items-center justify-end gap-2 dark:text-[#BDBDBD]">
-                  <span>{ownerEmail}: البريد الإلكتروني </span>
+                  <span>{ownerEmail} : البريد الإلكتروني </span>
                   <Mail className="text-lg" />
                 </li>
+                <div className="flex items-center justify-end gap-2 mb-2 text-sm sm:text-base text-right">
+                  <span className="text-gray-400 text-xs sm:text-sm">
+                  {ownerBriefOverview || "لا يوجد وصف"}
+                </span>
+                <li className="flex items-center justify-end gap-2 dark:text-[#BDBDBD]">
+                  <span> : الوصف </span>
+                  <FileText className="text-lg" />
+                </li>
+                </div>
               </ul>
             </div>
-            <div className="mt-4 sm:mt-6">
+            {/* <div className="mt-4 sm:mt-6">
               <div className="flex items-center justify-end gap-2 mb-2 text-sm sm:text-base text-right">
                 <span className="text-gray-400 text-xs sm:text-sm">
                   {ownerBriefOverview || "لا يوجد وصف"}
@@ -62,7 +71,7 @@ export default function OwnerProfile() {
                 <h2 className="text-sm sm:text-base dark:text-[#BDBDBD]">: الوصف</h2>
                 <FileText className="text-base sm:text-lg w-6 h-6 dark:text-[#BDBDBD]" />
               </div>
-            </div>
+            </div> */}
 
           </div>
 
