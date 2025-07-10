@@ -25,7 +25,7 @@ export default function AuthorLayout({ isAuthorized , children }: LayoutProps) {
   };
 
   const hideSidebarRoutes =
-    location.pathname.startsWith('/auther/editprofile') ||
+    // location.pathname.startsWith('/auther/editprofile') ||
     location.pathname === '/auther/help';
 
   return (

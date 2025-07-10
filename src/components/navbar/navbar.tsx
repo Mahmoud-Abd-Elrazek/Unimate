@@ -23,7 +23,7 @@ export default function NavBar() {
       </Link>
 
       {/* Search Bar - Hidden on small screens */}
-      <div className='hidden md:block dark:bg-[#1D1D1D] dark:rounded-3xl dark:shadow'>
+      <div className='hidden md:block'>
         <Search_bar placeholderval="ابحث عن سكن مناسب لك" />
       </div>
 

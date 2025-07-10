@@ -53,7 +53,7 @@ const noFiltersSelected = Gender === 0 && capecity === 0 && LOCATION === -1 && T
     // setKeywordState("")
   };
 
-  const sharedInputStyles = `flex items-center gap-2 px-4 py-2 h-12 md:h-[50px] w-full max-w-[360px] border border-gray-300 dark:border-gray-600 rounded-full shadow transition-all duration-300 bg-white dark:bg-[#495057] focus-within:ring-2 focus-within:ring-mainColor`;
+  const sharedInputStyles = `flex items-center gap-2 px-4 py-2 h-12 md:h-[50px] w-full max-w-[360px] border border-gray-300 dark:border-gray-600 rounded-full shadow transition-all duration-300  focus-within:ring-2 focus-within:ring-mainColor`;
 
 
   return (
@@ -62,12 +62,12 @@ const noFiltersSelected = Gender === 0 && capecity === 0 && LOCATION === -1 && T
       <div className="hidden md:flex justify-center">
         <div className={sharedInputStyles}>
           {Keyword && (
-            <button onClick={handleClearSearch} className="text-red-500 text-xl hover:scale-110 transition">
+            <button onClick={handleClearSearch} className="text-red-500 text-xl hover:scale-110 transition ">
               <IoMdClose />
             </button>
           )}
           <input
-            className="flex-1 text-right text-sm bg-transparent outline-none text-gray-800 dark:text-white placeholder-gray-400"
+            className="flex-1 text-right text-sm bg-transparent outline-none text-gray-800 placeholder-gray-400 dark:text-primary_TXD"
             placeholder={placeholderval}
             type="text"
             dir="rtl"
