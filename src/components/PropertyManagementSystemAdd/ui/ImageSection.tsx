@@ -25,10 +25,10 @@ export const ImageSection: React.FC = () => {
     setBathroomImage,
     setLivingRoomImage,
     setOutsideImage,
-    kitchenImage,
-    bathroomImage,
-    livingRoomImage,
-    outsideImage
+    // kitchenImage,
+    // bathroomImage,
+    // livingRoomImage,
+    // outsideImage
   } = usePostsStore();
 
   const toggleSection = (section: keyof SectionState) => {
@@ -38,13 +38,13 @@ export const ImageSection: React.FC = () => {
     }));
   };
 
-  const handleSave = () => {
-    console.log("Kitchen Image:", kitchenImage);
-    console.log("Bathroom Image:", bathroomImage);
-    console.log("LivingRoom Image:", livingRoomImage);
-    console.log("Outside Image:", outsideImage);
-    alert("تم حفظ الصور في الستيت بنجاح!");
-  };
+  // const handleSave = () => {
+  //   console.log("Kitchen Image:", kitchenImage);
+  //   console.log("Bathroom Image:", bathroomImage);
+  //   console.log("LivingRoom Image:", livingRoomImage);
+  //   console.log("Outside Image:", outsideImage);
+  //   alert("تم حفظ الصور في الستيت بنجاح!");
+  // };
 
   return (
     <div className="space-y-6">
