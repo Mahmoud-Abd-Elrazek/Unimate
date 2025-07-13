@@ -156,11 +156,11 @@ useEffect(()=>{
             onChange={setServices}
           />
         </div>
-        <div>
+        {/* <div>
           <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded-md">
             حفظ العقار
           </button>
-        </div>
+        </div> */}
       </form>
     </div>
   );
