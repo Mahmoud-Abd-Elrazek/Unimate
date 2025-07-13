@@ -6,6 +6,7 @@ import { useState } from "react";
 import { FiEye, FiEyeOff, FiUserPlus } from "react-icons/fi";
 import UploadPhoto from '../../../components/UploadPhoto/uploadPhoto';
 import axios from "axios";
+import { toast } from "sonner";
 export default function RegisterStudentPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -81,12 +82,11 @@ export default function RegisterStudentPage() {
       })
       console.log(res)
       console.log(res.status, res.data);
-  
-    // for (const [key, value] of userData.entries()) {
-    //   console.log(`${key}:`, value);
-    // }
-    // localStorage.setItem("role", "Student");
-    
+
+    if(res.data.isSuccess==false)
+    {
+      toast.error("User Email already exists")
+    }else
     navigate("/confirmemail1");
   };
 

@@ -62,3 +62,4 @@ export const ImageUploadSection: React.FC<ImageUploadSectionProps> = ({
     </div>
   );
 };
+
