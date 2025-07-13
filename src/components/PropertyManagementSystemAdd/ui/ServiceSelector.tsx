@@ -1,15 +1,13 @@
-import React, { JSX } from 'react';
+import React, { JSX, useEffect } from 'react';
 import {
-  Car,
-  Coffee,
-  Droplets,
-  Fan,
-  Plus,
-  UtensilsCrossed,
-  UtilityPole,
   Wifi,
-  Tv,
-  BedIcon,
+  Refrigerator,
+  Utensils,
+  Bath,
+  Flame,
+  Zap,
+  Bed,
+  Plus,
   Minus,
 } from 'lucide-react';
 
@@ -30,16 +28,36 @@ const ServiceSelector: React.FC<ServiceSelectorProps> = ({
 }) => {
   const availableServices: Service[] = [
     { id: 3, name: 'واي فاي', icon: <Wifi size={18} /> },
-    { id: 4, name: 'ديب فريزر', icon: <Car size={18} /> },
-    { id: 5, name: 'مايكرويف', icon: <UtilityPole size={18} /> },
-    { id: 6, name: 'بانيو', icon: <Coffee size={18} /> },
-    { id: 7, name: 'سخان غاز', icon: <UtensilsCrossed size={18} /> },
-    { id: 8, name: 'سخان كهرباء', icon: <Droplets size={18} /> },
-    { id: 9, name: 'بوتجاز خمس شعل', icon: <Fan size={18} /> },
-    { id: 10, name: 'مراتب قطن', icon: <Tv size={18} /> },
-    { id: 11, name: 'سراير حديد', icon: <BedIcon size={18} /> },
-    { id: 12, name: 'سراير خشب', icon: <BedIcon size={18} /> },
+    { id: 4, name: 'ديب فريزر', icon: <Refrigerator size={18} /> },
+    { id: 5, name: 'مايكرويف', icon: <Utensils size={18} /> },
+    { id: 6, name: 'بانيو', icon: <Bath size={18} /> },
+    { id: 7, name: 'سخان غاز', icon: <Flame size={18} /> },
+    { id: 8, name: 'سخان كهرباء', icon: <Zap size={18} /> },
+    { id: 9, name: 'بوتجاز خمس شعل', icon: <Utensils size={18} /> },
+    { id: 10, name: 'مراتب قطن', icon: <Bed size={18} /> },
+    { id: 11, name: 'سراير حديد', icon: <Bed size={18} /> },
+    { id: 12, name: 'سراير خشب', icon: <Bed size={18} /> },
   ];
+
+  // تحميل البيانات من localStorage عند تحميل المكون
+  useEffect(() => {
+    const savedServices = localStorage.getItem('selectedServices');
+    if (savedServices) {
+      try {
+        const parsedServices = JSON.parse(savedServices);
+        if (Array.isArray(parsedServices)) {
+          onChange(parsedServices);
+        }
+      } catch (error) {
+        console.error('Error parsing saved services:', error);
+      }
+    }
+  }, [onChange]);
+
+  // حفظ البيانات في localStorage عند تغيير selectedServices
+  useEffect(() => {
+    localStorage.setItem('selectedServices', JSON.stringify(selectedServices));
+  }, [selectedServices]);
 
   const handleToggleService = (serviceId: number) => {
     const existing = selectedServices.find((s) => s.id === serviceId);
@@ -69,7 +87,6 @@ const ServiceSelector: React.FC<ServiceSelectorProps> = ({
             <div className={`flex items-center gap-2 
               ${isSelected ? 'text-green-600 dark:text-green-400' : ''}
             `}>
-              {/* أيقونة */}
               {React.cloneElement(service.icon, {
                 className: `w-5 h-5 ${isSelected ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-300'}`
               })}

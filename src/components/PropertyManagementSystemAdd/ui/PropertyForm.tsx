@@ -18,8 +18,48 @@ export const PropertyForm: React.FC = () => {
     setDescribeLocation,
     setFloor,
     setGenderAcceptance,
-    // AddPost,
   } = usePostsStore();
+
+  // تحميل البيانات من localStorage عند تحميل المكون
+  useEffect(() => {
+    const savedFormData = localStorage.getItem('propertyFormData');
+    if (savedFormData) {
+      try {
+        const parsedData = JSON.parse(savedFormData);
+        setDescription(parsedData.Description || '');
+        setDescribeLocation(parsedData.DescribeLocation || '');
+        setFloor(parsedData.Floor || '');
+        setCapecity(parsedData.Capecity || 0);
+        setLocation(parsedData.Location || '');
+        setGenderAcceptance(parsedData.GenderAcceptance || 0);
+        setServices(parsedData.services || []);
+      } catch (error) {
+        console.error('Error parsing saved form data:', error);
+      }
+    }
+  }, [
+    setDescription,
+    setDescribeLocation,
+    setFloor,
+    setCapecity,
+    setLocation,
+    setGenderAcceptance,
+    setServices,
+  ]);
+
+  // حفظ البيانات في localStorage عند تغيير أي حقل
+  useEffect(() => {
+    const formData = {
+      Description,
+      DescribeLocation,
+      Floor,
+      Capecity,
+      Location,
+      GenderAcceptance,
+      services,
+    };
+    localStorage.setItem('propertyFormData', JSON.stringify(formData));
+  }, [Description, DescribeLocation, Floor, Capecity, Location, GenderAcceptance, services]);
 
   const areas = [
     { id: 0, key: 'AlMasaken', value: 'المساكن' },
@@ -41,14 +81,13 @@ export const PropertyForm: React.FC = () => {
   ];
 
   const GenderOptions = [
-    { id: 0, key: "None", value: "أى نوع" },
-    { id: 1, key: "Male", value: "رجال" },
-    { id: 2, key: "Female", value: "نساء" },
+    { id: 0, key: 'None', value: 'أى نوع' },
+    { id: 1, key: 'Male', value: 'رجال' },
+    { id: 2, key: 'Female', value: 'نساء' },
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // await AddPost();
     alert('تم رفع بيانات العقار!');
     console.log('Description:', Description);
     console.log('DescribeLocation:', DescribeLocation);
@@ -57,11 +96,22 @@ export const PropertyForm: React.FC = () => {
     console.log('Location:', Location);
     console.log('GenderAcceptance:', GenderAcceptance);
     console.log('services:', services);
-    // setServices([])
+    // إعادة تعيين البيانات بعد الإرسال إذا لزم الأمر
+    // localStorage.removeItem('propertyFormData');
+    // setServices([]);
+    // setDescription('');
+    // setDescribeLocation('');
+    // setFloor('');
+    // setCapecity(0);
+    // setLocation('');
+    // setGenderAcceptance(0);
   };
-useEffect(()=>{
-  setServices([])
-},[])
+
+  // إزالة إعادة تعيين services هنا لأنها تتعارض مع localStorage
+  // useEffect(() => {
+  //   setServices([]);
+  // }, []);
+
   return (
     <div className="rtl">
       <h2 className="text-xl font-semibold text-gray-800 mb-4 dark:text-primary_TXD">
@@ -93,8 +143,7 @@ useEffect(()=>{
             <select
               value={Location}
               onChange={(e) => setLocation(Number(e.target.value))}
-              className="w-full p-2 border rounded-md  dark:bg-secondary_BGD dark:text-secondary_TXD"
-
+              className="w-full p-2 border rounded-md dark:bg-secondary_BGD dark:text-secondary_TXD"
             >
               <option value="">اختر منطقة</option>
               {areas.map((area) => (
@@ -151,16 +200,13 @@ useEffect(()=>{
           <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-primary_TXD">
             الخدمات الإضافية
           </label>
-          <ServiceSelector
-            selectedServices={services}
-            onChange={setServices}
-          />
+          <ServiceSelector selectedServices={services} onChange={setServices} />
         </div>
-        {/* <div>
+        <div>
           <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded-md">
             حفظ العقار
           </button>
-        </div> */}
+        </div>
       </form>
     </div>
   );
