@@ -20,7 +20,7 @@ function PropertyManagementAdd() {
   const initialMode: Mode = location.state?.mode || 'list';
   const [mode, setMode] = useState<Mode>(initialMode);
   const [activeTab, setActiveTab] = useState('details');
-  
+
   const tabs = [
     { id: 'details', label: 'تفاصيل العقار' },
     { id: 'rooms', label: 'إدارة الغرف' },
@@ -30,7 +30,7 @@ function PropertyManagementAdd() {
   const handleSave = () => {
     AddPost();
     alert('تم حفظ معلومات العقار بنجاح!');
-    
+
     setMode('list');
     // navigate('/');
   };
@@ -85,12 +85,17 @@ function PropertyManagementAdd() {
           <div className="flex gap-3">
             <button
               onClick={handleSave}
-              disabled={mode === 'list'}
-              className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors"
+              disabled={activeTab !== 'images'}
+              className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors
+    ${activeTab === 'images'
+                  ? 'bg-green-500 text-white hover:bg-green-600'
+                  : 'bg-green-300 text-white opacity-50 cursor-not-allowed'}
+  `}
             >
               <Save size={16} />
-              {mode === 'add' ? 'إضافة العقار' : 'حفظ '}
+              {mode === 'add' ? 'إضافة العقار' : 'حفظ'}
             </button>
+
 
             <button
               onClick={() => {
