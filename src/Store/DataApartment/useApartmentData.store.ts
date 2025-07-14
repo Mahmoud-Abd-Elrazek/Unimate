@@ -125,6 +125,7 @@ const useApartmentData = create<ApartmentDataState>()(
           set({
             apartments: apartmentsData,
             find: apartmentsData.length > 0,
+           
           });
 
         } catch (error) {
@@ -147,7 +148,7 @@ const useApartmentData = create<ApartmentDataState>()(
         try {
           set({ isLoading: true });
           const res = await axios.get(`https://darkteam.runasp.net/GetApartmentEndpoint/GetApartment?PageNumber=1&PageSize=6`);
-          set({ topRated: res.data.data.apartments || [] });
+          set({ topRated: (res.data.data.apartments || []).reverse() });
         } catch (error) {
           console.error("Error fetching top-rated:", error);
         } finally {
@@ -160,7 +161,7 @@ const useApartmentData = create<ApartmentDataState>()(
           set({ isLoading: true });
           const res = await axios.get(`https://darkteam.runasp.net/GetApartmentEndpoint/GetApartment?PageNumber=1&PageSize=${pageSize}`);
           set({
-            newApartments: res.data.data.apartments || [],
+            newApartments: (res.data.data.apartments || []).reverse(),
             totalCount: res.data.data.totalCount || 0,
           });
         } catch (error) {

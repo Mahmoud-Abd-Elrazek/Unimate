@@ -1,45 +1,41 @@
-
-
-
 import { useEffect } from "react"
 import { useApartmentStore } from "../../../Store/Data/useApartment.store"
 import ApartmentCard from "../../../components/ApartmentCard/ApartmentCard"
 // import { Link } from "react-router"
-import { ApartmentData } from "../../../components/ApartmentCard/ApartmentCard"; // تأكد من المسار الصحيح
+import { ApartmentData } from "../../../components/ApartmentCard/ApartmentCard";
 
-// import FavApartmentCard from "../../../components/ApartmentCard/FavApartmentCard"
 import AuthorLayout from '../AuthorLayout/authorLayout';
 
 export default function Favorites() {
   // const [data] = useState([])
-  const { GetFavApartment, issuccess,aparments } = useApartmentStore()
+  const { GetFavApartment, issuccess, aparments } = useApartmentStore()
   useEffect(() => {
     GetFavApartment()
     // console.log(issuccess)
   }, [])
   return (
     <AuthorLayout isAuthorized={true} >
-    <div>
-      <h1 className="text-2xl text-gray-500 text-center my-10 dark:text-[white]">تفضيلاتى</h1>
-      {issuccess &&
-          
       <div>
+        <h1 className="text-2xl text-gray-500 text-center my-10 dark:text-[white]">تفضيلاتى</h1>
+        {issuccess &&
 
-     
-      <div className="flex flex-col items-center justify-start min-h-screen mt-20">
-        <p className="text-lg my-10 text-gray-700 dark:text-[white]">لا توجد شقق مفضله حتى الان</p>
-        {/* <Link to="/" className="btn MainColorBG text-white">Go to Home</Link> */}
+          <div>
+
+
+            <div className="flex flex-col items-center justify-start min-h-screen mt-20">
+              <p className="text-lg my-10 text-gray-700 dark:text-[white]">لا توجد شقق مفضله حتى الان</p>
+              {/* <Link to="/" className="btn MainColorBG text-white">Go to Home</Link> */}
+            </div>
+          </div>
+        }
+        <div>
+          <ApartmentGrid apartments={aparments.map((apartment: any) => ({
+            ...apartment,
+            detailedAddress: apartment.detailedAddress ?? "",
+            location: apartment.location ?? { lat: 0, lng: 0 }
+          }))} />
+        </div>
       </div>
-      </div>
-    }
-    <div>
-       <ApartmentGrid apartments={aparments.map((apartment:any) => ({
-         ...apartment,
-         detailedAddress: apartment.detailedAddress ?? "",
-         location: apartment.location ?? { lat: 0, lng: 0 }
-       }))} />
-    </div>
-    </div>
     </AuthorLayout>
   )
 }
@@ -55,7 +51,7 @@ const ApartmentGrid: React.FC<ApartmentGridProps> = ({ apartments }) => {
     >
       {apartments.map((apartment, i) => (
         <div key={i} dir="ltr">
-          <ApartmentCard data={apartment} id={i+4} />
+          <ApartmentCard data={apartment} id={i + 4} />
           {/* <FavApartmentCard data={apartment} id={i + 4} /> */}
         </div>
       ))}

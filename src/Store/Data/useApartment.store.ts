@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import useAuthStore from "../Auth/Auth.store";
 import { toast } from "sonner";
 
@@ -15,12 +15,10 @@ interface Apartment {
 interface ApartmentState {
     issuccess: boolean;
     aparments: Apartment[],
-    // message:string;
     flag: boolean,
-    // setflag:(flag:boolean)=>void
-    AddFavorite: (id: string) => Promise<void>
-    DeleteFavorite: (id: string) => Promise<void>
-    GetFavApartment: () => Promise<void>
+    AddFavorite: (id: number) => Promise<AxiosResponse>
+    DeleteFavorite: (id: number) => Promise<AxiosResponse>
+    GetFavApartment: () => Promise<void >
     ToggelFav: (id: number) => Promise<void>
 }
 
@@ -28,53 +26,69 @@ export const useApartmentStore = create<ApartmentState>((set) => ({
     issuccess: true,
     aparments: [],
     flag: false,
-    // setflag:  (flag: boolean) => {
-    //     set({ flag });
-    // },
-    AddFavorite: async (id: string) => {
-        try {
+    
+    AddFavorite: async (id: number) => {
+  try {
+    const token = useAuthStore.getState().token;
+    const res = await axios.post("https://darkteam.runasp.net/AddFavoriteApartEndpoint/AddFavoriteApartment",
+      { id },
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      });
 
-            const token = useAuthStore.getState().token;
-            const res = axios.post("https://darkteam.runasp.net/AddFavoriteApartEndpoint/AddFavoriteApartment",
-                {
-                    id
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                })
-            console.log(res + " you add this apatment to favroutesssss")
-            toast.success("تمت إضافة الشقة إلى المفضلة بنجاح");
-        } catch (error) {
-            toast.error("the add fav failed!!!!!!!!!!!!!!!!!!!!!!!1" + error);
-            // console.log("the add fav failed!!!!!!!!!!!!!!!!!!!!!!!1" + error)
-        }
+    // if (!res.data.isSuccess) {
+    //   toast.error("Favorite Was Added Before");
+    //   throw new Error("الشقه غير موجوده");
+    // }
 
-    },
-    DeleteFavorite: async (id: string) => {
-        try {
+   
+    set((state) => ({
+      aparments: state.aparments.map(ap =>
+        ap.apartmentId === id ? { ...ap, favourite: true } : ap
+      )
+    }));
 
-            const token = useAuthStore.getState().token;
-            const res = axios.post("https://darkteam.runasp.net/DelFavoriteApartEndpoint/DelFavoriteApartment",
-                {
-                    id
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                })
-            console.log(res + " you remove this apatment from favroutesssss")
-        } catch (error) {
-            console.log("the remove fav failed!!!!!!!!!!!!!!!!!!!!!!!1" + error)
-        }
+    toast.success("تمت إضافة الشقة إلى المفضلة بنجاح");
+    return res;
+  } catch (error) {
+    toast.error("فشل في إضافة الشقة للمفضلة: " + error);
+    throw error;
+  }
+},
 
-    },
+  DeleteFavorite: async (id: number) => {
+  try {
+    const token = useAuthStore.getState().token;
+    const res = await axios.delete("https://darkteam.runasp.net/DelFavoriteApartEndpoint/DelFavoriteApartment",
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        data: { id }
+      });
+
+    if (res.data.isSuccess) {
+     
+      set((state) => ({
+        aparments: state.aparments.map(ap =>
+          ap.apartmentId === id ? { ...ap, favourite: false } : ap
+        )
+      }));
+
+      toast.success("تمت إزالة الشقة من المفضلة بنجاح");
+      return res;
+    } else {
+      toast.error("الشقه غير موجوده");
+      throw new Error("الشقه غير موجوده");
+    }
+  } catch (error) {
+    toast.error("فشل في إزالة الشقة من المفضلة: " + error);
+    throw error;
+  }
+},
+
     GetFavApartment: async () => {
         try {
             const token = useAuthStore.getState().token;
-            const res = axios.get("https://darkteam.runasp.net/GetFavoritesEndpoint/GetFavorites",
+            const res = await axios.get("https://darkteam.runasp.net/GetFavoritesEndpoint/GetFavorites",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -85,13 +99,13 @@ export const useApartmentStore = create<ApartmentState>((set) => ({
             set({
                 issuccess: (await res).data.isSussecc,
                 aparments: (await res).data.data
-
             })
             console.log((await res).data.data)
         } catch (error) {
             console.log("failed to get the data of favs", error)
         }
     },
+
     ToggelFav: async (id: number) => {
         try {
             const res = await axios.post(
@@ -119,6 +133,4 @@ export const useApartmentStore = create<ApartmentState>((set) => ({
             console.log("Failed to toggle the favs:", error);
         }
     }
-
-
 }))

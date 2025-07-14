@@ -153,7 +153,7 @@ const ApartmentGrid: React.FC<ApartmentGridProps> = ({ apartments }) => {
       className="grid grid-cols-1 gap-y-3 gap-x-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-5 3xl:grid-cols-6"
       dir="rtl"
     >
-      {apartments.map((apartment, i) => (
+      {apartments.slice().reverse().map((apartment, i) => (
         <div key={i} dir="ltr">
           <ApartmentCard data={apartment} id={i + 4} />
         </div>

@@ -21,8 +21,9 @@ export interface ApartmentData {
   numberOfRooms?: number;
   price?: string | number;
   ownerName?: string;
-  detailedAddress:string;
-  location:number;
+  detailedAddress: string;
+  location: number;
+  favourite: boolean;
 }
 
 interface ApartmentCardProps {
@@ -34,7 +35,7 @@ interface ApartmentCardProps {
 }
 
 const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCardProps) => {
-   const prevRef = useRef(null);
+  const prevRef = useRef(null);
   const nextRef = useRef(null);
   const swiperRef = useRef<SwiperClass | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -98,15 +99,19 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
   numofRooms = numofRooms == 0 ? 3 : numofRooms;
 
 
+  const { DeleteFavorite, AddFavorite } = useApartmentStore();
 
-  const { ToggelFav, flag } = useApartmentStore();
-  const [isFavorited, setisFavrited] = useState(flag);
   const handleClick = () => {
+    console.log(id)
+    console.log(data?.favourite)
     if (id !== undefined) {
-      ToggelFav(id);
-      setisFavrited(pre => !pre);
+      if (!data?.favourite) {
+        AddFavorite(id);
+      } else {
+        DeleteFavorite(id);
+      }
     }
-  }
+  };
 
   const areas = [
     { id: 0, key: 'AlMasaken', value: 'المساكن' },
@@ -130,6 +135,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
   const [locationId, setLocationId] = useState<number | null>(null);
   useEffect(() => {
     setLocationId(data?.location ?? null);
+    console.log("this is data fav", data?.favourite)
   }, [data?.location]);
 
   const selectedLocation = areas.find((area) => area.id === locationId);
@@ -212,10 +218,11 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
             className="absolute top-3 left-3 p-2 rounded-full shadow-md cursor-pointer z-10 bg-[#f8fafc]"
           >
             <FaHeart
-              className={`transition duration-300 text-xl ${isFavorited ? 'text-red-500' : 'text-[#00000080]'
+              className={`transition text-xl ${data?.favourite ? 'text-red-500' : 'text-[#00000080]'
                 } hover:scale-110`}
             />
-          </div>)}
+          </div>
+        )}
 
         <Link to={`/roomdetails?id=${id}`} state={{ data: data, ownerName: data?.ownerName }}>
           <div className="p-3 text-right">
@@ -293,8 +300,8 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
 
         )}
       </div>
-      </div>
-      );
+    </div>
+  );
 };
 
-      export default ApartmentCard;
+export default ApartmentCard;
