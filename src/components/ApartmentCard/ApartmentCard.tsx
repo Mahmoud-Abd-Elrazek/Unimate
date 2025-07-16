@@ -291,7 +291,8 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
 
         {edit && (
           <div className="absolute top-3 right-3 z-10">
-            <Link to={`/manage_property_edit?id=${id}`}
+            <Link to={`/manage_property?id=${id}`}
+                  state={{mode: 'edit'}}
               className="text-[#f8fafc] bg-[#495057] hover:bg-[#f8fafc] hover:text-[#0f1729] px-4 py-1 rounded-[10px] text-base shadow-md cursor-pointer"
             >
               edit

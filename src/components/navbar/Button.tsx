@@ -47,7 +47,7 @@ const Button = () => {
             md:hover:dark:border-[#f8fafc]
             md:hover:scale-100
          "
-         onClick={() => navigate('/manage_property_add', { state: { mode: 'add' } })}
+         onClick={() => navigate('/manage_property', { state: { mode: 'add' } })}
       >
          <span className="hidden md:inline">اضافه مسكن</span>
          <IoAdd className="text-[30px] md:text-[17px]" />
