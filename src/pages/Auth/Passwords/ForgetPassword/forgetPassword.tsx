@@ -36,24 +36,24 @@ const ForgotPassword: React.FC = () => {
   return (
     <div>
 
-      <div className="forgot-container">
-        <div className="forgot-card">
-          <h2 className="forgot-title">Forgot Password</h2>
+      <div className="forgot-container dark:bg-primary_BGD">
+        <div className="forgot-card dark:bg-secondary_BGD">
+          <h2 className="forgot-title dark:text-primary_TXD">Forgot Password</h2>
           {message ? (
             <p className="forgot-message">{message}</p>
           ) : (
             <div>
-              <p className="forgot-subtitle">Enter your email address and we’ll send you a link to reset your password.</p>
+              <p className="forgot-subtitle dark:text-secondary_TXD">Enter your email address and we’ll send you a link to reset your password.</p>
               <form onSubmit={handleSubmit}>
                 <div className="input-group">
-                  <label htmlFor="email" className="label">Email</label>
+                  <label htmlFor="email" className="label dark:text-primary_TXD">Email</label>
                   <input
                     id="email"
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="input"
+                    className="input dark:bg-secondary_BGD dark:text-primary_TXD"
                     placeholder="you@example.com"
                   />
                 </div>
