@@ -74,9 +74,12 @@ export const ImageSection: React.FC = () => {
             {expandedSections[section.key as keyof SectionState] && (
               <div className="p-4">
                 <ImageUploadSection
-                  title={section.label}
-                  description={section.desc}
-                  maxImages={3} // use one image for backend compatibility
+                  title={
+                    <span className='dark:text-primary_TXD'>{section.label}</span>
+                  }
+                  description={
+                    <span className='dark:text-secondary_TXD'>{section.desc}</span>}
+                  maxImages={3}
                   onImagesChange={(images) => {
                     const image = images[0] || null;
                     section.setter(image);

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 interface ImageUploadSectionProps {
-  title: string;
-  description: string;
+  title: React.ReactNode;
+  description:  React.ReactNode;
   maxImages: number;
   onImagesChange: (images: File[]) => void;
 }
