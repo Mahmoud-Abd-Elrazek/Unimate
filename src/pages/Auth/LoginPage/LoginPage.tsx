@@ -45,7 +45,7 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 slide-in">
-      <div className="w-full max-w-md rounded-xl p-8 shadow-md text-right">
+      <div className="w-full max-w-md rounded-xl p-8 shadow-md text-right dark:bg-secondary_BGD">
         <h2 className="text-2xl font-semibold mb-2">تسجيل الدخول</h2>
 
         {/* اختيار نوع الحساب */}
@@ -80,7 +80,7 @@ const LoginPage = () => {
               dir="rtl"
               type="email"
               id="email"
-              className="InputStyle w-full dark:bg-secondary_BGD dark:text-secondary_TXD"
+              className="InputStyle w-full dark:bg-secondary_BGD dark:text-primary_TX"
               placeholder="البريد الالكترونى"
               {...register("email")}
             />
@@ -93,7 +93,7 @@ const LoginPage = () => {
               dir="rtl"
               type={showPassword ? "text" : "password"}
               id="password"
-              className="InputStyle w-full pr-10 dark:bg-secondary_BGD dark:text-secondary_TXD"
+              className="InputStyle w-full pr-10 dark:bg-secondary_BGD dark:text-primary_TXD"
               placeholder="كلمة المرور"
               {...register("password")}
             />
