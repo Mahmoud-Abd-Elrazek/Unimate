@@ -91,8 +91,8 @@ export default function RegisterStudentPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 mt-20">
-      <div className="w-full max-w-md rounded-xl p-8 shadow-md text-right">
+    <div className="min-h-screen flex items-center justify-center  pt-20">
+      <div className="w-full max-w-md rounded-xl p-8 shadow-md text-right  dark:bg-secondary_BGD">
         <h2 className="text-2xl font-semibold mb-1">انشاء حساب طالب جديد</h2>
         <form onSubmit={handleSubmit(OnSubmit)} className="space-y-4">
           {/* Names */}
@@ -102,7 +102,7 @@ export default function RegisterStudentPage() {
               <input
                 type="text"
                 dir="rtl"
-                className="InputStyle w-full"
+                className="InputStyle w-full dark:bg-secondary_BGD dark:text-primary_TXD"
                 placeholder="ادخل الاسم الاول"
                 {...register("firstname")}
               />
@@ -113,7 +113,7 @@ export default function RegisterStudentPage() {
               <input
                 type="text"
                 dir="rtl"
-                className="InputStyle w-full"
+                className="InputStyle w-full dark:bg-secondary_BGD dark:text-primary_TXD"
                 placeholder="ادخل الاسم الاخير"
                 {...register("lastname")}
               />
@@ -127,7 +127,7 @@ export default function RegisterStudentPage() {
             <input
               type="text"
               dir="rtl"
-              className="InputStyle w-full"
+              className="InputStyle w-full dark:bg-secondary_BGD dark:text-primary_TXD"
               placeholder="ادخل اسم المستخدم"
               {...register("username")}
             />
@@ -140,7 +140,7 @@ export default function RegisterStudentPage() {
             <input
               type="email"
               dir="rtl"
-              className="InputStyle w-full"
+              className="InputStyle w-full dark:bg-secondary_BGD dark:text-primary_TXD"
               placeholder="ادخل بريد الكتروني فعال"
               {...register("email")}
             />
@@ -153,7 +153,7 @@ export default function RegisterStudentPage() {
             <input
               type="text"
               dir="rtl"
-              className="InputStyle w-full"
+              className="InputStyle w-full dark:bg-secondary_BGD dark:text-primary_TXD"
               placeholder="ادخل الرقم القومي المكون من 14 رقماً"
               {...register("nationalID")}
             />
@@ -178,7 +178,7 @@ export default function RegisterStudentPage() {
             <input
               type={showPassword ? "text" : "password"}
               dir="rtl"
-              className="InputStyle w-full pr-10"
+              className="InputStyle w-full dark:bg-secondary_BGD dark:text-primary_TXD pr-10"
               placeholder="ادخل كلمة المرور الخاصة بك"
               {...register("password")}
             />
@@ -198,7 +198,7 @@ export default function RegisterStudentPage() {
             <input
               type={showConfirmPassword ? "text" : "password"}
               dir="rtl"
-              className="InputStyle w-full pr-10"
+              className="InputStyle w-full dark:bg-secondary_BGD dark:text-primary_TXD pr-10"
               placeholder="تأكيد كلمة المرور"
               {...register("confirmPassword")}
             />
