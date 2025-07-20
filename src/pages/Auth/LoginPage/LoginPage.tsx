@@ -80,7 +80,7 @@ const LoginPage = () => {
               dir="rtl"
               type="email"
               id="email"
-              className="InputStyle w-full"
+              className="InputStyle w-full dark:bg-secondary_BGD dark:text-secondary_TXD"
               placeholder="البريد الالكترونى"
               {...register("email")}
             />
@@ -93,7 +93,7 @@ const LoginPage = () => {
               dir="rtl"
               type={showPassword ? "text" : "password"}
               id="password"
-              className="InputStyle w-full pr-10"
+              className="InputStyle w-full pr-10 dark:bg-secondary_BGD dark:text-secondary_TXD"
               placeholder="كلمة المرور"
               {...register("password")}
             />
@@ -126,7 +126,7 @@ const LoginPage = () => {
         <p className="mt-4 text-center text-sm">
           ليس لديك حساب؟{" "}
           <Link to="/register_student" className="text-blue-500 font-medium underline">
-            سجل الآن
+            إنشاء حساب جديد
           </Link>
         </p>
       </div>
