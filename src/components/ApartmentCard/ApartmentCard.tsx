@@ -24,6 +24,7 @@ export interface ApartmentData {
   detailedAddress: string;
   location: number;
   favourite: boolean;
+  images?: string[];
 }
 
 interface ApartmentCardProps {
@@ -40,16 +41,9 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
   const swiperRef = useRef<SwiperClass | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const images = [
-    "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
-    "https://doudapartmenthomes.com/wp-content/uploads/2023/12/sidekix-media-LFlbLb8vJls-unsplash-scaled.jpg",
-    "https://doudapartmenthomes.com/wp-content/uploads/2023/12/sidekix-media-LFlbLb8vJls-unsplash-scaled.jpg",
-    "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
-    "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
-    "https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg",
-    "https://www.imtilak.net/crop/798/469/posts/57fef479be96eae51ab4dadcea1fdc76hzA997.webp",
-    "https://upload.wikimedia.org/wikipedia/commons/1/1e/AIMCO_apartment_interior.jpg",
-  ];
+  const images = Array.isArray(data?.images) && data.images.length > 0
+    ? data.images
+    : ["https://via.placeholder.com/600x400?text=No+Image"];
 
   const handlePrevClick = () => {
     swiperRef.current?.slidePrev();
@@ -167,7 +161,12 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
         >
           {images.map((src, index) => (
             <SwiperSlide key={index}>
-              <img src={src} alt="img" className="w-full h-[200px] sm:h-[250px] md:h-[280px] object-cover" />
+              <img
+                src={src}
+                alt={`apartment-${index}`}
+                className="w-full h-[200px] sm:h-[250px] md:h-[280px] object-cover"
+                onError={(e) => (e.currentTarget.src = "https://via.placeholder.com/600x400?text=Image+Error")}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -292,7 +291,7 @@ const ApartmentCard = ({ className = "", edit = false, data, id }: ApartmentCard
         {edit && (
           <div className="absolute top-3 right-3 z-10">
             <Link to={`/manage_property?id=${id}`}
-                  state={{mode: 'edit'}}
+              state={{ mode: 'edit' }}
               className="text-[#f8fafc] bg-[#495057] hover:bg-[#f8fafc] hover:text-[#0f1729] px-4 py-1 rounded-[10px] text-base shadow-md cursor-pointer"
             >
               edit
