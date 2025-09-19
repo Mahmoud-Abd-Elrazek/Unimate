@@ -2,136 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-
-/* Hide native search clear button */
-input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  appearance: none;
-  display: none;
-} 
-
-* {
-    font-family: "Cairo", sans-serif;
-
+/* دعم الكتابة من اليمين لليسار */
+html {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Tajawal', system-ui, sans-serif; /* خط عربي أنيق */
 }
 
-.IconSize {
-    font-size: 1.5rem;
-    @apply w-[25px];
-    @apply h-[25px];
-    @apply ml-2;
-
-
+/* تحسين للألوان والخلفية */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #f8fafc; /* خلفية فاتحة */
+  color: #1f2937; /* نص غامق */
 }
 
-.logo {
-    @apply w-[150px];
-    @apply h-[3rem];
+a {
+  font-weight: 500;
+  color: #2563eb;
+  text-decoration: none;
+}
+a:hover {
+  color: #1d4ed8;
 }
 
-.MainColorText {
-    color: #DC3545;
+button {
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: inherit;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
-
-.MainColorBG {
-    background-color: #DC3545;
-    transition: .3s ease-in-out;
-}
-
-.MainColorBG:hover {
-    background-color: #ff0019;
-}
-
-.InputStyle {
-    @apply w-full;
-    @apply h-[3rem];
-    @apply border-2;
-    @apply border-gray-200;
-    @apply p-2;
-    @apply rounded-md;
-}
-
-.ErrorMessage {
-    @apply text-red-600;
-}
-
-.BODY {
-    /* @apply mt-[5rem]; */
-    @apply py-[5rem];
-}
-
-.CenterCol {
-    @apply flex;
-    @apply flex-col;
-    @apply justify-center;
-    @apply items-center;
-    @apply w-full;
-}
-
-@keyframes slideShow {
-    0% {
-        opacity: 0;
-    }
-
-    10% {
-        opacity: 1;
-    }
-
-    30% {
-        opacity: 1;
-    }
-
-    40% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 0;
-    }
-}
-
-.hero-slide {
-    @apply absolute inset-0 bg-cover bg-center transition-opacity duration-1000;
-    animation: slideShow 24s infinite;
-}
-
-.hero-slide:nth-child(1) {
-    animation-delay: 0s;
-}
-
-.hero-slide:nth-child(2) {
-    animation-delay: 6s;
-}
-
-.hero-slide:nth-child(3) {
-    animation-delay: 12s;
-}
-
-.hero-slide:nth-child(4) {
-    animation-delay: 18s;
-}
-
-/* .CardHover{
-    @apply transition-all;
-    @apply duration-200;
-}
-.hover-effect:hover {
-    background-color: #4B5563; 
-} */
-/* .Page
- {
-    @apply mt-20;
- } */
-.scrollbar-hide::-webkit-scrollbar {
-    display: none;
-}
-
-.scrollbar-hide {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
-}
-.dark .btn-close {
-  filter: invert(1);
+button:focus {
+  outline: none;
+  ring: 2px solid #2563eb;
 }
