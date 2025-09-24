@@ -163,7 +163,7 @@ export default function App() {
         </Route>
 
         {/* Room detail page */}
-        <Route path="/roomdetails" element={<RoomDetails />} />
+        <Route path="/roomdetails:id" element={<RoomDetails />} />
 
         {/* Create Post */}
         <Route path="/createpost" element={<CreatePost />}>

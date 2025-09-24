@@ -79,7 +79,7 @@ export default function Home() {
         <div id="RoomSection">
           <h1 className="text-center text-xl font-semibold my-4">نتائج البحث</h1>
           {find?
-          <ApartmentGrid apartments={apartments} />
+          <ApartmentGrid apartments={apartments.map(apartment => ({ ...apartment, favourite: apartment.favourite ?? false }))} />
           :
             <div className="flex flex-col items-center justify-center py-10">
             <span className="text-2xl font-semibold text-gray-500 mb-2 min-h-[20rem]">لا يوجد نتائج لبحثك</span>
@@ -97,7 +97,7 @@ export default function Home() {
               الاعلى تقييما
               <FaRegStar className="ml-2 text-[#FFA500] dark:text-[#FFCC00]" />
             </h1>
-            <ApartmentGrid apartments={topRated} />
+            <ApartmentGrid apartments={topRated.map(apartment => ({ ...apartment, favourite: apartment.favourite ?? false }))} />
           </div>
 
           <div>

@@ -5,6 +5,7 @@ import axios from 'axios';
 // import { toast } from 'sonner';
 
 export interface Apartment {
+  favourite: boolean;
   capecity: number;
   price: number;
   numberOfRooms: number;
